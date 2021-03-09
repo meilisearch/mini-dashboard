@@ -1,0 +1,31 @@
+name: publish-build
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build-project:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - name: Install project dependencies
+        run: yarn install
+      - name: Build project
+        run: yarn build
+      - name: Get current tag name
+        id: get_tag
+        run: echo ::set-output name=TAG::${GITHUB_REF/refs\/tags\//}
+      - name: Create ZIP folder
+        uses: thedoctor0/zip-release@master
+        with:
+          filename: "build.zip"
+          directory: "build"
+      - name: Create release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: ${{ steps.get_tag.outputs.TAG }}
+          prerelease: false
+          files: "build/build.zip"
