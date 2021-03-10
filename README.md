@@ -3,3 +3,7 @@
 ## Run
 
 `yarn start`
+
+## Lint
+
+`yarn lint`

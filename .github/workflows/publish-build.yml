@@ -2,7 +2,7 @@ name: publish-build
 on:
   push:
     tags:
-      - "*"
+      - '*'
 
 jobs:
   build-project:
@@ -20,12 +20,12 @@ jobs:
       - name: Create ZIP folder
         uses: thedoctor0/zip-release@master
         with:
-          filename: "build.zip"
-          directory: "build"
+          filename: 'build.zip'
+          directory: 'build'
       - name: Create release
-        uses: "marvinpinto/action-automatic-releases@latest"
+        uses: 'marvinpinto/action-automatic-releases@latest'
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
           automatic_release_tag: ${{ steps.get_tag.outputs.TAG }}
           prerelease: false
-          files: "build/build.zip"
+          files: 'build/build.zip'
