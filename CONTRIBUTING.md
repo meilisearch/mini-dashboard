@@ -31,13 +31,13 @@ First of all, thank you for contributing to MeiliSearch! The goal of this docume
 ### Setup <!-- omit in toc -->
 
 ```bash
-$ yarn
+yarn
 ```
 
 or
 
 ```bash
-$ npm install
+npm install
 ```
 
 ### Tests and Linter <!-- omit in toc -->
@@ -45,13 +45,27 @@ $ npm install
 Each PR should pass the linter to be accepted.
 
 ```bash
-$ yarn lint
+yarn lint
 ```
 
 or :
 
 ```bash
-$ npm run lint
+npm run lint
+```
+
+### Storybook <!-- omit in toc -->
+
+This project's components are in Storybook. If you edit one of the components, please make sure that storybook is still up-to-date.
+
+```bash
+yarn storybook
+```
+
+or :
+
+```bash
+npm run storybook
 ```
 
 ## Git Guidelines
