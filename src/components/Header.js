@@ -1,15 +1,16 @@
 import React from 'react'
-import styled from 'styled-components'
 
-const HeaderWrapper = styled.header`
-  background-color: ${(p) => p.theme.colors.main};
-  color: white;
-`
+import Box from 'components/Box'
 
 const Header = () => (
-  <HeaderWrapper>
-    <h1>I’m a title</h1>
-  </HeaderWrapper>
+  <>
+    <Box color="#fff" bg="main">
+      <h1 style={{ margin: 0 }}>I’m a title</h1>
+    </Box>
+    <Box bg="gray" color="white" mt={4}>
+      Lorem Ipsum
+    </Box>
+  </>
 )
 
 export default Header
