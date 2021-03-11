@@ -9,9 +9,9 @@ import {
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import { ThemeProvider } from 'styled-components'
 
-import theme from './theme'
-import GlobalStyle from './GlobalStyle'
-import Header from './components/Header'
+import theme from 'theme'
+import GlobalStyle from 'GlobalStyle'
+import Header from 'components/Header'
 
 // For development purpose. Remove and decomment the following line in production
 const baseUrl = 'http://127.0.0.1:7700'
