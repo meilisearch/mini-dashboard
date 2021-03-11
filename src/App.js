@@ -7,6 +7,11 @@ import {
   createInfiniteHitsSessionStorageCache,
 } from 'react-instantsearch-dom'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
+import { ThemeProvider } from 'styled-components'
+
+import theme from './theme'
+import GlobalStyle from './GlobalStyle'
+import Header from './components/Header'
 
 // For development purpose. Remove and decomment the following line in production
 const baseUrl = 'http://127.0.0.1:7700'
@@ -21,10 +26,14 @@ const App = () => {
   const sessionStorageCache = createInfiniteHitsSessionStorageCache()
 
   return (
-    <InstantSearch indexName="movies" searchClient={searchClient}>
-      <SearchBox />
-      <InfiniteHits hitComponent={Hit} cache={sessionStorageCache} />
-    </InstantSearch>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Header />
+      <InstantSearch indexName="movies" searchClient={searchClient}>
+        <SearchBox />
+        <InfiniteHits hitComponent={Hit} cache={sessionStorageCache} />
+      </InstantSearch>
+    </ThemeProvider>
   )
 }
 
