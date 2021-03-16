@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { SearchBox } from 'react-instantsearch-dom'
 
+import Modal from 'components/Modal'
+
 const HeaderWrapper = styled.div`
   background-color: white;
   padding: ${(p) => p.theme.space[4]}px;
@@ -14,14 +16,17 @@ const HeaderWrapper = styled.div`
 const Header = ({ setApiKey }) => (
   <HeaderWrapper>
     <SearchBox />
-    <label htmlFor="apiKey">
-      API key:
-      <input
-        id="apiKey"
-        type="text"
-        onChange={(e) => setApiKey(e.target.value)}
-      />
-    </label>
+
+    <Modal buttonText="API key">
+      <label htmlFor="apiKey">
+        API key:
+        <input
+          id="apiKey"
+          type="text"
+          onChange={(e) => setApiKey(e.target.value)}
+        />
+      </label>
+    </Modal>
   </HeaderWrapper>
 )
 
