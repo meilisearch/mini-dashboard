@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { SearchBox } from 'react-instantsearch-dom'
 
 import Modal from 'components/Modal'
+import DebouncedSearchBox from 'components/DebouncedSearchBox'
 
 const HeaderWrapper = styled.div`
   background-color: white;
@@ -15,7 +15,7 @@ const HeaderWrapper = styled.div`
 
 const Header = ({ setApiKey }) => (
   <HeaderWrapper>
-    <SearchBox />
+    <DebouncedSearchBox delay={500} />
 
     <Modal buttonText="API key">
       <label htmlFor="apiKey">

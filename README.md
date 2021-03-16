@@ -1,4 +1,4 @@
-# Interface
+# Mini-Dashboard
 
 This is a Work in Progress
 
