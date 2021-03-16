@@ -1,16 +1,28 @@
 import React from 'react'
+import styled from 'styled-components'
+import { SearchBox } from 'react-instantsearch-dom'
 
-import Box from 'components/Box'
+const HeaderWrapper = styled.div`
+  background-color: white;
+  padding: ${(p) => p.theme.space[4]}px;
+  display: flex;
+  position: sticky;
+  top: 0;
+  height: 120px;
+`
 
-const Header = () => (
-  <>
-    <Box color="#fff" bg="main">
-      <h1 style={{ margin: 0 }}>I’m a title</h1>
-    </Box>
-    <Box bg="gray" color="white" mt={4}>
-      Lorem Ipsum
-    </Box>
-  </>
+const Header = ({ setApiKey }) => (
+  <HeaderWrapper>
+    <SearchBox />
+    <label htmlFor="apiKey">
+      API key:
+      <input
+        id="apiKey"
+        type="text"
+        onChange={(e) => setApiKey(e.target.value)}
+      />
+    </label>
+  </HeaderWrapper>
 )
 
 export default Header

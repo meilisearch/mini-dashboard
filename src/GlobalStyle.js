@@ -1,11 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
-  html {
-    box-sizing: border-box;
-  }
-  body {
+  html, body {
     margin: 0;
+  }
+  * {
+    box-sizing: border-box;
   }
 `
 
