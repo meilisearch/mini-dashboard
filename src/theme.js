@@ -7,17 +7,17 @@ const theme = {
       lighter: '#FDEEF3',
     },
     gray: [
-      '#39486E',
+      '#39486E', // 0
       '#4F5C7E',
-      '#606C8B',
+      '#606C8B', // 2
       '#737E99',
-      '#838DA5',
+      '#838DA5', // 4
       '#959DB3',
-      '#A7AEC0',
+      '#A7AEC0', // 6
       '#BBC1CF',
-      '#CBCFDB',
+      '#CBCFDB', // 8
       '#E4E7EE',
-      '#EDEEF7',
+      '#EDEEF7', // 10
       '#FAFBFE',
     ],
   },
@@ -25,10 +25,7 @@ const theme = {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
   breakpoints: {
-    sm: '540px',
-    md: '720px',
-    lg: '960px',
-    xl: '1140',
+    large: '1440',
   },
 }
 
