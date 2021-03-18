@@ -1,5 +1,6 @@
 import React from 'react'
 import { connectSearchBox } from 'react-instantsearch-dom'
+import Input from 'components/Input'
 
 const SearchBox = ({ currentRefinement, refine, delay }) => {
   const [value, setValue] = React.useState(currentRefinement)
@@ -13,11 +14,11 @@ const SearchBox = ({ currentRefinement, refine, delay }) => {
   }
 
   return (
-    <input
+    <Input
       type="search"
       value={value}
       onChange={onChangeDebounced}
-      placeholder="Search for products..."
+      placeholder="Search something"
     />
   )
 }
