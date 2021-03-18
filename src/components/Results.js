@@ -1,10 +1,12 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import styled from 'styled-components'
 import {
   Stats,
   InfiniteHits,
-  Highlight,
+  // Highlight,
   connectStateResults,
+  connectHighlight,
 } from 'react-instantsearch-dom'
 
 const Wrapper = styled.div`
@@ -13,14 +15,53 @@ const Wrapper = styled.div`
   overflow: auto;
 `
 
-function Hit({ hit }) {
-  return <Highlight attribute="title" hit={hit} key={hit.id} />
+const Highlight = ({ highlight, attribute, hit }) => {
+  const parsedHit = highlight({
+    highlightProperty: '_highlightResult',
+    attribute,
+    hit,
+  })
+
+  return (
+    <span>
+      {parsedHit.map((part, index) =>
+        part.isHighlighted ? (
+          <mark key={index}>{part.value}</mark>
+        ) : (
+          <span key={index}>{part.value}</span>
+        )
+      )}
+    </span>
+  )
 }
 
-const ResultsList = connectStateResults(({ searchResults }) => {
+const CustomHighlight = connectHighlight(Highlight)
+
+function Hit({ hit }) {
+  const objectArray = Object.entries(hit._highlightResult)
+
+  return (
+    <>
+      {/* {console.log({ objectArray })} */}
+      {objectArray.map(([key, value]) => (
+        <div style={{ display: 'flex' }} key={key}>
+          <div style={{ fontWeight: 'bold', width: 150 }}>{`${key} : `}</div>
+          <CustomHighlight attribute={key} hit={hit} />
+          {/* <div>
+            {typeof value !== 'string' ? JSON.stringify(value, null, 2) : value}
+          </div> */}
+        </div>
+      ))}
+    </>
+  )
+}
+
+const ResultsList = connectStateResults(({ searchResults, searching }) => {
   const hasResults = searchResults && searchResults.nbHits !== 0
-  // eslint-disable-next-line no-console
-  console.log(hasResults)
+  // if (searching) return <div>loading</div>
+  // if (!searching && hasResults) return <InfiniteHits hitComponent={Hit} />
+  // return <div>No results</div>
+
   return <InfiniteHits hitComponent={Hit} />
 })
 

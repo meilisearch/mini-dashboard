@@ -1,32 +1,87 @@
 import React from 'react'
 import styled from 'styled-components'
+import Color from 'color'
+import { useMenuState, Menu, MenuItem, MenuButton } from 'reakit/Menu'
 
 import Modal from 'components/Modal'
-import DebouncedSearchBox from 'components/DebouncedSearchBox'
+import SearchBox from 'components/DebouncedSearchBox'
+import Container from 'components/Container'
+import MSLogo from 'components/icons/MSLogo'
 
 const HeaderWrapper = styled.div`
   background-color: white;
-  padding: ${(p) => p.theme.space[4]}px;
   display: flex;
   position: sticky;
   top: 0;
   height: 120px;
+  box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)};
 `
 
-const Header = ({ setApiKey }) => (
-  <HeaderWrapper>
-    <DebouncedSearchBox delay={500} />
+const SelectIndexesButton = styled(MenuButton)`
+  height: 48px;
+  background-color: white;
+`
 
-    <Modal buttonText="API key">
-      <label htmlFor="apiKey">
-        API key:
-        <input
-          id="apiKey"
-          type="text"
-          onChange={(e) => setApiKey(e.target.value)}
-        />
-      </label>
-    </Modal>
+const IndexesListContainer = styled(Menu)`
+  display: flex;
+  flex-direction: column;
+`
+
+const IndexesList = ({ indexes, setCurrentIndex }) => {
+  const menu = useMenuState()
+  return (
+    <>
+      <SelectIndexesButton {...menu}>Menu</SelectIndexesButton>
+      <IndexesListContainer {...menu} aria-label="Indexes">
+        {indexes &&
+          indexes.map((data, index) => (
+            <MenuItem
+              {...menu}
+              key={index}
+              id={data.name}
+              onClick={() => {
+                setCurrentIndex(data)
+                menu.hide()
+              }}
+            >
+              {data.name}
+            </MenuItem>
+          ))}
+      </IndexesListContainer>
+    </>
+  )
+}
+
+const ApiKey = ({ apiKey, setApiKey }) => (
+  <Modal buttonText="API key">
+    <label htmlFor="apiKey">
+      API key:
+      <input
+        id="apiKey"
+        type="text"
+        onChange={(e) => setApiKey(e.target.value)}
+        value={apiKey}
+      />
+    </label>
+  </Modal>
+)
+
+const Header = ({ apiKey, setApiKey, indexes, setCurrentIndex }) => (
+  <HeaderWrapper>
+    <Container
+      p={4}
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+      height="100%"
+    >
+      <MSLogo width={64} />
+      <div>
+        <SearchBox delay={500} />
+        <IndexesList indexes={indexes} setCurrentIndex={setCurrentIndex} />
+      </div>
+      <ApiKey apiKey={apiKey} setApiKey={setApiKey} />
+    </Container>
   </HeaderWrapper>
 )
 
