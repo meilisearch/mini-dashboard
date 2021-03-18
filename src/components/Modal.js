@@ -29,7 +29,7 @@ const Dialog = styled(ReakitDialog)`
     opacity: 1;
   }
   transition: opacity 250ms ease-in-out;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -42,12 +42,14 @@ const Dialog = styled(ReakitDialog)`
   z-index: 999;
 `
 
-const Modal = ({ buttonText, children }) => {
-  const dialog = useDialogState({ animated: true })
+const Modal = ({ buttonText, visible = false, children }) => {
+  const dialog = useDialogState({ animated: true, visible })
 
   return (
     <>
-      <DialogDisclosure {...dialog}>{buttonText}</DialogDisclosure>
+      {buttonText && (
+        <DialogDisclosure {...dialog}>{buttonText}</DialogDisclosure>
+      )}
       <DialogBackdrop {...dialog}>
         <Dialog {...dialog} aria-label="Welcome" preventBodyScroll>
           {children}
@@ -63,6 +65,10 @@ Modal.propTypes = {
    */
   buttonText: PropTypes.string,
   /**
+   * The initial state of the modal
+   */
+  visible: PropTypes.bool,
+  /**
    * Modal contents
    */
   children: PropTypes.node,
@@ -70,6 +76,7 @@ Modal.propTypes = {
 
 Modal.defaultProps = {
   buttonText: null,
+  visible: false,
   children: null,
 }
 
