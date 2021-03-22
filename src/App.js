@@ -8,9 +8,7 @@ import Header from 'components/Header'
 // import Sidebar from 'components/Sidebar'
 import Results from 'components/Results'
 
-// For development purpose. Remove and decomment the following line in production
 const baseUrl = 'http://127.0.0.1:7700'
-// const baseUrl = window.location.origin
 
 const Wrapper = styled.div`
   background-color: ${(p) => p.theme.colors.gray[11]};
