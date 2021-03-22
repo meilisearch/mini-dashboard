@@ -9,6 +9,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  mark {
+    background-color: ${(p) => p.theme.colors.main.light};
+  }
+
   @font-face {
     font-family: 'Work Sans';
     src: url("fonts/Work_Sans/regular.woff2") format("woff2");
