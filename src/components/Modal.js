@@ -1,4 +1,5 @@
 import React from 'react'
+import Color from 'color'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
@@ -7,6 +8,9 @@ import {
   DialogDisclosure,
   useDialogState,
 } from 'reakit/Dialog'
+import { Button as BaseButton } from 'reakit/Button'
+
+import Close from 'components/icons/Close'
 
 const DialogBackdrop = styled(ReakitDialogBackdrop)`
   opacity: 0;
@@ -20,7 +24,7 @@ const DialogBackdrop = styled(ReakitDialogBackdrop)`
   bottom: 0;
   left: 0;
   z-index: 997;
-  background-color: rgb(0, 0, 0, 0.6);
+  background-color: ${(p) => Color(p.theme.colors.gray[3]).alpha(0.6)};
 `
 
 const Dialog = styled(ReakitDialog)`
@@ -29,20 +33,43 @@ const Dialog = styled(ReakitDialog)`
     opacity: 1;
   }
   transition: opacity 250ms ease-in-out;
-  background-color: white;
-  position: fixed;
+  position: relative;
+  width: 70%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, calc(-50% - 48px));
   border-radius: 0.25rem;
-  padding: 1em;
   outline: 0px;
-  border: 1px solid rgba(33, 33, 33, 0.25);
-  color: rgb(33, 33, 33);
+  padding: 24px 32px;
+  box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)};
+  background-color: ${(p) => p.theme.colors.gray[11]};
   z-index: 999;
 `
 
-const Modal = ({ buttonText, visible = false, children }) => {
+const ModalTitle = styled.h3`
+  font-size: 22px;
+  line-height: 22px;
+  font-weight: 500;
+`
+
+const Button = styled(BaseButton)`
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+    svg {
+      filter: drop-shadow(
+        0px 0px 3px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.3)}
+      );
+    }
+  }
+`
+
+const Modal = ({ buttonText, title, visible = false, children }) => {
   const dialog = useDialogState({ animated: true, visible })
 
   return (
@@ -52,7 +79,11 @@ const Modal = ({ buttonText, visible = false, children }) => {
       )}
       <DialogBackdrop {...dialog}>
         <Dialog {...dialog} aria-label="Welcome" preventBodyScroll>
+          {title && <ModalTitle>{title}</ModalTitle>}
           {children}
+          <Button onClick={() => dialog.hide()}>
+            <Close />
+          </Button>
         </Dialog>
       </DialogBackdrop>
     </>
@@ -65,6 +96,10 @@ Modal.propTypes = {
    */
   buttonText: PropTypes.string,
   /**
+   * Title of the Modal
+   */
+  title: PropTypes.string,
+  /**
    * The initial state of the modal
    */
   visible: PropTypes.bool,
@@ -76,6 +111,7 @@ Modal.propTypes = {
 
 Modal.defaultProps = {
   buttonText: null,
+  title: null,
   visible: false,
   children: null,
 }

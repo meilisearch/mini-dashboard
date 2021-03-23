@@ -2,6 +2,7 @@ import React from 'react'
 
 import Box from 'components//Box'
 import MSLogo from 'components/icons/MSLogo'
+import CloseIcon from 'components/icons/Close'
 import DocumentIcon from 'components/icons/Document'
 import PictureIcon from 'components/icons/Picture'
 import SearchIcon from 'components/icons/Search'
@@ -13,6 +14,12 @@ export default {
 export const MeilisearchLogo = () => (
   <Box>
     <MSLogo size={64} />
+  </Box>
+)
+
+export const Close = () => (
+  <Box>
+    <CloseIcon width={34} height={36} />
   </Box>
 )
 

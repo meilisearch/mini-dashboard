@@ -12,5 +12,6 @@ const Template = (args) => <Modal {...args} />
 export const Default = Template.bind({})
 Default.args = {
   buttonText: 'Click me',
-  children: <div>I’m a Modal</div>,
+  title: 'I’m a title',
+  children: <div>I’m the Modal’s content</div>,
 }

@@ -53,7 +53,7 @@ const IndexesList = ({ indexes, setCurrentIndex }) => {
 }
 
 const ApiKey = ({ apiKey, setApiKey }) => (
-  <Modal buttonText="API key">
+  <Modal buttonText="API key" title="Enter your private API key (facultative)">
     <label htmlFor="apiKey">
       API key:
       <input

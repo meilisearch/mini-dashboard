@@ -25,7 +25,7 @@ const Body = styled.div`
   overflow: hidden;
 `
 
-const RequestForAnApiKey = ({ setApiKey }) => (
+const RequestApiKey = ({ setApiKey }) => (
   <Modal visible>
     <div
       style={{
@@ -113,7 +113,7 @@ const App = () => {
           <Results />
         </Body>
       </InstantSearch>
-      {requestApiKey && <RequestForAnApiKey setApiKey={setApiKey} />}
+      {requestApiKey && <RequestApiKey setApiKey={setApiKey} />}
     </Wrapper>
   )
 }
