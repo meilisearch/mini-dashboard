@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Card from 'components/Card'
+import Typography from 'components/Typography'
 import Highlight from './Highlight'
 
 const Img = styled.div`
@@ -25,17 +26,12 @@ const Grid = styled.div`
   word-break: break-all;
 `
 
-const HitKey = styled.div`
+const HitKey = styled(Typography)`
   grid-column: 1 / 2;
-  color: ${(p) => p.theme.colors.gray[5]};
-  text-transform: uppercase;
-  font-size: 12px;
 `
 
 const HitValue = styled(Highlight)`
   grid-column: 2 / 4;
-  color: ${(p) => p.theme.colors.gray[2]};
-  font-size: 15px;
 `
 
 const ContentContainer = styled.div`
@@ -58,8 +54,8 @@ function Hit({ hit }) {
         {objectArray.map(([key, value], index) => (
           <div key={index}>
             <Grid key={key}>
-              <HitKey style={{ fontWeight: 'bold' }}>{`${key} : `}</HitKey>
-              <HitValue attribute={key} hit={hit} />
+              <HitKey variant="hitKey">{`${key} : `}</HitKey>
+              <HitValue variant="hitValue" attribute={key} hit={hit} />
             </Grid>
             {index !== objectArray.length - 1 && <Hr />}
           </div>

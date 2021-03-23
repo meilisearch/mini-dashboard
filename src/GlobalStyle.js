@@ -18,7 +18,20 @@ const GlobalStyle = createGlobalStyle`
     src: url("fonts/Work_Sans/regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
-}
+  }
+  @font-face {
+    font-family: 'Work Sans';
+    src: url("fonts/Work_Sans/medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Barlow';
+    src: url("fonts/Barlow/regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+  }
 
 `
 

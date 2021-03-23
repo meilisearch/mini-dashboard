@@ -1,5 +1,6 @@
 import React from 'react'
 import { connectHighlight } from 'react-instantsearch-dom'
+import Typography from 'components/Typography'
 
 const Highlight = connectHighlight(
   ({ highlight, attribute, hit, indexContextValue, ...props }) => {
@@ -10,7 +11,7 @@ const Highlight = connectHighlight(
     })
 
     return (
-      <span {...props}>
+      <Typography {...props}>
         {parsedHit.map((part, index) =>
           part.isHighlighted ? (
             <mark key={index}>{part.value}</mark>
@@ -18,7 +19,7 @@ const Highlight = connectHighlight(
             <span key={index}>{part.value}</span>
           )
         )}
-      </span>
+      </Typography>
     )
   }
 )

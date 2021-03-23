@@ -11,6 +11,7 @@ import {
 import { Button as BaseButton } from 'reakit/Button'
 
 import Close from 'components/icons/Close'
+import Typography from 'components/Typography'
 
 const DialogBackdrop = styled(ReakitDialogBackdrop)`
   opacity: 0;
@@ -46,12 +47,6 @@ const Dialog = styled(ReakitDialog)`
   z-index: 999;
 `
 
-const ModalTitle = styled.h3`
-  font-size: 22px;
-  line-height: 22px;
-  font-weight: 500;
-`
-
 const Button = styled(BaseButton)`
   position: absolute;
   top: 24px;
@@ -79,7 +74,7 @@ const Modal = ({ buttonText, title, visible = false, children }) => {
       )}
       <DialogBackdrop {...dialog}>
         <Dialog {...dialog} aria-label="Welcome" preventBodyScroll>
-          {title && <ModalTitle>{title}</ModalTitle>}
+          {title && <Typography variant="h3">{title}</Typography>}
           {children}
           <Button onClick={() => dialog.hide()}>
             <Close />
