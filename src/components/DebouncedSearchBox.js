@@ -1,6 +1,15 @@
 import React from 'react'
+import styled from 'styled-components'
 import { connectSearchBox } from 'react-instantsearch-dom'
 import Input from 'components/Input'
+import Search from 'components/icons/Search'
+
+const Icon = styled(Search)`
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+`
 
 const SearchBox = ({ currentRefinement, refine, delay }) => {
   const [value, setValue] = React.useState(currentRefinement)
@@ -19,6 +28,8 @@ const SearchBox = ({ currentRefinement, refine, delay }) => {
       value={value}
       onChange={onChangeDebounced}
       placeholder="Search something"
+      icon={<Icon size={16} />}
+      style={{ width: 520 }}
     />
   )
 }

@@ -5,7 +5,9 @@ import { useMenuState, Menu, MenuItem, MenuButton } from 'reakit/Menu'
 
 import Modal from 'components/Modal'
 import SearchBox from 'components/DebouncedSearchBox'
+import Box from 'components/Box'
 import Container from 'components/Container'
+import Input from 'components/Input'
 import MSLogo from 'components/icons/MSLogo'
 
 const HeaderWrapper = styled.div`
@@ -54,15 +56,16 @@ const IndexesList = ({ indexes, setCurrentIndex }) => {
 
 const ApiKey = ({ apiKey, setApiKey }) => (
   <Modal buttonText="API key" title="Enter your private API key (facultative)">
-    <label htmlFor="apiKey">
-      API key:
-      <input
-        id="apiKey"
-        type="text"
-        onChange={(e) => setApiKey(e.target.value)}
-        value={apiKey}
-      />
-    </label>
+    <Input
+      type="text"
+      onChange={(e) => setApiKey(e.target.value)}
+      value={apiKey}
+      style={{ width: '100%' }}
+    />
+    <span>
+      At least a private API key is required for the dashboard to access the
+      indexes list.
+    </span>
   </Modal>
 )
 
@@ -76,10 +79,10 @@ const Header = ({ apiKey, setApiKey, indexes, setCurrentIndex }) => (
       height="100%"
     >
       <MSLogo width={64} />
-      <div>
+      <Box display="flex">
         <SearchBox delay={500} />
         <IndexesList indexes={indexes} setCurrentIndex={setCurrentIndex} />
-      </div>
+      </Box>
       <ApiKey apiKey={apiKey} setApiKey={setApiKey} />
     </Container>
   </HeaderWrapper>

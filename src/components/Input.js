@@ -2,23 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import Color from 'color'
 
-import Search from 'components/icons/Search'
-
-const Wrapper = styled.span`
-  position: relative;
-`
-
-const Icon = styled(Search)`
-  position: absolute;
-  top: 50%;
-  left: 16px;
-  transform: translateY(-50%);
-`
-
 const InputField = styled.input`
-  width: 472px;
   height: 48px;
-  padding-left: 48px;
+  padding-left: ${(p) => (p.$hasIcon ? '48px' : '8px')};
+  padding-right: 8px;
   background-position: top 50% left 16px;
   border-color: ${(p) => p.theme.colors.gray[10]};
   border-width: 1px;
@@ -48,11 +35,11 @@ const InputField = styled.input`
   }
 `
 
-const Input = (props) => (
-  <Wrapper>
-    <Icon size={16} />
-    <InputField {...props} />
-  </Wrapper>
+const Input = ({ icon, ...props }) => (
+  <div style={{ position: 'relative' }}>
+    {icon}
+    <InputField {...props} $hasIcon={icon} />
+  </div>
 )
 
 export default Input
