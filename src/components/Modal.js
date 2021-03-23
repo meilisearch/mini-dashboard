@@ -74,7 +74,11 @@ const Modal = ({ buttonText, title, visible = false, children }) => {
       )}
       <DialogBackdrop {...dialog}>
         <Dialog {...dialog} aria-label="Welcome" preventBodyScroll>
-          {title && <Typography variant="h3">{title}</Typography>}
+          {title && (
+            <Typography variant="h3" mb={4}>
+              {title}
+            </Typography>
+          )}
           {children}
           <Button onClick={() => dialog.hide()}>
             <Close />

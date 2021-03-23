@@ -52,7 +52,7 @@ const RequestApiKey = ({ setApiKey }) => (
 const App = () => {
   const [apiKey, setApiKey] = useLocalStorage('apiKey')
   const [indexes, setIndexes] = React.useState()
-  const [currentIndex, setCurrentIndex] = React.useState()
+  const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
   const [searchClient, setSearchClient] = React.useState(
     instantMeiliSearch(baseUrl, apiKey, { primaryKey: 'id' })
   )
@@ -63,7 +63,7 @@ const App = () => {
       try {
         const res = await searchClient.client.listIndexes()
         setIndexes(res)
-        setCurrentIndex(res[0])
+        setCurrentIndex(currentIndex || res[0])
         setRequestApiKey(false)
       } catch (error) {
         if (error.type === 'MeiliSearchCommunicationError') {

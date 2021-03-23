@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
+import { space } from 'styled-system'
 
 const variants = {
   default: {
@@ -50,13 +51,15 @@ const variants = {
 }
 
 const StyledTypography = styled.span`
-  ${(p) => variants[p.$variant].style};
+  ${(p) => p.$variant.style};
+  ${space};
 `
 
 const Typography = ({ variant = 'default', children, ...props }) => {
-  const { tag = 'span', style = css`` } = variants[variant]
+  const safeVariant = variants[variant] || variants.default
+  const { tag = 'span', style = css`` } = safeVariant
   return (
-    <StyledTypography as={tag} {...style} {...props} $variant={variant}>
+    <StyledTypography as={tag} {...style} $variant={safeVariant} {...props}>
       {children}
     </StyledTypography>
   )
@@ -70,7 +73,7 @@ Typography.propTypes = {
   /**
    * Text to be displayed
    */
-  children: PropTypes.element,
+  children: PropTypes.node,
 }
 
 Typography.defaultProps = {
