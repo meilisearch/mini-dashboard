@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import PropTypes from 'prop-types'
 
 const variants = {
   default: {
@@ -59,6 +60,22 @@ const Typography = ({ variant = 'default', children, ...props }) => {
       {children}
     </StyledTypography>
   )
+}
+
+Typography.propTypes = {
+  /**
+   * Text's variant
+   */
+  variant: PropTypes.string,
+  /**
+   * Text to be displayed
+   */
+  children: PropTypes.element,
+}
+
+Typography.defaultProps = {
+  variant: 'default',
+  children: null,
 }
 
 export default Typography
