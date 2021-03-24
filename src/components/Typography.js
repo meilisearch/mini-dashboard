@@ -48,6 +48,26 @@ const variants = {
       color: ${(p) => p.theme.colors.gray[2]};
     `,
   },
+  info: {
+    tag: 'span',
+    style: css`
+      font-size: 15px;
+      line-height: 22px;
+      font-weight: 400;
+      display: block;
+      color: ${(p) => p.theme.colors.gray[6]};
+    `,
+  },
+  danger: {
+    tag: 'span',
+    style: css`
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 22px;
+      display: block;
+      color: ${(p) => p.theme.colors.main.default};
+    `,
+  },
 }
 
 const StyledTypography = styled.span`

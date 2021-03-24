@@ -5,8 +5,6 @@ import styled from 'styled-components'
 import {
   Dialog as ReakitDialog,
   DialogBackdrop as ReakitDialogBackdrop,
-  DialogDisclosure,
-  useDialogState,
 } from 'reakit/Dialog'
 import { Button as BaseButton } from 'reakit/Button'
 
@@ -53,7 +51,6 @@ const Button = styled(BaseButton)`
   right: 24px;
   background-color: transparent;
   border: 0;
-  cursor: pointer;
   &:focus {
     outline: none;
     svg {
@@ -62,46 +59,45 @@ const Button = styled(BaseButton)`
       );
     }
   }
+  &:hover {
+    pointer-events: initial;
+    cursor: pointer;
+    &[aria-disabled='true'] {
+      cursor: not-allowed;
+    }
+  }
 `
 
-const Modal = ({ buttonText, title, visible = false, children }) => {
-  const dialog = useDialogState({ animated: true, visible })
-
-  return (
-    <>
-      {buttonText && (
-        <DialogDisclosure {...dialog}>{buttonText}</DialogDisclosure>
+const Modal = ({ title, closable = true, dialog, children }) => (
+  <DialogBackdrop {...dialog}>
+    <Dialog
+      {...dialog}
+      aria-label="Welcome"
+      preventBodyScroll
+      hideOnClickOutside={closable}
+    >
+      {title && (
+        <Typography variant="h3" mb={4}>
+          {title}
+        </Typography>
       )}
-      <DialogBackdrop {...dialog}>
-        <Dialog {...dialog} aria-label="Welcome" preventBodyScroll>
-          {title && (
-            <Typography variant="h3" mb={4}>
-              {title}
-            </Typography>
-          )}
-          {children}
-          <Button onClick={() => dialog.hide()}>
-            <Close />
-          </Button>
-        </Dialog>
-      </DialogBackdrop>
-    </>
-  )
-}
+      {children}
+      <Button onClick={() => dialog.hide()} disabled={!closable}>
+        <Close />
+      </Button>
+    </Dialog>
+  </DialogBackdrop>
+)
 
 Modal.propTypes = {
-  /**
-   * The text to be displayed inside the button
-   */
-  buttonText: PropTypes.string,
   /**
    * Title of the Modal
    */
   title: PropTypes.string,
   /**
-   * The initial state of the modal
+   * Whether the modal can be closed or not
    */
-  visible: PropTypes.bool,
+  closable: PropTypes.bool,
   /**
    * Modal contents
    */
@@ -109,9 +105,8 @@ Modal.propTypes = {
 }
 
 Modal.defaultProps = {
-  buttonText: null,
   title: null,
-  visible: false,
+  closable: true,
   children: null,
 }
 

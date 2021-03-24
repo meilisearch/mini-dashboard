@@ -2,12 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import Color from 'color'
 import { useMenuState, Menu, MenuItem, MenuButton } from 'reakit/Menu'
+import { DialogDisclosure, useDialogState } from 'reakit/Dialog'
 
+import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Modal from 'components/Modal'
 import SearchBox from 'components/DebouncedSearchBox'
 import Box from 'components/Box'
 import Container from 'components/Container'
-import Input from 'components/Input'
 import MSLogo from 'components/icons/MSLogo'
 
 const HeaderWrapper = styled.div`
@@ -54,22 +55,19 @@ const IndexesList = ({ indexes, setCurrentIndex }) => {
   )
 }
 
-const ApiKey = ({ apiKey, setApiKey }) => (
-  <Modal buttonText="API key" title="Enter your private API key (facultative)">
-    <Input
-      type="text"
-      onChange={(e) => setApiKey(e.target.value)}
-      value={apiKey}
-      style={{ width: '100%' }}
-    />
-    <span>
-      At least a private API key is required for the dashboard to access the
-      indexes list.
-    </span>
-  </Modal>
-)
+const ApiKey = () => {
+  const dialog = useDialogState({ animated: true })
+  return (
+    <>
+      <DialogDisclosure {...dialog}>Api Key</DialogDisclosure>
+      <Modal title="Enter your private API key (facultative)" dialog={dialog}>
+        <ApiKeyModalContent closeModal={() => dialog.hide()} />
+      </Modal>
+    </>
+  )
+}
 
-const Header = ({ apiKey, setApiKey, indexes, setCurrentIndex }) => (
+const Header = ({ indexes, setCurrentIndex }) => (
   <HeaderWrapper>
     <Container
       p={4}
@@ -83,7 +81,7 @@ const Header = ({ apiKey, setApiKey, indexes, setCurrentIndex }) => (
         <SearchBox delay={500} />
         <IndexesList indexes={indexes} setCurrentIndex={setCurrentIndex} />
       </Box>
-      <ApiKey apiKey={apiKey} setApiKey={setApiKey} />
+      <ApiKey buttonText="API key" />
     </Container>
   </HeaderWrapper>
 )

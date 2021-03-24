@@ -2,14 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import { InstantSearch } from 'react-instantsearch-dom'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
+import { useDialogState } from 'reakit/Dialog'
 
 import useLocalStorage from 'hooks/useLocalStorage'
+import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Header from 'components/Header'
 // import Sidebar from 'components/Sidebar'
-import Results from 'components/Results'
 import Modal from 'components/Modal'
+import Results from 'components/Results'
+import ApiKeyContext from 'context/ApiKeyContext'
+import ClientContext from 'context/ClientContext'
 
-const baseUrl = 'http://127.0.0.1:7700'
+export const baseUrl = 'http://127.0.0.1:7700'
 
 const Wrapper = styled.div`
   background-color: ${(p) => p.theme.colors.gray[11]};
@@ -25,96 +29,70 @@ const Body = styled.div`
   overflow: hidden;
 `
 
-const RequestApiKey = ({ setApiKey }) => (
-  <Modal visible>
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        flexDirection: 'column',
-      }}
-    >
-      <label htmlFor="apiKey">
-        Please provide an API key :
-        <input
-          style={{ display: 'block' }}
-          id="apiKey"
-          type="text"
-          onChange={(e) => setApiKey(e.target.value)}
-        />
-      </label>
-    </div>
-  </Modal>
-)
-
 const App = () => {
   const [apiKey, setApiKey] = useLocalStorage('apiKey')
+  // eslint-disable-next-line no-unused-vars
   const [indexes, setIndexes] = React.useState()
+  const [isApiKeyRequired, setIsApiKeyRequired] = React.useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
-  const [searchClient, setSearchClient] = React.useState(
+  const [client, setClient] = React.useState(
     instantMeiliSearch(baseUrl, apiKey, { primaryKey: 'id' })
   )
-  const [requestApiKey, setRequestApiKey] = React.useState(false)
+  const dialog = useDialogState({ animated: true, visible: false })
 
-  const getIndexesList = async () => {
-    if (searchClient) {
+  // Check if an API key is required / a masterKey was set
+  React.useEffect(() => {
+    const fetchWithoutApiKey = async () => {
       try {
-        const res = await searchClient.client.listIndexes()
-        setIndexes(res)
-        setCurrentIndex(currentIndex || res[0])
-        setRequestApiKey(false)
-      } catch (error) {
-        if (error.type === 'MeiliSearchCommunicationError') {
-          const status = await searchClient.client.isHealthy()
-          if (status) {
-            setRequestApiKey(true)
-          } else {
-            console.log(error)
-          }
-        }
-        console.log(error)
+        const cl = instantMeiliSearch(baseUrl, apiKey)
+        await cl.client.listIndexes()
+      } catch (err) {
+        console.log(err)
+        setIsApiKeyRequired(true)
+        dialog.show()
       }
     }
-  }
+    fetchWithoutApiKey()
+  }, [])
 
-  const setClient = () => {
-    try {
-      const client = instantMeiliSearch(baseUrl, apiKey, { primaryKey: 'id' })
-      setSearchClient(client)
-    } catch (error) {
-      console.log(error)
+  // Get the list of indexes
+  React.useEffect(() => {
+    const getIndexesList = async () => {
+      const res = await client.client.listIndexes()
+      setIndexes(res)
+      setCurrentIndex(currentIndex || res[0])
     }
-  }
-
-  React.useEffect(() => {
     getIndexesList()
-  }, [searchClient])
-
-  React.useEffect(() => {
-    setClient()
-  }, [apiKey])
+  }, [client])
 
   return (
-    <Wrapper>
-      <InstantSearch
-        indexName={currentIndex ? currentIndex.uid : ''}
-        searchClient={searchClient}
-      >
-        <Header
-          apiKey={apiKey}
-          setApiKey={setApiKey}
-          indexes={indexes}
-          setCurrentIndex={setCurrentIndex}
-        />
-        <Body>
-          {/* <Sidebar /> */}
-          <Results />
-        </Body>
-      </InstantSearch>
-      {requestApiKey && <RequestApiKey setApiKey={setApiKey} />}
-    </Wrapper>
+    <ClientContext.Provider value={{ client, setClient }}>
+      <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
+        <Wrapper>
+          <InstantSearch
+            indexName={currentIndex ? currentIndex.uid : ''}
+            searchClient={client}
+          >
+            <Header indexes={indexes} setCurrentIndex={setCurrentIndex} />
+            <Body>
+              {/* <Sidebar /> */}
+              <Results />
+            </Body>
+          </InstantSearch>
+          {dialog.visible && (
+            <Modal
+              title={`Enter your private API key${
+                isApiKeyRequired ? '' : ' (facultative)'
+              }`}
+              closable={false}
+              dialog={dialog}
+            >
+              <ApiKeyModalContent closeModal={() => dialog.hide()} />
+            </Modal>
+          )}
+        </Wrapper>
+      </ApiKeyContext.Provider>
+    </ClientContext.Provider>
   )
 }
 

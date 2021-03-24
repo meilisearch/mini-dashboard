@@ -4,6 +4,7 @@ import Color from 'color'
 
 const InputField = styled.input`
   height: 48px;
+  width: 100%;
   padding-left: ${(p) => (p.$hasIcon ? '48px' : '8px')};
   padding-right: 8px;
   background-position: top 50% left 16px;
@@ -36,9 +37,9 @@ const InputField = styled.input`
 `
 
 const Input = ({ icon, ...props }) => (
-  <div style={{ position: 'relative' }}>
+  <div style={{ position: 'relative', width: '100%' }}>
     {icon}
-    <InputField {...props} $hasIcon={icon} />
+    <InputField $hasIcon={icon} {...props} />
   </div>
 )
 
