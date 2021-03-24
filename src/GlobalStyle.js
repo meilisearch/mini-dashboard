@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  mark {
+  mark, ::selection {
     background-color: ${(p) => p.theme.colors.main.light};
   }
 

@@ -71,9 +71,10 @@ const Toggle = ({
   offLabel = 'Off',
   ariaLabel,
   onChange,
+  initialValue = true,
   ...props
 }) => {
-  const [checked, setChecked] = React.useState(true)
+  const [checked, setChecked] = React.useState(initialValue)
   const toggle = () => setChecked(!checked)
 
   return (
@@ -109,6 +110,10 @@ Toggle.propTypes = {
    * Function to run when a change occurs
    */
   onChange: PropTypes.func,
+  /**
+   * The initial state of the Toggle
+   */
+  initialValue: PropTypes.bool,
 }
 
 Toggle.defaultProps = {
@@ -116,6 +121,7 @@ Toggle.defaultProps = {
   offLabel: 'Off',
   ariaLabel: null,
   onChange: null,
+  initialValue: true,
 }
 
 export default Toggle

@@ -20,6 +20,15 @@ const theme = {
       '#EDEEF7', // 10
       '#FAFBFE',
     ],
+    jsonVue: {
+      string: '#b4c59f',
+      keys: 'black',
+      badgeBg: '#EDEEF7',
+      badgeFg: '#82a0bc',
+      keyNumber: 'black',
+      arrows: '#E41359',
+      integers: '#b4c59f',
+    },
   },
   //      0, 1, 2, 3,  4,  5,  6,   7,   8
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],

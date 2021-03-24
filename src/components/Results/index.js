@@ -7,6 +7,7 @@ import Document from 'components/icons/Document'
 import Picture from 'components/icons/Picture'
 import Box from 'components/Box'
 import Toggle from 'components/Toggle'
+import useLocalStorage from 'hooks/useLocalStorage'
 import ResultsList from './ResultsList'
 
 const Wrapper = styled.div`
@@ -28,23 +29,32 @@ const Label2 = () => (
   </>
 )
 
-const Results = () => (
-  <Wrapper>
-    <Box maxWidth={928} m="0 auto" py={4}>
-      <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Stats />
-        <Toggle
-          onLabel={<Label1 />}
-          offLabel={<Label2 />}
-          ariaLabel="toggleMode"
-          // Use onChange to update context Fancy/Json
-          // eslint-disable-next-line no-console
-          onChange={(e) => console.log(e.target.checked)}
-        />
+const Results = () => {
+  const [mode, setMode] = useLocalStorage('mode', 'fancy')
+  return (
+    <Wrapper>
+      <Box maxWidth={928} m="0 auto" py={4}>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          mb={56}
+        >
+          <div>
+            <Stats />
+          </div>
+          <Toggle
+            onLabel={<Label1 />}
+            offLabel={<Label2 />}
+            ariaLabel="toggleMode"
+            initialValue={mode === 'fancy'}
+            onChange={(e) => setMode(e.target.checked ? 'fancy' : 'json')}
+          />
+        </Box>
+        <ResultsList mode={mode} />
       </Box>
-      <ResultsList />
-    </Box>
-  </Wrapper>
-)
+    </Wrapper>
+  )
+}
 
 export default Results
