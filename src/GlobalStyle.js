@@ -15,10 +15,18 @@ const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Work Sans';
+    src: url("fonts/Work_Sans/light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Work Sans';
     src: url("fonts/Work_Sans/regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
   }
+
   @font-face {
     font-family: 'Work Sans';
     src: url("fonts/Work_Sans/medium.woff2") format("woff2");

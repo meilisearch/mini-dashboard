@@ -21,13 +21,13 @@ const theme = {
       '#FAFBFE',
     ],
     jsonVue: {
-      string: '#b4c59f',
-      keys: 'black',
+      string: '#86C3B8',
+      keys: '#39486E',
       badgeBg: '#EDEEF7',
       badgeFg: '#82a0bc',
-      keyNumber: 'black',
+      keyNumber: '#39486E',
       arrows: '#E41359',
-      integers: '#b4c59f',
+      integers: '#86C3B8',
     },
   },
   //      0, 1, 2, 3,  4,  5,  6,   7,   8

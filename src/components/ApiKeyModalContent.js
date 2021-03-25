@@ -53,11 +53,15 @@ const ApiKeyModalContent = ({ closeModal }) => {
         <Button onClick={() => updateClient()}>Go</Button>
       </Box>
       <Box position="relative">
-        <Typography variant="info" my={3}>
+        <Typography variant="typo11" my={3}>
           At least a private API key is required for the dashboard to access the
           indexes list.
         </Typography>
-        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {error && (
+          <ErrorMessage variant="typo11" color="main.default">
+            {error}
+          </ErrorMessage>
+        )}
       </Box>
     </>
   )

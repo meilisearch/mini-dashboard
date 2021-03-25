@@ -77,7 +77,7 @@ const Modal = ({ title, closable = true, dialog, children }) => (
       hideOnClickOutside={closable}
     >
       {title && (
-        <Typography variant="h3" mb={4}>
+        <Typography variant="typo1" mb={4}>
           {title}
         </Typography>
       )}
