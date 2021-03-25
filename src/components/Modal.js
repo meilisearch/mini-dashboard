@@ -62,9 +62,6 @@ const Button = styled(BaseButton)`
   &:hover {
     pointer-events: initial;
     cursor: pointer;
-    &[aria-disabled='true'] {
-      cursor: not-allowed;
-    }
   }
 `
 
@@ -82,9 +79,11 @@ const Modal = ({ title, closable = true, dialog, children }) => (
         </Typography>
       )}
       {children}
-      <Button onClick={() => dialog.hide()} disabled={!closable}>
-        <Close />
-      </Button>
+      {closable && (
+        <Button onClick={() => dialog.hide()}>
+          <Close />
+        </Button>
+      )}
     </Dialog>
   </DialogBackdrop>
 )
