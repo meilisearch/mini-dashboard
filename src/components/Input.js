@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Color from 'color'
+import Clear from 'components/icons/clear-input.svg'
 
 const InputField = styled.input`
   height: 48px;
@@ -33,6 +34,14 @@ const InputField = styled.input`
     svg {
       fill: ${(p) => p.theme.colors.gray[6]};
     }
+  }
+
+  ::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    width: 11px;
+    height: 11px;
+    background-image: url(${Clear});
+    background-repeat: no-repeat;
   }
 `
 

@@ -45,6 +45,7 @@ const Input = styled(Checkbox)`
         ${(p) => Color(p.theme.colors.gray[0]).alpha(0.2)};
     }
   }
+  -moz-appearance: initial;
 `
 
 const Span = styled.span`
