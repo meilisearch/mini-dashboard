@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const Wrapper = styled.li`
   min-height: 320px;
@@ -13,5 +14,16 @@ const Wrapper = styled.li`
 const Card = ({ children, ...props }) => (
   <Wrapper {...props}>{children}</Wrapper>
 )
+
+Card.propTypes = {
+  /**
+   * The content to appear inside the Card
+   */
+  children: PropTypes.node,
+}
+
+Card.defaultProps = {
+  children: null,
+}
 
 export default Card
