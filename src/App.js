@@ -75,6 +75,7 @@ const App = () => {
           >
             <Header
               indexes={indexes}
+              currentIndex={currentIndex}
               setCurrentIndex={setCurrentIndex}
               isApiKeyRequired={isApiKeyRequired}
             />

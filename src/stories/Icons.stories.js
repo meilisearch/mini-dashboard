@@ -2,8 +2,10 @@ import React from 'react'
 
 import Box from 'components//Box'
 import MSLogo from 'components/icons/MSLogo'
+import ArrowDownIcon from 'components/icons/ArrowDown'
 import CloseIcon from 'components/icons/Close'
 import DocumentIcon from 'components/icons/Document'
+import IndexesIcon from 'components/icons/Indexes'
 import PictureIcon from 'components/icons/Picture'
 import SearchIcon from 'components/icons/Search'
 
@@ -17,6 +19,12 @@ export const MeilisearchLogo = () => (
   </Box>
 )
 
+export const ArrowDown = () => (
+  <Box>
+    <ArrowDownIcon width={34} height={36} />
+  </Box>
+)
+
 export const Close = () => (
   <Box>
     <CloseIcon width={34} height={36} />
@@ -26,6 +34,12 @@ export const Close = () => (
 export const Document = () => (
   <Box>
     <DocumentIcon width={40} height={46} />
+  </Box>
+)
+
+export const Indexes = () => (
+  <Box>
+    <IndexesIcon width={42} height={46} />
   </Box>
 )
 

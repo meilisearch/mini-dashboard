@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-function Search({ size, ...props }) {
+function Search({ size = 16, ...props }) {
   return (
     <svg
       width={size}

@@ -98,11 +98,11 @@ Toggle.propTypes = {
   /**
    * Text displayed when toggle is on
    */
-  onLabel: PropTypes.element,
+  onLabel: PropTypes.string,
   /**
    * Text displayed when toggle is off
    */
-  offLabel: PropTypes.element,
+  offLabel: PropTypes.string,
   /**
    * Aria-label for toggler
    */

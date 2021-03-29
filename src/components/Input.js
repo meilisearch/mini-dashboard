@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Color from 'color'
+import PropTypes from 'prop-types'
+
 import Clear from 'components/icons/clear-input.svg'
 
 const InputField = styled.input`
@@ -45,11 +47,34 @@ const InputField = styled.input`
   }
 `
 
+const InputContainer = styled.div`
+  position: relative;
+  width: 100%;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+  }
+`
+
 const Input = ({ icon, ref, ...props }) => (
-  <div style={{ position: 'relative', width: '100%' }}>
+  <InputContainer style={{ position: 'relative', width: '100%' }}>
     {icon}
     <InputField ref={ref} $hasIcon={icon} {...props} />
-  </div>
+  </InputContainer>
 )
 
 export default Input
+
+Input.propTypes = {
+  /**
+   * Icon you want to appear inside the input, on the left
+   */
+  icon: PropTypes.node,
+}
+
+Input.defaultProps = {
+  icon: null,
+}

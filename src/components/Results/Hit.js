@@ -46,7 +46,6 @@ const Hr = styled.hr`
 
 function Hit({ hit }) {
   const objectArray = Object.entries(hit._highlightResult)
-
   return (
     <CustomCard>
       <Img />

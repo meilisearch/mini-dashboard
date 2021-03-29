@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import Color from 'color'
-import { useMenuState, Menu, MenuItem, MenuButton } from 'reakit/Menu'
 import { DialogDisclosure, useDialogState } from 'reakit/Dialog'
 
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
@@ -10,7 +9,9 @@ import SearchBox from 'components/SearchBox'
 import Box from 'components/Box'
 import Container from 'components/Container'
 import Link from 'components/Link'
+import Select from 'components/Select'
 import Typography from 'components/Typography'
+import Indexes from 'components/icons/Indexes'
 import MSLogo from 'components/icons/MSLogo'
 
 const HeaderWrapper = styled.div`
@@ -20,42 +21,8 @@ const HeaderWrapper = styled.div`
   top: 0;
   height: 120px;
   box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)};
+  z-index: 3;
 `
-
-const SelectIndexesButton = styled(MenuButton)`
-  height: 48px;
-  background-color: white;
-`
-
-const IndexesListContainer = styled(Menu)`
-  display: flex;
-  flex-direction: column;
-`
-
-const IndexesList = ({ indexes, setCurrentIndex }) => {
-  const menu = useMenuState()
-  return (
-    <>
-      <SelectIndexesButton {...menu}>Menu</SelectIndexesButton>
-      <IndexesListContainer {...menu} aria-label="Indexes">
-        {indexes &&
-          indexes.map((data, index) => (
-            <MenuItem
-              {...menu}
-              key={index}
-              id={data.name}
-              onClick={() => {
-                setCurrentIndex(data)
-                menu.hide()
-              }}
-            >
-              {data.name}
-            </MenuItem>
-          ))}
-      </IndexesListContainer>
-    </>
-  )
-}
 
 const ApiKey = ({ isApiKeyRequired }) => {
   const dialog = useDialogState({ animated: true })
@@ -78,7 +45,12 @@ const ApiKey = ({ isApiKeyRequired }) => {
   )
 }
 
-const Header = ({ indexes, setCurrentIndex, isApiKeyRequired }) => (
+const Header = ({
+  indexes,
+  currentIndex,
+  setCurrentIndex,
+  isApiKeyRequired,
+}) => (
   <HeaderWrapper>
     <Container
       p={4}
@@ -90,9 +62,15 @@ const Header = ({ indexes, setCurrentIndex, isApiKeyRequired }) => (
       <MSLogo width={64} />
       <Box display="flex">
         <SearchBox />
-        <IndexesList indexes={indexes} setCurrentIndex={setCurrentIndex} />
+        <Select
+          options={indexes}
+          icon={<Indexes />}
+          currentOption={currentIndex}
+          setCurrentOption={setCurrentIndex}
+        />
+        <ApiKey isApiKeyRequired={isApiKeyRequired} />
       </Box>
-      <ApiKey isApiKeyRequired={isApiKeyRequired} />
+      <div>?</div>
     </Container>
   </HeaderWrapper>
 )
