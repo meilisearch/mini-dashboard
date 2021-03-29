@@ -54,8 +54,13 @@ function Hit({ hit }) {
         {objectArray.map(([key, value], index) => (
           <div key={index}>
             <Grid key={key}>
-              <HitKey variant="typo10">{`${key} : `}</HitKey>
-              <HitValue variant="typo11" attribute={key} hit={hit} />
+              <HitKey variant="typo10" color="gray.6">{`${key} : `}</HitKey>
+              <HitValue
+                variant="typo11"
+                color="gray.2"
+                attribute={key}
+                hit={hit}
+              />
             </Grid>
             {index !== objectArray.length - 1 && <Hr />}
           </div>

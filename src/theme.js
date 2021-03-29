@@ -2,6 +2,7 @@ const theme = {
   colors: {
     main: {
       default: '#E41359',
+      hover: '#CA1B53',
       dark: '#73313D',
       light: '#FFDBE7',
       lighter: '#FDEEF3',

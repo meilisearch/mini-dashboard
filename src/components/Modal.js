@@ -39,7 +39,7 @@ const Dialog = styled(ReakitDialog)`
   transform: translate(-50%, calc(-50% - 48px));
   border-radius: 0.25rem;
   outline: 0px;
-  padding: 24px 32px;
+  padding: 24px 32px 24px 40px;
   box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)};
   background-color: ${(p) => p.theme.colors.gray[11]};
   z-index: 999;
@@ -65,13 +65,14 @@ const Button = styled(BaseButton)`
   }
 `
 
-const Modal = ({ title, closable = true, dialog, children }) => (
+const Modal = ({ title, closable = true, dialog, children, ...props }) => (
   <DialogBackdrop {...dialog}>
     <Dialog
       {...dialog}
       aria-label="Welcome"
       preventBodyScroll
       hideOnClickOutside={closable}
+      {...props}
     >
       {title && (
         <Typography variant="typo1" mb={4}>

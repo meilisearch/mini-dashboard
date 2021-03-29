@@ -9,6 +9,8 @@ import Modal from 'components/Modal'
 import SearchBox from 'components/DebouncedSearchBox'
 import Box from 'components/Box'
 import Container from 'components/Container'
+import Link from 'components/Link'
+import Typography from 'components/Typography'
 import MSLogo from 'components/icons/MSLogo'
 
 const HeaderWrapper = styled.div`
@@ -55,19 +57,28 @@ const IndexesList = ({ indexes, setCurrentIndex }) => {
   )
 }
 
-const ApiKey = () => {
+const ApiKey = ({ isApiKeyRequired }) => {
   const dialog = useDialogState({ animated: true })
   return (
     <>
       <DialogDisclosure {...dialog}>Api Key</DialogDisclosure>
       <Modal title="Enter your private API key (facultative)" dialog={dialog}>
-        <ApiKeyModalContent closeModal={() => dialog.hide()} />
+        {isApiKeyRequired ? (
+          <ApiKeyModalContent closeModal={() => dialog.hide()} />
+        ) : (
+          <Typography variant="typo11" color="gray.6">
+            You can’t set an API key, if you want to set one you can read the{' '}
+            <Link href="https://docs.meilisearch.com/reference/api/keys.html">
+              documentation
+            </Link>
+          </Typography>
+        )}
       </Modal>
     </>
   )
 }
 
-const Header = ({ indexes, setCurrentIndex }) => (
+const Header = ({ indexes, setCurrentIndex, isApiKeyRequired }) => (
   <HeaderWrapper>
     <Container
       p={4}
@@ -81,7 +92,7 @@ const Header = ({ indexes, setCurrentIndex }) => (
         <SearchBox delay={500} />
         <IndexesList indexes={indexes} setCurrentIndex={setCurrentIndex} />
       </Box>
-      <ApiKey buttonText="API key" />
+      <ApiKey isApiKeyRequired={isApiKeyRequired} />
     </Container>
   </HeaderWrapper>
 )

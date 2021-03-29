@@ -14,7 +14,7 @@ import ClientContext from 'context/ClientContext'
 const ErrorMessage = styled(Typography)`
   position: absolute;
   left: 0;
-  top: 24px;
+  top: 32px;
 `
 
 const ApiKeyModalContent = ({ closeModal }) => {
@@ -53,7 +53,7 @@ const ApiKeyModalContent = ({ closeModal }) => {
         <Button onClick={() => updateClient()}>Go</Button>
       </Box>
       <Box position="relative">
-        <Typography variant="typo11" my={3}>
+        <Typography variant="typo11" my={3} color="gray.6" mt={2}>
           At least a private API key is required for the dashboard to access the
           indexes list.
         </Typography>

@@ -73,7 +73,11 @@ const App = () => {
             indexName={currentIndex ? currentIndex.uid : ''}
             searchClient={client}
           >
-            <Header indexes={indexes} setCurrentIndex={setCurrentIndex} />
+            <Header
+              indexes={indexes}
+              setCurrentIndex={setCurrentIndex}
+              isApiKeyRequired={isApiKeyRequired}
+            />
             <Body>
               {/* <Sidebar /> */}
               <Results />
