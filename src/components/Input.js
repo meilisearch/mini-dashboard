@@ -45,10 +45,10 @@ const InputField = styled.input`
   }
 `
 
-const Input = ({ icon, ...props }) => (
+const Input = ({ icon, ref, ...props }) => (
   <div style={{ position: 'relative', width: '100%' }}>
     {icon}
-    <InputField $hasIcon={icon} {...props} />
+    <InputField ref={ref} $hasIcon={icon} {...props} />
   </div>
 )
 

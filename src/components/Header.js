@@ -6,7 +6,7 @@ import { DialogDisclosure, useDialogState } from 'reakit/Dialog'
 
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Modal from 'components/Modal'
-import SearchBox from 'components/DebouncedSearchBox'
+import SearchBox from 'components/SearchBox'
 import Box from 'components/Box'
 import Container from 'components/Container'
 import Link from 'components/Link'
@@ -89,7 +89,7 @@ const Header = ({ indexes, setCurrentIndex, isApiKeyRequired }) => (
     >
       <MSLogo width={64} />
       <Box display="flex">
-        <SearchBox delay={500} />
+        <SearchBox />
         <IndexesList indexes={indexes} setCurrentIndex={setCurrentIndex} />
       </Box>
       <ApiKey isApiKeyRequired={isApiKeyRequired} />

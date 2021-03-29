@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { connectSearchBox } from 'react-instantsearch-dom'
+
 import Input from 'components/Input'
 import Search from 'components/icons/Search'
+
+import useThrottle from 'hooks/useThrottle'
 
 const Icon = styled(Search)`
   position: absolute;
@@ -11,22 +14,19 @@ const Icon = styled(Search)`
   transform: translateY(-50%);
 `
 
-const SearchBox = ({ currentRefinement, refine, delay }) => {
+const SearchBox = ({ currentRefinement, refine }) => {
   const [value, setValue] = React.useState(currentRefinement)
-  const [timerId, setTimerId] = React.useState(null)
+  const throttledText = useThrottle(value, 1000)
 
-  const onChangeDebounced = (event) => {
-    const newValue = event.currentTarget.value
-    setValue(newValue)
-    clearTimeout(timerId)
-    setTimerId(setTimeout(() => refine(newValue), delay))
-  }
+  React.useEffect(() => {
+    refine(throttledText)
+  }, [throttledText])
 
   return (
     <Input
       type="search"
       value={value}
-      onChange={onChangeDebounced}
+      onChange={(e) => setValue(e.target.value)}
       placeholder="Search something"
       icon={<Icon size={16} />}
       style={{ width: 520 }}
@@ -34,6 +34,6 @@ const SearchBox = ({ currentRefinement, refine, delay }) => {
   )
 }
 
-const DebouncedSearchBox = connectSearchBox(SearchBox)
+const ThrottledSearchBox = connectSearchBox(SearchBox)
 
-export default DebouncedSearchBox
+export default ThrottledSearchBox
