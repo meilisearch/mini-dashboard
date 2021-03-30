@@ -4,15 +4,12 @@ import { connectSearchBox } from 'react-instantsearch-dom'
 import Input from 'components/Input'
 import Search from 'components/icons/Search'
 
-import useThrottle from 'hooks/useThrottle'
-
 const SearchBox = ({ currentRefinement, refine }) => {
   const [value, setValue] = React.useState(currentRefinement)
-  const throttledText = useThrottle(value, 1000)
 
   React.useEffect(() => {
-    refine(throttledText)
-  }, [throttledText])
+    refine(value)
+  }, [value])
 
   return (
     <Input
