@@ -40,6 +40,12 @@ const App = () => {
   )
   const dialog = useDialogState({ animated: true, visible: false })
 
+  const getIndexesList = async () => {
+    const res = await client.client.listIndexes()
+    setIndexes(res)
+    setCurrentIndex(res.length ? currentIndex || res[0] : null)
+  }
+
   // Check if an API key is required / a masterKey was set
   React.useEffect(() => {
     const fetchWithoutApiKey = async () => {
@@ -53,15 +59,11 @@ const App = () => {
       }
     }
     fetchWithoutApiKey()
+    getIndexesList()
   }, [])
 
   // Get the list of indexes
   React.useEffect(() => {
-    const getIndexesList = async () => {
-      const res = await client.client.listIndexes()
-      setIndexes(res)
-      setCurrentIndex(currentIndex || res[0])
-    }
     getIndexesList()
   }, [client])
 

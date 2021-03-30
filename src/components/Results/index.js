@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import styled from 'styled-components'
-import { Stats } from 'react-instantsearch-dom'
+import { Stats, connectStateResults } from 'react-instantsearch-dom'
 
 import Document from 'components/icons/Document'
 import Picture from 'components/icons/Picture'
 import Box from 'components/Box'
 import Toggle from 'components/Toggle'
 import useLocalStorage from 'hooks/useLocalStorage'
-import ResultsList from './ResultsList'
+import InfiniteHits from './InfiniteHits'
 
 const Wrapper = styled.div`
   flex: 1;
@@ -29,8 +29,13 @@ const Label2 = () => (
   </>
 )
 
-const Results = () => {
+const Results = connectStateResults(({ searchResults, searching }) => {
   const [mode, setMode] = useLocalStorage('mode', 'fancy')
+  const hasResults = searchResults && searchResults.nbHits !== 0
+  // if (searching) return <div>loading</div>
+  // if (!searching && hasResults) return <InfiniteHits hitComponent={Hit} />
+  // return <div>No results</div>
+
   return (
     <Wrapper>
       <Box maxWidth={928} m="0 auto" py={4}>
@@ -51,10 +56,10 @@ const Results = () => {
             onChange={(e) => setMode(e.target.checked ? 'fancy' : 'json')}
           />
         </Box>
-        <ResultsList mode={mode} />
+        <InfiniteHits mode={mode} />
       </Box>
     </Wrapper>
   )
-}
+})
 
 export default Results
