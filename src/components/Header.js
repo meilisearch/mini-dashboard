@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Color from 'color'
 import { DialogDisclosure, useDialogState } from 'reakit/Dialog'
+import { Button } from 'reakit/Button'
 
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Modal from 'components/Modal'
@@ -45,6 +46,23 @@ const ApiKey = ({ isApiKeyRequired }) => {
   )
 }
 
+const NoOptionComponent = () => (
+  <Box
+    py={3}
+    px={24}
+    backgroundColor="white"
+    display="flex"
+    flexDirection="column"
+    justifyContent="center"
+    alignItems="center"
+  >
+    <Typography variant="typo4" color="gray.6" mb={3}>
+      no index found
+    </Typography>
+    <Button>Need help ?</Button>
+  </Box>
+)
+
 const Header = ({
   indexes,
   currentIndex,
@@ -67,6 +85,7 @@ const Header = ({
           icon={<Indexes />}
           currentOption={currentIndex}
           setCurrentOption={setCurrentIndex}
+          noOptionComponent={<NoOptionComponent />}
         />
         <ApiKey isApiKeyRequired={isApiKeyRequired} />
       </Box>

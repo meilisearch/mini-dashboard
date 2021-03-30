@@ -29,3 +29,10 @@ WithIcon.args = {
   options: [{ name: 'movies' }, { name: 'pokemon' }],
   icon: <Indexes />,
 }
+
+export const WithoutOptions = Template.bind({})
+WithoutOptions.args = {
+  options: null,
+  icon: <Indexes />,
+  noOptionComponent: <div style={{ padding: 16 }}>no indexes found</div>,
+}

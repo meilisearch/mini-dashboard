@@ -89,7 +89,13 @@ const IndexItem = styled(MenuItem)`
   }
 `
 
-const Select = ({ options, icon, currentOption, setCurrentOption }) => {
+const Select = ({
+  options,
+  icon,
+  currentOption,
+  setCurrentOption,
+  noOptionComponent,
+}) => {
   const menu = useMenuState()
   return (
     <>
@@ -101,20 +107,21 @@ const Select = ({ options, icon, currentOption, setCurrentOption }) => {
         <Arrow />
       </SelectIndexesButton>
       <IndexesListContainer {...menu} aria-label="Indexes" style={{ top: 8 }}>
-        {options &&
-          options.map((data, index) => (
-            <IndexItem
-              {...menu}
-              key={index}
-              id={data.name}
-              onClick={() => {
-                setCurrentOption(data)
-                menu.hide()
-              }}
-            >
-              {data.name}
-            </IndexItem>
-          ))}
+        {options && options.length
+          ? options.map((data, index) => (
+              <IndexItem
+                {...menu}
+                key={index}
+                id={data.name}
+                onClick={() => {
+                  setCurrentOption(data)
+                  menu.hide()
+                }}
+              >
+                {data.name}
+              </IndexItem>
+            ))
+          : noOptionComponent}
       </IndexesListContainer>
     </>
   )
@@ -137,6 +144,10 @@ Select.propTypes = {
    * Function used to change the current option, triggered on click on an option
    */
   setCurrentOption: PropTypes.func,
+  /**
+   * Component to display if select has no options
+   */
+  noOptionComponent: PropTypes.node,
 }
 
 Select.defaultProps = {
@@ -144,6 +155,7 @@ Select.defaultProps = {
   icon: null,
   currentOption: null,
   setCurrentOption: null,
+  noOptionComponent: null,
 }
 
 export default Select

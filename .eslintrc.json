@@ -4,7 +4,11 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["airbnb", "plugin:jsx-a11y/recommended", "prettier"],
+  "extends": [
+    "airbnb",
+    "plugin:jsx-a11y/recommended",
+    "eslint-config-prettier"
+  ],
   "plugins": ["jsx-a11y", "prettier"],
   "settings": {
     "import/resolver": {
@@ -23,7 +27,7 @@
       }
     ],
     "react/prop-types": 0,
-    "indent": ["error", 2],
+    "jsx-indent-props": 0,
     "react/jsx-props-no-spreading": 0,
     "react/no-array-index-key": 0,
     "no-underscore-dangle": 0
