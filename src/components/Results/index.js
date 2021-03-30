@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import styled from 'styled-components'
-import { Stats, connectStateResults } from 'react-instantsearch-dom'
+import { connectStateResults } from 'react-instantsearch-dom'
 
 import Document from 'components/icons/Document'
 import Picture from 'components/icons/Picture'
 import Box from 'components/Box'
+import Stats from 'components/Stats'
 import Toggle from 'components/Toggle'
 import useLocalStorage from 'hooks/useLocalStorage'
 import InfiniteHits from './InfiniteHits'

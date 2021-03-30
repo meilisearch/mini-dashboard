@@ -60,7 +60,7 @@ const InputContainer = styled.div`
 `
 
 const Input = ({ icon, ref, ...props }) => (
-  <InputContainer style={{ position: 'relative', width: '100%' }}>
+  <InputContainer>
     {icon}
     <InputField ref={ref} $hasIcon={icon} {...props} />
   </InputContainer>
