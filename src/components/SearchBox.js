@@ -4,7 +4,7 @@ import { connectSearchBox } from 'react-instantsearch-dom'
 import Input from 'components/Input'
 import Search from 'components/icons/Search'
 
-const SearchBox = ({ currentRefinement, refine }) => {
+const SearchBox = connectSearchBox(({ currentRefinement, refine }) => {
   const [value, setValue] = React.useState(currentRefinement)
 
   React.useEffect(() => {
@@ -21,8 +21,6 @@ const SearchBox = ({ currentRefinement, refine }) => {
       style={{ width: 520 }}
     />
   )
-}
+})
 
-const ThrottledSearchBox = connectSearchBox(SearchBox)
-
-export default ThrottledSearchBox
+export default SearchBox

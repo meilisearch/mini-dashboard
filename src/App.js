@@ -41,9 +41,19 @@ const App = () => {
   const dialog = useDialogState({ animated: true, visible: false })
 
   const getIndexesList = async () => {
-    const res = await client.client.listIndexes()
-    setIndexes(res)
-    setCurrentIndex(res.length ? currentIndex || res[0] : null)
+    try {
+      const res = await client.client.stats()
+      const array = Object.entries(res.indexes)
+      const options = array.reduce((prev, curr) => {
+        const currentOption = { uid: curr[0], stats: curr[1] }
+        return [...prev, currentOption]
+      }, [])
+
+      setIndexes(options)
+      setCurrentIndex(options.length ? currentIndex || options[0] : null)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   // Check if an API key is required / a masterKey was set

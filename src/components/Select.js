@@ -87,7 +87,36 @@ const IndexItem = styled(MenuItem)`
     cursor: pointer;
     background-color: ${(p) => p.theme.colors.gray[10]};
   }
+
+  ${(p) =>
+    p.$selected &&
+    css`
+      span:first-child {
+        font-weight: 600;
+      }
+      span:nth-child(2) {
+        color: ${p.theme.colors.gray[5]};
+      }
+    `}
 `
+
+const TextToDisplay = ({ option }) => (
+  <>
+    <Typography
+      variant="typo5"
+      color="gray.2"
+      style={{ textTransform: 'capitalize' }}
+      mr={2}
+    >
+      {option ? option.uid : 'Select an index'}
+    </Typography>{' '}
+    {option && (
+      <Typography variant="typo6" color="gray.7" mt="1px">
+        {option.stats.numberOfDocuments}
+      </Typography>
+    )}
+  </>
+)
 
 const Select = ({
   options,
@@ -101,9 +130,7 @@ const Select = ({
     <>
       <SelectIndexesButton {...menu}>
         {icon || null}
-        <Typography variant="typo5" style={{ textTransform: 'capitalize' }}>
-          {currentOption ? currentOption.name : 'Select an index'}
-        </Typography>
+        <TextToDisplay option={currentOption} />
         <Arrow />
       </SelectIndexesButton>
       <IndexesListContainer {...menu} aria-label="Indexes" style={{ top: 8 }}>
@@ -112,13 +139,14 @@ const Select = ({
               <IndexItem
                 {...menu}
                 key={index}
-                id={data.name}
+                id={data.uid}
                 onClick={() => {
                   setCurrentOption(data)
                   menu.hide()
                 }}
+                $selected={currentOption && currentOption.uid === data.uid}
               >
-                {data.name}
+                <TextToDisplay option={data} />
               </IndexItem>
             ))
           : noOptionComponent}
@@ -131,7 +159,14 @@ Select.propTypes = {
   /**
    * List of options to appear
    */
-  options: PropTypes.arrayOf(PropTypes.object),
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      uid: PropTypes.string,
+      stats: PropTypes.shape({
+        numberOfDocuments: PropTypes.number,
+      }),
+    })
+  ),
   /**
    * Icon you want to appear inside the select button, on the left
    */
@@ -139,7 +174,12 @@ Select.propTypes = {
   /**
    * The current option to be displayed
    */
-  currentOption: PropTypes.shape,
+  currentOption: PropTypes.shape({
+    uid: PropTypes.string,
+    stats: PropTypes.shape({
+      numberOfDocuments: PropTypes.number,
+    }),
+  }),
   /**
    * Function used to change the current option, triggered on click on an option
    */

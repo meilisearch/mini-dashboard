@@ -35,6 +35,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   @font-face {
+    font-family: 'Work Sans';
+    src: url("fonts/Work_Sans/bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
     font-family: 'Barlow';
     src: url("fonts/Barlow/regular.woff2") format("woff2");
     font-weight: 400;

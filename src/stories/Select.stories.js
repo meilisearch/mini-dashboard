@@ -8,6 +8,21 @@ export default {
   component: Select,
 }
 
+const options = [
+  {
+    uid: 'pokemon',
+    stats: {
+      numberOfDocuments: 809,
+    },
+  },
+  {
+    uid: 'movies',
+    stats: {
+      numberOfDocuments: 19546,
+    },
+  },
+]
+
 const Template = (args) => {
   const [currentOption, setCurrentOption] = React.useState()
   return (
@@ -21,12 +36,12 @@ const Template = (args) => {
 
 export const Default = Template.bind({})
 Default.args = {
-  options: [{ name: 'movies' }, { name: 'pokemon' }],
+  options,
 }
 
 export const WithIcon = Template.bind({})
 WithIcon.args = {
-  options: [{ name: 'movies' }, { name: 'pokemon' }],
+  options,
   icon: <Indexes />,
 }
 
