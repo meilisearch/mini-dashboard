@@ -67,7 +67,16 @@ const NoOptionComponent = () => (
     <Typography variant="typo4" color="gray.6" mb={3}>
       no index found
     </Typography>
-    <Button>Need help ?</Button>
+    <Button
+      variant="bordered"
+      size="small"
+      as="a"
+      href="https://docs.meilisearch.com/reference/api/indexes.html"
+      target="_blank"
+      style={{ textDecoration: 'none' }}
+    >
+      Need help ?
+    </Button>
   </Box>
 )
 

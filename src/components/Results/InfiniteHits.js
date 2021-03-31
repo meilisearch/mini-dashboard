@@ -4,6 +4,7 @@ import { connectInfiniteHits } from 'react-instantsearch-dom'
 import ReactJson from 'react-json-view'
 
 import theme from 'theme'
+import Button from 'components/Button'
 import Card from 'components/Card'
 
 import Hit from './Hit'
@@ -56,10 +57,16 @@ const InfiniteHits = connectInfiniteHits(
           />
         </Card>
       )}
-
-      <button disabled={!hasMore} onClick={refineNext} type="button">
-        Show more
-      </button>
+      {hasMore && (
+        <Button
+          size="small"
+          variant="bordered"
+          onClick={refineNext}
+          style={{ margin: '0 auto' }}
+        >
+          Load more
+        </Button>
+      )}
     </div>
   )
 )

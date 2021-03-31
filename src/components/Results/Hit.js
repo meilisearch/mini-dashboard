@@ -2,6 +2,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import Document from 'components/icons/Document'
+import Button from 'components/Button'
 import Card from 'components/Card'
 import Typography from 'components/Typography'
 import Highlight from './Highlight'
@@ -61,9 +63,33 @@ function Hit({ hit }) {
                 hit={hit}
               />
             </Grid>
-            {index !== objectArray.length - 1 && <Hr />}
+            <Hr />
           </div>
         ))}
+        <Grid>
+          <HitKey variant="typo10" color="gray.6">
+            Test json
+          </HitKey>
+          <div>
+            <Button
+              variant="grayscale"
+              size="small"
+              toggable
+              icon={<Document width={18} height={22} />}
+            >
+              json
+            </Button>
+          </div>
+        </Grid>
+        <Hr />
+        <Grid>
+          <div />
+          <div>
+            <Button variant="link" size="small" toggable>
+              Show more
+            </Button>
+          </div>
+        </Grid>
       </ContentContainer>
     </CustomCard>
   )

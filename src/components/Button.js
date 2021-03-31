@@ -15,7 +15,7 @@ const variants = {
   default: css`
     padding: 0 24px;
     min-width: 128px;
-    background-color: white;
+    background-color: transparent;
     border: 1px solid ${(p) => p.theme.colors.gray[10]};
     box-sizing: border-box;
     box-shadow: 0px 4px 6px ${Color('#000').alpha(0.04)};
@@ -55,7 +55,7 @@ const variants = {
   bordered: css`
     padding: 0 24px;
     min-width: 128px;
-    background-color: white;
+    background-color: transparent;
     border: 2px solid ${(p) => p.theme.colors.main.default};
     color: ${(p) => p.theme.colors.main.default};
     svg {
@@ -149,6 +149,7 @@ const StyledButton = styled.button`
 const Button = React.forwardRef(
   (
     {
+      as,
       variant = 'default',
       size = 'medium',
       icon,
@@ -162,6 +163,7 @@ const Button = React.forwardRef(
     const safeSize = sizes[size] || sizes.medium
     return (
       <StyledButton
+        as={as}
         $variant={safeVariant}
         $size={safeSize}
         ref={ref}
@@ -176,6 +178,10 @@ const Button = React.forwardRef(
 )
 
 Button.propTypes = {
+  /**
+   * Custom tag if we don't want a "button" to appear in the DOM
+   */
+  as: PropTypes.string,
   /**
    * Buttons's variant
    */
@@ -206,6 +212,7 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
+  as: null,
   variant: 'default',
   size: 'medium',
   icon: null,

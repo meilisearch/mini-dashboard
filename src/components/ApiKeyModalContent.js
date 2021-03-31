@@ -1,10 +1,10 @@
 import React from 'react'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import styled from 'styled-components'
-import { Button } from 'reakit/Button'
 
 import { baseUrl } from 'App'
 import Box from 'components/Box'
+import Button from 'components/Button'
 import Input from 'components/Input'
 import Typography from 'components/Typography'
 
@@ -44,13 +44,20 @@ const ApiKeyModalContent = ({ closeModal }) => {
     <>
       <Box display="flex">
         <Input
-          style={{ display: 'block' }}
+          style={{ display: 'block', height: 34 }}
           name="apiKey"
           type="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <Button onClick={() => updateClient()}>Go</Button>
+        <Button
+          variant="filled"
+          size="small"
+          onClick={() => updateClient()}
+          style={{ minWidth: 'auto', width: 48, marginLeft: 16 }}
+        >
+          Go
+        </Button>
       </Box>
       <Box position="relative">
         <Typography variant="typo11" my={3} color="gray.6" mt={2}>
