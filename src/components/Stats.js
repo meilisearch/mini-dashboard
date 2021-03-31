@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { connectStats } from 'react-instantsearch-dom'
+import PropTypes from 'prop-types'
 
 import Search from 'components/icons/Search'
 import Timer from 'components/icons/Timer'
@@ -15,7 +15,7 @@ const Legend = styled(Typography)`
 `
 
 const Stat = ({ icon, legend, value, ...props }) => (
-  <div {...props}>
+  <div style={{ minWidth: 136 }} {...props}>
     <Legend variant="typo4" color="gray.7">
       {icon}
       {legend}
@@ -30,16 +30,40 @@ const StatsContainer = styled.div`
   display: flex;
 `
 
-const Stats = connectStats(({ nbHits, processingTimeMS }) => (
-  <StatsContainer>
-    <Stat icon={<Search size={11} />} legend="Hits" value={nbHits} />
+const Stats = ({ nbHits, processingTimeMS, nbResults, ...props }) => (
+  <StatsContainer {...props}>
+    <Stat
+      icon={<Search size={11} />}
+      legend="Hits"
+      value={`${nbHits !== nbResults ? '~' : ''} ${nbHits}`}
+    />
     <Stat
       icon={<Timer width={15} height={13} />}
       legend="Time spent"
       value={`${processingTimeMS} ms`}
-      style={{ marginLeft: 88 }}
     />
   </StatsContainer>
-))
+)
+
+Stats.propTypes = {
+  /**
+   * Number of hits provided by connectStats
+   */
+  nbHits: PropTypes.number,
+  /**
+   * Time in ms needed to execute the request
+   */
+  processingTimeMS: PropTypes.number,
+  /**
+   * Number of results provided by connectStateResults
+   */
+  nbResults: PropTypes.number,
+}
+
+Stats.defaultProps = {
+  nbHits: null,
+  processingTimeMS: null,
+  nbResults: null,
+}
 
 export default Stats

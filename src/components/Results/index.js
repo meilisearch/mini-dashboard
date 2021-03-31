@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import styled from 'styled-components'
-import { connectStateResults } from 'react-instantsearch-dom'
+import { connectStateResults, connectStats } from 'react-instantsearch-dom'
 
 import Document from 'components/icons/Document'
 import Picture from 'components/icons/Picture'
@@ -30,13 +30,14 @@ const Label2 = () => (
   </>
 )
 
+const ConnectedStats = connectStats((props) => <Stats {...props} />)
+
 const Results = connectStateResults(({ searchResults, searching }) => {
   const [mode, setMode] = useLocalStorage('mode', 'fancy')
   const hasResults = searchResults && searchResults.nbHits !== 0
   // if (searching) return <div>loading</div>
   // if (!searching && hasResults) return <InfiniteHits hitComponent={Hit} />
   // return <div>No results</div>
-
   return (
     <Wrapper>
       <Box maxWidth={928} m="0 auto" py={4}>
@@ -47,7 +48,7 @@ const Results = connectStateResults(({ searchResults, searching }) => {
           mb={56}
         >
           <div>
-            <Stats />
+            <ConnectedStats nbResults={searchResults && searchResults.nbHits} />
           </div>
           <Toggle
             onLabel={<Label1 />}
