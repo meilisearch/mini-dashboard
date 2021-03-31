@@ -12,7 +12,7 @@ function ArrowDown({ width = 11, height = 7, ...props }) {
     >
       <path
         d="M.824 1.38L5.324 6l4.5-4.62"
-        stroke="#BBC1CF"
+        stroke="currentColor"
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"

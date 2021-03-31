@@ -12,7 +12,9 @@ import Close from 'components/icons/Close'
 import Typography from 'components/Typography'
 
 const DialogBackdrop = styled(ReakitDialogBackdrop)`
-  opacity: 0;
+  &[data-leave] {
+    opacity: 0;
+  }
   &[data-enter] {
     opacity: 1;
   }
@@ -27,7 +29,9 @@ const DialogBackdrop = styled(ReakitDialogBackdrop)`
 `
 
 const Dialog = styled(ReakitDialog)`
-  opacity: 0;
+  &[data-leave] {
+    opacity: 0;
+  }
   &[data-enter] {
     opacity: 1;
   }
@@ -72,6 +76,7 @@ const Modal = ({ title, closable = true, dialog, children, ...props }) => (
       aria-label="Welcome"
       preventBodyScroll
       hideOnClickOutside={closable}
+      hideOnEsc={closable}
       {...props}
     >
       {title && (

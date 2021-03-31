@@ -140,7 +140,22 @@ Typography.propTypes = {
   /**
    * Text's variant
    */
-  variant: PropTypes.string,
+  variant: PropTypes.oneOf([
+    'default',
+    'typo1',
+    'typo2',
+    'typo3',
+    'typo4',
+    'typo5',
+    'typo6',
+    'typo7',
+    'typo8',
+    'typo9',
+    'typo10',
+    'typo11',
+    'typo12',
+    'typo13',
+  ]),
   /**
    * Text to be displayed
    */

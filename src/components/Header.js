@@ -2,17 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import Color from 'color'
 import { DialogDisclosure, useDialogState } from 'reakit/Dialog'
-import { Button } from 'reakit/Button'
 
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Modal from 'components/Modal'
 import SearchBox from 'components/SearchBox'
 import Box from 'components/Box'
+import Button from 'components/Button'
 import Container from 'components/Container'
 import Link from 'components/Link'
 import Select from 'components/Select'
 import Typography from 'components/Typography'
 import Indexes from 'components/icons/Indexes'
+import Key from 'components/icons/Key'
 import MSLogo from 'components/icons/MSLogo'
 
 const HeaderWrapper = styled.div`
@@ -26,10 +27,17 @@ const HeaderWrapper = styled.div`
 `
 
 const ApiKey = ({ isApiKeyRequired }) => {
-  const dialog = useDialogState({ animated: true })
+  const dialog = useDialogState()
   return (
     <>
-      <DialogDisclosure {...dialog}>Api Key</DialogDisclosure>
+      <DialogDisclosure {...dialog}>
+        {(props) => (
+          <Button icon={<Key />} style={{ width: '100%' }} {...props}>
+            Api Key
+          </Button>
+        )}
+      </DialogDisclosure>
+
       <Modal title="Enter your private API key (facultative)" dialog={dialog}>
         {isApiKeyRequired ? (
           <ApiKeyModalContent closeModal={() => dialog.hide()} />

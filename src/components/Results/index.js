@@ -48,7 +48,9 @@ const Results = connectStateResults(({ searchResults, searching }) => {
           mb={56}
         >
           <div>
-            <ConnectedStats nbResults={searchResults && searchResults.nbHits} />
+            <ConnectedStats
+              nbResults={searchResults && searchResults.hits.length}
+            />
           </div>
           <Toggle
             onLabel={<Label1 />}
