@@ -6,10 +6,10 @@ import {
   Dialog as ReakitDialog,
   DialogBackdrop as ReakitDialogBackdrop,
 } from 'reakit/Dialog'
-import { Button as BaseButton } from 'reakit/Button'
 
-import Close from 'components/icons/Close'
+import IconButton from 'components/IconButton'
 import Typography from 'components/Typography'
+import Close from 'components/icons/Close'
 
 const DialogBackdrop = styled(ReakitDialogBackdrop)`
   &[data-leave] {
@@ -49,23 +49,12 @@ const Dialog = styled(ReakitDialog)`
   z-index: 999;
 `
 
-const Button = styled(BaseButton)`
+const Button = styled(IconButton)`
   position: absolute;
-  top: 24px;
-  right: 24px;
-  background-color: transparent;
-  border: 0;
-  &:focus {
-    outline: none;
-    svg {
-      filter: drop-shadow(
-        0px 0px 3px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.3)}
-      );
-    }
-  }
+  top: 16px;
+  right: 16px;
   &:hover {
     pointer-events: initial;
-    cursor: pointer;
   }
 `
 
@@ -86,7 +75,7 @@ const Modal = ({ title, closable = true, dialog, children, ...props }) => (
       )}
       {children}
       {closable && (
-        <Button onClick={() => dialog.hide()}>
+        <Button color="gray.7" onClick={() => dialog.hide()}>
           <Close />
         </Button>
       )}

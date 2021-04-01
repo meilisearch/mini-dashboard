@@ -12,7 +12,7 @@ function Close({ width = 17, height = 18, ...props }) {
     >
       <path
         d="M1 1.527l15 15M16 1.527l-15 15"
-        stroke="#BABABA"
+        stroke="currentColor"
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"

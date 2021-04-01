@@ -103,7 +103,7 @@ const IndexItem = styled(MenuItem)`
 const TextToDisplay = ({ option }) => (
   <>
     <Typography
-      variant="typo5"
+      variant="typo4"
       color="gray.2"
       style={{ textTransform: 'capitalize' }}
       mr={2}

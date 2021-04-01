@@ -6,6 +6,7 @@ import ArrowDownIcon from 'components/icons/ArrowDown'
 import CloseIcon from 'components/icons/Close'
 import DocumentIcon from 'components/icons/Document'
 import IndexesIcon from 'components/icons/Indexes'
+import InterrogationMarkIcon from 'components/icons/InterrogationMark'
 import KeyIcon from 'components/icons/Key'
 import PictureIcon from 'components/icons/Picture'
 import SearchIcon from 'components/icons/Search'
@@ -41,6 +42,12 @@ export const Document = () => (
 export const Indexes = () => (
   <Box>
     <IndexesIcon width={42} height={46} />
+  </Box>
+)
+
+export const InterrogationMark = () => (
+  <Box>
+    <InterrogationMarkIcon width={18} height={32} />
   </Box>
 )
 

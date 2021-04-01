@@ -9,12 +9,14 @@ import SearchBox from 'components/SearchBox'
 import Box from 'components/Box'
 import Button from 'components/Button'
 import Container from 'components/Container'
+import IconButton from 'components/IconButton'
 import Link from 'components/Link'
 import Select from 'components/Select'
 import Typography from 'components/Typography'
 import Indexes from 'components/icons/Indexes'
 import Key from 'components/icons/Key'
 import MSLogo from 'components/icons/MSLogo'
+import InterrogationMark from 'components/icons/InterrogationMark'
 
 const HeaderWrapper = styled.div`
   background-color: white;
@@ -106,7 +108,9 @@ const Header = ({
         />
         <ApiKey isApiKeyRequired={isApiKeyRequired} />
       </Box>
-      <div>?</div>
+      <IconButton variant="bordered">
+        <InterrogationMark />
+      </IconButton>
     </Container>
   </HeaderWrapper>
 )
