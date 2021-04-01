@@ -45,7 +45,7 @@ const InfiniteHits = connectInfiniteHits(
           ))}
         </HitsList>
       ) : (
-        <Card style={{ fontSize: 14 }}>
+        <Card style={{ fontSize: 14, minHeight: 320 }}>
           <ReactJson
             src={hits}
             name={null}

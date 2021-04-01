@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 const Wrapper = styled.li`
-  min-height: 320px;
   background-color: white;
   list-style-type: none;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.05);

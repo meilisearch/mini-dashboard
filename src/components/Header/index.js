@@ -3,20 +3,19 @@ import styled from 'styled-components'
 import Color from 'color'
 import { DialogDisclosure, useDialogState } from 'reakit/Dialog'
 
+import Key from 'components/icons/Key'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
+import Button from 'components/Button'
+import Link from 'components/Link'
 import Modal from 'components/Modal'
+import Typography from 'components/Typography'
 import SearchBox from 'components/SearchBox'
 import Box from 'components/Box'
-import Button from 'components/Button'
 import Container from 'components/Container'
-import IconButton from 'components/IconButton'
-import Link from 'components/Link'
 import Select from 'components/Select'
-import Typography from 'components/Typography'
 import Indexes from 'components/icons/Indexes'
-import Key from 'components/icons/Key'
 import MSLogo from 'components/icons/MSLogo'
-import InterrogationMark from 'components/icons/InterrogationMark'
+import HelpCenter from './HelpCenter'
 
 const HeaderWrapper = styled.div`
   background-color: white;
@@ -108,9 +107,7 @@ const Header = ({
         />
         <ApiKey isApiKeyRequired={isApiKeyRequired} />
       </Box>
-      <IconButton variant="bordered">
-        <InterrogationMark />
-      </IconButton>
+      <HelpCenter />
     </Container>
   </HeaderWrapper>
 )

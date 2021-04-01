@@ -6,7 +6,7 @@ import { useDialogState } from 'reakit/Dialog'
 
 import useLocalStorage from 'hooks/useLocalStorage'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
-import Header from 'components/Header'
+import Header from 'components/Header/index'
 // import Sidebar from 'components/Sidebar'
 import Modal from 'components/Modal'
 import Results from 'components/Results'

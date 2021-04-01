@@ -11,8 +11,8 @@ const A = styled.a`
   }
 `
 
-const Link = ({ href, target = '_blank', children }) => (
-  <A href={href} target={target} rel="noreferrer">
+const Link = ({ href, target = '_blank', children, ...props }) => (
+  <A href={href} target={target} rel="noreferrer" {...props}>
     {children}
   </A>
 )
