@@ -8,6 +8,7 @@ NOTE: This is a Work in Progress
 
 Open src/App.js and change the baseUrl, if needed.
 
+Then:
 `yarn start`
 
 ## Lint
