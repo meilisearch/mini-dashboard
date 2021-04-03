@@ -1,8 +1,12 @@
 # Mini-Dashboard
 
-This is a Work in Progress
+Mini Dashboard for Meilisearch.
+
+NOTE: This is a Work in Progress
 
 ## Run
+
+Open src/App.js and change the baseUrl, if needed.
 
 `yarn start`
 
