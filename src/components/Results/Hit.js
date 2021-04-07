@@ -49,10 +49,9 @@ const Hr = styled.hr`
 
 function Hit({ hit, imageKey }) {
   const objectArray = Object.entries(hit._highlightResult)
-  const image = objectArray.find((elem) => elem[0] === imageKey)
   return (
     <CustomCard>
-      <Img src={(image[1] && image[1].value) || null} />
+      <Img src={hit[imageKey] || null} />
       <ContentContainer>
         {objectArray.map(([key, value], index) => (
           <div key={index}>
