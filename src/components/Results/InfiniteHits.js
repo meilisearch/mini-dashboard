@@ -35,40 +35,52 @@ const jsonTheme = {
   base0F: theme.colors.jsonVue.integers,
 }
 
-const InfiniteHits = connectInfiniteHits(
-  ({ hits, hasMore, refineNext, mode }) => (
-    <div>
-      {mode === 'fancy' ? (
-        <HitsList>
-          {hits.map((hit, index) => (
-            <Hit key={index} hit={hit} />
-          ))}
-        </HitsList>
-      ) : (
-        <Card style={{ fontSize: 14, minHeight: 320 }}>
-          <ReactJson
-            src={hits}
-            name={null}
-            collapsed={3}
-            enableClipboard={false}
-            displayObjectSize={false}
-            displayDataTypes={false}
-            theme={jsonTheme}
-          />
-        </Card>
-      )}
-      {hasMore && (
-        <Button
-          size="small"
-          variant="bordered"
-          onClick={refineNext}
-          style={{ margin: '0 auto' }}
-        >
-          Load more
-        </Button>
-      )}
-    </div>
+const findImageKey = (array) => {
+  const imageKey = array.find(
+    (elem) =>
+      typeof elem[1] === 'string' &&
+      elem[1].match(/^(https|http):\/\/.*(jpe?g|png|gif)(\?.*)?$/g)
   )
+  return imageKey[0]
+}
+
+const InfiniteHits = connectInfiniteHits(
+  ({ hits, hasMore, refineNext, mode }) => {
+    const imageKey = hits[0] ? findImageKey(Object.entries(hits[0])) : null
+    return (
+      <div>
+        {mode === 'fancy' ? (
+          <HitsList>
+            {hits.map((hit, index) => (
+              <Hit key={index} hit={hit} imageKey={imageKey} />
+            ))}
+          </HitsList>
+        ) : (
+          <Card style={{ fontSize: 14, minHeight: 320 }}>
+            <ReactJson
+              src={hits}
+              name={null}
+              collapsed={3}
+              enableClipboard={false}
+              displayObjectSize={false}
+              displayDataTypes={false}
+              theme={jsonTheme}
+            />
+          </Card>
+        )}
+        {hasMore && (
+          <Button
+            size="small"
+            variant="bordered"
+            onClick={refineNext}
+            style={{ margin: '0 auto' }}
+          >
+            Load more
+          </Button>
+        )}
+      </div>
+    )
+  }
 )
 
 export default InfiniteHits

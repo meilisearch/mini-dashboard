@@ -8,10 +8,11 @@ import Card from 'components/Card'
 import Typography from 'components/Typography'
 import Highlight from './Highlight'
 
-const Img = styled.div`
+const Img = styled.img`
   height: 264px;
   width: 240px;
   background-color: ${(p) => p.theme.colors.main.light};
+  object-fit: cover;
   flex-shrink: 0;
   border-radius: 10px;
   margin-right: ${(p) => p.theme.space[4]}px;
@@ -46,11 +47,12 @@ const Hr = styled.hr`
   border-style: solid;
 `
 
-function Hit({ hit }) {
+function Hit({ hit, imageKey }) {
   const objectArray = Object.entries(hit._highlightResult)
+  const image = objectArray.find((elem) => elem[0] === imageKey)
   return (
     <CustomCard>
-      <Img />
+      <Img src={(image[1] && image[1].value) || null} />
       <ContentContainer>
         {objectArray.map(([key, value], index) => (
           <div key={index}>
