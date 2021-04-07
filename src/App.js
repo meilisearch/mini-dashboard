@@ -6,9 +6,11 @@ import { useDialogState } from 'reakit/Dialog'
 
 import useLocalStorage from 'hooks/useLocalStorage'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
+import Box from 'components/Box'
 import Header from 'components/Header/index'
 // import Sidebar from 'components/Sidebar'
 import Modal from 'components/Modal'
+import OnBoarding from 'components/OnBoarding'
 import Results from 'components/Results'
 import ApiKeyContext from 'context/ApiKeyContext'
 import ClientContext from 'context/ClientContext'
@@ -18,15 +20,13 @@ export const baseUrl = 'http://127.0.0.1:7700'
 const Wrapper = styled.div`
   background-color: ${(p) => p.theme.colors.gray[11]};
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 `
 
 const Body = styled.div`
   display: flex;
   flex: 1;
-  height: calc(100vh - 120px);
-  overflow: hidden;
+  width: 100%;
+  min-height: calc(100vh - 120px);
 `
 
 const App = () => {
@@ -93,7 +93,9 @@ const App = () => {
             />
             <Body>
               {/* <Sidebar /> */}
-              <Results />
+              <Box maxWidth={928} m="0 auto" py={4}>
+                {currentIndex ? <Results /> : <OnBoarding />}
+              </Box>
             </Body>
           </InstantSearch>
           {dialog.visible && (

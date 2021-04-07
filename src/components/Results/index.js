@@ -11,11 +11,6 @@ import Toggle from 'components/Toggle'
 import useLocalStorage from 'hooks/useLocalStorage'
 import InfiniteHits from './InfiniteHits'
 
-const Wrapper = styled.div`
-  flex: 1;
-  overflow: auto;
-`
-
 const Label1 = () => (
   <>
     <Picture width={25} height={21} style={{ marginRight: 8 }} />
@@ -39,30 +34,28 @@ const Results = connectStateResults(({ searchResults, searching }) => {
   // if (!searching && hasResults) return <InfiniteHits hitComponent={Hit} />
   // return <div>No results</div>
   return (
-    <Wrapper>
-      <Box maxWidth={928} m="0 auto" py={4}>
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          mb={56}
-        >
-          <div>
-            <ConnectedStats
-              nbResults={searchResults && searchResults.hits.length}
-            />
-          </div>
-          <Toggle
-            onLabel={<Label1 />}
-            offLabel={<Label2 />}
-            ariaLabel="toggleMode"
-            initialValue={mode === 'fancy'}
-            onChange={(e) => setMode(e.target.checked ? 'fancy' : 'json')}
+    <>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        mb={56}
+      >
+        <div>
+          <ConnectedStats
+            nbResults={searchResults && searchResults.hits.length}
           />
-        </Box>
-        <InfiniteHits mode={mode} />
+        </div>
+        <Toggle
+          onLabel={<Label1 />}
+          offLabel={<Label2 />}
+          ariaLabel="toggleMode"
+          initialValue={mode === 'fancy'}
+          onChange={(e) => setMode(e.target.checked ? 'fancy' : 'json')}
+        />
       </Box>
-    </Wrapper>
+      <InfiniteHits mode={mode} />
+    </>
   )
 })
 
