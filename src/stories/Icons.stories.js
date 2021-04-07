@@ -1,84 +1,89 @@
 import React from 'react'
 
-import Box from 'components//Box'
-import MSLogo from 'components/icons/MSLogo'
-import ArrowDownIcon from 'components/icons/ArrowDown'
-import CloseIcon from 'components/icons/Close'
-import DocumentIcon from 'components/icons/Document'
-import GithubIcon from 'components/icons/GithubLogo'
-import IndexesIcon from 'components/icons/Indexes'
-import InterrogationMarkIcon from 'components/icons/InterrogationMark'
-import KeyIcon from 'components/icons/Key'
-import PictureIcon from 'components/icons/Picture'
-import SearchIcon from 'components/icons/Search'
-import SlackLogoIcon from 'components/icons/SlackLogo'
+import Box from 'components/Box'
+import {
+  MeilisearchLogo as MeilisearchLogoIcon,
+  ArrowDown as ArrowDownIcon,
+  Cross as CrossIcon,
+  DocumentBig as DocumentBigIcon,
+  DocumentMedium as DocumentMediumIcon,
+  GithubLogo as GithubLogoIcon,
+  Indexes as IndexesIcon,
+  InterrogationMark as InterrogationMarkIcon,
+  Key as KeyIcon,
+  Picture as PictureIcon,
+  SearchMedium as SearchMediumIcon,
+  SearchSmall as SearchSmallIcon,
+  SlackLogo as SlackLogoIcon,
+} from 'components/icons'
 
 export default {
   title: 'Components/Icons',
 }
 
-export const MeilisearchLogo = () => (
-  <Box>
-    <MSLogo size={64} />
-  </Box>
-)
+const Template = (args) => <Box style={{ maxWidth: 64 }} {...args} />
 
-export const ArrowDown = () => (
-  <Box>
-    <ArrowDownIcon width={34} height={36} />
-  </Box>
-)
+export const MeilisearchLogo = Template.bind({})
+MeilisearchLogo.args = {
+  children: <MeilisearchLogoIcon />,
+}
 
-export const Close = () => (
-  <Box>
-    <CloseIcon width={34} height={36} />
-  </Box>
-)
+export const ArrowDown = Template.bind({})
+ArrowDown.args = {
+  children: <ArrowDownIcon />,
+}
 
-export const Document = () => (
-  <Box>
-    <DocumentIcon width={40} height={46} />
-  </Box>
-)
+export const Cross = Template.bind({})
+Cross.args = {
+  children: <CrossIcon />,
+}
 
-export const Github = () => (
-  <Box>
-    <GithubIcon />
-  </Box>
-)
+export const DocumentBig = Template.bind({})
+DocumentBig.args = {
+  children: <DocumentBigIcon />,
+}
 
-export const Indexes = () => (
-  <Box>
-    <IndexesIcon width={42} height={46} />
-  </Box>
-)
+export const DocumentMedium = Template.bind({})
+DocumentMedium.args = {
+  children: <DocumentMediumIcon />,
+}
 
-export const InterrogationMark = () => (
-  <Box>
-    <InterrogationMarkIcon width={18} height={32} />
-  </Box>
-)
+export const Github = Template.bind({})
+Github.args = {
+  children: <GithubLogoIcon />,
+}
 
-export const Key = () => (
-  <Box>
-    <KeyIcon size={40} />
-  </Box>
-)
+export const Indexes = Template.bind({})
+Indexes.args = {
+  children: <IndexesIcon />,
+}
 
-export const Picture = () => (
-  <Box>
-    <PictureIcon width={40} height={46} />
-  </Box>
-)
+export const InterrogationMark = Template.bind({})
+InterrogationMark.args = {
+  children: <InterrogationMarkIcon />,
+}
 
-export const Search = () => (
-  <Box>
-    <SearchIcon size={64} />
-  </Box>
-)
+export const Key = Template.bind({})
+Key.args = {
+  children: <KeyIcon />,
+}
 
-export const SlackLogo = () => (
-  <Box>
-    <SlackLogoIcon size={64} />
-  </Box>
-)
+export const Picture = Template.bind({})
+Picture.args = {
+  children: <PictureIcon />,
+}
+
+export const SearchSmall = Template.bind({})
+SearchSmall.args = {
+  children: <SearchSmallIcon />,
+}
+
+export const SearchMedium = Template.bind({})
+SearchMedium.args = {
+  children: <SearchMediumIcon />,
+}
+
+export const SlackLogo = Template.bind({})
+SlackLogo.args = {
+  children: <SlackLogoIcon />,
+}

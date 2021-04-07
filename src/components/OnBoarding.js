@@ -4,9 +4,8 @@ import styled from 'styled-components'
 import Box from 'components/Box'
 import Button from 'components/Button'
 import Card from 'components/Card'
-import Link from 'components/Link'
 import Typography from 'components/Typography'
-import LogoText from 'components/icons/LogoText'
+import { LogoText } from 'components/icons'
 
 const OnBoardingCard = ({ number, title, icon, href, ...props }) => (
   <Card
@@ -37,7 +36,7 @@ const OnBoardingCard = ({ number, title, icon, href, ...props }) => (
     <Button
       variant="bordered"
       size="small"
-      as={Link}
+      as="a"
       href={href}
       style={{ textDecoration: 'none' }}
     >
@@ -65,7 +64,7 @@ const OnBoarding = () => (
     <Typography variant="typo12" mb={42} color="gray.0">
       Welcome to
     </Typography>
-    <LogoText />
+    <LogoText style={{ width: 260 }} />
     <Typography variant="typo13" mt={12} color="main.default">
       Mini Dashboard
     </Typography>

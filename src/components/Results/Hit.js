@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Document from 'components/icons/Document'
+import { DocumentMedium } from 'components/icons'
 import Button from 'components/Button'
 import Card from 'components/Card'
 import Typography from 'components/Typography'
@@ -75,7 +75,7 @@ function Hit({ hit }) {
               variant="grayscale"
               size="small"
               toggable
-              icon={<Document width={18} height={22} />}
+              icon={<DocumentMedium style={{ height: 22 }} />}
             >
               json
             </Button>

@@ -1,8 +1,7 @@
 import React from 'react'
 
 import Button from 'components/Button'
-import Key from 'components/icons/Key'
-import Document from 'components/icons/Document'
+import { DocumentBig, Key } from 'components/icons'
 
 export default {
   title: 'Components/Button',
@@ -42,7 +41,7 @@ Default.args = {
 export const WithIcon = Template.bind({})
 WithIcon.args = {
   children: 'I’m a Button',
-  icon: <Key />,
+  icon: <Key style={{ width: 19 }} />,
 }
 
 export const SizeSmall = Template.bind({})
@@ -75,7 +74,7 @@ VariantLink.args = {
 export const VariantGrayscale = Template.bind({})
 VariantGrayscale.args = {
   children: 'I’m a Button',
-  icon: <Document width={18} height={22} />,
+  icon: <DocumentBig style={{ height: 22 }} />,
   size: 'small',
   variant: 'grayscale',
   toggable: true,

@@ -4,7 +4,7 @@ import Color from 'color'
 import PropTypes from 'prop-types'
 import { useMenuState, Menu, MenuItem, MenuButton } from 'reakit/Menu'
 
-import ArrowDown from 'components/icons/ArrowDown'
+import { ArrowDown } from 'components/icons'
 import Typography from 'components/Typography'
 
 const Arrow = styled(ArrowDown)`
@@ -12,6 +12,7 @@ const Arrow = styled(ArrowDown)`
   right: 0;
   top: calc(50% - 3px);
   transition: transform 300ms;
+  width: 9px;
 `
 
 const SelectIndexesButton = styled(MenuButton)`

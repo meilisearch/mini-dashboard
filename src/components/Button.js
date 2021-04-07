@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { space, color } from 'styled-system'
 
 import Typography from 'components/Typography'
-import ArrowDown from 'components/icons/ArrowDown'
+import { ArrowDown } from 'components/icons'
 
 const Arrow = styled(ArrowDown)`
   margin-left: 6px;
@@ -171,7 +171,7 @@ const Button = React.forwardRef(
       >
         {icon}
         <Typography variant="typo4">{children}</Typography>
-        {toggable && <Arrow />}
+        {toggable && <Arrow style={{ width: 9 }} />}
       </StyledButton>
     )
   }

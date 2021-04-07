@@ -1,8 +1,7 @@
 import React from 'react'
 
 import IconButton from 'components/IconButton'
-import Close from 'components/icons/Close'
-import InterrogationMark from 'components/icons/InterrogationMark'
+import { Cross } from 'components/icons'
 
 export default {
   title: 'Components/IconButton',
@@ -17,16 +16,9 @@ export default {
   },
 }
 
-const Template = (args) => <IconButton {...args} />
+const Template = (args) => <IconButton color="gray.2" {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  children: <Close />,
-  color: 'gray.4',
-}
-
-export const Bordered = Template.bind({})
-Bordered.args = {
-  children: <InterrogationMark />,
-  variant: 'bordered',
+  children: <Cross style={{ width: 15 }} />,
 }

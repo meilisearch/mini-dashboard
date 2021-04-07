@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-function SvgSlackLogo(props) {
+function SvgSlack(props) {
   return (
     <svg
       viewBox="0 0 64 64"
@@ -11,7 +11,7 @@ function SvgSlackLogo(props) {
       <path
         d="M.806 32.294C.806 15.066 14.772 1.1 32 1.1s31.194 13.966 31.194 31.194S49.228 63.488 32 63.488.806 49.522.806 32.294z"
         fill="#fff"
-        stroke="#BBC1CF"
+        stroke="currentColor"
       />
       <path
         d="M22.298 36.709a3.524 3.524 0 01-3.515 3.516 3.524 3.524 0 01-3.516-3.516 3.524 3.524 0 013.516-3.516h3.515v3.516zM24.07 36.709a3.524 3.524 0 013.515-3.516 3.524 3.524 0 013.516 3.516v8.803a3.524 3.524 0 01-3.516 3.515 3.524 3.524 0 01-3.515-3.515v-8.803z"
@@ -33,4 +33,4 @@ function SvgSlackLogo(props) {
   )
 }
 
-export default SvgSlackLogo
+export default SvgSlack

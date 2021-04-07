@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Color from 'color'
 import PropTypes from 'prop-types'
 
-import Clear from 'components/icons/clear-input.svg'
+import Cross from 'components/icons/svg/cross.svg'
 
 const InputField = styled.input`
   height: 48px;
@@ -42,8 +42,9 @@ const InputField = styled.input`
     -webkit-appearance: none;
     width: 11px;
     height: 11px;
-    background-image: url(${Clear});
+    background-image: url(${Cross});
     background-repeat: no-repeat;
+    cursor: pointer;
   }
 `
 

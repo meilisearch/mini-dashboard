@@ -3,10 +3,12 @@ import Color from 'color'
 import styled from 'styled-components'
 import { DialogDisclosure, useDialogState } from 'reakit/Dialog'
 
-import InterrogationMark from 'components/icons/InterrogationMark'
-import GithubLogo from 'components/icons/GithubLogo'
-import MSLogo from 'components/icons/MSLogo'
-import SlackLogo from 'components/icons/SlackLogo'
+import {
+  MeilisearchLogo,
+  SlackLogo,
+  GithubLogo,
+  InterrogationMark,
+} from 'components/icons'
 import Card from 'components/Card'
 import IconButton from 'components/IconButton'
 import Link from 'components/Link'
@@ -68,8 +70,8 @@ const HelpCenter = () => {
     <>
       <DialogDisclosure {...dialog}>
         {(props) => (
-          <IconButton variant="bordered" {...props}>
-            <InterrogationMark />
+          <IconButton color="main.default" {...props}>
+            <InterrogationMark style={{ width: 26 }} />
           </IconButton>
         )}
       </DialogDisclosure>
@@ -80,19 +82,19 @@ const HelpCenter = () => {
         </Typography>
         <CardsContainer>
           <HelpCard
-            logo={<GithubLogo />}
+            logo={<GithubLogo style={{ width: 62 }} />}
             title="Github"
             description="Lorem ipsum dolor sit amet qui cheese bacon."
             href="https://github.com/meilisearch"
           />
           <HelpCard
-            logo={<SlackLogo />}
+            logo={<SlackLogo style={{ width: 62 }} />}
             title="Slack"
             description="Lorem ipsum dolor sit amet qui cheese bacon."
             href="https://slack.meilisearch.com/"
           />
           <HelpCard
-            logo={<MSLogo size={62} />}
+            logo={<MeilisearchLogo style={{ width: 62 }} />}
             title="Documentation"
             description="Lorem ipsum dolor sit amet qui cheese bacon."
             href="https://docs.meilisearch.com/"

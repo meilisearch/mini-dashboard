@@ -2,8 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import Search from 'components/icons/Search'
-import Timer from 'components/icons/Timer'
+import { SearchSmall, Speed } from 'components/icons'
 import Typography from 'components/Typography'
 
 const Legend = styled(Typography)`
@@ -33,12 +32,12 @@ const StatsContainer = styled.div`
 const Stats = ({ nbHits, processingTimeMS, nbResults, ...props }) => (
   <StatsContainer {...props}>
     <Stat
-      icon={<Search size={11} />}
+      icon={<SearchSmall style={{ width: 10 }} />}
       legend="Hits"
       value={`${nbHits !== nbResults ? '~' : ''} ${nbHits}`}
     />
     <Stat
-      icon={<Timer width={15} height={13} />}
+      icon={<Speed style={{ width: 15 }} />}
       legend="Time spent"
       value={`${processingTimeMS} ms`}
     />

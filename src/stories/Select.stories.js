@@ -1,7 +1,8 @@
 import React from 'react'
 
 import Select from 'components/Select'
-import Indexes from 'components/icons/Indexes'
+import NoSelectOption from 'components/NoSelectOption'
+import { Indexes } from 'components/icons'
 
 export default {
   title: 'Components/Select',
@@ -42,12 +43,12 @@ Default.args = {
 export const WithIcon = Template.bind({})
 WithIcon.args = {
   options,
-  icon: <Indexes />,
+  icon: <Indexes style={{ height: 18 }} />,
 }
 
 export const WithoutOptions = Template.bind({})
 WithoutOptions.args = {
   options: null,
-  icon: <Indexes />,
-  noOptionComponent: <div style={{ padding: 16 }}>no indexes found</div>,
+  icon: <Indexes style={{ height: 18 }} />,
+  noOptionComponent: <NoSelectOption />,
 }

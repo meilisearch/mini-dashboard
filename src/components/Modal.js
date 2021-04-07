@@ -9,7 +9,7 @@ import {
 
 import IconButton from 'components/IconButton'
 import Typography from 'components/Typography'
-import Close from 'components/icons/Close'
+import { Cross } from 'components/icons'
 
 const DialogBackdrop = styled(ReakitDialogBackdrop)`
   &[data-leave] {
@@ -76,7 +76,7 @@ const Modal = ({ title, closable = true, dialog, children, ...props }) => (
       {children}
       {closable && (
         <Button color="gray.7" onClick={() => dialog.hide()}>
-          <Close />
+          <Cross style={{ width: 15 }} />
         </Button>
       )}
     </Dialog>

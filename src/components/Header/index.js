@@ -3,18 +3,17 @@ import styled from 'styled-components'
 import Color from 'color'
 import { DialogDisclosure, useDialogState } from 'reakit/Dialog'
 
-import Key from 'components/icons/Key'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Button from 'components/Button'
 import Link from 'components/Link'
 import Modal from 'components/Modal'
+import NoSelectOption from 'components/NoSelectOption'
 import Typography from 'components/Typography'
 import SearchBox from 'components/SearchBox'
 import Box from 'components/Box'
 import Container from 'components/Container'
 import Select from 'components/Select'
-import Indexes from 'components/icons/Indexes'
-import MSLogo from 'components/icons/MSLogo'
+import { MeilisearchLogo, Indexes, Key } from 'components/icons'
 import HelpCenter from './HelpCenter'
 
 const HeaderWrapper = styled.div`
@@ -33,7 +32,11 @@ const ApiKey = ({ isApiKeyRequired }) => {
     <>
       <DialogDisclosure {...dialog}>
         {(props) => (
-          <Button icon={<Key />} style={{ width: '100%' }} {...props}>
+          <Button
+            icon={<Key style={{ width: 19 }} />}
+            style={{ width: '100%' }}
+            {...props}
+          >
             Api Key
           </Button>
         )}
@@ -55,32 +58,6 @@ const ApiKey = ({ isApiKeyRequired }) => {
   )
 }
 
-const NoOptionComponent = () => (
-  <Box
-    py={3}
-    px={24}
-    backgroundColor="white"
-    display="flex"
-    flexDirection="column"
-    justifyContent="center"
-    alignItems="center"
-  >
-    <Typography variant="typo4" color="gray.6" mb={3}>
-      no index found
-    </Typography>
-    <Button
-      variant="bordered"
-      size="small"
-      as="a"
-      href="https://docs.meilisearch.com/reference/api/indexes.html"
-      target="_blank"
-      style={{ textDecoration: 'none' }}
-    >
-      Need help ?
-    </Button>
-  </Box>
-)
-
 const Header = ({
   indexes,
   currentIndex,
@@ -95,15 +72,15 @@ const Header = ({
       justifyContent="space-between"
       height="100%"
     >
-      <MSLogo width={64} />
+      <MeilisearchLogo style={{ width: 64 }} />
       <Box display="flex">
         <SearchBox />
         <Select
           options={indexes}
-          icon={<Indexes />}
+          icon={<Indexes style={{ height: 18 }} />}
           currentOption={currentIndex}
           setCurrentOption={setCurrentIndex}
-          noOptionComponent={<NoOptionComponent />}
+          noOptionComponent={<NoSelectOption />}
         />
         <ApiKey isApiKeyRequired={isApiKeyRequired} />
       </Box>

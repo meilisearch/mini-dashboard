@@ -1,10 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import styled from 'styled-components'
 import { connectStateResults, connectStats } from 'react-instantsearch-dom'
 
-import Document from 'components/icons/Document'
-import Picture from 'components/icons/Picture'
+import { DocumentBig, Picture } from 'components/icons'
 import Box from 'components/Box'
 import Stats from 'components/Stats'
 import Toggle from 'components/Toggle'
@@ -13,14 +11,14 @@ import InfiniteHits from './InfiniteHits'
 
 const Label1 = () => (
   <>
-    <Picture width={25} height={21} style={{ marginRight: 8 }} />
+    <Picture style={{ marginRight: 8, height: 22 }} />
     Fancy
   </>
 )
 
 const Label2 = () => (
   <>
-    <Document width={19} height={22} style={{ marginRight: 8 }} />
+    <DocumentBig style={{ marginRight: 8, height: 22 }} />
     Json
   </>
 )

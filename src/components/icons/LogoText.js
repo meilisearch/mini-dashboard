@@ -1,10 +1,8 @@
 import * as React from 'react'
 
-function LogoText({ width = 262, height = 36, ...props }) {
+function SvgLogoText(props) {
   return (
     <svg
-      width={width}
-      height={height}
       viewBox="0 0 262 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +16,4 @@ function LogoText({ width = 262, height = 36, ...props }) {
   )
 }
 
-export default LogoText
+export default SvgLogoText
