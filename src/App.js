@@ -106,7 +106,13 @@ const App = () => {
             />
             <Body>
               {/* <Sidebar /> */}
-              <Box maxWidth={928} m="0 auto" py={4}>
+              <Box
+                width={928}
+                m="0 auto"
+                py={4}
+                display="flex"
+                flexDirection="column"
+              >
                 {!currentIndex && <OnBoarding />}
                 {currentIndex && currentIndex.stats.numberOfDocuments > 0 ? (
                   <Results />

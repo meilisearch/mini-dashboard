@@ -32,26 +32,6 @@ const Results = connectStateResults(({ searchResults, searching }) => {
   const hasResults = searchResults && searchResults.nbHits !== 0
   // if (searching) return <div>loading</div>
   // if (!searching && hasResults) return <InfiniteHits hitComponent={Hit} />
-  // return <div>No results</div>
-
-  if (!hasResults)
-    return (
-      <EmptyView buttonLink="https://docs.meilisearch.com/reference/api/search.html">
-        <Typography
-          variant="typo8"
-          style={{ textAlign: 'center' }}
-          mb={16}
-          color="gray.0"
-        >
-          Sorry mate, no results matching your request
-        </Typography>
-        <Typography variant="typo8" style={{ textAlign: 'center' }} mb={56}>
-          <span role="img" aria-label="sad">
-            ☹️
-          </span>
-        </Typography>
-      </EmptyView>
-    )
 
   return (
     <>
@@ -74,7 +54,25 @@ const Results = connectStateResults(({ searchResults, searching }) => {
           onChange={(e) => setMode(e.target.checked ? 'fancy' : 'json')}
         />
       </Box>
-      <InfiniteHits mode={mode} />
+      {hasResults ? (
+        <InfiniteHits mode={mode} />
+      ) : (
+        <EmptyView buttonLink="https://docs.meilisearch.com/reference/api/search.html">
+          <Typography
+            variant="typo8"
+            style={{ textAlign: 'center' }}
+            mb={16}
+            color="gray.0"
+          >
+            Sorry mate, no results matching your request
+          </Typography>
+          <Typography variant="typo8" style={{ textAlign: 'center' }} mb={56}>
+            <span role="img" aria-label="sad">
+              ☹️
+            </span>
+          </Typography>
+        </EmptyView>
+      )}
     </>
   )
 })

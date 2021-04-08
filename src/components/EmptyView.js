@@ -12,6 +12,7 @@ const EmptyView = ({ buttonLink, children, ...props }) => (
     flexDirection="column"
     justifyContent="center"
     maxWidth={264}
+    m="auto"
     {...props}
   >
     {children}
