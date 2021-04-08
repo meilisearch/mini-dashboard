@@ -32,6 +32,24 @@ const Body = styled.div`
   min-height: calc(100vh - 120px);
 `
 
+const Content = ({ currentIndex }) => {
+  if (!currentIndex) return <OnBoarding />
+  if (currentIndex && currentIndex.stats.numberOfDocuments > 0)
+    return <Results />
+  return (
+    <EmptyView buttonLink="https://docs.meilisearch.com/reference/api/documents.html">
+      <Typography
+        variant="typo8"
+        style={{ textAlign: 'center' }}
+        mb={32}
+        color="gray.0"
+      >
+        There’s no document in the selected index
+      </Typography>
+    </EmptyView>
+  )
+}
+
 const App = () => {
   const [apiKey, setApiKey] = useLocalStorage('apiKey')
   // eslint-disable-next-line no-unused-vars
@@ -113,21 +131,7 @@ const App = () => {
                 display="flex"
                 flexDirection="column"
               >
-                {!currentIndex && <OnBoarding />}
-                {currentIndex && currentIndex.stats.numberOfDocuments > 0 ? (
-                  <Results />
-                ) : (
-                  <EmptyView buttonLink="https://docs.meilisearch.com/reference/api/documents.html">
-                    <Typography
-                      variant="typo8"
-                      style={{ textAlign: 'center' }}
-                      mb={32}
-                      color="gray.0"
-                    >
-                      There’s no document in the selected index
-                    </Typography>
-                  </EmptyView>
-                )}
+                <Content currentIndex={currentIndex} />
               </Box>
             </Body>
           </InstantSearch>

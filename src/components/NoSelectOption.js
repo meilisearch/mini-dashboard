@@ -25,7 +25,7 @@ const NoSelectOption = () => (
       target="_blank"
       style={{ textDecoration: 'none' }}
     >
-      Need help ?
+      Need help?
     </Button>
   </Box>
 )

@@ -24,7 +24,7 @@ const EmptyView = ({ buttonLink, children, ...props }) => (
       size="small"
       style={{ textDecoration: 'none', width: 'auto' }}
     >
-      Need help ?
+      Need help?
     </Button>
   </Box>
 )
