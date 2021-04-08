@@ -51,7 +51,17 @@ const App = () => {
       }, [])
 
       setIndexes(options)
-      setCurrentIndex(options.length ? currentIndex || options[0] : null)
+      if (options.length) {
+        if (currentIndex) {
+          setCurrentIndex(
+            options.find((option) => option.uid === currentIndex.uid)
+          )
+        } else {
+          setCurrentIndex(options[0])
+        }
+      } else {
+        setCurrentIndex(null)
+      }
     } catch (error) {
       console.log(error)
     }

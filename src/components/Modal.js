@@ -36,6 +36,7 @@ const Dialog = styled(ReakitDialog)`
     opacity: 1;
   }
   transition: opacity 250ms ease-in-out;
+  max-width: 992px;
   position: relative;
   width: 70%;
   top: 50%;
