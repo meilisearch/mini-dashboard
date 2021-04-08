@@ -8,6 +8,7 @@ import { useDialogState } from 'reakit/Dialog'
 import useLocalStorage from 'hooks/useLocalStorage'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Box from 'components/Box'
+import EmptyView from 'components/EmptyView'
 import Header from 'components/Header/index'
 // import Sidebar from 'components/Sidebar'
 import Modal from 'components/Modal'
@@ -15,6 +16,7 @@ import OnBoarding from 'components/OnBoarding'
 import Results from 'components/Results'
 import ApiKeyContext from 'context/ApiKeyContext'
 import ClientContext from 'context/ClientContext'
+import Typography from 'components/Typography'
 
 export const baseUrl = 'http://127.0.0.1:7700'
 
@@ -105,7 +107,21 @@ const App = () => {
             <Body>
               {/* <Sidebar /> */}
               <Box maxWidth={928} m="0 auto" py={4}>
-                {currentIndex ? <Results /> : <OnBoarding />}
+                {!currentIndex && <OnBoarding />}
+                {currentIndex && currentIndex.stats.numberOfDocuments > 0 ? (
+                  <Results />
+                ) : (
+                  <EmptyView buttonLink="https://docs.meilisearch.com/reference/api/documents.html">
+                    <Typography
+                      variant="typo8"
+                      style={{ textAlign: 'center' }}
+                      mb={32}
+                      color="gray.0"
+                    >
+                      There’s no document in the selected index
+                    </Typography>
+                  </EmptyView>
+                )}
               </Box>
             </Body>
           </InstantSearch>
