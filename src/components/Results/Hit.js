@@ -49,9 +49,11 @@ const Hr = styled.hr`
   border-color: ${(p) => p.theme.colors.gray[10]};
   background-color: ${(p) => p.theme.colors.gray[10]};
   border-style: solid;
+  border-top: 0;
 `
 
 function Hit({ hit, imageKey }) {
+  const [displayMore, setDisplayMore] = React.useState(false)
   const objectArray = Object.entries(hit._highlightResult)
   return (
     <CustomCard>
@@ -59,21 +61,23 @@ function Hit({ hit, imageKey }) {
         {hit[imageKey] ? <Img src={hit[imageKey] || null} /> : <EmptyImage />}
       </Box>
       <ContentContainer>
-        {objectArray.map(([key, value], index) => (
-          <div key={index}>
-            <Grid key={key}>
-              <HitKey variant="typo10" color="gray.6">{`${key} : `}</HitKey>
-              <HitValue
-                variant="typo11"
-                color="gray.2"
-                attribute={key}
-                hit={hit}
-              />
-            </Grid>
-            <Hr />
-          </div>
-        ))}
-        <Grid>
+        {objectArray
+          .slice(0, displayMore ? hit.length : 6)
+          .map(([key, value], index) => (
+            <div key={index}>
+              <Grid key={key}>
+                <HitKey variant="typo10" color="gray.6">{`${key} : `}</HitKey>
+                <HitValue
+                  variant="typo11"
+                  color="gray.2"
+                  attribute={key}
+                  hit={hit}
+                />
+              </Grid>
+              <Hr />
+            </div>
+          ))}
+        {/* <Grid>
           <HitKey variant="typo10" color="gray.6">
             Test json
           </HitKey>
@@ -87,16 +91,24 @@ function Hit({ hit, imageKey }) {
               json
             </Button>
           </div>
-        </Grid>
-        <Hr />
-        <Grid>
-          <div />
-          <div>
-            <Button variant="link" size="small" toggable>
-              Show more
-            </Button>
-          </div>
-        </Grid>
+        </Grid> */}
+        {objectArray.length > 6 && !displayMore && (
+          <Grid>
+            <HitKey variant="typo10" color="gray.6">
+              ...
+            </HitKey>
+            <div>
+              <Button
+                variant="link"
+                size="small"
+                toggable
+                onClick={() => setDisplayMore(true)}
+              >
+                Show more
+              </Button>
+            </div>
+          </Grid>
+        )}
       </ContentContainer>
     </CustomCard>
   )
