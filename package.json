@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@meilisearch/instant-meilisearch": "^0.3.2",
+    "@meilisearch/instant-meilisearch": "^0.4.1",
     "color": "^3.1.3",
     "eslint-plugin-import": "^2.22.1",
     "prop-types": "^15.7.2",
