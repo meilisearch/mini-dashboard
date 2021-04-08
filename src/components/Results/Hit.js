@@ -4,18 +4,22 @@ import styled from 'styled-components'
 
 import { DocumentMedium } from 'components/icons'
 import Button from 'components/Button'
+import Box from 'components/Box'
 import Card from 'components/Card'
 import Typography from 'components/Typography'
 import Highlight from './Highlight'
 
-const Img = styled.img`
+const EmptyImage = styled.div`
+  width: 100%;
   height: 264px;
-  width: 240px;
   background-color: ${(p) => p.theme.colors.main.light};
-  object-fit: cover;
-  flex-shrink: 0;
   border-radius: 10px;
-  margin-right: ${(p) => p.theme.space[4]}px;
+`
+
+const Img = styled.img`
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 10px;
 `
 
 const CustomCard = styled(Card)`
@@ -51,7 +55,9 @@ function Hit({ hit, imageKey }) {
   const objectArray = Object.entries(hit._highlightResult)
   return (
     <CustomCard>
-      <Img src={hit[imageKey] || null} />
+      <Box width={240} mr={4} flexShrink={0}>
+        {hit[imageKey] ? <Img src={hit[imageKey] || null} /> : <EmptyImage />}
+      </Box>
       <ContentContainer>
         {objectArray.map(([key, value], index) => (
           <div key={index}>
