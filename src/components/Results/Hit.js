@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import styled from 'styled-components'
+import ReactJson from 'react-json-view'
 
+import { jsonTheme } from 'theme'
 import { DocumentMedium } from 'components/icons'
 import Button from 'components/Button'
 import Box from 'components/Box'
@@ -18,7 +20,7 @@ const EmptyImage = styled.div`
 
 const Img = styled.img`
   max-height: 100%;
-  max-width: 100%;
+  width: 100%;
   border-radius: 10px;
 `
 
@@ -52,47 +54,87 @@ const Hr = styled.hr`
   border-top: 0;
 `
 
+const ObjectValue = ({ objectKey, value }) => {
+  const [toggled, setToggled] = React.useState(false)
+  return (
+    <>
+      <HitKey variant="typo10" color="gray.6">
+        {`${objectKey} : `}
+      </HitKey>
+      <div>
+        <Button
+          variant="grayscale"
+          size="small"
+          toggable
+          mb={2}
+          icon={<DocumentMedium style={{ height: 22 }} />}
+          onClick={() => setToggled((prevToggled) => !prevToggled)}
+          aria-expanded={toggled}
+        >
+          json
+        </Button>
+        {toggled && (
+          <ReactJson
+            src={JSON.parse(value)}
+            name={null}
+            collapsed={3}
+            enableClipboard={false}
+            displayObjectSize={false}
+            displayDataTypes={false}
+            displayArrayKey={false}
+            theme={jsonTheme}
+            style={{ fontSize: 12 }}
+          />
+        )}
+      </div>
+    </>
+  )
+}
+
+const isObject = (value) => {
+  try {
+    const data = JSON.parse(value)
+    return data.constructor.name === 'Object'
+  } catch (err) {
+    return false
+  }
+}
+
 function Hit({ hit, imageKey }) {
   const [displayMore, setDisplayMore] = React.useState(false)
-  const objectArray = Object.entries(hit._highlightResult)
+  const documentProperties = Object.entries(hit._highlightResult)
   return (
     <CustomCard>
       <Box width={240} mr={4} flexShrink={0}>
         {hit[imageKey] ? <Img src={hit[imageKey] || null} /> : <EmptyImage />}
       </Box>
       <ContentContainer>
-        {objectArray
+        {documentProperties
           .slice(0, displayMore ? hit.length : 6)
           .map(([key, value], index) => (
-            <div key={index}>
-              <Grid key={key}>
-                <HitKey variant="typo10" color="gray.6">{`${key} : `}</HitKey>
-                <HitValue
-                  variant="typo11"
-                  color="gray.2"
-                  attribute={key}
-                  hit={hit}
-                />
+            <div key={key}>
+              <Grid>
+                {isObject(value.value) ? (
+                  <ObjectValue objectKey={key} value={value.value} />
+                ) : (
+                  <>
+                    <HitKey
+                      variant="typo10"
+                      color="gray.6"
+                    >{`${key} : `}</HitKey>
+                    <HitValue
+                      variant="typo11"
+                      color="gray.2"
+                      attribute={key}
+                      hit={hit}
+                    />
+                  </>
+                )}
               </Grid>
               <Hr />
             </div>
           ))}
-        {/* <Grid>
-          <HitKey variant="typo10" color="gray.6">
-            Test json
-          </HitKey>
-          <div>
-            <Button
-              variant="grayscale"
-              size="small"
-              toggable
-              icon={<DocumentMedium style={{ height: 22 }} />}
-            >
-              json
-            </Button>
-          </div>
-        </Grid> */}
-        {objectArray.length > 6 && !displayMore && (
+        {documentProperties.length > 6 && !displayMore && (
           <Grid>
             <HitKey variant="typo10" color="gray.6">
               ...

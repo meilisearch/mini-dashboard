@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { connectInfiniteHits } from 'react-instantsearch-dom'
 import ReactJson from 'react-json-view'
 
-import theme from 'theme'
+import { jsonTheme } from 'theme'
 import Button from 'components/Button'
 import Card from 'components/Card'
 
@@ -15,25 +15,6 @@ const HitsList = styled.ul`
     margin-top: 16px;
   }
 `
-
-const jsonTheme = {
-  base00: 'white',
-  base01: '#ddd',
-  base02: theme.colors.jsonVue.badgeBg,
-  base03: '#444',
-  base04: 'purple',
-  base05: '#444',
-  base06: '#444',
-  base07: theme.colors.jsonVue.keys,
-  base08: '#444',
-  base09: theme.colors.jsonVue.string,
-  base0A: theme.colors.jsonVue.badgeFg,
-  base0B: theme.colors.jsonVue.string,
-  base0C: theme.colors.jsonVue.keyNumber,
-  base0D: theme.colors.jsonVue.arrows,
-  base0E: theme.colors.jsonVue.arrows,
-  base0F: theme.colors.jsonVue.integers,
-}
 
 const findImageKey = (array) => {
   const imageKey = array.find(

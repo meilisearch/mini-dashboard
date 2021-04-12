@@ -39,4 +39,23 @@ const theme = {
   },
 }
 
+export const jsonTheme = {
+  base00: 'white',
+  base01: '#ddd',
+  base02: theme.colors.jsonVue.badgeBg,
+  base03: '#444',
+  base04: 'purple',
+  base05: '#444',
+  base06: '#444',
+  base07: theme.colors.jsonVue.keys,
+  base08: '#444',
+  base09: theme.colors.jsonVue.string,
+  base0A: theme.colors.jsonVue.badgeFg,
+  base0B: theme.colors.jsonVue.string,
+  base0C: theme.colors.jsonVue.keyNumber,
+  base0D: theme.colors.jsonVue.arrows,
+  base0E: theme.colors.jsonVue.arrows,
+  base0F: theme.colors.jsonVue.integers,
+}
+
 export default theme
