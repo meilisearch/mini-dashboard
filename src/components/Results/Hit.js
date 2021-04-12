@@ -8,6 +8,7 @@ import { DocumentMedium } from 'components/icons'
 import Button from 'components/Button'
 import Box from 'components/Box'
 import Card from 'components/Card'
+import BaseLink from 'components/Link'
 import Typography from 'components/Typography'
 import Highlight from './Highlight'
 
@@ -39,12 +40,24 @@ const HitKey = styled(Typography)`
   grid-column: 1 / 2;
 `
 
-const HitValue = styled(Highlight)`
+const HitValue = styled.div`
   grid-column: 2 / 4;
 `
 
 const ContentContainer = styled.div`
   width: 100%;
+`
+
+const Link = styled(BaseLink)`
+  transition: color 300ms;
+  text-decoration: none;
+  color: ${(p) => p.theme.colors.gray[2]};
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    outline: none;
+    color: ${(p) => p.theme.colors.gray[0]};
+  }
 `
 
 const Hr = styled.hr`
@@ -54,39 +67,34 @@ const Hr = styled.hr`
   border-top: 0;
 `
 
-const ObjectValue = ({ objectKey, value }) => {
+const ObjectValue = ({ value }) => {
   const [toggled, setToggled] = React.useState(false)
   return (
     <>
-      <HitKey variant="typo10" color="gray.6">
-        {`${objectKey} : `}
-      </HitKey>
-      <div>
-        <Button
-          variant="grayscale"
-          size="small"
-          toggable
-          mb={2}
-          icon={<DocumentMedium style={{ height: 22 }} />}
-          onClick={() => setToggled((prevToggled) => !prevToggled)}
-          aria-expanded={toggled}
-        >
-          json
-        </Button>
-        {toggled && (
-          <ReactJson
-            src={JSON.parse(value)}
-            name={null}
-            collapsed={3}
-            enableClipboard={false}
-            displayObjectSize={false}
-            displayDataTypes={false}
-            displayArrayKey={false}
-            theme={jsonTheme}
-            style={{ fontSize: 12 }}
-          />
-        )}
-      </div>
+      <Button
+        variant="grayscale"
+        size="small"
+        toggable
+        mb={2}
+        icon={<DocumentMedium style={{ height: 22 }} />}
+        onClick={() => setToggled((prevToggled) => !prevToggled)}
+        aria-expanded={toggled}
+      >
+        json
+      </Button>
+      {toggled && (
+        <ReactJson
+          src={JSON.parse(value)}
+          name={null}
+          collapsed={3}
+          enableClipboard={false}
+          displayObjectSize={false}
+          displayDataTypes={false}
+          displayArrayKey={false}
+          theme={jsonTheme}
+          style={{ fontSize: 12 }}
+        />
+      )}
     </>
   )
 }
@@ -98,6 +106,19 @@ const isObject = (value) => {
   } catch (err) {
     return false
   }
+}
+
+const FieldValue = ({ value, hit, objectKey }) => {
+  if (isObject(value)) return <ObjectValue value={value} />
+  if (value.match(/(https|http):\/\//)) return <Link href={value}>{value}</Link>
+  return (
+    <Highlight
+      variant="typo11"
+      color="gray.2"
+      attribute={objectKey}
+      hit={hit}
+    />
+  )
 }
 
 function Hit({ hit, imageKey }) {
@@ -114,22 +135,10 @@ function Hit({ hit, imageKey }) {
           .map(([key, value], index) => (
             <div key={key}>
               <Grid>
-                {isObject(value.value) ? (
-                  <ObjectValue objectKey={key} value={value.value} />
-                ) : (
-                  <>
-                    <HitKey
-                      variant="typo10"
-                      color="gray.6"
-                    >{`${key} : `}</HitKey>
-                    <HitValue
-                      variant="typo11"
-                      color="gray.2"
-                      attribute={key}
-                      hit={hit}
-                    />
-                  </>
-                )}
+                <HitKey variant="typo10" color="gray.6">{`${key} : `}</HitKey>
+                <HitValue>
+                  <FieldValue value={value.value} hit={hit} objectKey={key} />
+                </HitValue>
               </Grid>
               <Hr />
             </div>
