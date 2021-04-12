@@ -10,11 +10,17 @@ import {
   GithubLogo as GithubLogoIcon,
   Indexes as IndexesIcon,
   InterrogationMark as InterrogationMarkIcon,
+  InterrogationMarkFocus as InterrogationMarkFocusIcon,
   Key as KeyIcon,
+  KeyBig as KeyBigIcon,
+  LogoText as LogoTextIcon,
   Picture as PictureIcon,
   SearchMedium as SearchMediumIcon,
   SearchSmall as SearchSmallIcon,
+  SettingsMedium as SettingsMediumIcon,
+  SettingsBig as SettingsBigIcon,
   SlackLogo as SlackLogoIcon,
+  Speed as SpeedIcon,
 } from 'components/icons'
 
 export default {
@@ -63,9 +69,24 @@ InterrogationMark.args = {
   children: <InterrogationMarkIcon />,
 }
 
+export const InterrogationMarkFocus = Template.bind({})
+InterrogationMarkFocus.args = {
+  children: <InterrogationMarkFocusIcon />,
+}
+
 export const Key = Template.bind({})
 Key.args = {
   children: <KeyIcon />,
+}
+
+export const KeyBig = Template.bind({})
+KeyBig.args = {
+  children: <KeyBigIcon />,
+}
+
+export const LogoText = Template.bind({})
+LogoText.args = {
+  children: <LogoTextIcon width={200} />,
 }
 
 export const Picture = Template.bind({})
@@ -83,7 +104,22 @@ SearchMedium.args = {
   children: <SearchMediumIcon />,
 }
 
+export const SettingsMedium = Template.bind({})
+SettingsMedium.args = {
+  children: <SettingsMediumIcon />,
+}
+
+export const SettingsBig = Template.bind({})
+SettingsBig.args = {
+  children: <SettingsBigIcon />,
+}
+
 export const SlackLogo = Template.bind({})
 SlackLogo.args = {
   children: <SlackLogoIcon />,
+}
+
+export const Speed = Template.bind({})
+Speed.args = {
+  children: <SpeedIcon />,
 }

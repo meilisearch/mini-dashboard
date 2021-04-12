@@ -5,7 +5,7 @@ import Box from 'components/Box'
 import Button from 'components/Button'
 import Card from 'components/Card'
 import Typography from 'components/Typography'
-import { LogoText, Key, DocumentBig } from 'components/icons'
+import { LogoText, KeyBig, DocumentBig } from 'components/icons'
 
 const OnBoardingCard = ({ number, title, icon, href, ...props }) => (
   <Card
@@ -81,7 +81,7 @@ const OnBoarding = () => (
         number="1"
         title="Set your API key (facultative)"
         href="https://docs.meilisearch.com/reference/api/keys.html"
-        icon={<Key />}
+        icon={<KeyBig />}
       />
       <OnBoardingCard
         number="2"
