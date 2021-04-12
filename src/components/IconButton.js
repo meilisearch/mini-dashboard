@@ -25,10 +25,16 @@ const StyledButton = styled.button`
   }
 `
 
-const IconButton = ({ color: iconColor, children, ...props }) => (
-  <StyledButton color={iconColor || theme.colors.main.default} {...props}>
-    {children}
-  </StyledButton>
+const IconButton = React.forwardRef(
+  ({ color: iconColor, children, ...props }, ref) => (
+    <StyledButton
+      color={iconColor || theme.colors.main.default}
+      ref={ref}
+      {...props}
+    >
+      {children}
+    </StyledButton>
+  )
 )
 
 IconButton.propTypes = {
