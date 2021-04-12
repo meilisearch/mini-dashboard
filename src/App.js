@@ -19,7 +19,10 @@ import ClientContext from 'context/ClientContext'
 import Typography from 'components/Typography'
 import ScrollToTop from 'components/ScrollToTop'
 
-export const baseUrl = 'http://127.0.0.1:7700'
+export const baseUrl =
+  process.env.NODE_ENV === 'development'
+    ? 'http://127.0.0.1:7700'
+    : window.location.origin
 
 const Wrapper = styled.div`
   background-color: ${(p) => p.theme.colors.gray[11]};
