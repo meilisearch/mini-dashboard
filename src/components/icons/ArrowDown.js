@@ -10,7 +10,7 @@ function SvgArrowDown(props) {
     >
       <path
         d="M1 1.38L5.5 6 10 1.38"
-        stroke="#BBC1CF"
+        stroke="currentColor"
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
