@@ -25,11 +25,14 @@ const StyledCard = styled(Card)`
 `
 
 const StyledLink = styled(Link)`
+  border-radius: 20px;
+  box-shadow: none;
+  transition: box-shadow 300ms;
+
+  &:hover,
   &:focus {
     outline: none;
-    filter: drop-shadow(
-      0px 0px 4px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.1)}
-    );
+    box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.1)};
   }
 `
 
