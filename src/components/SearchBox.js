@@ -22,6 +22,7 @@ const SearchBox = connectSearchBox(({ currentRefinement, refine }) => {
       type="search"
       value={value}
       onChange={(e) => setValue(e.target.value)}
+      clear={() => setValue('')}
       placeholder="Search something"
       icon={<SearchIcon />}
       style={{ width: 520 }}

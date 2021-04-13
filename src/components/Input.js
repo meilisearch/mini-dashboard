@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import Color from 'color'
 import PropTypes from 'prop-types'
 
-import Cross from 'components/icons/svg/cross.svg'
+import IconButton from 'components/IconButton'
+import Cross from 'components/icons/Cross'
 
 const InputField = styled.input`
   height: 48px;
@@ -40,19 +41,26 @@ const InputField = styled.input`
 
   ::-webkit-search-cancel-button {
     -webkit-appearance: none;
+  }
+`
+
+const ClearButton = styled(IconButton)`
+  svg {
     width: 11px;
     height: 11px;
-    background-image: url(${Cross});
-    background-repeat: no-repeat;
-    cursor: pointer;
   }
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: ${(p) => p.theme.colors.gray[5]};
 `
 
 const InputContainer = styled.div`
   position: relative;
   width: 100%;
 
-  svg {
+  > svg {
     position: absolute;
     top: 50%;
     left: 16px;
@@ -60,10 +68,18 @@ const InputContainer = styled.div`
   }
 `
 
-const Input = ({ icon, ref, ...props }) => (
-  <InputContainer>
+const Input = ({ icon, ref, clear, type, value, ...props }) => (
+  <InputContainer ref={ref}>
     {icon}
-    <InputField ref={ref} $hasIcon={icon} {...props} />
+    <InputField $hasIcon={icon} value={value} {...props} />
+    {type === 'search' && (
+      <ClearButton
+        onClick={() => clear()}
+        style={{ display: value ? 'block' : 'none' }}
+      >
+        <Cross />
+      </ClearButton>
+    )}
   </InputContainer>
 )
 
