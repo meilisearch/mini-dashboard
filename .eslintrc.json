@@ -4,6 +4,9 @@
     "browser": true,
     "es2021": true
   },
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
   "extends": [
     "airbnb",
     "plugin:jsx-a11y/recommended",

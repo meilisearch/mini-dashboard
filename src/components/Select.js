@@ -109,7 +109,7 @@ const TextToDisplay = ({ option }) => (
     >
       {option ? option.uid : 'Select an index'}
     </Typography>{' '}
-    {option && option.stats && (
+    {option?.stats && (
       <Typography variant="typo6" color="gray.7" mt="1px">
         {option.stats.numberOfDocuments}
       </Typography>
@@ -133,7 +133,7 @@ const Select = ({
         <Arrow />
       </SelectIndexesButton>
       <IndexesListContainer {...menu} aria-label="Indexes" style={{ top: 8 }}>
-        {options && options.length
+        {options?.length
           ? options.map((data, index) => (
               <IndexItem
                 {...menu}
@@ -143,7 +143,7 @@ const Select = ({
                   setCurrentOption(data)
                   menu.hide()
                 }}
-                $selected={currentOption && currentOption.uid === data.uid}
+                $selected={currentOption?.uid === data.uid}
               >
                 <TextToDisplay option={data} />
               </IndexItem>

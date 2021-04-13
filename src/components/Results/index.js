@@ -29,7 +29,7 @@ const ConnectedStats = connectStats((props) => <Stats {...props} />)
 
 const Results = connectStateResults(({ searchResults, searching }) => {
   const [mode, setMode] = useLocalStorage('mode', 'fancy')
-  const hasResults = searchResults && searchResults.nbHits !== 0
+  const hasResults = searchResults?.nbHits !== 0
   // if (searching) return <div>loading</div>
   // if (!searching && hasResults) return <InfiniteHits hitComponent={Hit} />
 
@@ -42,9 +42,7 @@ const Results = connectStateResults(({ searchResults, searching }) => {
         mb={56}
       >
         <div>
-          <ConnectedStats
-            nbResults={searchResults && searchResults.hits.length}
-          />
+          <ConnectedStats nbResults={searchResults?.hits.length} />
         </div>
         <Toggle
           onLabel={<Label1 />}
