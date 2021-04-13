@@ -34,6 +34,7 @@ const OnBoardingCard = ({ number, title, icon, href, ...props }) => (
       size="small"
       as="a"
       href={href}
+      target="_blank"
       style={{ textDecoration: 'none' }}
     >
       Learn how
