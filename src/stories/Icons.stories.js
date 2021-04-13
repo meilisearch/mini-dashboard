@@ -10,7 +10,6 @@ import {
   GithubLogo as GithubLogoIcon,
   Indexes as IndexesIcon,
   InterrogationMark as InterrogationMarkIcon,
-  InterrogationMarkFocus as InterrogationMarkFocusIcon,
   Key as KeyIcon,
   KeyBig as KeyBigIcon,
   LogoText as LogoTextIcon,
@@ -67,11 +66,6 @@ Indexes.args = {
 export const InterrogationMark = Template.bind({})
 InterrogationMark.args = {
   children: <InterrogationMarkIcon />,
-}
-
-export const InterrogationMarkFocus = Template.bind({})
-InterrogationMarkFocus.args = {
-  children: <InterrogationMarkFocusIcon />,
 }
 
 export const Key = Template.bind({})

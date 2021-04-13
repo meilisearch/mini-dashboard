@@ -73,8 +73,13 @@ const HelpCenter = () => {
     <>
       <DialogDisclosure {...dialog}>
         {(props) => (
-          <IconButton color="main.default" {...props}>
-            <InterrogationMark style={{ width: 26 }} />
+          <IconButton
+            color="main.default"
+            variant="bordered"
+            style={{ width: 26, height: 26 }}
+            {...props}
+          >
+            <InterrogationMark style={{ height: 14 }} />
           </IconButton>
         )}
       </DialogDisclosure>
