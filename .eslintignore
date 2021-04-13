@@ -1,2 +1,4 @@
+build/
+data.ms/
 public/
 node_modules/
