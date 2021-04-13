@@ -35,6 +35,7 @@ const SelectIndexesButton = styled(MenuButton)`
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
+  cursor: pointer;
 
   ${(p) =>
     p.visible &&
@@ -44,14 +45,10 @@ const SelectIndexesButton = styled(MenuButton)`
       }
     `};
 
-  &:hover {
-    cursor: pointer;
-    border-color: ${(p) => p.theme.colors.gray[8]};
-  }
-
+  &:hover,
   &:focus,
   &[aria-expanded='true'] {
-    border-color: ${(p) => p.theme.colors.gray[6]};
+    border-color: ${(p) => p.theme.colors.main.default};
   }
 
   svg {

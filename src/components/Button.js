@@ -3,6 +3,7 @@ import Color from 'color'
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { space, color } from 'styled-system'
+import { Button as ReakitButton } from 'reakit/Button'
 
 import Typography from 'components/Typography'
 import { ArrowDown } from 'components/icons'
@@ -16,8 +17,9 @@ const variants = {
     padding: 0 24px;
     min-width: 128px;
     background-color: transparent;
-    border: 1px solid ${(p) => p.theme.colors.gray[10]};
-    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: ${(p) => p.theme.colors.gray[10]};
     box-shadow: 0px 4px 6px ${Color('#000').alpha(0.04)};
     color: ${(p) => p.theme.colors.gray[0]};
     svg {
@@ -27,13 +29,10 @@ const variants = {
     &:hover,
     &:focus,
     &:active,
+    &:active,
     &[aria-expanded='true'] {
-      color: white;
-      background-color: ${(p) => p.theme.colors.main.default};
       box-shadow: none;
-      svg {
-        color: white;
-      }
+      border-color: ${(p) => p.theme.colors.main.default};
     }
   `,
   filled: css`
@@ -116,7 +115,7 @@ const sizes = {
   `,
 }
 
-const StyledButton = styled.button`
+const StyledButton = styled(ReakitButton)`
   ${(p) => p.$variant};
   ${(p) => p.$size};
   ${(p) => p.$shape};
