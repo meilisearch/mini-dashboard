@@ -17,7 +17,6 @@ import Results from 'components/Results'
 import ApiKeyContext from 'context/ApiKeyContext'
 import ClientContext from 'context/ClientContext'
 import Typography from 'components/Typography'
-import ScrollToTop from 'components/ScrollToTop'
 
 export const baseUrl =
   process.env.NODE_ENV === 'development'
@@ -154,7 +153,6 @@ const App = () => {
               <ApiKeyModalContent closeModal={() => dialog.hide()} />
             </Modal>
           )}
-          <ScrollToTop />
         </Wrapper>
       </ApiKeyContext.Provider>
     </ClientContext.Provider>

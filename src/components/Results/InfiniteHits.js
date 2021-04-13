@@ -6,6 +6,7 @@ import ReactJson from 'react-json-view'
 import { jsonTheme } from 'theme'
 import Button from 'components/Button'
 import Card from 'components/Card'
+import ScrollToTop from 'components/ScrollToTop'
 
 import Hit from './Hit'
 
@@ -59,6 +60,7 @@ const InfiniteHits = connectInfiniteHits(
             Load more
           </Button>
         )}
+        <ScrollToTop />
       </div>
     )
   }
