@@ -33,7 +33,7 @@ const ApiKey = ({ isApiKeyRequired }) => {
       <DialogDisclosure {...dialog}>
         {(props) => (
           <Button
-            icon={<Key style={{ width: 19 }} />}
+            icon={<Key style={{ height: 19 }} />}
             style={{ width: '100%' }}
             {...props}
           >
@@ -77,7 +77,7 @@ const Header = ({
         <SearchBox />
         <Select
           options={indexes}
-          icon={<Indexes style={{ height: 18 }} />}
+          icon={<Indexes style={{ height: 22 }} />}
           currentOption={currentIndex}
           setCurrentOption={setCurrentIndex}
           noOptionComponent={<NoSelectOption />}

@@ -56,6 +56,7 @@ const SelectIndexesButton = styled(MenuButton)`
 
   svg {
     margin-right: 16px;
+    color: ${(p) => p.theme.colors.main.default};
   }
 `
 
