@@ -75,7 +75,7 @@ const IndexesListContainer = styled(Menu)`
 
 const IndexItem = styled(MenuItem)`
   background-color: white;
-  height: 32px;
+  height: 40px;
   border: 0;
   outline: none;
   transition: background-color 300ms;
