@@ -2,7 +2,7 @@
 import React from 'react'
 import { connectStateResults, connectStats } from 'react-instantsearch-dom'
 
-import { DocumentBig, Picture } from 'components/icons'
+import { DocumentMedium, Picture } from 'components/icons'
 import Box from 'components/Box'
 import EmptyView from 'components/EmptyView'
 import Stats from 'components/Stats'
@@ -13,14 +13,14 @@ import InfiniteHits from './InfiniteHits'
 
 const Label1 = () => (
   <>
-    <Picture style={{ marginRight: 8, height: 22 }} />
+    <Picture style={{ marginRight: 8, height: 20 }} />
     Fancy
   </>
 )
 
 const Label2 = () => (
   <>
-    <DocumentBig style={{ marginRight: 8, height: 22 }} />
+    <DocumentMedium style={{ marginRight: 8, height: 20 }} />
     Json
   </>
 )
