@@ -137,7 +137,9 @@ function Hit({ hit, imageKey }) {
           .map(([key, value], index) => (
             <div key={key}>
               <Grid>
-                <HitKey variant="typo10" color="gray.6">{`${key} : `}</HitKey>
+                <HitKey variant="typo10" color="gray.6">
+                  {key}
+                </HitKey>
                 <HitValue>
                   <FieldValue value={value.value} hit={hit} objectKey={key} />
                 </HitValue>
