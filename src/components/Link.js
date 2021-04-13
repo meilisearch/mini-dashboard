@@ -6,7 +6,9 @@ const A = styled.a`
   color: ${(p) => p.theme.colors.main.default};
   text-decoration: underline;
   transition: color 300ms;
-  &:hover {
+  outline: none;
+  &:hover,
+  &:focus {
     color: ${(p) => p.theme.colors.main.hover};
   }
 `
