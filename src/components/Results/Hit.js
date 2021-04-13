@@ -42,6 +42,7 @@ const HitKey = styled(Typography)`
 
 const HitValue = styled.div`
   grid-column: 2 / 4;
+  word-break: break-word;
 `
 
 const ContentContainer = styled.div`
