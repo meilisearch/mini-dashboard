@@ -43,7 +43,7 @@ const InfiniteHits = connectInfiniteHits(
             <ReactJson
               src={hits}
               name={null}
-              collapsed={3}
+              collapsed={2}
               enableClipboard={false}
               displayObjectSize={false}
               displayDataTypes={false}
