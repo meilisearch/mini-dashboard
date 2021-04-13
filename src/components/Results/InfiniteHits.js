@@ -12,6 +12,7 @@ import Hit from './Hit'
 
 const HitsList = styled.ul`
   padding: 0;
+  margin: 0;
   > li + li {
     margin-top: 16px;
   }
@@ -55,7 +56,7 @@ const InfiniteHits = connectInfiniteHits(
             size="small"
             variant="bordered"
             onClick={refineNext}
-            style={{ margin: '0 auto' }}
+            style={{ margin: '0 auto', marginTop: 32 }}
           >
             Load more
           </Button>
