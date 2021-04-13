@@ -87,19 +87,19 @@ const HelpCenter = () => {
           <HelpCard
             logo={<GithubLogo style={{ width: 62 }} />}
             title="Github"
-            description="Lorem ipsum dolor sit amet qui cheese bacon."
+            description="Explore our repositories on Github"
             href="https://github.com/meilisearch"
           />
           <HelpCard
             logo={<SlackLogo style={{ width: 62 }} />}
             title="Slack"
-            description="Lorem ipsum dolor sit amet qui cheese bacon."
+            description="Join our Slack Community and find the help you need"
             href="https://slack.meilisearch.com/"
           />
           <HelpCard
             logo={<MeilisearchLogo style={{ width: 62 }} />}
             title="Documentation"
-            description="Lorem ipsum dolor sit amet qui cheese bacon."
+            description="Learn how to tune your MeiliSearch"
             href="https://docs.meilisearch.com/"
           />
         </CardsContainer>
