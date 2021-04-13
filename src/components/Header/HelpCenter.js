@@ -46,7 +46,7 @@ const HelpCard = ({ description, title, logo, href, ...props }) => (
       <Typography
         variant="typo3"
         color="gray.8"
-        style={{ textAlign: 'center' }}
+        style={{ textAlign: 'center', fontWeight: 400 }}
       >
         {description}
       </Typography>
