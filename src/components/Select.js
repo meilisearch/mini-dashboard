@@ -111,7 +111,7 @@ const TextToDisplay = ({ option }) => (
     >
       {option ? option.uid : 'Select an index'}
     </Typography>{' '}
-    {option && (
+    {option && option.stats && (
       <Typography variant="typo6" color="gray.7" mt="1px">
         {option.stats.numberOfDocuments}
       </Typography>
