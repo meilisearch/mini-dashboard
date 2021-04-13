@@ -4,12 +4,11 @@ import { connectStateResults, connectStats } from 'react-instantsearch-dom'
 
 import { DocumentMedium, Picture } from 'components/icons'
 import Box from 'components/Box'
-import EmptyView from 'components/EmptyView'
 import Stats from 'components/Stats'
 import Toggle from 'components/Toggle'
-import Typography from 'components/Typography'
 import useLocalStorage from 'hooks/useLocalStorage'
 import InfiniteHits from './InfiniteHits'
+import NoResultForRequest from './NoResultForRequest'
 
 const Label1 = () => (
   <>
@@ -52,25 +51,7 @@ const Results = connectStateResults(({ searchResults, searching }) => {
           onChange={(e) => setMode(e.target.checked ? 'fancy' : 'json')}
         />
       </Box>
-      {hasResults ? (
-        <InfiniteHits mode={mode} />
-      ) : (
-        <EmptyView buttonLink="https://docs.meilisearch.com/reference/api/search.html">
-          <Typography
-            variant="typo8"
-            style={{ textAlign: 'center' }}
-            mb={16}
-            color="gray.0"
-          >
-            Sorry mate, no results matching your request
-          </Typography>
-          <Typography variant="typo8" style={{ textAlign: 'center' }} mb={56}>
-            <span role="img" aria-label="sad">
-              ☹️
-            </span>
-          </Typography>
-        </EmptyView>
-      )}
+      {hasResults ? <InfiniteHits mode={mode} /> : <NoResultForRequest />}
     </>
   )
 })
