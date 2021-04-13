@@ -111,7 +111,8 @@ const isObject = (value) => {
 
 const FieldValue = ({ value, hit, objectKey }) => {
   if (isObject(value)) return <ObjectValue value={value} />
-  if (value.match(/(https|http):\/\//)) return <Link href={value}>{value}</Link>
+  if (value.match(/(https|http):\/\//))
+    return <Link href={hit[objectKey]}>{hit[objectKey]}</Link>
   return (
     <Highlight
       variant="typo11"
