@@ -6,7 +6,8 @@ import { SearchSmall, Speed } from 'components/icons'
 import Typography from 'components/Typography'
 
 const Legend = styled(Typography)`
-  display: block;
+  display: flex;
+  align-items: center;
   margin-bottom: 6px;
   svg {
     margin-right: 6px;
@@ -17,7 +18,7 @@ const Stat = ({ icon, legend, value, ...props }) => (
   <div style={{ minWidth: 136 }} {...props}>
     <Legend variant="typo4" color="gray.7">
       {icon}
-      {legend}
+      <span>{legend}</span>
     </Legend>
     <Typography variant="typo9" color="main.default">
       {value}
@@ -32,12 +33,12 @@ const StatsContainer = styled.div`
 const Stats = ({ nbHits, processingTimeMS, nbResults, ...props }) => (
   <StatsContainer {...props}>
     <Stat
-      icon={<SearchSmall style={{ width: 10 }} />}
+      icon={<SearchSmall style={{ height: 12 }} />}
       legend="Hits"
       value={`${nbHits !== nbResults ? '~' : ''} ${nbHits}`}
     />
     <Stat
-      icon={<Speed style={{ width: 15 }} />}
+      icon={<Speed style={{ height: 13 }} />}
       legend="Time spent"
       value={`${processingTimeMS} ms`}
     />
