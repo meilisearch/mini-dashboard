@@ -26,11 +26,9 @@ const Label2 = () => (
 
 const ConnectedStats = connectStats((props) => <Stats {...props} />)
 
-const Results = connectStateResults(({ searchResults, searching }) => {
+const Results = connectStateResults(({ searchResults }) => {
   const [mode, setMode] = useLocalStorage('mode', 'fancy')
   const hasResults = searchResults?.nbHits !== 0
-  // if (searching) return <div>loading</div>
-  // if (!searching && hasResults) return <InfiniteHits hitComponent={Hit} />
 
   return (
     <>
