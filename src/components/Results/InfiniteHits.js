@@ -24,7 +24,7 @@ const findImageKey = (array) => {
       typeof elem[1] === 'string' &&
       elem[1].match(/^(https|http):\/\/.*(jpe?g|png|gif)(\?.*)?$/g)
   )
-  return imageKey[0]
+  return imageKey?.[0]
 }
 
 const InfiniteHits = connectInfiniteHits(
