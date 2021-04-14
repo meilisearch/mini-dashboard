@@ -12,7 +12,7 @@ import NoResultForRequest from './NoResultForRequest'
 
 const Label1 = () => (
   <>
-    <Picture style={{ marginRight: 8, height: 20 }} />
+    <Picture style={{ marginRight: 8, height: 18 }} />
     Fancy
   </>
 )
