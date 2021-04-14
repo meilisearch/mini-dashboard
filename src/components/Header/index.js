@@ -26,7 +26,7 @@ const HeaderWrapper = styled.div`
   z-index: 3;
 `
 
-const ApiKey = ({ isApiKeyRequired }) => {
+const ApiKey = ({ requireApiKeyToWork }) => {
   const dialog = useDialogState()
   return (
     <>
@@ -43,7 +43,7 @@ const ApiKey = ({ isApiKeyRequired }) => {
       </DialogDisclosure>
 
       <Modal title="Enter your private API key (facultative)" dialog={dialog}>
-        {isApiKeyRequired ? (
+        {requireApiKeyToWork ? (
           <ApiKeyModalContent closeModal={() => dialog.hide()} />
         ) : (
           <Typography variant="typo11" color="gray.6">
@@ -62,7 +62,7 @@ const Header = ({
   indexes,
   currentIndex,
   setCurrentIndex,
-  isApiKeyRequired,
+  requireApiKeyToWork,
 }) => (
   <HeaderWrapper>
     <Container
@@ -82,7 +82,7 @@ const Header = ({
           setCurrentOption={setCurrentIndex}
           noOptionComponent={<NoSelectOption />}
         />
-        <ApiKey isApiKeyRequired={isApiKeyRequired} />
+        <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
       </Box>
       <HelpCenter />
     </Container>

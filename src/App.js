@@ -56,7 +56,7 @@ const App = () => {
   const [apiKey, setApiKey] = useLocalStorage('apiKey')
   // eslint-disable-next-line no-unused-vars
   const [indexes, setIndexes] = React.useState()
-  const [isApiKeyRequired, setIsApiKeyRequired] = React.useState(false)
+  const [requireApiKeyToWork, setRequireApiKeyToWork] = React.useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
   const [client, setClient] = React.useState(
     instantMeiliSearch(baseUrl, apiKey, { primaryKey: 'id' })
@@ -93,17 +93,31 @@ const App = () => {
   React.useEffect(() => {
     const fetchWithoutApiKey = async () => {
       try {
+        const cl = instantMeiliSearch(baseUrl)
+        await cl.client.listIndexes()
+      } catch (err) {
+        console.log(err)
+        setRequireApiKeyToWork(true)
+      }
+    }
+
+    fetchWithoutApiKey()
+    getIndexesList()
+  }, [])
+
+  // Check if a modal asking for API Key should be displayed
+  React.useEffect(() => {
+    const shouldDisplayModal = async () => {
+      try {
         const cl = instantMeiliSearch(baseUrl, apiKey)
         await cl.client.listIndexes()
       } catch (err) {
         console.log(err)
-        setIsApiKeyRequired(true)
         dialog.show()
       }
     }
-    fetchWithoutApiKey()
-    getIndexesList()
-  }, [])
+    if (requireApiKeyToWork) shouldDisplayModal()
+  }, [requireApiKeyToWork])
 
   // Get the list of indexes
   React.useEffect(() => {
@@ -122,7 +136,7 @@ const App = () => {
               indexes={indexes}
               currentIndex={currentIndex}
               setCurrentIndex={setCurrentIndex}
-              isApiKeyRequired={isApiKeyRequired}
+              requireApiKeyToWork={requireApiKeyToWork}
             />
             <Body>
               {/* <Sidebar /> */}
@@ -140,7 +154,7 @@ const App = () => {
           {dialog.visible && (
             <Modal
               title={`Enter your private API key${
-                isApiKeyRequired ? '' : ' (facultative)'
+                requireApiKeyToWork ? '' : ' (facultative)'
               }`}
               closable={false}
               dialog={dialog}
