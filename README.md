@@ -1,15 +1,47 @@
 # Mini-Dashboard
 
-This is a Work in Progress
+MeiliSearch's next mini-dashboard. It will soon replace the current mini-dashboard available while lauching your MeiliSearch.
+
+## Setup
+
+```bash
+yarn
+```
+
+or
+
+```bash
+npm install
+```
 
 ## Run
 
-`yarn start`
+```bash
+yarn start
+```
 
-## Lint
+or
 
-`yarn lint`
+```bash
+npm run start
+```
+
+Go to `http://localhost:3000/` and enjoy ! 🎉
+
+⚠️ If your MeiliSearch isn't listening on 127.0.0.1:7700, you'll have to change [the baseUrl](https://github.com/meilisearch/mini-dashboard/blob/main/src/App.js#L21) in order to make it work.
 
 ## Storybook
 
-`yarn storybook`
+```bash
+yarn storybook
+```
+
+or
+
+```bash
+npm run storybook
+```
+
+## Contributing
+
+If you want to contribute to this project, please make sure to read [the contributing guidelines](./CONTRIBUTING.md)
