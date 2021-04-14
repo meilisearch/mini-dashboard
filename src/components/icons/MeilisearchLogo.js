@@ -1,13 +1,15 @@
 import * as React from 'react'
 
-function SvgMeilisearchLogo(props) {
+function SvgMeilisearchLogo({ title, titleId, ...props }) {
   return (
     <svg
       viewBox="0 0 76 76"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-labelledby={titleId}
       {...props}
     >
+      {title ? <title id={titleId}>{title}</title> : null}
       <path
         d="M14.869 19.8C19.283 9.4 31.292 4.548 41.692 8.963l14.603 6.198c10.4 4.415 15.251 16.424 10.837 26.823l-6.199 14.603c-4.414 10.4-16.423 15.251-26.822 10.837l-14.604-6.198C9.108 56.81 4.257 44.802 8.67 34.403L14.87 19.8z"
         fill="url(#meilisearch_logo_svg__paint0_linear)"

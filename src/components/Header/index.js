@@ -72,7 +72,7 @@ const Header = ({
       justifyContent="space-between"
       height="100%"
     >
-      <MeilisearchLogo style={{ width: 64 }} />
+      <MeilisearchLogo title="MeiliSearch" style={{ width: 64 }} />
       <Box display="flex">
         <SearchBox />
         <Select

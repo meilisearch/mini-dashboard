@@ -1,13 +1,15 @@
 import * as React from 'react'
 
-function SvgKey(props) {
+function SvgKey({ title, titleId, ...props }) {
   return (
     <svg
       viewBox="0 0 21 21"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-labelledby={titleId}
       {...props}
     >
+      {title ? <title id={titleId}>{title}</title> : null}
       <path
         fillRule="evenodd"
         clipRule="evenodd"

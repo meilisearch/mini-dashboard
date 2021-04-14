@@ -25,7 +25,7 @@
     "lint": "eslint .",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "icons": "npx @svgr/cli --no-dimensions --replace-attr-values \"#39486E=currentColor,#959DB3=currentColor\" -d src/components/icons src/components/icons/svg"
+    "icons": "npx @svgr/cli --title-prop --no-dimensions --replace-attr-values \"#39486E=currentColor,#959DB3=currentColor\" -d src/components/icons src/components/icons/svg"
   },
   "browserslist": {
     "production": [

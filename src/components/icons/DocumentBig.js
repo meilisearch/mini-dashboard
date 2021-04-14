@@ -1,13 +1,15 @@
 import * as React from 'react'
 
-function SvgDocumentBig(props) {
+function SvgDocumentBig({ title, titleId, ...props }) {
   return (
     <svg
       viewBox="0 0 32 39"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-labelledby={titleId}
       {...props}
     >
+      {title ? <title id={titleId}>{title}</title> : null}
       <path
         d="M8.545 16.75a1.037 1.037 0 000 2.074h15.368a1.037 1.037 0 000-2.074H8.545zM7.508 23.933c0-.572.464-1.037 1.037-1.037h15.368a1.037 1.037 0 010 2.074H8.545a1.037 1.037 0 01-1.037-1.037zM8.545 29.044a1.037 1.037 0 100 2.073h9.22a1.037 1.037 0 000-2.073h-9.22z"
         fill="currentColor"
