@@ -67,7 +67,7 @@ const CardsContainer = styled.div`
 `
 
 const HelpCenter = () => {
-  const dialog = useDialogState({ animated: true })
+  const dialog = useDialogState()
 
   return (
     <>
