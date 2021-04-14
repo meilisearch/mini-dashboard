@@ -98,7 +98,7 @@ const variants = {
     &:hover,
     &:focus,
     &:active {
-      background-color: ${(p) => p.theme.colors.gray[11]};
+      background-color: ${(p) => p.theme.colors.gray[10]};
     }
   `,
 }

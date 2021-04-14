@@ -21,6 +21,12 @@ const ScrollButton = styled(IconButton)`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 300ms;
+
+  &:hover,
+  &:focus {
+    background-color: ${(p) => Color(p.theme.colors.gray[4])};
+  }
 `
 
 const ScrollToTop = () => {
