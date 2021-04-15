@@ -2,6 +2,10 @@
 
 MeiliSearch's next mini-dashboard. It will soon replace the current mini-dashboard available while lauching your MeiliSearch.
 
+<p align="center">
+  <img src="assets/trumen_quick_loop.gif" alt="Web interface gif" />
+</p>
+
 ## Setup
 
 ```bash
