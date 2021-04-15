@@ -85,7 +85,7 @@ const HelpCenter = () => {
       </DialogDisclosure>
       <Modal title="Help Center" dialog={dialog} style={{ paddingBottom: 56 }}>
         <Typography variant="typo11" color="gray.6">
-          If you need help with anything, here are a few links that that can be
+          If you need help with anything, here are a few links that can be
           useful.
         </Typography>
         <CardsContainer>
