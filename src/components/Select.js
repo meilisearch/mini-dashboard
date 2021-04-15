@@ -99,11 +99,11 @@ const IndexItem = styled(MenuItem)`
     `}
 `
 
-const TextToDisplay = ({ option }) => (
+const TextToDisplay = ({ option, currentOption }) => (
   <>
     <Typography
       variant="typo4"
-      color="gray.2"
+      color={currentOption ? 'gray.0' : 'gray.2'}
       style={{ textTransform: 'capitalize' }}
       mr={2}
     >
@@ -129,7 +129,7 @@ const Select = ({
     <>
       <SelectIndexesButton {...menu}>
         {icon || null}
-        <TextToDisplay option={currentOption} />
+        <TextToDisplay option={currentOption} currentOption />
         <Arrow />
       </SelectIndexesButton>
       <IndexesListContainer {...menu} aria-label="Indexes" style={{ top: 8 }}>
