@@ -2,6 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import ReactJson from 'react-json-view'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 import { jsonTheme } from 'theme'
 import { DocumentMedium } from 'components/icons'
@@ -16,12 +17,6 @@ const EmptyImage = styled.div`
   width: 100%;
   height: 264px;
   background-color: ${(p) => p.theme.colors.main.light};
-  border-radius: 10px;
-`
-
-const Img = styled.img`
-  max-height: 100%;
-  width: 100%;
   border-radius: 10px;
 `
 
@@ -129,7 +124,15 @@ function Hit({ hit, imageKey }) {
   return (
     <CustomCard>
       <Box width={240} mr={4} flexShrink={0}>
-        {hit[imageKey] ? <Img src={hit[imageKey] || null} /> : <EmptyImage />}
+        {hit[imageKey] ? (
+          <LazyLoadImage
+            src={hit[imageKey] || null}
+            width="100%"
+            style={{ borderRadius: 10 }}
+          />
+        ) : (
+          <EmptyImage />
+        )}
       </Box>
       <ContentContainer>
         {documentProperties
