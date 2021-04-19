@@ -34,6 +34,8 @@ Go to `http://localhost:3000/` and enjoy ! 🎉
 
 ## Build
 
+### Generate build
+
 You can generate a build of this project with the following command:
 
 ```bash
@@ -45,6 +47,8 @@ or
 ```bash
 npm run build
 ```
+
+### Specify MeiliSearch's server URL
 
 ⚠️ By default, the application will call MeiliSearch at the exact same address as it is running.
 Example: if your app is running at `http://localhost:5000`, it will try to call `http://localhost:5000/indexes` to retrieve the list of your indexes.
@@ -61,6 +65,18 @@ or
 
 ```bash
 REACT_APP_MEILI_SERVER_ADDRESS=http://127.0.0.1:7700 npm run build
+```
+
+### Run your build
+
+The above commands will generate an optimized version of the app, inside the `build` folder.
+
+You can then serve it with any web server of your choice.
+
+Example:
+
+```bash
+serve build
 ```
 
 ## Storybook
