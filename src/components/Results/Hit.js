@@ -95,14 +95,7 @@ const ObjectValue = ({ value }) => {
   )
 }
 
-const isObject = (value) => {
-  try {
-    const data = JSON.parse(value)
-    return data.constructor.name === 'Object'
-  } catch (err) {
-    return false
-  }
-}
+const isObject = (value) => value.trim().match(/^{(.*?)}$/)
 
 const FieldValue = ({ value, hit, objectKey }) => {
   if (isObject(value)) return <ObjectValue value={value} />
