@@ -47,7 +47,8 @@ const ApiKey = ({ requireApiKeyToWork }) => {
             <ApiKeyModalContent closeModal={() => dialog.hide()} />
           ) : (
             <Typography variant="typo11" color="gray.6">
-              You can’t set an API key, if you want to set one you can read the{' '}
+              You haven’t set an API key yet, if you want to set one you can
+              read the{' '}
               <Link href="https://docs.meilisearch.com/reference/api/keys.html">
                 documentation
               </Link>
