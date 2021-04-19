@@ -32,7 +32,36 @@ npm run start
 
 Go to `http://localhost:3000/` and enjoy ! 🎉
 
-⚠️ If your MeiliSearch isn't listening on 127.0.0.1:7700, you'll have to change [the baseUrl](https://github.com/meilisearch/mini-dashboard/blob/main/src/App.js#L21) in order to make it work.
+## Build
+
+You can generate a build of this project with the following command:
+
+```bash
+yarn build
+```
+
+or
+
+```bash
+npm run build
+```
+
+⚠️ By default, the application will call MeiliSearch at the exact same address as it is running.
+Example: if your app is running at `http://localhost:5000`, it will try to call `http://localhost:5000/indexes` to retrieve the list of your indexes.
+
+If you want to specify the URL where your MeiliSearch is running, use the `REACT_APP_MEILI_SERVER_ADDRESS` environment variable.
+
+Example:
+
+```bash
+REACT_APP_MEILI_SERVER_ADDRESS=http://127.0.0.1:7700 yarn build
+```
+
+or
+
+```bash
+REACT_APP_MEILI_SERVER_ADDRESS=http://127.0.0.1:7700 npm run build
+```
 
 ## Storybook
 
