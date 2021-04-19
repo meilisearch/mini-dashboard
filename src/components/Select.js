@@ -18,7 +18,7 @@ const Arrow = styled(ArrowDown)`
 const SelectIndexesButton = styled(MenuButton)`
   position: relative;
   margin: 0 20px;
-  padding: 12px 18px;
+  padding: 12px 32px 12px 12px;
   height: 48px;
   background-color: white;
   display: flex;
@@ -54,6 +54,7 @@ const SelectIndexesButton = styled(MenuButton)`
   svg {
     margin-right: 16px;
     color: ${(p) => p.theme.colors.main.default};
+    flex-shrink: 0;
   }
 `
 
@@ -99,16 +100,18 @@ const IndexItem = styled(MenuItem)`
     `}
 `
 
+const IndexId = styled(Typography)`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-transform: capitalize;
+`
+
 const TextToDisplay = ({ option, currentOption }) => (
   <>
-    <Typography
-      variant="typo4"
-      color={currentOption ? 'gray.0' : 'gray.2'}
-      style={{ textTransform: 'capitalize' }}
-      mr={2}
-    >
+    <IndexId variant="typo4" color={currentOption ? 'gray.0' : 'gray.2'} mr={2}>
       {option ? option.uid : 'Select an index'}
-    </Typography>{' '}
+    </IndexId>{' '}
     {option?.stats && (
       <Typography variant="typo6" color="gray.7" mt="1px">
         {option.stats.numberOfDocuments}
@@ -123,11 +126,12 @@ const Select = ({
   currentOption,
   setCurrentOption,
   noOptionComponent,
+  ...props
 }) => {
   const menu = useMenuState()
   return (
     <>
-      <SelectIndexesButton {...menu}>
+      <SelectIndexesButton {...menu} {...props}>
         {icon || null}
         <TextToDisplay option={currentOption} currentOption />
         <Arrow />

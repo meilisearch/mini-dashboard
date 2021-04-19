@@ -83,6 +83,7 @@ const Header = ({
           currentOption={currentIndex}
           setCurrentOption={setCurrentIndex}
           noOptionComponent={<NoSelectOption />}
+          style={{ width: 216 }}
         />
         <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
       </Box>
