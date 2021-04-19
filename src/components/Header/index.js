@@ -41,19 +41,20 @@ const ApiKey = ({ requireApiKeyToWork }) => {
           </Button>
         )}
       </DialogDisclosure>
-
-      <Modal title="Enter your private API key (facultative)" dialog={dialog}>
-        {requireApiKeyToWork ? (
-          <ApiKeyModalContent closeModal={() => dialog.hide()} />
-        ) : (
-          <Typography variant="typo11" color="gray.6">
-            You can’t set an API key, if you want to set one you can read the{' '}
-            <Link href="https://docs.meilisearch.com/reference/api/keys.html">
-              documentation
-            </Link>
-          </Typography>
-        )}
-      </Modal>
+      {dialog.visible && (
+        <Modal title="Enter your private API key (facultative)" dialog={dialog}>
+          {requireApiKeyToWork ? (
+            <ApiKeyModalContent closeModal={() => dialog.hide()} />
+          ) : (
+            <Typography variant="typo11" color="gray.6">
+              You can’t set an API key, if you want to set one you can read the{' '}
+              <Link href="https://docs.meilisearch.com/reference/api/keys.html">
+                documentation
+              </Link>
+            </Typography>
+          )}
+        </Modal>
+      )}
     </>
   )
 }

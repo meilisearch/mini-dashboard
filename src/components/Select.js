@@ -132,24 +132,26 @@ const Select = ({
         <TextToDisplay option={currentOption} currentOption />
         <Arrow />
       </SelectIndexesButton>
-      <IndexesListContainer {...menu} aria-label="Indexes" style={{ top: 8 }}>
-        {options?.length
-          ? options.map((data, index) => (
-              <IndexItem
-                {...menu}
-                key={index}
-                id={data.uid}
-                onClick={() => {
-                  setCurrentOption(data)
-                  menu.hide()
-                }}
-                $selected={currentOption?.uid === data.uid}
-              >
-                <TextToDisplay option={data} />
-              </IndexItem>
-            ))
-          : noOptionComponent}
-      </IndexesListContainer>
+      {menu.visible && (
+        <IndexesListContainer {...menu} aria-label="Indexes" style={{ top: 8 }}>
+          {options?.length
+            ? options.map((data, index) => (
+                <IndexItem
+                  {...menu}
+                  key={index}
+                  id={data.uid}
+                  onClick={() => {
+                    setCurrentOption(data)
+                    menu.hide()
+                  }}
+                  $selected={currentOption?.uid === data.uid}
+                >
+                  <TextToDisplay option={data} />
+                </IndexItem>
+              ))
+            : noOptionComponent}
+        </IndexesListContainer>
+      )}
     </>
   )
 }
