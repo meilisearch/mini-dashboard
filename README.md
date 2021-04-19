@@ -65,6 +65,10 @@ REACT_APP_MEILI_SERVER_ADDRESS=http://127.0.0.1:7700 npm run build
 
 ## Storybook
 
+Storybook is a development environment for UI components. It allows you to browse a component library, view the different states of each component, and interactively test components.
+
+![Storybook](assets/storybook.png)
+
 ```bash
 yarn storybook
 ```
