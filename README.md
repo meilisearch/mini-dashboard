@@ -1,11 +1,46 @@
-# Mini-Dashboard
+<p align="center">
+  <img src="https://raw.githubusercontent.com/meilisearch/integration-guides/main/assets/logos/logo.svg" alt="Instant-MeiliSearch" width="200" height="200" />
+</p>
 
-MeiliSearch's next mini-dashboard. It will soon replace the current mini-dashboard available while lauching your MeiliSearch.
+<h1 align="center">Mini Dashboard</h1>
 
+<h4 align="center">
+  <a href="https://github.com/meilisearch/MeiliSearch">MeiliSearch</a> |
+  <a href="https://docs.meilisearch.com">Documentation</a> |
+  <a href="https://slack.meilisearch.com">Slack</a> |
+  <a href="https://www.meilisearch.com">Website</a> |
+  <a href="https://docs.meilisearch.com/faq">FAQ</a>
+</h4>
+
+<p align="center">
+  <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="Prettier"></a>
+  <a href="https://github.com/meilisearch/mini-dashboard/blob/main/LICENCE"><img src="https://img.shields.io/badge/license-MIT-informational" alt="License"></a>
+  <a href="https://app.bors.tech/repositories/32634"><img src="https://bors.tech/images/badge_small.svg" alt="Bors enabled"></a>
+</p>
+<br/>
+
+<p align="center" style="font-weight:bold;" >MeiliSearch's next mini-dashboard. It will soon replace the current mini-dashboard available while lauching your MeiliSearch.</p>
+<p align="center">This is still a work-in-progress. Thereby, PRs and bug issues are welcome, but please do not submit any new feature requests 🙏</p>
+
+<br/>
 <p align="center">
   <img src="assets/trumen_quick_loop.gif" alt="Web interface gif" />
 </p>
+<br/>
 
+**Table of Contents**:
+
+- [Setup](#setup)
+- [Run](#run)
+- [Build](#build)
+  - [Generate build](#generate-build)
+  - [Specify MeiliSearch's server URL](#specify-meilisearch-s-server-url)
+  - [Run your build](#run-your-build)
+- [Storybook](#storybook)
+- [Contributing](#contributing)
+
+<br/>
+<br/>
 ## Setup
 
 ```bash
