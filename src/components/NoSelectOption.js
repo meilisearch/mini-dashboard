@@ -21,7 +21,7 @@ const NoSelectOption = () => (
       variant="bordered"
       size="small"
       as="a"
-      href="https://docs.meilisearch.com/reference/api/indexes.html"
+      href="https://docs.meilisearch.com/learn/getting_started/quick_start.html#add-documents"
       target="_blank"
       style={{ textDecoration: 'none' }}
     >

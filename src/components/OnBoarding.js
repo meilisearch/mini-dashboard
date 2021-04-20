@@ -37,7 +37,7 @@ const OnBoardingCard = ({ number, title, icon, href, ...props }) => (
       target="_blank"
       style={{ textDecoration: 'none' }}
     >
-      Learn how
+      Learn more
     </Button>
   </Card>
 )
@@ -81,13 +81,13 @@ const OnBoarding = () => (
       <OnBoardingCard
         number="1"
         title="Set your API key (facultative)"
-        href="https://docs.meilisearch.com/reference/api/keys.html"
+        href="https://docs.meilisearch.com/reference/features/authentication.html#master-key"
         icon={<KeyBig />}
       />
       <OnBoardingCard
         number="2"
         title="Select an index"
-        href="https://docs.meilisearch.com/reference/api/indexes.html"
+        href="https://docs.meilisearch.com/learn/core_concepts/indexes.html"
         icon={<DocumentBig />}
       />
       {/* TODO: Enable it once facet search is available */}
