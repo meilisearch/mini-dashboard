@@ -69,6 +69,8 @@ const IndexesListContainer = styled(Menu)`
   border-radius: 8px;
   box-shadow: 0px 4px 6px ${Color('#000').alpha(0.04)};
   overflow: hidden;
+  max-height: 180px;
+  overflow: auto;
 `
 
 const IndexItem = styled(MenuItem)`
