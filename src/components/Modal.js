@@ -59,27 +59,18 @@ const Button = styled(IconButton)`
   }
 `
 
-const Modal = ({ title, closable = true, dialog, children, ...props }) => (
+const Modal = ({ title, dialog, children, ...props }) => (
   <DialogBackdrop {...dialog}>
-    <Dialog
-      {...dialog}
-      aria-label="Welcome"
-      preventBodyScroll
-      hideOnClickOutside={closable}
-      hideOnEsc={closable}
-      {...props}
-    >
+    <Dialog {...dialog} aria-label="Welcome" preventBodyScroll {...props}>
       {title && (
         <Typography variant="typo1" mb={4}>
           {title}
         </Typography>
       )}
       {children}
-      {closable && (
-        <Button color="gray.7" onClick={() => dialog.hide()}>
-          <Cross style={{ width: 15 }} />
-        </Button>
-      )}
+      <Button color="gray.7" onClick={() => dialog.hide()}>
+        <Cross style={{ width: 15 }} />
+      </Button>
     </Dialog>
   </DialogBackdrop>
 )
@@ -90,10 +81,6 @@ Modal.propTypes = {
    */
   title: PropTypes.string,
   /**
-   * Whether the modal can be closed or not
-   */
-  closable: PropTypes.bool,
-  /**
    * Modal contents
    */
   children: PropTypes.node,
@@ -101,7 +88,6 @@ Modal.propTypes = {
 
 Modal.defaultProps = {
   title: null,
-  closable: true,
   children: null,
 }
 

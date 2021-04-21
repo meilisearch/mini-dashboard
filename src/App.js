@@ -53,10 +53,41 @@ const Content = ({ currentIndex }) => {
   )
 }
 
+const NoMeiliSearchRunning = () => (
+  <EmptyView buttonLink="https://docs.meilisearch.com/learn/getting_started/quick_start.html">
+    <Typography
+      variant="typo8"
+      style={{ textAlign: 'center' }}
+      mb={3}
+      color="gray.0"
+    >
+      It seems like MeiliSearch isn’t running, did you forget to start it?
+    </Typography>
+    <Typography
+      variant="typo8"
+      style={{ textAlign: 'center' }}
+      mb={32}
+      color="gray.2"
+    >
+      (Don’t forget to set an API Key if you want one)
+    </Typography>
+    <Typography
+      variant="typo8"
+      style={{ textAlign: 'center', fontSize: 40 }}
+      mb={56}
+    >
+      <span role="img" aria-label="face-with-monocle">
+        🧐
+      </span>
+    </Typography>
+  </EmptyView>
+)
+
 const App = () => {
   const [apiKey, setApiKey] = useLocalStorage('apiKey')
   // eslint-disable-next-line no-unused-vars
   const [indexes, setIndexes] = React.useState()
+  const [isMeiliSearchRunning, setIsMeiliSearchRunning] = React.useState(true)
   const [requireApiKeyToWork, setRequireApiKeyToWork] = React.useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
   const [client, setClient] = React.useState(
@@ -86,19 +117,27 @@ const App = () => {
         setCurrentIndex(null)
       }
     } catch (error) {
+      setCurrentIndex(null)
       console.log(error)
     }
   }
 
-  // Check if an API key is required / a masterKey was set
   React.useEffect(() => {
+    // Check if an API key is required / a masterKey was set
     const fetchWithoutApiKey = async () => {
       try {
         const cl = instantMeiliSearch(baseUrl)
         await cl.client.listIndexes()
       } catch (err) {
-        console.log(err)
-        setRequireApiKeyToWork(true)
+        if (err.type === 'MeiliSearchCommunicationError') {
+          // Check if MeiliSearch is running
+          try {
+            await client.client.isHealthy()
+            setRequireApiKeyToWork(true)
+          } catch (e) {
+            setIsMeiliSearchRunning(false)
+          }
+        }
       }
     }
 
@@ -148,7 +187,11 @@ const App = () => {
                 display="flex"
                 flexDirection="column"
               >
-                <Content currentIndex={currentIndex} />
+                {isMeiliSearchRunning ? (
+                  <Content currentIndex={currentIndex} />
+                ) : (
+                  <NoMeiliSearchRunning />
+                )}
               </Box>
             </Body>
           </InstantSearch>
@@ -157,7 +200,6 @@ const App = () => {
               title={`Enter your private API key${
                 requireApiKeyToWork ? '' : ' (facultative)'
               }`}
-              closable={false}
               dialog={dialog}
             >
               <ApiKeyModalContent closeModal={() => dialog.hide()} />

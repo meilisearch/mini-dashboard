@@ -42,7 +42,12 @@ const ApiKey = ({ requireApiKeyToWork }) => {
         )}
       </DialogDisclosure>
       {dialog.visible && (
-        <Modal title="Enter your private API key (facultative)" dialog={dialog}>
+        <Modal
+          title={`Enter your private API key${
+            requireApiKeyToWork ? '' : ' (facultative)'
+          }`}
+          dialog={dialog}
+        >
           {requireApiKeyToWork ? (
             <ApiKeyModalContent closeModal={() => dialog.hide()} />
           ) : (
