@@ -86,7 +86,7 @@ const Header = ({
           options={indexes}
           icon={<Indexes style={{ height: 22 }} />}
           currentOption={currentIndex}
-          setCurrentOption={setCurrentIndex}
+          onChange={setCurrentIndex}
           noOptionComponent={<NoSelectOption />}
           style={{ width: 216 }}
         />

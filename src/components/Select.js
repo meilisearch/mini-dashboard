@@ -126,7 +126,7 @@ const Select = ({
   options,
   icon,
   currentOption,
-  setCurrentOption,
+  onChange,
   noOptionComponent,
   ...props
 }) => {
@@ -147,7 +147,7 @@ const Select = ({
                   key={index}
                   id={data.uid}
                   onClick={() => {
-                    setCurrentOption(data)
+                    onChange(data)
                     menu.hide()
                   }}
                   $selected={currentOption?.uid === data.uid}
@@ -190,7 +190,7 @@ Select.propTypes = {
   /**
    * Function used to change the current option, triggered on click on an option
    */
-  setCurrentOption: PropTypes.func,
+  onChange: PropTypes.func,
   /**
    * Component to display if select has no options
    */
@@ -201,7 +201,7 @@ Select.defaultProps = {
   options: null,
   icon: null,
   currentOption: null,
-  setCurrentOption: null,
+  onChange: null,
   noOptionComponent: null,
 }
 

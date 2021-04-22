@@ -29,7 +29,7 @@ const Template = (args) => {
   return (
     <Select
       currentOption={currentOption}
-      setCurrentOption={setCurrentOption}
+      onChange={setCurrentOption}
       {...args}
     />
   )
