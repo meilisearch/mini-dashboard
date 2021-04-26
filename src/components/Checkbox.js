@@ -51,15 +51,17 @@ const Container = styled.div`
   }
 `
 
-const Checkbox = ({ children, ...props }) => {
-  const [checked, setChecked] = React.useState(false)
-  const toggle = () => setChecked(!checked)
-  return (
-    <Container {...props}>
-      <StyledCheckbox checked={checked} onChange={toggle} id="checkbox" />
-      <Label for="checkbox">{children}</Label>
-    </Container>
-  )
-}
+const Checkbox = ({
+  children,
+  checked,
+  onChange,
+  label = 'checkbox',
+  ...props
+}) => (
+  <Container {...props}>
+    <StyledCheckbox checked={checked} onChange={onChange} id={label} />
+    <Label htmlFor={label}>{children}</Label>
+  </Container>
+)
 
 export default Checkbox

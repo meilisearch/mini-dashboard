@@ -9,7 +9,16 @@ export default {
   component: Checkbox,
 }
 
-const Template = (args) => <Checkbox {...args} />
+const Template = (args) => {
+  const [checked, setChecked] = React.useState(false)
+  return (
+    <Checkbox
+      checked={checked}
+      onChange={() => setChecked(!checked)}
+      {...args}
+    />
+  )
+}
 
 export const Default = Template.bind({})
 Default.args = {
