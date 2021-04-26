@@ -3,7 +3,6 @@ import Color from 'color'
 import styled from 'styled-components'
 import { ArrowDown } from 'components/icons'
 import {
-  useDisclosureState,
   Disclosure as ReakitDisclosure,
   DisclosureContent as ReakitDisclosureContent,
 } from 'reakit/Disclosure'
@@ -12,6 +11,7 @@ const SidebarWrapper = styled.div`
   background-color: white;
   flex-shrink: 0;
   width: 300px;
+  display: flex;
   overflow: auto;
   box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.07)};
   position: relative;
@@ -27,78 +27,76 @@ const SidebarWrapper = styled.div`
 `
 
 const Arrow = styled(ArrowDown)`
-  transform: rotate(270deg);
   width: 18px;
   height: 9px;
-  transition: transform 300ms;
-  color: ${(p) => p.theme.colors.main.default};
+  transition: color 300ms;
 `
 
-const SidebarIcon = styled.div`
+const OpeningIcon = styled.div`
   width: 16px;
   height: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 1;
-  color: ${(p) => p.theme.colors.gray[7]};
+  transition: opacity 300ms;
 `
 
 const Disclosure = styled(ReakitDisclosure)`
   position: absolute;
-  padding: 6px;
   top: 24px;
   right: 12px;
   z-index: 1;
+  cursor: pointer;
+  padding: 6px;
   background-color: transparent;
   border: 0;
-  cursor: pointer;
-  transition: transform 300ms;
-  transform: translateY(0px);
 
   svg {
-    display: block;
+    color: ${(p) => p.theme.colors.gray[7]};
+    transition: color 300ms;
   }
+  &:hover,
+  &:focus {
+    outline: none;
 
-  ${SidebarIcon} + ${Arrow} {
-    margin-top: 16px;
-  }
-
-  &[aria-expanded='true'] {
-    transform: ${(p) =>
-      p.$hasSidebarIcon ? 'translateY(-24px)' : 'translateY(0px)'};
-
-    ${SidebarIcon} {
-      opacity: 0;
-      transition: opacity 300ms;
-    }
-
-    ${Arrow} {
-      transform: rotate(90deg);
+    svg {
+      color: ${(p) => p.theme.colors.main.default};
     }
   }
 `
 
 const DisclosureContent = styled(ReakitDisclosureContent)`
-  transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
   opacity: 0;
-  transform: translate3d(-100%, 0, 0);
+  height: 100%;
+  width: 100%;
+  transform: translateX(-100%);
   &[data-enter] {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
   }
 `
 
-const Sidebar = ({ sidebarIcon, children }) => {
-  const disclosure = useDisclosureState({ animated: true })
+const Sidebar = ({ sidebarIcon, disclosure, children, ...props }) => {
+  const openingIcon = sidebarIcon || (
+    <Arrow style={{ transform: 'rotate(270deg)' }} />
+  )
 
   return (
-    <SidebarWrapper aria-expanded={disclosure.visible}>
-      <Disclosure $hasSidebarIcon={sidebarIcon} {...disclosure}>
-        {sidebarIcon && <SidebarIcon>{sidebarIcon}</SidebarIcon>}
-        <Arrow />
-      </Disclosure>
-      <DisclosureContent {...disclosure}>{children}</DisclosureContent>
+    <SidebarWrapper aria-expanded={disclosure.visible} {...props}>
+      {!disclosure.visible && (
+        <Disclosure {...disclosure}>
+          <OpeningIcon>{openingIcon}</OpeningIcon>
+        </Disclosure>
+      )}
+      <DisclosureContent {...disclosure}>
+        {disclosure.visible && (
+          <Disclosure onClick={() => disclosure.hide()}>
+            <Arrow style={{ transform: 'rotate(90deg)' }} />
+          </Disclosure>
+        )}
+        {children}
+      </DisclosureContent>
     </SidebarWrapper>
   )
 }
