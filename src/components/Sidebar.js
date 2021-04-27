@@ -81,17 +81,27 @@ const Sidebar = ({ sidebarIcon, disclosure, children, ...props }) => {
   const openingIcon = sidebarIcon || (
     <Arrow style={{ transform: 'rotate(270deg)' }} />
   )
+  const openIconRef = React.useRef(null)
+  const closeIconRef = React.useRef(null)
+
+  React.useEffect(() => {
+    if (!disclosure.visible) {
+      openIconRef?.current?.focus()
+    } else {
+      closeIconRef?.current?.focus()
+    }
+  }, [openIconRef, disclosure.visible])
 
   return (
     <SidebarWrapper aria-expanded={disclosure.visible} {...props}>
       {!disclosure.visible && (
-        <Disclosure {...disclosure}>
+        <Disclosure ref={openIconRef} {...disclosure}>
           <OpeningIcon>{openingIcon}</OpeningIcon>
         </Disclosure>
       )}
       <DisclosureContent {...disclosure}>
         {disclosure.visible && (
-          <Disclosure onClick={() => disclosure.hide()}>
+          <Disclosure ref={closeIconRef} onClick={() => disclosure.hide()}>
             <Arrow style={{ transform: 'rotate(90deg)' }} />
           </Disclosure>
         )}
