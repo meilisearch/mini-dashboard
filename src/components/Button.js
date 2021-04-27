@@ -50,6 +50,11 @@ const variants = {
     &:active {
       background-color: ${(p) => p.theme.colors.main.hover};
     }
+
+    &[aria-disabled='true'] {
+      background-color: ${(p) => Color(p.theme.colors.gray[2]).alpha(0.4)};
+      border-color: transparent;
+    }
   `,
   bordered: css`
     padding: 0 24px;
