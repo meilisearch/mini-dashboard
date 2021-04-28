@@ -3,6 +3,7 @@ import Color from 'color'
 import styled from 'styled-components'
 import { ArrowDown } from 'components/icons'
 import {
+  useDisclosureState,
   Disclosure as ReakitDisclosure,
   DisclosureContent as ReakitDisclosureContent,
 } from 'reakit/Disclosure'
@@ -77,7 +78,9 @@ const DisclosureContent = styled(ReakitDisclosureContent)`
   }
 `
 
-const Sidebar = ({ sidebarIcon, disclosure, children, ...props }) => {
+const Sidebar = ({ sidebarIcon, children, ...props }) => {
+  const disclosure = useDisclosureState({ animated: true, visible: true })
+
   const openingIcon = sidebarIcon || (
     <Arrow style={{ transform: 'rotate(270deg)' }} />
   )
