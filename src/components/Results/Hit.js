@@ -46,11 +46,10 @@ const ContentContainer = styled.div`
 
 const Link = styled(BaseLink)`
   transition: color 300ms;
-  text-decoration: none;
+  text-decoration: underline;
   color: ${(p) => p.theme.colors.gray[2]};
   &:hover,
   &:focus {
-    text-decoration: underline;
     outline: none;
     color: ${(p) => p.theme.colors.gray[0]};
   }
