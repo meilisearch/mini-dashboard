@@ -1,6 +1,7 @@
 import React from 'react'
 import Color from 'color'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import { ArrowDown } from 'components/icons'
 import {
   useDisclosureState,
@@ -78,8 +79,15 @@ const DisclosureContent = styled(ReakitDisclosureContent)`
   }
 `
 
-const Sidebar = ({ sidebarIcon, children, ...props }) => {
-  const disclosure = useDisclosureState({ animated: true, visible: true })
+const Sidebar = ({
+  sidebarIcon,
+  visible = true,
+  onChange = () => {},
+  children,
+  ...props
+}) => {
+  const disclosure = useDisclosureState({ animated: true, visible })
+  const [toggled, setToggled] = React.useState(false)
 
   const openingIcon = sidebarIcon || (
     <Arrow style={{ transform: 'rotate(270deg)' }} />
@@ -88,23 +96,36 @@ const Sidebar = ({ sidebarIcon, children, ...props }) => {
   const closeIconRef = React.useRef(null)
 
   React.useEffect(() => {
-    if (!disclosure.visible) {
-      openIconRef?.current?.focus()
-    } else {
-      closeIconRef?.current?.focus()
+    if (toggled) {
+      if (!disclosure.visible) {
+        openIconRef?.current?.focus()
+      } else {
+        closeIconRef?.current?.focus()
+      }
+      onChange(disclosure.visible)
     }
   }, [openIconRef, disclosure.visible])
 
   return (
     <SidebarWrapper aria-expanded={disclosure.visible} {...props}>
       {!disclosure.visible && (
-        <Disclosure ref={openIconRef} {...disclosure}>
+        <Disclosure
+          ref={openIconRef}
+          onClick={() => setToggled(true)}
+          {...disclosure}
+        >
           <OpeningIcon>{openingIcon}</OpeningIcon>
         </Disclosure>
       )}
       <DisclosureContent {...disclosure}>
         {disclosure.visible && (
-          <Disclosure ref={closeIconRef} onClick={() => disclosure.hide()}>
+          <Disclosure
+            ref={closeIconRef}
+            onClick={() => {
+              disclosure.hide()
+              setToggled(true)
+            }}
+          >
             <Arrow style={{ transform: 'rotate(90deg)' }} />
           </Disclosure>
         )}
@@ -112,6 +133,32 @@ const Sidebar = ({ sidebarIcon, children, ...props }) => {
       </DisclosureContent>
     </SidebarWrapper>
   )
+}
+
+Sidebar.propTypes = {
+  /**
+   * The icon you want to display to open the sidebar. Arrow by default
+   */
+  sidebarIcon: PropTypes.node,
+  /**
+   * The initial state of the sidebar (open or closed)
+   */
+  visible: PropTypes.bool,
+  /**
+   * Action to trigger on toggle change
+   */
+  onChange: PropTypes.func,
+  /**
+   * Content of the sidebar
+   */
+  children: PropTypes.node,
+}
+
+Sidebar.defaultProps = {
+  sidebarIcon: <Arrow style={{ transform: 'rotate(270deg)' }} />,
+  visible: true,
+  onChange: null,
+  children: null,
 }
 
 export default Sidebar

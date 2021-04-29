@@ -36,3 +36,13 @@ WithIcon.args = {
     </Box>
   ),
 }
+
+export const DefaultClosed = Template.bind({})
+DefaultClosed.args = {
+  visible: false,
+  children: (
+    <Box py={32} px={24}>
+      I’m a sidebar
+    </Box>
+  ),
+}
