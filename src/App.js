@@ -5,18 +5,18 @@ import { InstantSearch } from 'react-instantsearch-dom'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import { useDialogState } from 'reakit/Dialog'
 
-import useLocalStorage from 'hooks/useLocalStorage'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Box from 'components/Box'
 import EmptyView from 'components/EmptyView'
 import Header from 'components/Header/index'
-// import Sidebar from 'components/Sidebar'
+import Facets from 'components/Facets/index'
 import Modal from 'components/Modal'
 import OnBoarding from 'components/OnBoarding'
 import Results from 'components/Results'
 import ApiKeyContext from 'context/ApiKeyContext'
 import ClientContext from 'context/ClientContext'
 import Typography from 'components/Typography'
+import useLocalStorage from 'hooks/useLocalStorage'
 
 export const baseUrl =
   process.env.REACT_APP_MEILI_SERVER_ADDRESS ||
@@ -33,7 +33,6 @@ const Body = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
-  min-height: calc(100vh - 120px);
 `
 
 const Content = ({ currentIndex }) => {
@@ -65,7 +64,7 @@ const NoMeiliSearchRunning = () => (
     </Typography>
     <Typography
       variant="typo8"
-      style={{ textAlign: 'center' }}
+      style={{ textAlign: 'center', fontSize: 16 }}
       mb={32}
       color="gray.2"
     >
@@ -93,6 +92,8 @@ const App = () => {
   const [client, setClient] = React.useState(
     instantMeiliSearch(baseUrl, apiKey, { primaryKey: 'id' })
   )
+  const [settings, setSettings] = useLocalStorage('indexSettings')
+
   const dialog = useDialogState({ animated: true, visible: false })
 
   const getIndexesList = async () => {
@@ -164,6 +165,22 @@ const App = () => {
     getIndexesList()
   }, [client])
 
+  // Get the settings for facets
+  React.useEffect(() => {
+    const getIndexSettings = async () => {
+      try {
+        const res = await client?.client
+          ?.index(currentIndex?.uid)
+          ?.getSettings()
+        setSettings(res?.attributesForFaceting)
+      } catch (err) {
+        setSettings([])
+      }
+    }
+
+    getIndexSettings()
+  }, [client, currentIndex])
+
   return (
     <ClientContext.Provider value={{ client, setClient }}>
       <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
@@ -179,19 +196,22 @@ const App = () => {
               requireApiKeyToWork={requireApiKeyToWork}
             />
             <Body>
-              {/* <Sidebar /> */}
-              <Box
-                width={928}
-                m="0 auto"
-                py={4}
-                display="flex"
-                flexDirection="column"
-              >
-                {isMeiliSearchRunning ? (
-                  <Content currentIndex={currentIndex} />
-                ) : (
-                  <NoMeiliSearchRunning />
-                )}
+              <Facets settings={settings} />
+              <Box style={{ overflow: 'auto', width: '100%' }}>
+                <Box
+                  width={928}
+                  height="100%"
+                  m="0 auto"
+                  py={4}
+                  display="flex"
+                  flexDirection="column"
+                >
+                  {isMeiliSearchRunning ? (
+                    <Content currentIndex={currentIndex} />
+                  ) : (
+                    <NoMeiliSearchRunning />
+                  )}
+                </Box>
               </Box>
             </Body>
           </InstantSearch>
