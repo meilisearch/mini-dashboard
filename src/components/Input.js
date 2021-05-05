@@ -71,7 +71,7 @@ const InputContainer = styled.div`
 const Input = ({ icon, ref, clear, type, value, ...props }) => (
   <InputContainer ref={ref}>
     {icon}
-    <InputField $hasIcon={icon} value={value} {...props} />
+    <InputField $hasIcon={icon} value={value} type={type} {...props} />
     {type === 'search' && (
       <ClearButton
         onClick={() => clear()}
