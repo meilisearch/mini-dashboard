@@ -19,7 +19,8 @@
 </p>
 <br/>
 
-<p align="center" style="font-weight:bold;" >MeiliSearch's next mini-dashboard. It will soon replace the current mini-dashboard available while lauching your MeiliSearch.</p>
+<p align="center" style="font-weight:bold;" >MeiliSearch's next mini-dashboard</p>
+<p align="center">Made to work with the v0.21 of the search engine & will replace the current mini-dashboard</p>
 <p align="center">This is still a work-in-progress. Thereby, PRs and bug issues are welcome, but please do not submit any new feature requests 🙏</p>
 
 <br/>

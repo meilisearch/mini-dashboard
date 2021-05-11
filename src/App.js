@@ -129,11 +129,11 @@ const App = () => {
         const cl = instantMeiliSearch(baseUrl)
         await cl.client.listIndexes()
       } catch (err) {
-        if (err.type === 'MeiliSearchCommunicationError') {
-          // Check if MeiliSearch is running
+        if (err.errorCode === 'missing_authorization_header') {
+          setRequireApiKeyToWork(true)
+        } else {
           try {
             await client.client.isHealthy()
-            setRequireApiKeyToWork(true)
           } catch (e) {
             setIsMeiliSearchRunning(false)
           }
