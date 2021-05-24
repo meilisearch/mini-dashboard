@@ -68,7 +68,7 @@ const Modal = ({ title, dialog, children, ...props }) => (
         </Typography>
       )}
       {children}
-      <Button color="gray.7" onClick={() => dialog.hide()}>
+      <Button color="gray.7" onClick={() => dialog.hide()} aria-label="close">
         <Cross style={{ width: 15 }} />
       </Button>
     </Dialog>

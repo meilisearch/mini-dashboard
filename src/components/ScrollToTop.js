@@ -35,7 +35,7 @@ const ScrollToTop = () => {
   }
 
   return (
-    <ScrollButton onClick={() => scrollToTop()}>
+    <ScrollButton onClick={() => scrollToTop()} aria-label="scroll to top">
       <ArrowDown width={12} />
     </ScrollButton>
   )

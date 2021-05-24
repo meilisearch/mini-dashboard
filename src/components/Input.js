@@ -74,6 +74,7 @@ const Input = ({ icon, ref, clear, type, value, ...props }) => (
     <InputField $hasIcon={icon} value={value} type={type} {...props} />
     {type === 'search' && (
       <ClearButton
+        aria-label="clear"
         onClick={() => clear()}
         style={{ display: value ? 'block' : 'none' }}
       >

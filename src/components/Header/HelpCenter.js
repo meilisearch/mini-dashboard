@@ -75,6 +75,7 @@ const HelpCenter = () => {
           <IconButton
             color="main.default"
             variant="bordered"
+            aria-label="help"
             style={{ width: 26, height: 26 }}
             {...props}
           >
@@ -82,38 +83,32 @@ const HelpCenter = () => {
           </IconButton>
         )}
       </DialogDisclosure>
-      {dialog.visible && (
-        <Modal
-          title="Help Center"
-          dialog={dialog}
-          style={{ paddingBottom: 56 }}
-        >
-          <Typography variant="typo11" color="gray.6">
-            If you need help with anything, here are a few links that can be
-            useful.
-          </Typography>
-          <CardsContainer>
-            <HelpCard
-              logo={<GithubLogo style={{ width: 62 }} />}
-              title="Github"
-              description="Explore our repositories on Github"
-              href="https://github.com/meilisearch"
-            />
-            <HelpCard
-              logo={<SlackLogo style={{ width: 62 }} />}
-              title="Slack"
-              description="Join our Slack Community and find the help you need"
-              href="https://slack.meilisearch.com/"
-            />
-            <HelpCard
-              logo={<MeilisearchLogo style={{ width: 62 }} />}
-              title="Documentation"
-              description="Learn how to tune your MeiliSearch"
-              href="https://docs.meilisearch.com/"
-            />
-          </CardsContainer>
-        </Modal>
-      )}
+      <Modal title="Help Center" dialog={dialog} style={{ paddingBottom: 56 }}>
+        <Typography variant="typo11" color="gray.6">
+          If you need help with anything, here are a few links that can be
+          useful.
+        </Typography>
+        <CardsContainer>
+          <HelpCard
+            logo={<GithubLogo style={{ width: 62 }} />}
+            title="Github"
+            description="Explore our repositories on Github"
+            href="https://github.com/meilisearch"
+          />
+          <HelpCard
+            logo={<SlackLogo style={{ width: 62 }} />}
+            title="Slack"
+            description="Join our Slack Community and find the help you need"
+            href="https://slack.meilisearch.com/"
+          />
+          <HelpCard
+            logo={<MeilisearchLogo style={{ width: 62 }} />}
+            title="Documentation"
+            description="Learn how to tune your MeiliSearch"
+            href="https://docs.meilisearch.com/"
+          />
+        </CardsContainer>
+      </Modal>
     </>
   )
 }
