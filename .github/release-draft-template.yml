@@ -6,7 +6,6 @@ version-resolver:
   minor:
     labels:
       - 'breaking-change'
-      - 'enhancement'
   default: patch
 categories:
   - title: '⚠️ Breaking changes'
