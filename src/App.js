@@ -97,7 +97,7 @@ const App = () => {
 
   const getIndexesList = async () => {
     try {
-      const res = await client.client.stats()
+      const res = await client.MeiliSearchClient.stats()
       const array = Object.entries(res.indexes)
       const options = array.reduce((prev, curr) => {
         const currentOption = { uid: curr[0], stats: curr[1] }
@@ -127,13 +127,13 @@ const App = () => {
     const fetchWithoutApiKey = async () => {
       try {
         const cl = instantMeiliSearch(baseUrl)
-        await cl.client.listIndexes()
+        await cl.MeiliSearchClient.listIndexes()
       } catch (err) {
         if (err.errorCode === 'missing_authorization_header') {
           setRequireApiKeyToWork(true)
         } else {
           try {
-            await client.client.isHealthy()
+            await client.MeiliSearchClient.isHealthy()
           } catch (e) {
             setIsMeiliSearchRunning(false)
           }
@@ -150,7 +150,7 @@ const App = () => {
     const shouldDisplayModal = async () => {
       try {
         const cl = instantMeiliSearch(baseUrl, apiKey)
-        await cl.client.listIndexes()
+        await cl.MeiliSearchClient.listIndexes()
       } catch (err) {
         console.log(err)
         dialog.show()

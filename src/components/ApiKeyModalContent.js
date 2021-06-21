@@ -26,7 +26,7 @@ const ApiKeyModalContent = ({ closeModal }) => {
   const updateClient = async () => {
     const clientToTry = instantMeiliSearch(baseUrl, value)
     try {
-      await clientToTry.client.listIndexes()
+      await clientToTry.MeiliSearchClient.listIndexes()
       setApiKey(value)
       setClient(clientToTry)
       closeModal()
