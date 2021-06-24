@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/meilisearch/integration-guides/main/assets/logos/logo.svg" alt="Instant-MeiliSearch" width="200" height="200" />
+  <img src="https://raw.githubusercontent.com/meilisearch/integration-guides/main/assets/logos/logo.svg" alt="MeiliSearch logo" width="200" height="200" />
 </p>
 
 <h1 align="center">Mini Dashboard</h1>
@@ -41,7 +41,7 @@
 - [Contributing](#contributing)
 
 <br/>
-<br/>
+
 ## Setup
 
 ```bash
