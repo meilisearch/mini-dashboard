@@ -1,5 +1,5 @@
 {
-  "name": "interface",
+  "name": "mini-dashboard",
   "version": "0.1.3",
   "private": true,
   "dependencies": {
