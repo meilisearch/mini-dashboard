@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check release validity
-        run: sh scripts/check-release.sh
+        run: sh .github/scripts/check-release.sh
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - name: Install project dependencies
