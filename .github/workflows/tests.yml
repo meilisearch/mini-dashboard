@@ -35,10 +35,20 @@ jobs:
       - name: Test no meilisearch running
         uses: cypress-io/github-action@v2
         with:
-          start: yarn start
+          start: yarn start:ci
           wait-on: 'http://localhost:3000'
           command: yarn cy:run:test-no-meilisearch
           config-file: cypress.json
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
   cypress_meilisearch:
     runs-on: ubuntu-latest
     container: cypress/browsers:node12.18.3-chrome87-ff82
@@ -60,7 +70,17 @@ jobs:
       - name: Test
         uses: cypress-io/github-action@v2
         with:
-          start: npm start
+          start: yarn start:ci
           wait-on: 'http://localhost:3000'
           command: yarn cy:run
           config-file: cypress.json
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
