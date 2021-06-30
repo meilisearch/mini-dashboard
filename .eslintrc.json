@@ -10,6 +10,7 @@
   "extends": [
     "airbnb",
     "plugin:jsx-a11y/recommended",
+    "plugin:cypress/recommended",
     "eslint-config-prettier"
   ],
   "plugins": ["jsx-a11y", "prettier"],

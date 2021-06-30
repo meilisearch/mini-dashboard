@@ -15,9 +15,50 @@ jobs:
     name: linter-check
     steps:
       - uses: actions/checkout@v2
-      - name: Setup node
         uses: actions/setup-node@v1
-      - name: Install dependencies
+      - name: Install dev dependencies
         run: yarn --dev
       - name: Run style check
         run: yarn lint
+  cypress_no_meilisearch:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install dependencies
+        run: yarn
+      - name: Test no meilisearch running
+        uses: cypress-io/github-action@v2
+          with:
+            start: yarn start
+            wait-on: 'http://localhost:3000'
+            command: yarn cy:run:test-no-meilisearch 
+            config-file: cypress.json
+  cypress_meilisearch:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+    services:
+      meilisearch:
+        image: getmeili/meilisearch:v0.21.0-alpha.6
+        env:
+          MEILI_MASTER_KEY: 'masterKey'
+          MEILI_NO_ANALYTICS: 'true'
+        ports:
+          - '7700:7700'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install dependencies
+        run: yarn
+      - name: Test
+        uses: cypress-io/github-action@v2
+          with:
+            start: npm start
+            wait-on: 'http://localhost:3000'
+            command: yarn cy:run
+            config-file: cypress.json
