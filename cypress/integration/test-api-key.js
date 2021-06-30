@@ -4,7 +4,6 @@ const WRONG_APIKEY = 'wrongApiKey'
 describe(`Test API key`, () => {
   before(() => {
     cy.visit('/')
-    cy.visit('http://meilisearch:7700')
   })
 
   it('Should visit the dashboard', () => {
