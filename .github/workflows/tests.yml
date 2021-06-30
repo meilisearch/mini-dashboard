@@ -22,39 +22,39 @@ jobs:
         run: yarn --dev
       - name: Run style check
         run: yarn lint
-  # cypress_no_meilisearch:
-  #   runs-on: ubuntu-latest
-  #   container: cypress/browsers:node12.18.3-chrome87-ff82
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: '12.x'
-  #     - name: Install dependencies
-  #       run: yarn
-  #     - name: Test no meilisearch running
-  #       uses: cypress-io/github-action@v2
-  #       with:
-  #         start: yarn start:ci
-  #         wait-on: 'http://localhost:3000'
-  #         command: yarn cy:run:test-no-meilisearch
-  #         config-file: cypress.json
-  #     - uses: actions/upload-artifact@v1
-  #       if: failure()
-  #       with:
-  #         name: cypress-screenshots
-  #         path: cypress/screenshots
-  #     - uses: actions/upload-artifact@v1
-  #       if: failure()
-  #       with:
-  #         name: cypress-videos
-  #         path: cypress/videos
+  cypress_no_meilisearch:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install dependencies
+        run: yarn
+      - name: Test no meilisearch running
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn start:ci
+          wait-on: 'http://localhost:3000'
+          command: yarn cy:run:test-no-meilisearch
+          config-file: cypress.json
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
   cypress_meilisearch:
     runs-on: ubuntu-latest
     container: cypress/browsers:node12.18.3-chrome87-ff82
     services:
       meilisearch:
-        image: getmeili/meilisearch:v0.21.0-alpha.6
+        image: getmeili/meilisearch:v0.21.0-alpha.5
         env:
           MEILI_MASTER_KEY: 'masterKey'
           MEILI_NO_ANALYTICS: 'true'
@@ -71,7 +71,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           start: yarn start:ci
-          wait-on: 'http://localhost:3000, http://meilisearch:7700'
+          wait-on: 'http://localhost:3000'
           command: yarn cy:run
           config-file: cypress.json
       - uses: actions/upload-artifact@v1
