@@ -4,6 +4,8 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
-  labels:
-  - skip-changelog
-  - dependencies
+    labels:
+      - skip-changelog
+      - dependencies
+    ignore:
+      - dependency-name: '*storybook*'
