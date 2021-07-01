@@ -1,6 +1,8 @@
 
 status = [
   'linter-check',
+  'cypress_no_meilisearch',
+  'cypress_meilisearch'
 ]
 # 1 hour timeout
 timeout-sec = 3600

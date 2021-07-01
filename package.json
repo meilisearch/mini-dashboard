@@ -21,11 +21,15 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:ci": "REACT_APP_MEILI_SERVER_ADDRESS=http://meilisearch:7700 react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
+    "cy:open": "cypress open --env env=watch",
+    "cy:run:test-no-meilisearch": "cypress run --env env=watch --spec 'cypress/integration/test-no-meilisearch.js'",
+    "cy:run": "cypress run --env env=watch --config ignoreTestFiles=**/*/test-no-meilisearch.js",
     "icons": "npx @svgr/cli --title-prop --no-dimensions --replace-attr-values \"#39486E=currentColor,#959DB3=currentColor\" -d src/components/icons src/components/icons/svg"
   },
   "browserslist": {
@@ -48,9 +52,11 @@
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/react": "^6.3.1",
     "@svgr/cli": "^5.5.0",
+    "cypress": "^7.6.0",
     "eslint": "^7.29.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-cypress": "^2.11.3",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",

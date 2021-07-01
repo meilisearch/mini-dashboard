@@ -24,3 +24,10 @@ yarn-error.log*
 
 # meilisearch
 /data.ms
+
+# Cypress
+cypress/screenshots
+cypress/videos
+cypress/support
+cypress/plugins
+cypress/fixtures
