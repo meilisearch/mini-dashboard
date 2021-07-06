@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import ReactJson from 'react-json-view'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
+import { Highlight as IsHighlight } from 'react-instantsearch-dom'
+
 import { jsonTheme } from 'theme'
 import { DocumentMedium } from 'components/icons'
 import Button from 'components/Button'
@@ -98,8 +100,13 @@ const isObject = (value) => value.trim().match(/^{(.*?)}$/)
 
 const FieldValue = ({ value, hit, objectKey }) => {
   if (isObject(value)) return <ObjectValue value={value} />
-  if (value.match(/(https|http):\/\//))
-    return <Link href={hit[objectKey]}>{hit[objectKey]}</Link>
+  if (value.match(/(https|http):\/\//)) {
+    return (
+      <Link href={hit[objectKey]}>
+        <Highlight hit={hit} attribute={objectKey} />
+      </Link>
+    )
+  }
   return (
     <Highlight
       variant="typo11"
