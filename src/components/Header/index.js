@@ -74,8 +74,13 @@ const Header = ({
 }) => {
   const [version, setVersion] = React.useState()
   React.useEffect(async () => {
-    const res = await client.MeiliSearchClient.version()
-    setVersion(res.pkgVersion)
+    try {
+      const res = await client.MeiliSearchClient.version()
+      setVersion(res.pkgVersion)
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err)
+    }
   }, [client])
 
   return (
@@ -94,11 +99,13 @@ const Header = ({
           alignItems="center"
         >
           <MeilisearchLogo title="MeiliSearch" style={{ width: 64 }} />
-          <Typography
-            variant="typo10"
-            color="gray.0"
-            style={{ textTransform: 'unset' }}
-          >{`v${version}`}</Typography>
+          {version && (
+            <Typography
+              variant="typo10"
+              color="gray.0"
+              style={{ textTransform: 'unset' }}
+            >{`v${version}`}</Typography>
+          )}
         </Box>
         <Box display="flex">
           <SearchBox />
