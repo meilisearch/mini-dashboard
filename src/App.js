@@ -177,6 +177,7 @@ const App = () => {
               currentIndex={currentIndex}
               setCurrentIndex={setCurrentIndex}
               requireApiKeyToWork={requireApiKeyToWork}
+              client={client}
             />
             <Body>
               {/* <Sidebar /> */}
