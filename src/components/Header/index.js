@@ -70,31 +70,52 @@ const Header = ({
   currentIndex,
   setCurrentIndex,
   requireApiKeyToWork,
-}) => (
-  <HeaderWrapper>
-    <Container
-      p={4}
-      display="flex"
-      alignItems="center"
-      justifyContent="space-between"
-      height="100%"
-    >
-      <MeilisearchLogo title="MeiliSearch" style={{ width: 64 }} />
-      <Box display="flex">
-        <SearchBox />
-        <Select
-          options={indexes}
-          icon={<Indexes style={{ height: 22 }} />}
-          currentOption={currentIndex}
-          onChange={setCurrentIndex}
-          noOptionComponent={<NoSelectOption />}
-          style={{ width: 216 }}
-        />
-        <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
-      </Box>
-      <HelpCenter />
-    </Container>
-  </HeaderWrapper>
-)
+  client,
+}) => {
+  const [version, setVersion] = React.useState()
+  React.useEffect(async () => {
+    const res = await client.MeiliSearchClient.version()
+    setVersion(res.pkgVersion)
+  }, [client])
+
+  return (
+    <HeaderWrapper>
+      <Container
+        p={4}
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        height="100%"
+      >
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <MeilisearchLogo title="MeiliSearch" style={{ width: 64 }} />
+          <Typography
+            variant="typo10"
+            color="gray.0"
+            style={{ textTransform: 'unset' }}
+          >{`v${version}`}</Typography>
+        </Box>
+        <Box display="flex">
+          <SearchBox />
+          <Select
+            options={indexes}
+            icon={<Indexes style={{ height: 22 }} />}
+            currentOption={currentIndex}
+            onChange={setCurrentIndex}
+            noOptionComponent={<NoSelectOption />}
+            style={{ width: 216 }}
+          />
+          <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
+        </Box>
+        <HelpCenter />
+      </Container>
+    </HeaderWrapper>
+  )
+}
 
 export default Header
