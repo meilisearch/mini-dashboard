@@ -24,7 +24,7 @@ jobs:
           filename: 'build.zip'
           directory: 'build'
       - name: Upload build to release
-        uses: svenstaro/upload-release-action@v1-release
+        uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/build.zip
