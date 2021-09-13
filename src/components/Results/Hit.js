@@ -100,7 +100,7 @@ const isObject = (value) => value.trim().match(/^{(.*?)}$/)
 
 const FieldValue = ({ value, hit, objectKey }) => {
   if (isObject(value)) return <ObjectValue value={value} />
-  if (value.match(/(https|http):\/\//)) {
+  if (value.match(/^https?:\/\/[^\s]+$/)) {
     return (
       <Link href={hit[objectKey]}>
         <Highlight hit={hit} attribute={objectKey} />
