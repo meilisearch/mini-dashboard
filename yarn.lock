@@ -1775,12 +1775,12 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.22.tgz#219dfd89ae5b97a8801f015323ffa4b62f45718b"
   integrity sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==
 
-"@meilisearch/instant-meilisearch@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@meilisearch/instant-meilisearch/-/instant-meilisearch-0.5.0.tgz#dbad2ff0f7e6ced2cb8ecc176e7b7e82ee34f6b8"
-  integrity sha512-f2pocX10r8MR+dNr4pN7AoUjjGV30hZqBojGiRZRaVkcSm9+TPJ6fDljo1mp6CPMIi6ja3pC/ALSEpAgPINAWg==
+"@meilisearch/instant-meilisearch@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@meilisearch/instant-meilisearch/-/instant-meilisearch-0.5.3.tgz#0dafb6b29eade8647fa536b7ed119b27248add21"
+  integrity sha512-9no4aNkNPu8yYtvAvFJk+xz3M3TvCzHn5+qeGcw2Vk+ZUIqBIkuoFwCiL/KKO1XSR0SFZydy3oJW2ZByVJ2uZQ==
   dependencies:
-    meilisearch "^0.18.1"
+    meilisearch "^0.20.1"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -10012,10 +10012,10 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
-meilisearch@^0.18.1:
-  version "0.18.2"
-  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.18.2.tgz#e26d33a4bf163b2d96b14015063ec5979a004793"
-  integrity sha512-L65u+yNNtIyai3V1XB7BOq+fAt6MzB2KtsqvaW6GNahPtWCZF9SKvWOl6fjhzH3KOHDyT++A65UoYJP4J7vnVA==
+meilisearch@^0.20.1:
+  version "0.20.1"
+  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.20.1.tgz#db46aee790483e55a0f2ef1f9efc24532067ba48"
+  integrity sha512-5IGTiM3Bbc9gHUxqzsLBJdQgi2NVZxbEfwnc95tKIpkbFWr6fZpKL+jp747u/eQkvbAo3JtOPnMikCAwTQ3uhw==
   dependencies:
     cross-fetch "^3.1.4"
 
