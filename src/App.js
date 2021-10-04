@@ -196,16 +196,14 @@ const App = () => {
               </Box>
             </Body>
           </InstantSearch>
-          {dialog.visible && (
-            <Modal
-              title={`Enter your private API key${
-                requireApiKeyToWork ? '' : ' (facultative)'
-              }`}
-              dialog={dialog}
-            >
-              <ApiKeyModalContent closeModal={() => dialog.hide()} />
-            </Modal>
-          )}
+          <Modal
+            title={`Enter your private API key${
+              requireApiKeyToWork ? '' : ' (facultative)'
+            }`}
+            dialog={dialog}
+          >
+            <ApiKeyModalContent closeModal={() => dialog.hide()} />
+          </Modal>
         </Wrapper>
       </ApiKeyContext.Provider>
     </ClientContext.Provider>
