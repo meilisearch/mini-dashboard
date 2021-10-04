@@ -15,19 +15,23 @@ describe(`Test API key`, () => {
   })
 
   it('Should fail on wrong API key', () => {
-    cy.get('input[name="apiKey"]')
-      .type(WRONG_APIKEY)
-      .should('have.value', WRONG_APIKEY)
-    cy.get('button').contains('Go').click()
-    cy.contains('Invalid API key')
+    cy.get('div[data-enter]').within(() => {
+      cy.get('input[name="apiKey"]')
+        .type(WRONG_APIKEY)
+        .should('have.value', WRONG_APIKEY)
+      cy.get('button').contains('Go').click()
+      cy.contains('Invalid API key')
+    })
   })
 
   it('Should accept valid API key', () => {
-    cy.get('input[name="apiKey"]')
-      .clear()
-      .type(APIKEY)
-      .should('have.value', APIKEY)
-    cy.get('button').contains('Go').click()
+    cy.get('div[data-enter]').within(() => {
+      cy.get('input[name="apiKey"]')
+        .clear()
+        .type(APIKEY)
+        .should('have.value', APIKEY)
+      cy.get('button').contains('Go').click()
+    })
     cy.contains('Welcome to')
   })
 })
