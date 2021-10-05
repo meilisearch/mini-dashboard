@@ -28,7 +28,7 @@
 </p>
 <br/>
 
-**Table of Contents**:
+📋 **Table of Contents**:
 
 - [Setup](#setup)
 - [Run](#run)
@@ -41,7 +41,7 @@
 
 <br/>
 
-## Setup
+## ⚙️ Setup
 
 ```bash
 yarn
@@ -53,7 +53,7 @@ or
 npm install
 ```
 
-## Run
+## 🏃‍♂️ Run
 
 ```bash
 yarn start
@@ -67,7 +67,7 @@ npm run start
 
 Go to `http://localhost:3000/` and enjoy ! 🎉
 
-## Build
+## 🏗️ Build
 
 ### Generate build
 
@@ -83,7 +83,7 @@ or
 npm run build
 ```
 
-### Specify MeiliSearch's server URL
+### 🐱‍💻 Specify MeiliSearch's server URL
 
 ⚠️ By default, the application will call MeiliSearch at the exact same address as it is running.
 Example: if your app is running at `http://localhost:5000`, it will try to call `http://localhost:5000/indexes` to retrieve the list of your indexes.
@@ -102,7 +102,7 @@ or
 REACT_APP_MEILI_SERVER_ADDRESS=http://127.0.0.1:7700 npm run build
 ```
 
-### Run your build
+### 🏃🏻‍♀️ Run your build
 
 The above commands will generate an optimized version of the app, inside the `build` folder.
 
@@ -114,7 +114,7 @@ Example:
 serve build
 ```
 
-## Storybook
+## 📚 Storybook
 
 Storybook is a development environment for UI components. It allows you to browse a component library, view the different states of each component, and interactively test components.
 
@@ -130,6 +130,6 @@ or
 npm run storybook
 ```
 
-## Contributing
+## ❤️ Contributing
 
 If you want to contribute to this project, please make sure to read [the contributing guidelines](./CONTRIBUTING.md)
