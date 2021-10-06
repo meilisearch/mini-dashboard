@@ -82,7 +82,6 @@ const IndexItem = styled(MenuItem)`
   padding: 6px 18px;
   text-align: left;
   color: ${(p) => p.theme.colors.gray[2]};
-  text-transform: capitalize;
 
   &:hover,
   &:focus {
@@ -106,7 +105,6 @@ const IndexId = styled(Typography)`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  text-transform: capitalize;
 `
 
 const TextToDisplay = ({ option, currentOption }) => (
