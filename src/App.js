@@ -132,11 +132,7 @@ const App = () => {
         if (err.errorCode === 'missing_authorization_header') {
           setRequireApiKeyToWork(true)
         } else {
-          try {
-            await client.MeiliSearchClient.isHealthy()
-          } catch (e) {
-            setIsMeiliSearchRunning(false)
-          }
+          setIsMeiliSearchRunning(await client.MeiliSearchClient.isHealthy())
         }
       }
     }
