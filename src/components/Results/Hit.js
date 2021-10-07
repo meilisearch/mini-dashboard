@@ -77,7 +77,7 @@ const ObjectValue = ({ value }) => {
         onClick={() => setToggled((prevToggled) => !prevToggled)}
         aria-expanded={toggled}
       >
-        json
+        JSON
       </Button>
       {toggled && (
         <ReactJson
@@ -96,10 +96,76 @@ const ObjectValue = ({ value }) => {
   )
 }
 
+// Function to convert "Array String" to suitable representation.
+const ArrayValue = ({ value, hit, objectKey }) => {
+  const [toggled, setToggled] = React.useState(false)
+
+  const parsedArray = JSON.parse(value)
+
+  // When "String representation of Array" can be rendered in one line.
+  if (value.length < 50) {
+    return (
+      <Highlight
+        variant="typo11"
+        color="gray.2"
+        attribute={objectKey}
+        hit={hit}
+      />
+    )
+  }
+
+  // When "String representation of Array" is long, Providing expandable/collapsible view of array.
+  // Especially useful for Array that contains nested objects/arrays as items.
+  return (
+    <>
+      <Button
+        variant="grayscale"
+        size="small"
+        toggable
+        mb={2}
+        icon={<DocumentMedium style={{ height: 22 }} />}
+        onClick={() => setToggled((prevToggled) => !prevToggled)}
+        aria-expanded={toggled}
+      >
+        ARRAY
+      </Button>
+
+      {toggled && (
+        <ReactJson
+          src={parsedArray}
+          name={null}
+          collapsed={3}
+          groupArraysAfterLength={10}
+          enableClipboard={false}
+          displayObjectSize={false}
+          displayDataTypes={false}
+          displayArrayKey
+          theme={jsonTheme}
+          style={{ fontSize: 12 }}
+        />
+      )}
+    </>
+  )
+}
+
 const isObject = (value) => value.trim().match(/^{(.*?)}$/)
+const isArray = (value) => {
+  try {
+    const parsedValue = JSON.parse(value)
+    return Array.isArray(parsedValue)
+  } catch {
+    return false
+  }
+}
 
 const FieldValue = ({ value, hit, objectKey }) => {
+  // Handling Objects & Arrays Values
   if (isObject(value)) return <ObjectValue value={value} />
+  if (isArray(value)) {
+    return <ArrayValue value={value} hit={hit} objectKey={objectKey} />
+  }
+
+  // Handling Links
   if (value.match(/^https?:\/\/[^\s]+$/)) {
     return (
       <Link href={hit[objectKey]}>
@@ -107,6 +173,7 @@ const FieldValue = ({ value, hit, objectKey }) => {
       </Link>
     )
   }
+
   return (
     <Highlight
       variant="typo11"
