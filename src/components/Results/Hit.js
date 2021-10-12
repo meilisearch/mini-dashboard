@@ -77,7 +77,7 @@ const ObjectValue = ({ value }) => {
         onClick={() => setToggled((prevToggled) => !prevToggled)}
         aria-expanded={toggled}
       >
-        JSON
+        json
       </Button>
       {toggled && (
         <ReactJson
@@ -102,20 +102,6 @@ const ArrayValue = ({ value, hit, objectKey }) => {
 
   const parsedArray = JSON.parse(value)
 
-  // When "String representation of Array" can be rendered in one line.
-  if (value.length < 50) {
-    return (
-      <Highlight
-        variant="typo11"
-        color="gray.2"
-        attribute={objectKey}
-        hit={hit}
-      />
-    )
-  }
-
-  // When "String representation of Array" is long, Providing expandable/collapsible view of array.
-  // Especially useful for Array that contains nested objects/arrays as items.
   return (
     <>
       <Button
@@ -127,7 +113,7 @@ const ArrayValue = ({ value, hit, objectKey }) => {
         onClick={() => setToggled((prevToggled) => !prevToggled)}
         aria-expanded={toggled}
       >
-        ARRAY
+        array
       </Button>
 
       {toggled && (
@@ -135,7 +121,7 @@ const ArrayValue = ({ value, hit, objectKey }) => {
           src={parsedArray}
           name={null}
           collapsed={3}
-          groupArraysAfterLength={10}
+          groupArraysAfterLength={20}
           enableClipboard={false}
           displayObjectSize={false}
           displayDataTypes={false}
