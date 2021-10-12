@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import ReactJson from 'react-json-view'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
-import { Highlight as IsHighlight } from 'react-instantsearch-dom'
-
 import { jsonTheme } from 'theme'
 import { DocumentMedium } from 'components/icons'
 import Button from 'components/Button'
@@ -64,76 +62,6 @@ const Hr = styled.hr`
   border-top: 0;
 `
 
-const ObjectValue = ({ value }) => {
-  const [toggled, setToggled] = React.useState(false)
-  return (
-    <>
-      <Button
-        variant="grayscale"
-        size="small"
-        toggable
-        mb={2}
-        icon={<DocumentMedium style={{ height: 22 }} />}
-        onClick={() => setToggled((prevToggled) => !prevToggled)}
-        aria-expanded={toggled}
-      >
-        json
-      </Button>
-      {toggled && (
-        <ReactJson
-          src={JSON.parse(value)}
-          name={null}
-          collapsed={3}
-          enableClipboard={false}
-          displayObjectSize={false}
-          displayDataTypes={false}
-          displayArrayKey={false}
-          theme={jsonTheme}
-          style={{ fontSize: 12 }}
-        />
-      )}
-    </>
-  )
-}
-
-// Function to convert "Array String" to suitable representation.
-const ArrayValue = ({ value, hit, objectKey }) => {
-  const [toggled, setToggled] = React.useState(false)
-
-  const parsedArray = JSON.parse(value)
-
-  return (
-    <>
-      <Button
-        variant="grayscale"
-        size="small"
-        toggable
-        mb={2}
-        icon={<DocumentMedium style={{ height: 22 }} />}
-        onClick={() => setToggled((prevToggled) => !prevToggled)}
-        aria-expanded={toggled}
-      >
-        array
-      </Button>
-
-      {toggled && (
-        <ReactJson
-          src={parsedArray}
-          name={null}
-          collapsed={3}
-          groupArraysAfterLength={20}
-          enableClipboard={false}
-          displayObjectSize={false}
-          displayDataTypes={false}
-          displayArrayKey
-          theme={jsonTheme}
-          style={{ fontSize: 12 }}
-        />
-      )}
-    </>
-  )
-}
-
 const isObject = (value) => value.trim().match(/^{(.*?)}$/)
 const isArray = (value) => {
   try {
@@ -144,11 +72,107 @@ const isArray = (value) => {
   }
 }
 
+// A button component with certain styles set, Which used to indicate "Toggle" operations.
+const ToggleButton = (props) => {
+  const { children, onClick = () => {}, toggled } = props
+
+  return (
+    <Button
+      variant="grayscale"
+      size="small"
+      toggable
+      mb={2}
+      icon={<DocumentMedium style={{ height: 22 }} />}
+      onClick={onClick}
+      aria-expanded={toggled}
+      {...props}
+    >
+      {children}
+    </Button>
+  )
+}
+
+// Component to represent valid Object/Arrays in Expandable/Collapsable view.
+const JsonRepresentor = (props) => {
+  const { value, attribute, hit } = props
+
+  const [toggled, setToggled] = React.useState(false)
+
+  // Parsing provided values into JS data structure & Calculating relevant props.
+  let parsedValue = ''
+  let toggleButtonCalculatedProps = {}
+  let reactJsonCalculatedProps = {}
+
+  try {
+    parsedValue = JSON.parse(value)
+
+    if (Array.isArray(parsedValue)) {
+      toggleButtonCalculatedProps = {
+        ...toggleButtonCalculatedProps,
+        title: 'array',
+      }
+
+      reactJsonCalculatedProps = {
+        ...reactJsonCalculatedProps,
+        groupArraysAfterLength: 20,
+        displayArrayKey: true,
+      }
+    } else if (isObject(value)) {
+      toggleButtonCalculatedProps = {
+        ...toggleButtonCalculatedProps,
+        title: 'json',
+      }
+
+      reactJsonCalculatedProps = {
+        ...reactJsonCalculatedProps,
+        displayArrayKey: false,
+      }
+    } else {
+      throw new Error('Unsupported Type')
+    }
+  } catch (err) {
+    // As a graceful fallback, displaying un-parsable/invalid value in default value style.
+    return (
+      <Highlight
+        variant="typo11"
+        color="gray.2"
+        attribute={attribute}
+        hit={hit}
+      />
+    )
+  }
+
+  return (
+    <>
+      <ToggleButton
+        onClick={() => setToggled((prevToggled) => !prevToggled)}
+        toggled={toggled}
+      >
+        {toggleButtonCalculatedProps.title}
+      </ToggleButton>
+
+      {toggled && (
+        <ReactJson
+          src={parsedValue}
+          name={null}
+          collapsed={3}
+          enableClipboard={false}
+          displayObjectSize={false}
+          displayDataTypes={false}
+          displayArrayKey={false}
+          theme={jsonTheme}
+          style={{ fontSize: 12 }}
+          {...reactJsonCalculatedProps}
+        />
+      )}
+    </>
+  )
+}
+
 const FieldValue = ({ value, hit, objectKey }) => {
   // Handling Objects & Arrays Values
-  if (isObject(value)) return <ObjectValue value={value} />
-  if (isArray(value)) {
-    return <ArrayValue value={value} hit={hit} objectKey={objectKey} />
+  if (isObject(value) || isArray(value)) {
+    return <JsonRepresentor value={value} hit={hit} objectKey={objectKey} />
   }
 
   // Handling Links
