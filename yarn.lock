@@ -1774,12 +1774,12 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.22.tgz#219dfd89ae5b97a8801f015323ffa4b62f45718b"
   integrity sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==
 
-"@meilisearch/instant-meilisearch@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@meilisearch/instant-meilisearch/-/instant-meilisearch-0.5.0.tgz#dbad2ff0f7e6ced2cb8ecc176e7b7e82ee34f6b8"
-  integrity sha512-f2pocX10r8MR+dNr4pN7AoUjjGV30hZqBojGiRZRaVkcSm9+TPJ6fDljo1mp6CPMIi6ja3pC/ALSEpAgPINAWg==
+"@meilisearch/instant-meilisearch@^0.5.6":
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/@meilisearch/instant-meilisearch/-/instant-meilisearch-0.5.6.tgz#ab69d635ed115acf4c578310d0b86dc12449e06f"
+  integrity sha512-R3WJ4HTigUuF30kaeYGtDqRA9hiKu74EhoUGjR+XaH1HNcdqF7A/KOAIHJ2dpVsbTCWQcFDchZAc/OIAOK7aMA==
   dependencies:
-    meilisearch "^0.18.1"
+    meilisearch "^0.21.0"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -6600,10 +6600,10 @@ eslint-module-utils@^2.6.2:
     debug "^3.2.7"
     pkg-dir "^2.0.0"
 
-eslint-plugin-cypress@^2.11.3:
-  version "2.11.3"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-cypress/-/eslint-plugin-cypress-2.11.3.tgz#54ee4067aa8192aa62810cd35080eb577e191ab7"
-  integrity sha512-hOoAid+XNFtpvOzZSNWP5LDrQBEJwbZwjib4XJ1KcRYKjeVj0mAmPmucG4Egli4j/aruv+Ow/acacoloWWCl9Q==
+eslint-plugin-cypress@^2.12.1:
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-cypress/-/eslint-plugin-cypress-2.12.1.tgz#9aeee700708ca8c058e00cdafe215199918c2632"
+  integrity sha512-c2W/uPADl5kospNDihgiLc7n87t5XhUbFDoTl6CfVkmG+kDAb5Ux10V9PoLPu9N+r7znpc+iQlcmAqT1A/89HA==
   dependencies:
     globals "^11.12.0"
 
@@ -6660,10 +6660,10 @@ eslint-plugin-jsx-a11y@^6.3.1, eslint-plugin-jsx-a11y@^6.4.1:
     jsx-ast-utils "^3.1.0"
     language-tags "^1.0.5"
 
-eslint-plugin-prettier@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.4.0.tgz#cdbad3bf1dbd2b177e9825737fe63b476a08f0c7"
-  integrity sha512-UDK6rJT6INSfcOo545jiaOwB701uAIt2/dR7WnFQoGCVl1/EMqdANBmwUaqqQ45aXprsTGzSa39LI1PyuRBxxw==
+eslint-plugin-prettier@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-4.0.0.tgz#8b99d1e4b8b24a762472b4567992023619cb98e0"
+  integrity sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
@@ -10087,10 +10087,10 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
-meilisearch@^0.18.1:
-  version "0.18.2"
-  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.18.2.tgz#e26d33a4bf163b2d96b14015063ec5979a004793"
-  integrity sha512-L65u+yNNtIyai3V1XB7BOq+fAt6MzB2KtsqvaW6GNahPtWCZF9SKvWOl6fjhzH3KOHDyT++A65UoYJP4J7vnVA==
+meilisearch@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.21.0.tgz#440f686803314444eb97a821ec143c8d01b33f64"
+  integrity sha512-LBLePf0lgTEHX2vIkdC9AH2a7XITssKTYHBaUjuCnE394Q6ntLmvpYWjGCfv6fqGTv9q9vkfy1kdfYrqL9a2XA==
   dependencies:
     cross-fetch "^3.1.4"
 
@@ -11922,10 +11922,10 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@^2.1.2, prettier@^2.3.1:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.3.2.tgz#ef280a05ec253712e486233db5c6f23441e7342d"
-  integrity sha512-lnJzDfJ66zkMy58OL5/NY5zp70S7Nz6KqcKkXYzn2tMVrNxvbqaBpg7H3qHaLxCJ5lNMsGuM8+ohS7cZrthdLQ==
+prettier@^2.1.2, prettier@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.4.1.tgz#671e11c89c14a4cfc876ce564106c4a6726c9f5c"
+  integrity sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA==
 
 prettier@~2.2.1:
   version "2.2.1"
@@ -12653,35 +12653,35 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
-reakit-system@^0.15.1:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/reakit-system/-/reakit-system-0.15.1.tgz#bf5cc7a03f60a817373bc9cbb4a689c1f4100547"
-  integrity sha512-PkqfAyEohtcEu/gUvKriCv42NywDtUgvocEN3147BI45dOFAB89nrT7wRIbIcKJiUT598F+JlPXAZZVLWhc1Kg==
+reakit-system@^0.15.2:
+  version "0.15.2"
+  resolved "https://registry.yarnpkg.com/reakit-system/-/reakit-system-0.15.2.tgz#a485fab84b3942acbed6212c3b56a6ef8611c457"
+  integrity sha512-TvRthEz0DmD0rcJkGamMYx+bATwnGNWJpe/lc8UV2Js8nnPvkaxrHk5fX9cVASFrWbaIyegZHCWUBfxr30bmmA==
   dependencies:
-    reakit-utils "^0.15.1"
+    reakit-utils "^0.15.2"
 
-reakit-utils@^0.15.1:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/reakit-utils/-/reakit-utils-0.15.1.tgz#797f0a43f6a1dbc22d161224d5d2272e287dbfe3"
-  integrity sha512-6cZgKGvOkAMQgkwU9jdYbHfkuIN1Pr+vwcB19plLvcTfVN0Or10JhIuj9X+JaPZyI7ydqTDFaKNdUcDP69o/+Q==
+reakit-utils@^0.15.2:
+  version "0.15.2"
+  resolved "https://registry.yarnpkg.com/reakit-utils/-/reakit-utils-0.15.2.tgz#b4d5836e534576bfd175171541d43182ad97f2d2"
+  integrity sha512-i/RYkq+W6hvfFmXw5QW7zvfJJT/K8a4qZ0hjA79T61JAFPGt23DsfxwyBbyK91GZrJ9HMrXFVXWMovsKBc1qEQ==
 
-reakit-warning@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/reakit-warning/-/reakit-warning-0.6.1.tgz#dba33bb8866aebe30e67ac433ead707d16d38a36"
-  integrity sha512-poFUV0EyxB+CcV9uTNBAFmcgsnR2DzAbOTkld4Ul+QOKSeEHZB3b3+MoZQgcYHmbvG19Na1uWaM7ES+/Eyr8tQ==
+reakit-warning@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/reakit-warning/-/reakit-warning-0.6.2.tgz#9c346ae483eb1f284f2088653f90cabd26dbee56"
+  integrity sha512-z/3fvuc46DJyD3nJAUOto6inz2EbSQTjvI/KBQDqxwB0y02HDyeP8IWOJxvkuAUGkWpeSx+H3QWQFSNiPcHtmw==
   dependencies:
-    reakit-utils "^0.15.1"
+    reakit-utils "^0.15.2"
 
-reakit@^1.3.8:
-  version "1.3.8"
-  resolved "https://registry.yarnpkg.com/reakit/-/reakit-1.3.8.tgz#717e1a3b7cc6da803362a0edc2c55d2b6a001baf"
-  integrity sha512-8SVejx6FUaFi2+Q9eXoDAd4wWi/xAn6v8JgXH8x2xnzye8pb6v5bYvegACVpYVZnrS5w/JUgMTGh1Xy8MkkPww==
+reakit@^1.3.10:
+  version "1.3.10"
+  resolved "https://registry.yarnpkg.com/reakit/-/reakit-1.3.10.tgz#9b04efb8962cc17ecaffa31bae0396940177d431"
+  integrity sha512-HxHtnegMDwidGU4Ik/fKTZ3coihf4nKeycs0QSIFWcau77qL5wL6xnqZrAxcjjDDPOIANct3LxTiAlf+qGLOlw==
   dependencies:
     "@popperjs/core" "^2.5.4"
     body-scroll-lock "^3.1.5"
-    reakit-system "^0.15.1"
-    reakit-utils "^0.15.1"
-    reakit-warning "^0.6.1"
+    reakit-system "^0.15.2"
+    reakit-utils "^0.15.2"
+    reakit-warning "^0.6.2"
 
 recursive-readdir@2.2.2:
   version "2.2.2"
