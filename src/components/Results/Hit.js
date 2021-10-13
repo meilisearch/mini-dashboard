@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import ReactJson from 'react-json-view'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
-import { Highlight as IsHighlight } from 'react-instantsearch-dom'
-
 import { jsonTheme } from 'theme'
 import { DocumentMedium } from 'components/icons'
 import Button from 'components/Button'
@@ -64,24 +62,63 @@ const Hr = styled.hr`
   border-top: 0;
 `
 
-const ObjectValue = ({ value }) => {
+const isObject = (value) => value.trim().match(/^{(.*?)}$/)
+const isArray = (value) => {
+  try {
+    const parsedValue = JSON.parse(value)
+    return Array.isArray(parsedValue)
+  } catch {
+    return false
+  }
+}
+
+// A button component with certain styles set, Which used to indicate "Toggle" operations.
+const ToggleButton = ({ onClick = () => {}, toggled, ...props }) => (
+  <Button
+    variant="grayscale"
+    size="small"
+    toggable
+    mb={2}
+    icon={<DocumentMedium style={{ height: 22 }} />}
+    onClick={onClick}
+    aria-expanded={toggled}
+    {...props}
+  />
+)
+
+// Component to represent valid Object/Arrays in Expandable/Collapsable view.
+const JsonRepresentor = ({
+  value,
+  attribute,
+  hit,
+  title,
+  reactJsonOptions = {},
+}) => {
   const [toggled, setToggled] = React.useState(false)
-  return (
+  const [parsedValue, setParsedValue] = React.useState()
+
+  React.useEffect(() => {
+    try {
+      const parsed = JSON.parse(value)
+      setParsedValue(parsed)
+    } catch (err) {
+      // This will results in displaying un-parsable/invalid value in default value style.
+      setParsedValue(undefined)
+    }
+  }, [value])
+
+  return parsedValue ? (
     <>
-      <Button
-        variant="grayscale"
-        size="small"
-        toggable
-        mb={2}
-        icon={<DocumentMedium style={{ height: 22 }} />}
+      <ToggleButton
         onClick={() => setToggled((prevToggled) => !prevToggled)}
-        aria-expanded={toggled}
+        toggled={toggled}
       >
-        json
-      </Button>
+        {title}
+      </ToggleButton>
+
       {toggled && (
         <ReactJson
-          src={JSON.parse(value)}
+          src={parsedValue}
           name={null}
           collapsed={3}
           enableClipboard={false}
@@ -90,16 +127,46 @@ const ObjectValue = ({ value }) => {
           displayArrayKey={false}
           theme={jsonTheme}
           style={{ fontSize: 12 }}
+          {...reactJsonOptions}
         />
       )}
     </>
+  ) : (
+    <Highlight
+      variant="typo11"
+      color="gray.2"
+      attribute={attribute}
+      hit={hit}
+    />
   )
 }
 
-const isObject = (value) => value.trim().match(/^{(.*?)}$/)
-
 const FieldValue = ({ value, hit, objectKey }) => {
-  if (isObject(value)) return <ObjectValue value={value} />
+  if (isObject(value)) {
+    return (
+      <JsonRepresentor
+        value={value}
+        hit={hit}
+        attribute={objectKey}
+        title="json"
+        reactJsonOptions={{ displayArrayKey: false }}
+      />
+    )
+  }
+
+  if (isArray(value)) {
+    return (
+      <JsonRepresentor
+        value={value}
+        hit={hit}
+        attribute={objectKey}
+        title="array"
+        reactJsonOptions={{ groupArraysAfterLength: 20, displayArrayKey: true }}
+      />
+    )
+  }
+
+  // Handling Links
   if (value.match(/^https?:\/\/[^\s]+$/)) {
     return (
       <Link href={hit[objectKey]}>
@@ -107,6 +174,7 @@ const FieldValue = ({ value, hit, objectKey }) => {
       </Link>
     )
   }
+
   return (
     <Highlight
       variant="typo11"
