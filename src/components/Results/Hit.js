@@ -73,82 +73,47 @@ const isArray = (value) => {
 }
 
 // A button component with certain styles set, Which used to indicate "Toggle" operations.
-const ToggleButton = (props) => {
-  const { children, onClick = () => {}, toggled } = props
-
-  return (
-    <Button
-      variant="grayscale"
-      size="small"
-      toggable
-      mb={2}
-      icon={<DocumentMedium style={{ height: 22 }} />}
-      onClick={onClick}
-      aria-expanded={toggled}
-      {...props}
-    >
-      {children}
-    </Button>
-  )
-}
+const ToggleButton = ({ onClick = () => {}, toggled, ...props }) => (
+  <Button
+    variant="grayscale"
+    size="small"
+    toggable
+    mb={2}
+    icon={<DocumentMedium style={{ height: 22 }} />}
+    onClick={onClick}
+    aria-expanded={toggled}
+    {...props}
+  />
+)
 
 // Component to represent valid Object/Arrays in Expandable/Collapsable view.
-const JsonRepresentor = (props) => {
-  const { value, attribute, hit } = props
-
+const JsonRepresentor = ({
+  value,
+  attribute,
+  hit,
+  title,
+  reactJsonOptions = {},
+}) => {
   const [toggled, setToggled] = React.useState(false)
+  const [parsedValue, setParsedValue] = React.useState()
 
-  // Parsing provided values into JS data structure & Calculating relevant props.
-  let parsedValue = ''
-  let toggleButtonCalculatedProps = {}
-  let reactJsonCalculatedProps = {}
-
-  try {
-    parsedValue = JSON.parse(value)
-
-    if (Array.isArray(parsedValue)) {
-      toggleButtonCalculatedProps = {
-        ...toggleButtonCalculatedProps,
-        title: 'array',
-      }
-
-      reactJsonCalculatedProps = {
-        ...reactJsonCalculatedProps,
-        groupArraysAfterLength: 20,
-        displayArrayKey: true,
-      }
-    } else if (isObject(value)) {
-      toggleButtonCalculatedProps = {
-        ...toggleButtonCalculatedProps,
-        title: 'json',
-      }
-
-      reactJsonCalculatedProps = {
-        ...reactJsonCalculatedProps,
-        displayArrayKey: false,
-      }
-    } else {
-      throw new Error('Unsupported Type')
+  React.useEffect(() => {
+    try {
+      const parsed = JSON.parse(value)
+      setParsedValue(parsed)
+    } catch (err) {
+      // This will results in displaying un-parsable/invalid value in default value style.
+      setParsedValue(undefined)
     }
-  } catch (err) {
-    // As a graceful fallback, displaying un-parsable/invalid value in default value style.
-    return (
-      <Highlight
-        variant="typo11"
-        color="gray.2"
-        attribute={attribute}
-        hit={hit}
-      />
-    )
-  }
+  }, [value])
 
-  return (
+  return parsedValue ? (
     <>
       <ToggleButton
         onClick={() => setToggled((prevToggled) => !prevToggled)}
         toggled={toggled}
       >
-        {toggleButtonCalculatedProps.title}
+        {title}
       </ToggleButton>
 
       {toggled && (
@@ -162,17 +127,43 @@ const JsonRepresentor = (props) => {
           displayArrayKey={false}
           theme={jsonTheme}
           style={{ fontSize: 12 }}
-          {...reactJsonCalculatedProps}
+          {...reactJsonOptions}
         />
       )}
     </>
+  ) : (
+    <Highlight
+      variant="typo11"
+      color="gray.2"
+      attribute={attribute}
+      hit={hit}
+    />
   )
 }
 
 const FieldValue = ({ value, hit, objectKey }) => {
-  // Handling Objects & Arrays Values
-  if (isObject(value) || isArray(value)) {
-    return <JsonRepresentor value={value} hit={hit} objectKey={objectKey} />
+  if (isObject(value)) {
+    return (
+      <JsonRepresentor
+        value={value}
+        hit={hit}
+        attribute={objectKey}
+        title="json"
+        reactJsonOptions={{ displayArrayKey: false }}
+      />
+    )
+  }
+
+  if (isArray(value)) {
+    return (
+      <JsonRepresentor
+        value={value}
+        hit={hit}
+        attribute={objectKey}
+        title="array"
+        reactJsonOptions={{ groupArraysAfterLength: 20, displayArrayKey: true }}
+      />
+    )
   }
 
   // Handling Links
