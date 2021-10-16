@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 import Color from 'color'
 import PropTypes from 'prop-types'
@@ -68,21 +68,33 @@ const InputContainer = styled.div`
   }
 `
 
-const Input = ({ icon, ref, clear, type, value, ...props }) => (
-  <InputContainer ref={ref}>
-    {icon}
-    <InputField $hasIcon={icon} value={value} type={type} {...props} />
-    {type === 'search' && (
-      <ClearButton
-        aria-label="clear"
-        onClick={() => clear()}
-        style={{ display: value ? 'block' : 'none' }}
-      >
-        <Cross />
-      </ClearButton>
-    )}
-  </InputContainer>
-)
+const Input = ({ icon, ref, clear, type, value, ...props }) => {
+  const input = useRef(null)
+  return (
+    <InputContainer ref={ref}>
+      {icon}
+      <InputField
+        $hasIcon={icon}
+        value={value}
+        type={type}
+        ref={input}
+        {...props}
+      />
+      {type === 'search' && (
+        <ClearButton
+          aria-label="clear"
+          onClick={() => {
+            clear()
+            input.current.focus()
+          }}
+          style={{ display: value ? 'block' : 'none' }}
+        >
+          <Cross />
+        </ClearButton>
+      )}
+    </InputContainer>
+  )
+}
 
 export default Input
 
