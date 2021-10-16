@@ -158,7 +158,7 @@ const App = () => {
   // Get the list of indexes
   React.useEffect(() => {
     getIndexesList()
-  }, [client])
+  }, [client, currentIndex?.uid])
 
   return (
     <ClientContext.Provider value={{ client, setClient }}>
