@@ -99,10 +99,12 @@ const App = () => {
     try {
       const res = await client.MeiliSearchClient.stats()
       const array = Object.entries(res.indexes)
-      const options = array.reduce((prev, curr) => {
-        const currentOption = { uid: curr[0], stats: curr[1] }
-        return [...prev, currentOption]
-      }, [])
+      const options = array
+        .reduce((prev, curr) => {
+          const currentOption = { uid: curr[0], stats: curr[1] }
+          return [...prev, currentOption]
+        }, [])
+        .sort((a, b) => a.uid.localeCompare(b.uid))
 
       setIndexes(options)
       if (options.length) {
