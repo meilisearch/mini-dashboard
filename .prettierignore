@@ -1,0 +1,7 @@
+build/
+data.ms/
+assets/
+public/
+node_modules/
+.github/
+.storybook/

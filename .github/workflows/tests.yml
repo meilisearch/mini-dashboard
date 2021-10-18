@@ -21,7 +21,7 @@ jobs:
       - name: Install dev dependencies
         run: yarn --dev
       - name: Run style check
-        run: yarn lint
+        run: yarn lint && yarn prettier-check
   cypress_no_meilisearch:
     runs-on: ubuntu-latest
     container: cypress/browsers:node12.18.3-chrome87-ff82
