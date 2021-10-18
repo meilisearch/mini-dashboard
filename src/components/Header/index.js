@@ -67,6 +67,7 @@ const Header = ({
   indexes,
   currentIndex,
   setCurrentIndex,
+  refreshIndexes,
   requireApiKeyToWork,
   client,
 }) => {
@@ -114,6 +115,7 @@ const Header = ({
             onChange={setCurrentIndex}
             noOptionComponent={<NoSelectOption />}
             style={{ width: 216 }}
+            onClick={refreshIndexes}
           />
           <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
         </Box>

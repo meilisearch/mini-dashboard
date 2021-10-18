@@ -99,10 +99,12 @@ const App = () => {
     try {
       const res = await client.MeiliSearchClient.stats()
       const array = Object.entries(res.indexes)
-      const options = array.reduce((prev, curr) => {
-        const currentOption = { uid: curr[0], stats: curr[1] }
-        return [...prev, currentOption]
-      }, [])
+      const options = array
+        .reduce((prev, curr) => {
+          const currentOption = { uid: curr[0], stats: curr[1] }
+          return [...prev, currentOption]
+        }, [])
+        .sort((a, b) => a.uid.localeCompare(b.uid))
 
       setIndexes(options)
       if (options.length) {
@@ -158,7 +160,7 @@ const App = () => {
   // Get the list of indexes
   React.useEffect(() => {
     getIndexesList()
-  }, [client])
+  }, [client, currentIndex?.uid])
 
   return (
     <ClientContext.Provider value={{ client, setClient }}>
@@ -174,6 +176,7 @@ const App = () => {
               setCurrentIndex={setCurrentIndex}
               requireApiKeyToWork={requireApiKeyToWork}
               client={client}
+              refreshIndexes={getIndexesList}
             />
             <Body>
               {/* <Sidebar /> */}
