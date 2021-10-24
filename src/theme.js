@@ -1,16 +1,18 @@
+// updated some hex values that will be more fascinating...
+
 const theme = {
   colors: {
     main: {
-      default: '#E41359',
-      hover: '#CA1B53',
-      dark: '#73313D',
-      light: '#FFDBE7',
+      default: '#ea2e6d',
+      hover: '#bb0b44',
+      dark: '#6b2330',
+      light: '#f5d9e2',
       lighter: '#FDEEF3',
     },
     gray: [
-      '#39486E', // 0
-      '#4F5C7E',
-      '#606C8B', // 2
+      '#4b5b84', // 0
+      '#4a5777',
+      '#5f687f', // 2
       '#737E99',
       '#838DA5', // 4
       '#959DB3',
