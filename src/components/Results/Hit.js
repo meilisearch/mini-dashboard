@@ -179,7 +179,7 @@ const FieldValue = ({ value, hit, objectKey }) => {
   }
 
   // Handling Links
-  if (value.match(/^https?:\/\/[^\s]+$/)) {
+  if (value?.match(/^https?:\/\/[^\s]+$/)) {
     return (
       <Link href={hit[objectKey]}>
         <Highlight hit={hit} attribute={objectKey} />

@@ -1,8 +1,10 @@
 import React from 'react'
 
 const ClientContext = React.createContext({
-  client: {},
-  setClient: () => {},
+  ISClient: {},
+  IMSlient: {},
+  setISClient: () => {},
+  setMSClient: () => {},
 })
 
 export const ClientProvider = ClientContext.Provider

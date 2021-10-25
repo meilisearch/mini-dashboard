@@ -93,13 +93,13 @@ If you want to specify the URL where your MeiliSearch is running, use the `REACT
 Example:
 
 ```bash
-REACT_APP_MEILI_SERVER_ADDRESS=http://127.0.0.1:7700 yarn build
+REACT_APP_MEILI_SERVER_ADDRESS=http://0.0.0.0:7700 yarn build
 ```
 
 or
 
 ```bash
-REACT_APP_MEILI_SERVER_ADDRESS=http://127.0.0.1:7700 npm run build
+REACT_APP_MEILI_SERVER_ADDRESS=http://0.0.0.0:7700 npm run build
 ```
 
 ### Run your build
