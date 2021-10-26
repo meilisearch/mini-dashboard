@@ -62,7 +62,19 @@ const Hr = styled.hr`
   border-top: 0;
 `
 
-const isObject = (value) => value.trim().match(/^{(.*?)}$/)
+const isObject = (value) => {
+  try {
+    const parsedValue = JSON.parse(value)
+    return (
+      typeof parsedValue === 'object' &&
+      !Array.isArray(parsedValue) &&
+      parsedValue !== null
+    )
+  } catch {
+    return false
+  }
+}
+
 const isArray = (value) => {
   try {
     const parsedValue = JSON.parse(value)
