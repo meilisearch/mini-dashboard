@@ -74,7 +74,7 @@ const Header = ({
   const [version, setVersion] = React.useState()
   React.useEffect(async () => {
     try {
-      const res = await client.MeiliSearchClient.version()
+      const res = await client.getVersion()
       setVersion(res.pkgVersion)
     } catch (err) {
       // eslint-disable-next-line no-console

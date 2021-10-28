@@ -36,7 +36,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           start: yarn start:ci
-          wait-on: 'http://localhost:3000'
+          wait-on: 'http://0.0.0.0:3000'
           command: yarn cy:run:test-no-meilisearch
           config-file: cypress.json
       - uses: actions/upload-artifact@v1
@@ -71,7 +71,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           start: yarn start:ci
-          wait-on: 'http://localhost:3000'
+          wait-on: 'http://0.0.0.0:3000'
           command: yarn cy:run
           config-file: cypress.json
       - uses: actions/upload-artifact@v1

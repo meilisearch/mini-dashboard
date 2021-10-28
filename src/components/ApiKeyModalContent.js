@@ -1,6 +1,7 @@
 import React from 'react'
-import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import styled from 'styled-components'
+import { MeiliSearch } from 'meilisearch'
+import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 
 import { baseUrl } from 'App'
 import Box from 'components/Box'
@@ -18,17 +19,18 @@ const ErrorMessage = styled(Typography)`
 `
 
 const ApiKeyModalContent = ({ closeModal }) => {
-  const { setClient } = React.useContext(ClientContext)
+  const { setISClient, setMSClient } = React.useContext(ClientContext)
   const { apiKey, setApiKey } = React.useContext(ApiKeyContext)
   const [value, setValue] = React.useState(apiKey || '')
   const [error, setError] = React.useState()
 
   const updateClient = async () => {
-    const clientToTry = instantMeiliSearch(baseUrl, value)
+    const clientToTry = new MeiliSearch({ host: baseUrl, apiKey: value })
     try {
-      await clientToTry.MeiliSearchClient.listIndexes()
+      await clientToTry.getIndexes()
       setApiKey(value)
-      setClient(clientToTry)
+      setISClient(instantMeiliSearch(baseUrl, value))
+      setMSClient(clientToTry)
       closeModal()
       setError()
     } catch (err) {

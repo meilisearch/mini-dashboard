@@ -17,11 +17,12 @@ import Results from 'components/Results'
 import ApiKeyContext from 'context/ApiKeyContext'
 import ClientContext from 'context/ClientContext'
 import Typography from 'components/Typography'
+import { MeiliSearch } from 'meilisearch'
 
 export const baseUrl =
   process.env.REACT_APP_MEILI_SERVER_ADDRESS ||
   (process.env.NODE_ENV === 'development'
-    ? 'http://127.0.0.1:7700'
+    ? 'http://0.0.0.0:7700'
     : window.location.origin)
 
 const Wrapper = styled.div`
@@ -90,14 +91,17 @@ const App = () => {
   const [isMeiliSearchRunning, setIsMeiliSearchRunning] = React.useState(true)
   const [requireApiKeyToWork, setRequireApiKeyToWork] = React.useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
-  const [client, setClient] = React.useState(
+  const [ISClient, setISClient] = React.useState(
     instantMeiliSearch(baseUrl, apiKey, { primaryKey: 'id' })
+  )
+  const [MSClient, setMSClient] = React.useState(
+    new MeiliSearch({ host: baseUrl, apiKey })
   )
   const dialog = useDialogState({ animated: true, visible: false })
 
   const getIndexesList = async () => {
     try {
-      const res = await client.MeiliSearchClient.stats()
+      const res = await MSClient.getStats()
       const array = Object.entries(res.indexes)
       const options = array
         .reduce((prev, curr) => {
@@ -128,13 +132,14 @@ const App = () => {
     // Check if an API key is required / a masterKey was set
     const fetchWithoutApiKey = async () => {
       try {
-        const cl = instantMeiliSearch(baseUrl)
-        await cl.MeiliSearchClient.listIndexes()
+        const tempClient = new MeiliSearch({ host: baseUrl })
+        await tempClient.getIndexes()
       } catch (err) {
+        console.log(err)
         if (err.errorCode === 'missing_authorization_header') {
           setRequireApiKeyToWork(true)
         } else {
-          setIsMeiliSearchRunning(await client.MeiliSearchClient.isHealthy())
+          setIsMeiliSearchRunning(await MSClient.isHealthy())
         }
       }
     }
@@ -147,8 +152,7 @@ const App = () => {
   React.useEffect(() => {
     const shouldDisplayModal = async () => {
       try {
-        const cl = instantMeiliSearch(baseUrl, apiKey)
-        await cl.MeiliSearchClient.listIndexes()
+        await MSClient.getIndexes()
       } catch (err) {
         console.log(err)
         dialog.show()
@@ -160,22 +164,24 @@ const App = () => {
   // Get the list of indexes
   React.useEffect(() => {
     getIndexesList()
-  }, [client, currentIndex?.uid])
+  }, [MSClient, currentIndex?.uid])
 
   return (
-    <ClientContext.Provider value={{ client, setClient }}>
+    <ClientContext.Provider
+      value={{ ISClient, MSClient, setISClient, setMSClient }}
+    >
       <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
         <Wrapper>
           <InstantSearch
             indexName={currentIndex ? currentIndex.uid : ''}
-            searchClient={client}
+            searchClient={ISClient}
           >
             <Header
               indexes={indexes}
               currentIndex={currentIndex}
               setCurrentIndex={setCurrentIndex}
               requireApiKeyToWork={requireApiKeyToWork}
-              client={client}
+              client={MSClient}
               refreshIndexes={getIndexesList}
             />
             <Body>
