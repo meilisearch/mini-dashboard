@@ -77,8 +77,7 @@ const isObject = (value) => {
 
 const isArray = (value) => {
   try {
-    const parsedValue = JSON.parse(value)
-    return Array.isArray(parsedValue)
+    return Array.isArray(value)
   } catch {
     return false
   }
@@ -107,19 +106,8 @@ const JsonRepresentor = ({
   reactJsonOptions = {},
 }) => {
   const [toggled, setToggled] = React.useState(false)
-  const [parsedValue, setParsedValue] = React.useState()
 
-  React.useEffect(() => {
-    try {
-      const parsed = JSON.parse(value)
-      setParsedValue(parsed)
-    } catch (err) {
-      // This will results in displaying un-parsable/invalid value in default value style.
-      setParsedValue(undefined)
-    }
-  }, [value])
-
-  return parsedValue ? (
+  return value ? (
     <>
       <ToggleButton
         onClick={() => setToggled((prevToggled) => !prevToggled)}
@@ -130,7 +118,7 @@ const JsonRepresentor = ({
 
       {toggled && (
         <ReactJson
-          src={parsedValue}
+          src={value}
           name={null}
           collapsed={3}
           enableClipboard={false}
@@ -154,10 +142,21 @@ const JsonRepresentor = ({
 }
 
 const FieldValue = ({ value, hit, objectKey }) => {
-  if (isObject(value)) {
+  if (isArray(value)) {
     return (
       <JsonRepresentor
-        value={value}
+        value={hit[objectKey]}
+        hit={hit}
+        attribute={objectKey}
+        title="array"
+        reactJsonOptions={{ groupArraysAfterLength: 20, displayArrayKey: true }}
+      />
+    )
+  }
+  if (isObject(value?.value)) {
+    return (
+      <JsonRepresentor
+        value={hit[objectKey]}
         hit={hit}
         attribute={objectKey}
         title="json"
@@ -166,20 +165,8 @@ const FieldValue = ({ value, hit, objectKey }) => {
     )
   }
 
-  if (isArray(value)) {
-    return (
-      <JsonRepresentor
-        value={value}
-        hit={hit}
-        attribute={objectKey}
-        title="array"
-        reactJsonOptions={{ groupArraysAfterLength: 20, displayArrayKey: true }}
-      />
-    )
-  }
-
   // Handling Links
-  if (value?.match(/^https?:\/\/[^\s]+$/)) {
+  if (value?.value?.match(/^https?:\/\/[^\s]+$/)) {
     return (
       <Link href={hit[objectKey]}>
         <Highlight hit={hit} attribute={objectKey} />
@@ -216,14 +203,14 @@ function Hit({ hit, imageKey }) {
       <ContentContainer>
         {documentProperties
           .slice(0, displayMore ? hit.length : 6)
-          .map(([key, value], index) => (
+          .map(([key, value]) => (
             <div key={key}>
               <Grid>
                 <HitKey variant="typo10" color="gray.6">
                   {key}
                 </HitKey>
                 <HitValue>
-                  <FieldValue value={value.value} hit={hit} objectKey={key} />
+                  <FieldValue value={value} hit={hit} objectKey={key} />
                 </HitValue>
               </Grid>
               <Hr />
