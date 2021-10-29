@@ -10076,10 +10076,10 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
-meilisearch@^0.22.1:
-  version "0.22.1"
-  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.22.1.tgz#8c6ebc412e6b1c8767a5525b69c39db2ccfd7f4b"
-  integrity sha512-mtPs/RPJSuXP8BEBdJsizfoTeqF+zYZYITLc42M8T+aUeF98rZebQAyAsIrp4ySS5/8TM7yoywSRJyWGS/zMmg==
+meilisearch@^0.22.1, meilisearch@^0.22.2:
+  version "0.22.2"
+  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.22.2.tgz#7dc910b5511d3096251e7771945720261746d0c0"
+  integrity sha512-zVF7OeKWjeDP5hxTo2um0S66flTIn0WsIiBwuauy3lwvN1rwssVzFFshsoIGN6uRTrYMKZE4HtD7OiOC7Oo1xw==
   dependencies:
     cross-fetch "^3.1.4"
 
