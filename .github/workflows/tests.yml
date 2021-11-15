@@ -55,7 +55,47 @@ jobs:
         with:
           name: cypress-videos
           path: cypress/videos
-  cypress_meilisearch:
+  cypress_meilisearch-no-api-key:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+    services:
+      meilisearch:
+        image: getmeili/meilisearch:latest
+        env:
+          MEILI_NO_ANALYTICS: 'true'
+        ports:
+          - '7700:7700'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ./node_modules
+          key: ${{ hashFiles('yarn.lock') }}
+      - name: Install dependencies
+        run: yarn
+      - name: Test
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn start:ci
+          wait-on: 'http://0.0.0.0:3000'
+          command: yarn cy:run:test-no-api-key
+          config-file: cypress.json
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
+  cypress_meilisearch-api-key:
     runs-on: ubuntu-latest
     container: cypress/browsers:node12.18.3-chrome87-ff82
     services:
