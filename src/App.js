@@ -136,7 +136,7 @@ const App = () => {
         await tempClient.getIndexes()
       } catch (err) {
         console.log(err)
-        if (err.errorCode === 'missing_authorization_header') {
+        if (err.code === 'missing_authorization_header') {
           setRequireApiKeyToWork(true)
         } else {
           setIsMeiliSearchRunning(await MSClient.isHealthy())
