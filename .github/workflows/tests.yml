@@ -22,34 +22,7 @@ jobs:
         run: yarn --dev
       - name: Run style check
         run: yarn lint && yarn prettier-check
-  cypress_no_meilisearch:
-    runs-on: ubuntu-latest
-    container: cypress/browsers:node12.18.3-chrome87-ff82
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-      - name: Install dependencies
-        run: yarn
-      - name: Test no meilisearch running
-        uses: cypress-io/github-action@v2
-        with:
-          start: yarn start:ci
-          wait-on: 'http://0.0.0.0:3000'
-          command: yarn cy:run:test-no-meilisearch
-          config-file: cypress.json
-      - uses: actions/upload-artifact@v1
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-      - uses: actions/upload-artifact@v1
-        if: failure()
-        with:
-          name: cypress-videos
-          path: cypress/videos
-  cypress_meilisearch:
+  integration_tests:
     runs-on: ubuntu-latest
     container: cypress/browsers:node12.18.3-chrome87-ff82
     services:
@@ -67,7 +40,14 @@ jobs:
           node-version: '12.x'
       - name: Install dependencies
         run: yarn
-      - name: Test
+      - name: Tests (no MeiliSearch running)
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn start:ci-no-meilisearch
+          wait-on: 'http://0.0.0.0:3000'
+          command: yarn cy:run:no-meilisearch && exit 0
+          config-file: cypress.json
+      - name: Tests (MeiliSearch running)
         uses: cypress-io/github-action@v2
         with:
           start: yarn start:ci
