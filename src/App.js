@@ -92,7 +92,10 @@ const App = () => {
   const [requireApiKeyToWork, setRequireApiKeyToWork] = React.useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
   const [ISClient, setISClient] = React.useState(
-    instantMeiliSearch(baseUrl, apiKey, { primaryKey: 'id' })
+    instantMeiliSearch(baseUrl, apiKey, {
+      primaryKey: 'id',
+      paginationTotalHits: 50,
+    })
   )
   const [MSClient, setMSClient] = React.useState(
     new MeiliSearch({ host: baseUrl, apiKey })
