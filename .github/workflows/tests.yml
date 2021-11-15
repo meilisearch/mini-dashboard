@@ -30,6 +30,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ./node_modules
+          key: ${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
         run: yarn
       - name: Test no meilisearch running
@@ -65,6 +71,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ./node_modules
+          key: ${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
         run: yarn
       - name: Test
