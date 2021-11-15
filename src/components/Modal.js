@@ -59,9 +59,15 @@ const Button = styled(IconButton)`
   }
 `
 
-const Modal = ({ title, dialog, children, ...props }) => (
+const Modal = ({
+  title,
+  dialog,
+  children,
+  ariaLabel = 'Welcome',
+  ...props
+}) => (
   <DialogBackdrop {...dialog}>
-    <Dialog {...dialog} aria-label="Welcome" preventBodyScroll {...props}>
+    <Dialog {...dialog} aria-label={ariaLabel} preventBodyScroll {...props}>
       {title && (
         <Typography variant="typo1" mb={4}>
           {title}
