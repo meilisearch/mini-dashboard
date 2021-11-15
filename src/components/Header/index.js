@@ -46,6 +46,7 @@ const ApiKey = ({ requireApiKeyToWork }) => {
           requireApiKeyToWork ? '' : ' (facultative)'
         }`}
         dialog={dialog}
+        ariaLabel="settings-api-key"
       >
         {requireApiKeyToWork ? (
           <ApiKeyModalContent closeModal={() => dialog.hide()} />

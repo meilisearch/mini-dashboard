@@ -206,6 +206,7 @@ const App = () => {
               requireApiKeyToWork ? '' : ' (facultative)'
             }`}
             dialog={dialog}
+            ariaLabel="ask-for-api-key"
           >
             <ApiKeyModalContent closeModal={() => dialog.hide()} />
           </Modal>
