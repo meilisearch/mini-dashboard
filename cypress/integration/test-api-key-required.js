@@ -1,7 +1,7 @@
 const APIKEY = 'masterKey'
 const WRONG_APIKEY = 'wrongApiKey'
 
-describe(`Test API key`, () => {
+describe(`Test API key required`, () => {
   before(() => {
     cy.visit('/')
   })
@@ -37,7 +37,6 @@ describe(`Test API key`, () => {
 
   it('Should display a modal with API key inside the API key modal button', () => {
     cy.get('span').contains('Api Key').parent().click()
-
     cy.get('div[aria-label=settings-api-key]').within(() => {
       cy.get('input[name="apiKey"]').should('have.value', APIKEY)
     })
