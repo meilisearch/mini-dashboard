@@ -29,6 +29,4 @@ meilisearch
 # Cypress
 cypress/screenshots
 cypress/videos
-cypress/support
 cypress/plugins
-cypress/fixtures

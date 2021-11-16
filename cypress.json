@@ -1,5 +1,11 @@
 {
   "baseUrl": "http://localhost:3000",
   "viewportWidth": 1440,
-  "viewportHeight": 900
+  "viewportHeight": 900,
+  "env": {
+    "host": "http://0.0.0.0:7700",
+    "apiKey": "masterKey",
+    "wrongApiKey": "wrongApiKey",
+    "waitingTime": 1000
+  }
 }

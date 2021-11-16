@@ -1,7 +1,7 @@
 /* eslint-disable cypress/no-unnecessary-waiting */
-const APIKEY = 'masterKey'
-const WRONG_APIKEY = 'wrongApiKey'
-const WAITING_TIME = 1000
+const API_KEY = Cypress.env('apiKey')
+const WRONG_APIKEY = Cypress.env('wrongApiKey')
+const WAITING_TIME = Cypress.env('waitingTime')
 
 describe(`Test API key required`, () => {
   before(() => {
@@ -31,8 +31,8 @@ describe(`Test API key required`, () => {
     cy.get('div[aria-label=ask-for-api-key]').within(() => {
       cy.get('input[name="apiKey"]')
         .clear()
-        .type(APIKEY)
-        .should('have.value', APIKEY)
+        .type(API_KEY)
+        .should('have.value', API_KEY)
       cy.get('button').contains('Go').click()
       cy.wait(WAITING_TIME)
     })
@@ -42,7 +42,7 @@ describe(`Test API key required`, () => {
   it('Should display a modal with API key inside the API key modal button', () => {
     cy.get('span').contains('Api Key').parent().click()
     cy.get('div[aria-label=settings-api-key]').within(() => {
-      cy.get('input[name="apiKey"]').should('have.value', APIKEY)
+      cy.get('input[name="apiKey"]').should('have.value', API_KEY)
     })
   })
 
