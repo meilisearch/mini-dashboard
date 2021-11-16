@@ -29,10 +29,10 @@
     "prettier-check": "prettier --check ./src",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "cy:open": "cypress open --env env=watch",
-    "cy:run:test-no-meilisearch": "cypress run --env env=watch --spec 'cypress/integration/test-no-meilisearch.js'",
-    "cy:run:test-no-api-key": "cypress run --env env=watch --spec 'cypress/integration/test-no-api-key-required.js'",
-    "cy:run": "cypress run --env env=watch --config ignoreTestFiles=['**/*/test-no-meilisearch.js','test-no-api-key-required.js']",
+    "cy:open": "cypress open",
+    "cy:run:test-no-meilisearch": "cypress run --spec 'cypress/integration/test-no-meilisearch.js'",
+    "cy:run:test-no-api-key": "cypress run --spec 'cypress/integration/test-no-api-key-required.js'",
+    "cy:run": "cypress run --config ignoreTestFiles=['**/*/test-no-meilisearch.js','test-no-api-key-required.js']",
     "icons": "npx @svgr/cli --title-prop --no-dimensions --replace-attr-values \"#39486E=currentColor,#959DB3=currentColor\" -d src/components/icons src/components/icons/svg"
   },
   "browserslist": {

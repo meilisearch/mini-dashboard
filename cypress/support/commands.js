@@ -1,40 +1,13 @@
 /* eslint-disable no-console */
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
 const { MeiliSearch } = require('meilisearch')
 
-const APIKEY = 'masterKey'
-const HOST = 'http://0.0.0.0:7700'
+const { apiKey, host } = Cypress.env()
 
-Cypress.Commands.add('deleteAllIndexed', async () => {
+Cypress.Commands.add('deleteAllIndexes', async () => {
   try {
     const client = new MeiliSearch({
-      host: HOST,
-      apiKey: APIKEY,
+      host,
+      apiKey,
     })
     const indexes = await client.getIndexes()
     indexes.forEach(async (index) => {
@@ -48,8 +21,8 @@ Cypress.Commands.add('deleteAllIndexed', async () => {
 Cypress.Commands.add('createIndex', async (uid) => {
   try {
     const client = new MeiliSearch({
-      host: HOST,
-      apiKey: APIKEY,
+      host,
+      apiKey,
     })
     await client.createIndex(uid)
   } catch (e) {
@@ -60,8 +33,8 @@ Cypress.Commands.add('createIndex', async (uid) => {
 Cypress.Commands.add('addDocuments', async (uid, documents) => {
   try {
     const client = new MeiliSearch({
-      host: HOST,
-      apiKey: APIKEY,
+      host,
+      apiKey,
     })
     const index = await client.getIndex(uid)
     await index.addDocuments(documents)

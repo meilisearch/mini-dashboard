@@ -1,17 +1,32 @@
+const WAITING_TIME = Cypress.env('waitingTime')
+const API_KEY = Cypress.env('apiKey')
+
 describe(`Test indexes`, () => {
   beforeEach(() => {
-    cy.deleteAllIndexed()
+    cy.deleteAllIndexes()
+    cy.wait(WAITING_TIME)
+    cy.visit('/')
+    cy.get('div[aria-label=ask-for-api-key]').within(() => {
+      cy.get('input[name="apiKey"]').clear().type(API_KEY)
+      cy.get('button').contains('Go').click()
+      cy.wait(WAITING_TIME)
+    })
   })
 
-  it('Should visit the dashboard', () => {
+  it('Should inform that the current index is empty', () => {
+    cy.createIndex('movies')
+    cy.wait(WAITING_TIME)
     cy.visit('/')
-    cy.url().should('match', new RegExp('/'))
+    cy.contains('There’s no document in the selected index')
   })
 
   it('Should display the first index based on localeCompare order on the uid', () => {
     cy.createIndex('novies')
+    cy.wait(WAITING_TIME)
     cy.createIndex('movies')
+    cy.wait(WAITING_TIME)
     cy.createIndex('oovies')
+    cy.wait(WAITING_TIME)
     cy.visit('/')
     cy.get('button[aria-haspopup=menu]').contains('movies 0')
     cy.get('button[aria-haspopup=menu]').click()
@@ -27,10 +42,12 @@ describe(`Test indexes`, () => {
 
   it('Should display an indexes documents', () => {
     cy.createIndex('movies')
+    cy.wait(WAITING_TIME)
     cy.fixture('movies.json')
       .as('movies')
       .then((movies) => {
         cy.addDocuments('movies', movies)
+        cy.wait(WAITING_TIME)
       })
     cy.visit('/')
     cy.get('button[aria-haspopup=menu]').contains('movies 33')
@@ -42,6 +59,7 @@ describe(`Test indexes`, () => {
   })
 
   after(() => {
-    cy.deleteAllIndexed()
+    cy.deleteAllIndexes()
+    cy.wait(WAITING_TIME)
   })
 })

@@ -121,6 +121,8 @@ jobs:
         run: yarn
       - name: Test
         uses: cypress-io/github-action@v2
+        env:
+          CYPRESS_host: http://meilisearch:7700
         with:
           start: yarn start:ci
           wait-on: 'http://0.0.0.0:3000'
