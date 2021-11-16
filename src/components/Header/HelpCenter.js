@@ -83,7 +83,12 @@ const HelpCenter = () => {
           </IconButton>
         )}
       </DialogDisclosure>
-      <Modal title="Help Center" dialog={dialog} style={{ paddingBottom: 56 }}>
+      <Modal
+        title="Help Center"
+        dialog={dialog}
+        ariaLabel="Help Center"
+        style={{ paddingBottom: 56 }}
+      >
         <Typography variant="typo11" color="gray.6">
           If you need help with anything, here are a few links that can be
           useful.
