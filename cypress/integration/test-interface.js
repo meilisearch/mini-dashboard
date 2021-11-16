@@ -1,5 +1,4 @@
 const WAITING_TIME = Cypress.env('waitingTime')
-const API_KEY = Cypress.env('apiKey')
 
 describe(`Test interface`, () => {
   before(() => {
@@ -22,12 +21,7 @@ describe(`Test interface`, () => {
 
   beforeEach(() => {
     cy.visit('/')
-    // Fill the API key
-    cy.get('div[aria-label=ask-for-api-key]').within(() => {
-      cy.get('input[name="apiKey"]').clear().type(API_KEY)
-      cy.get('button').contains('Go').click()
-      cy.wait(WAITING_TIME)
-    })
+    cy.wait(WAITING_TIME)
   })
 
   it('Should open the help center on click on the "?" button', () => {

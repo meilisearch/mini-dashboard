@@ -1,5 +1,9 @@
+const WAITING_TIME = Cypress.env('waitingTime')
+
 describe(`Test no API key required`, () => {
   before(() => {
+    cy.deleteAllIndexes()
+    cy.wait(WAITING_TIME)
     cy.visit('/')
   })
 
