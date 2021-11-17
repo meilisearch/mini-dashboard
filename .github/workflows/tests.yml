@@ -80,10 +80,12 @@ jobs:
         run: yarn
       - name: Test
         uses: cypress-io/github-action@v2
+        env:
+          CYPRESS_host: http://meilisearch:7700
         with:
           start: yarn start:ci
           wait-on: 'http://0.0.0.0:3000'
-          command: yarn cy:run:test-no-api-key
+          command: yarn cy:run
           config-file: cypress.json
       - uses: actions/upload-artifact@v1
         if: failure()
@@ -126,7 +128,7 @@ jobs:
         with:
           start: yarn start:ci
           wait-on: 'http://0.0.0.0:3000'
-          command: yarn cy:run
+          command: yarn cy:run:test-api-key-required
           config-file: cypress.json
       - uses: actions/upload-artifact@v1
         if: failure()

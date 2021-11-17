@@ -31,8 +31,8 @@
     "build-storybook": "build-storybook -s public",
     "cy:open": "cypress open",
     "cy:run:test-no-meilisearch": "cypress run --spec 'cypress/integration/test-no-meilisearch.js'",
-    "cy:run:test-no-api-key": "cypress run --spec 'cypress/integration/test-no-api-key-required.js'",
-    "cy:run": "cypress run --config ignoreTestFiles=['**/*/test-no-meilisearch.js','test-no-api-key-required.js']",
+    "cy:run:test-api-key-required": "cypress run --spec 'cypress/integration/test-api-key-required.js'",
+    "cy:run": "cypress run --config ignoreTestFiles=['**/*/test-no-meilisearch.js','test-api-key-required.js']",
     "icons": "npx @svgr/cli --title-prop --no-dimensions --replace-attr-values \"#39486E=currentColor,#959DB3=currentColor\" -d src/components/icons src/components/icons/svg"
   },
   "browserslist": {

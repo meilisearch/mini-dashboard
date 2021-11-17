@@ -1,5 +1,4 @@
 const WAITING_TIME = Cypress.env('waitingTime')
-const API_KEY = Cypress.env('apiKey')
 
 describe(`Test search`, () => {
   before(() => {
@@ -12,17 +11,11 @@ describe(`Test search`, () => {
       cy.addDocuments('movies', movies)
       cy.wait(WAITING_TIME)
     })
-    cy.visit('/')
-    // Fill the API key
-    cy.get('div[aria-label=ask-for-api-key]').within(() => {
-      cy.get('input[name="apiKey"]').clear().type(API_KEY)
-      cy.get('button').contains('Go').click()
-      cy.wait(WAITING_TIME)
-    })
   })
 
   beforeEach(() => {
-    cy.get('input[type="search"]').clear()
+    cy.visit('/')
+    cy.wait(WAITING_TIME)
   })
 
   it('Should update the results according to the user’s search', () => {

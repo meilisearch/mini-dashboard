@@ -1,5 +1,4 @@
 const WAITING_TIME = Cypress.env('waitingTime')
-const API_KEY = Cypress.env('apiKey')
 
 describe(`Test indexes`, () => {
   before(() => {
@@ -32,11 +31,7 @@ describe(`Test indexes`, () => {
 
   beforeEach(() => {
     cy.visit('/')
-    cy.get('div[aria-label=ask-for-api-key]').within(() => {
-      cy.get('input[name="apiKey"]').clear().type(API_KEY)
-      cy.get('button').contains('Go').click()
-      cy.wait(WAITING_TIME)
-    })
+    cy.wait(WAITING_TIME)
   })
 
   it('Should display the first index based on localeCompare order on the uid', () => {
