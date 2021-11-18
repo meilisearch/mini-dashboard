@@ -9,7 +9,7 @@ describe(`Test API key required`, () => {
   })
 
   it('Should visit the dashboard', () => {
-    cy.url().should('match', new RegExp('/'))
+    cy.url().should('match', /\//)
   })
 
   it('Should find a text in modal requesting API key', () => {

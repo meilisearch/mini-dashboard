@@ -8,7 +8,7 @@ describe(`Test no API key required`, () => {
   })
 
   it('Should visit the dashboard', () => {
-    cy.url().should('match', new RegExp('/'))
+    cy.url().should('match', /\//)
   })
 
   it('Should display the help cards view', () => {
