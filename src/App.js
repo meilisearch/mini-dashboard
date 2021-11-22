@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable no-console */
 import React from 'react'
 import styled from 'styled-components'
@@ -169,10 +170,12 @@ const App = () => {
     getIndexesList()
   }, [MSClient, currentIndex?.uid])
 
+  const clientContext = React.useMemo(
+    () => ({ ISClient, MSClient, setISClient, setMSClient }),
+    []
+  )
   return (
-    <ClientContext.Provider
-      value={{ ISClient, MSClient, setISClient, setMSClient }}
-    >
+    <ClientContext.Provider value={clientContext}>
       <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
         <Wrapper>
           <InstantSearch

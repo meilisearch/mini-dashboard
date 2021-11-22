@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
 import styled from 'styled-components'
 import ReactJson from 'react-json-view'
@@ -184,7 +183,7 @@ const FieldValue = ({ value, hit, objectKey }) => {
   )
 }
 
-function Hit({ hit, imageKey }) {
+const Hit = ({ hit, imageKey }) => {
   const [displayMore, setDisplayMore] = React.useState(false)
   const documentProperties = Object.entries(hit._highlightResult)
   return (

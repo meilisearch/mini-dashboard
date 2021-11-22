@@ -4,7 +4,7 @@ describe(`Test without MeiliSearch running`, () => {
   })
 
   it('Should visit the dashboard', () => {
-    cy.url().should('match', new RegExp('/'))
+    cy.url().should('match', /\//)
   })
 
   it('Should invite to start MeiliSearch', () => {
