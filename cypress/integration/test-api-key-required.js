@@ -4,8 +4,9 @@ const WRONG_APIKEY = Cypress.env('wrongApiKey')
 const WAITING_TIME = Cypress.env('waitingTime')
 
 describe(`Test API key required`, () => {
-  before(() => {
+  beforeEach(() => {
     cy.visit('/')
+    cy.wait(WAITING_TIME)
   })
 
   it('Should visit the dashboard', () => {
@@ -40,6 +41,15 @@ describe(`Test API key required`, () => {
   })
 
   it('Should display a modal with API key inside the API key modal button', () => {
+    // Fill the first API key request
+    cy.get('div[aria-label=ask-for-api-key]').within(() => {
+      cy.get('input[name="apiKey"]').clear().type(API_KEY)
+      cy.get('button').contains('Go').click()
+    })
+    cy.visit('/')
+    cy.wait(WAITING_TIME)
+
+    // Test the value of the Api Key Modal
     cy.get('span').contains('Api Key').parent().click()
     cy.get('div[aria-label=settings-api-key]').within(() => {
       cy.get('input[name="apiKey"]').should('have.value', API_KEY)
@@ -47,6 +57,16 @@ describe(`Test API key required`, () => {
   })
 
   it('Should fail on API Key change inside the API key modal button', () => {
+    // Fill the first API key request
+    cy.get('div[aria-label=ask-for-api-key]').within(() => {
+      cy.get('input[name="apiKey"]').clear().type(API_KEY)
+      cy.get('button').contains('Go').click()
+    })
+    cy.visit('/')
+    cy.wait(WAITING_TIME)
+
+    // Test the change of API key inside the API Key Modal
+    cy.get('span').contains('Api Key').parent().click()
     cy.get('div[aria-label=settings-api-key]').within(() => {
       cy.get('input[name="apiKey"]')
         .clear()
