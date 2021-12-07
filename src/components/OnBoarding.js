@@ -80,7 +80,7 @@ const OnBoarding = () => (
     <CardsContainer>
       <OnBoardingCard
         number="1"
-        title="Set your API key (facultative)"
+        title="Set your API key (optional)"
         href="https://docs.meilisearch.com/reference/features/authentication.html#master-key"
         icon={<KeyBig />}
       />
