@@ -209,7 +209,7 @@ const App = () => {
           </InstantSearch>
           <Modal
             title={`Enter your private API key${
-              requireApiKeyToWork ? '' : ' (facultative)'
+              requireApiKeyToWork ? '' : ' (optional)'
             }`}
             dialog={dialog}
             ariaLabel="ask-for-api-key"

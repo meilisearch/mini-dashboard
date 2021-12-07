@@ -43,7 +43,7 @@ const ApiKey = ({ requireApiKeyToWork }) => {
       </DialogDisclosure>
       <Modal
         title={`Enter your private API key${
-          requireApiKeyToWork ? '' : ' (facultative)'
+          requireApiKeyToWork ? '' : ' (optional)'
         }`}
         dialog={dialog}
         ariaLabel="settings-api-key"
