@@ -67,9 +67,7 @@ describe(`Test interface`, () => {
 
   it('Should display more fields if the user clicks on the "Show more" button', () => {
     cy.get('button[aria-haspopup=menu]').click()
-    cy.screenshot()
     cy.get('button[role=menuitem]').contains('movies').click()
-    cy.screenshot()
     cy.get('ul')
       .children()
       .first()
