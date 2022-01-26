@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/meilisearch/integration-guides/main/assets/logos/logo.svg" alt="meilisearch logo" width="200" height="200" />
+  <img src="https://raw.githubusercontent.com/meilisearch/integration-guides/main/assets/logos/logo.svg" alt="Meilisearch logo" width="200" height="200" />
 </p>
 
 <h1 align="center">Mini Dashboard</h1>
 
 <h4 align="center">
-  <a href="https://github.com/meilisearch/meilisearch">meilisearch</a> |
+  <a href="https://github.com/meilisearch/meilisearch">Meilisearch</a> |
   <a href="https://docs.meilisearch.com">Documentation</a> |
   <a href="https://slack.meilisearch.com">Slack</a> |
   <a href="https://www.meilisearch.com">Website</a> |
@@ -19,7 +19,7 @@
 </p>
 <br/>
 
-<p align="center" style="font-weight:bold;" >meilisearch's mini-dashboard</p>
+<p align="center" style="font-weight:bold;" >Meilisearch's mini-dashboard</p>
 <p align="center">PRs and bug issues are welcome, but please do not submit any new feature requests 🙏</p>
 
 <br/>
@@ -34,7 +34,7 @@
 - [Run](#run)
 - [Build](#build)
   - [Generate build](#generate-build)
-  - [Specify meilisearch's server URL](#specify-meilisearch-s-server-url)
+  - [Specify Meilisearch's server URL](#specify-meilisearchs-server-url)
   - [Run your build](#run-your-build)
 - [Storybook](#storybook)
 - [Contributing](#contributing)
@@ -83,12 +83,12 @@ or
 npm run build
 ```
 
-### Specify meilisearch's server URL
+### Specify Meilisearch's server URL
 
-⚠️ By default, the application will call meilisearch at the exact same address as it is running.
+⚠️ By default, the application will call Meilisearch at the exact same address as it is running.
 Example: if your app is running at `http://localhost:5000`, it will try to call `http://localhost:5000/indexes` to retrieve the list of your indexes.
 
-If you want to specify the URL where your meilisearch is running, use the `REACT_APP_MEILI_SERVER_ADDRESS` environment variable.
+If you want to specify the URL where your Meilisearch is running, use the `REACT_APP_MEILI_SERVER_ADDRESS` environment variable.
 
 Example:
 
