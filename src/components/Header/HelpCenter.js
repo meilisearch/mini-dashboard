@@ -109,7 +109,7 @@ const HelpCenter = () => {
           <HelpCard
             logo={<MeilisearchLogo style={{ width: 62 }} />}
             title="Documentation"
-            description="Learn how to tune your MeiliSearch"
+            description="Learn how to tune your Meilisearch"
             href="https://docs.meilisearch.com/"
           />
         </CardsContainer>

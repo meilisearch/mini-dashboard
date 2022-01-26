@@ -1,4 +1,4 @@
-describe(`Test without MeiliSearch running`, () => {
+describe(`Test without Meilisearch running`, () => {
   before(() => {
     cy.visit('/')
   })
@@ -7,7 +7,7 @@ describe(`Test without MeiliSearch running`, () => {
     cy.url().should('match', /\//)
   })
 
-  it('Should invite to start MeiliSearch', () => {
-    cy.contains('It seems like MeiliSearch isn’t running')
+  it('Should invite to start Meilisearch', () => {
+    cy.contains('It seems like Meilisearch isn’t running')
   })
 })
