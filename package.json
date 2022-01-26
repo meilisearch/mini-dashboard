@@ -27,6 +27,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "prettier-check": "prettier --check ./src",
+    "format:fix": "prettier --write ./src",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "cy:open": "cypress open",

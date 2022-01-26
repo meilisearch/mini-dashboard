@@ -98,7 +98,10 @@ const Header = ({
           justifyContent="center"
           alignItems="center"
         >
-          <MeilisearchLogo title="MeiliSearch" style={{ width: 64 }} />
+          <MeilisearchLogo
+            title="Meilisearch"
+            style={{ width: 75, height: 75 }}
+          />
           {version && (
             <Typography
               variant="typo10"

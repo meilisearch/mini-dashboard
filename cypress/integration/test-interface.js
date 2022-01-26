@@ -33,7 +33,7 @@ describe(`Test interface`, () => {
       )
       cy.contains('Explore our repositories on Github')
       cy.contains('Join our Slack Community and find the help you need')
-      cy.contains('Learn how to tune your MeiliSearch')
+      cy.contains('Learn how to tune your Meilisearch')
       cy.get('a')
         .first()
         .should('have.attr', 'href', 'https://github.com/meilisearch')

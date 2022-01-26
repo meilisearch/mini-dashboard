@@ -63,7 +63,7 @@ const NoMeiliSearchRunning = () => (
       mb={3}
       color="gray.0"
     >
-      It seems like MeiliSearch isn’t running, did you forget to start it?
+      It seems like Meilisearch isn’t running, did you forget to start it?
     </Typography>
     <Typography
       variant="typo8"

@@ -21,5 +21,5 @@ What happened.
 If applicable, add screenshots or logs to help explain your problem.
 
 **Environment (please complete the following information):**
-- MeiliSearch version: [e.g. v.0.24.0]
+- Meilisearch version: [e.g. v.0.24.0]
 - Browser: [e.g. Chrome version 90.0]
