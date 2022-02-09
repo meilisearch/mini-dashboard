@@ -1,9 +1,9 @@
 import * as React from 'react'
-// {title ? <title id={titleId}>{title}</title> : null}
+
 function SvgMeilisearchLogo({ title, titleId, ...props }) {
   return (
     <svg
-      viewBox="0 0 127 50"
+      viewBox="0 0 127 74"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-labelledby={titleId}
@@ -11,50 +11,50 @@ function SvgMeilisearchLogo({ title, titleId, ...props }) {
     >
       {title ? <title id={titleId}>{title}</title> : null}
       <path
-        d="M0.824951 73.993L24.0688 14.5224C27.3443 6.14182 35.4223 0.626003 44.4202 0.626003H58.4336L35.1898 60.0966C31.9143 68.4772 23.8363 73.993 14.8383 73.993H0.824951Z"
-        fill="url(#paint0_linear_0_6)"
+        d="M.825 73.993l23.244-59.47A21.85 21.85 0 0144.42.625h14.014L35.19 60.096a21.85 21.85 0 01-20.352 13.897H.825z"
+        fill="url(#meilisearch_logo_svg__paint0_linear_0_6)"
       />
       <path
-        d="M34.9246 73.9932L58.1684 14.5226C61.4439 6.14199 69.5219 0.626178 78.5199 0.626178H92.5332L69.2894 60.0968C66.0139 68.4774 57.9359 73.9932 48.9379 73.9932H34.9246Z"
-        fill="url(#paint1_linear_0_6)"
+        d="M34.925 73.993l23.243-59.47A21.85 21.85 0 0178.52.626h14.013L69.29 60.096a21.85 21.85 0 01-20.351 13.897H34.925z"
+        fill="url(#meilisearch_logo_svg__paint1_linear_0_6)"
       />
       <path
-        d="M69.0262 73.9932L92.27 14.5226C95.5455 6.14199 103.623 0.626178 112.621 0.626178H126.635L103.391 60.0968C100.115 68.4774 92.0375 73.9932 83.0395 73.9932H69.0262Z"
-        fill="url(#paint2_linear_0_6)"
+        d="M69.026 73.993l23.244-59.47A21.85 21.85 0 01112.621.626h14.014l-23.244 59.47a21.851 21.851 0 01-20.352 13.897H69.026z"
+        fill="url(#meilisearch_logo_svg__paint2_linear_0_6)"
       />
       <defs>
         <linearGradient
-          id="paint0_linear_0_6"
-          x1="126.635"
-          y1="-4.97796"
-          x2="0.824952"
-          y2="66.0978"
+          id="meilisearch_logo_svg__paint0_linear_0_6"
+          x1={126.635}
+          y1={-4.978}
+          x2={0.825}
+          y2={66.098}
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FF5CAA" />
-          <stop offset="1" stop-color="#FF4E62" />
+          <stop stopColor="#FF5CAA" />
+          <stop offset={1} stopColor="#FF4E62" />
         </linearGradient>
         <linearGradient
-          id="paint1_linear_0_6"
-          x1="126.635"
-          y1="-4.97796"
-          x2="0.824952"
-          y2="66.0978"
+          id="meilisearch_logo_svg__paint1_linear_0_6"
+          x1={126.635}
+          y1={-4.978}
+          x2={0.825}
+          y2={66.098}
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FF5CAA" />
-          <stop offset="1" stop-color="#FF4E62" />
+          <stop stopColor="#FF5CAA" />
+          <stop offset={1} stopColor="#FF4E62" />
         </linearGradient>
         <linearGradient
-          id="paint2_linear_0_6"
-          x1="126.635"
-          y1="-4.97796"
-          x2="0.824952"
-          y2="66.0978"
+          id="meilisearch_logo_svg__paint2_linear_0_6"
+          x1={126.635}
+          y1={-4.978}
+          x2={0.825}
+          y2={66.098}
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FF5CAA" />
-          <stop offset="1" stop-color="#FF4E62" />
+          <stop stopColor="#FF5CAA" />
+          <stop offset={1} stopColor="#FF4E62" />
         </linearGradient>
       </defs>
     </svg>
