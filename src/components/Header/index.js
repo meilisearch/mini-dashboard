@@ -98,9 +98,15 @@ const Header = ({
           justifyContent="center"
           alignItems="center"
         >
+          {/* Trick to make the logo look centered */}
           <MeilisearchLogo
             title="Meilisearch"
-            style={{ width: 75, height: 75 }}
+            style={{
+              width: 75,
+              paddingTop: 11,
+              paddingBottom: 11,
+              marginLeft: 13,
+            }}
           />
           {version && (
             <Typography
