@@ -22,7 +22,7 @@ describe(`Test no API key required`, () => {
   it('Should display a message telling that no api key is required', () => {
     cy.get('span').contains('Api Key').parent().click()
     cy.get('div[aria-label=settings-api-key]').within(() => {
-      cy.contains('Enter your Default Admin API key (optional)')
+      cy.contains('Enter your admin API key (optional)')
       cy.contains(
         'You haven’t set an API key yet, if you want to set one you can read the documentation'
       )

@@ -64,8 +64,8 @@ const ApiKeyModalContent = ({ closeModal }) => {
       </Box>
       <Box position="relative">
         <Typography variant="typo11" my={3} color="gray.6" mt={2}>
-          At least one API key that allows <strong>indexes.get</strong>,{' '}
-          <strong>search</strong> and <strong>version</strong>{' '}
+          At least one API key that gives permission to <strong>get the indexes</strong>,{' '}
+          <strong>search</strong> and <strong> get the version of Meilisearch</strong>{' '}
           <Link
             href="https://docs.meilisearch.com/reference/api/keys.html#create-a-key"
             target="_blank"
