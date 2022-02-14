@@ -42,7 +42,7 @@ const ApiKey = ({ requireApiKeyToWork }) => {
         )}
       </DialogDisclosure>
       <Modal
-        title={`Enter your private API key${
+        title={`Enter your Default Admin API key${
           requireApiKeyToWork ? '' : ' (optional)'
         }`}
         dialog={dialog}

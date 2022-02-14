@@ -7,6 +7,7 @@ import { baseUrl } from 'App'
 import Box from 'components/Box'
 import Button from 'components/Button'
 import Input from 'components/Input'
+import Link from 'components/Link'
 import Typography from 'components/Typography'
 
 import ApiKeyContext from 'context/ApiKeyContext'
@@ -63,8 +64,15 @@ const ApiKeyModalContent = ({ closeModal }) => {
       </Box>
       <Box position="relative">
         <Typography variant="typo11" my={3} color="gray.6" mt={2}>
-          At least a private API key is required for the dashboard to access the
-          indexes list.
+          At least one API key that allows <strong>indexes.get</strong>,{' '}
+          <strong>search</strong> and <strong>version</strong>{' '}
+          <Link
+            href="https://docs.meilisearch.com/reference/api/keys.html#create-a-key"
+            target="_blank"
+          >
+            actions
+          </Link>{' '}
+          is required for the dashboard to access the indexes list.
         </Typography>
         {error && (
           <ErrorMessage variant="typo11" color="main.default">
