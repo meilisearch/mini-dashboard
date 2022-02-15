@@ -64,15 +64,14 @@ const ApiKeyModalContent = ({ closeModal }) => {
       </Box>
       <Box position="relative">
         <Typography variant="typo11" my={3} color="gray.6" mt={2}>
-          At least one API key that gives permission to <strong>get the indexes</strong>,{' '}
-          <strong>search</strong> and <strong> get the version of Meilisearch</strong>{' '}
+          An API key that has at least{' '}
           <Link
             href="https://docs.meilisearch.com/reference/api/keys.html#create-a-key"
             target="_blank"
           >
-            actions
+            permission
           </Link>{' '}
-          is required for the dashboard to access the indexes list.
+          to get the indexes, search and get the version of Meilisearch.
         </Typography>
         {error && (
           <ErrorMessage variant="typo11" color="main.default">
