@@ -14,7 +14,7 @@ describe(`Test API key required`, () => {
   })
 
   it('Should find a text in modal requesting API key', () => {
-    cy.contains('Enter your private API key')
+    cy.contains('Enter your admin API key')
   })
 
   it('Should fail on wrong API key', () => {
