@@ -36,10 +36,17 @@ const StyledLink = styled(Link)`
   }
 `
 
+const Logo = styled.div`
+  height: 62px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const HelpCard = ({ description, title, logo, href, ...props }) => (
   <StyledLink href={href} style={{ textDecoration: 'none' }} {...props}>
     <StyledCard forwardedAs="div">
-      {logo}
+      <Logo>{logo}</Logo>
       <Typography variant="typo4" color="gray.0" my={1}>
         {title}
       </Typography>
