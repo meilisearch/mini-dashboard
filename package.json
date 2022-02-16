@@ -1,6 +1,6 @@
 {
   "name": "mini-dashboard",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "private": true,
   "dependencies": {
     "@meilisearch/instant-meilisearch": "^0.6.0-beta.0",
