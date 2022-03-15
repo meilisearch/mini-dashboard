@@ -1779,12 +1779,12 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.22.tgz#219dfd89ae5b97a8801f015323ffa4b62f45718b"
   integrity sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==
 
-"@meilisearch/instant-meilisearch@^0.6.0-beta.0":
-  version "0.6.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@meilisearch/instant-meilisearch/-/instant-meilisearch-0.6.0-beta.0.tgz#2e5fe17cb23d3218e186da29cb48610aa668b0e3"
-  integrity sha512-Wt8R0Ei8zXK2cLVqs8nHJ/FyUK+y85hVqony/c/z3IZK1MUpjk6AysEU8NNFoN0ZezW5vd3AzH4uZ/YadQGhDw==
+"@meilisearch/instant-meilisearch@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@meilisearch/instant-meilisearch/-/instant-meilisearch-0.6.1.tgz#b657b611f8eb79a030ded16cd977dfe7df899b30"
+  integrity sha512-7BHvtB/IMZUvvWozfGCeS8nNPumMyYQ9OfJO09O2SqSxZfeuGqvxWJagMW5G4vo6xW2e9u7WzbwpV3YRfRc0lg==
   dependencies:
-    meilisearch "0.24.0-beta.1"
+    meilisearch "0.25.0"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -5464,6 +5464,13 @@ cross-fetch@^3.0.4, cross-fetch@^3.1.4:
   integrity sha512-1eAtFWdIubi6T4XPy6ei9iUFoKpUkIF971QLN8lIvvvwueI65+Nw5haMNKUwfJxabqlIIDODJKGrQ66gxC0PbQ==
   dependencies:
     node-fetch "2.6.1"
+
+cross-fetch@^3.1.5:
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.5.tgz#e1389f44d9e7ba767907f7af8454787952ab534f"
+  integrity sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==
+  dependencies:
+    node-fetch "2.6.7"
 
 cross-spawn@7.0.3, cross-spawn@^7.0.0, cross-spawn@^7.0.2:
   version "7.0.3"
@@ -10076,7 +10083,14 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
-meilisearch@0.24.0-beta.1, meilisearch@^0.24.0-beta.1:
+meilisearch@0.25.0:
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.25.0.tgz#8e980fbdd36b9fe6ed606205e262418f21e64d84"
+  integrity sha512-TSIJTh5lva7WHBaoG3arNYQXuIAQkcD3BY09h2nHhjHS/wzxWKJM45x5bEC67Grw8zXihVqqmWty4a4ps4S+tg==
+  dependencies:
+    cross-fetch "^3.1.5"
+
+meilisearch@^0.24.0-beta.1:
   version "0.24.0-beta.1"
   resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.24.0-beta.1.tgz#3152f9e58717ef8a9784666c80f9881eba0454b2"
   integrity sha512-4Kl0CZOz1nBQ0O6H/W/5BtJMikKO4EhnpVIdlR9p1shTfVvwZh87bt4BPzuwyyQTsVqn7sPLV/WSnciZuDDSzw==
@@ -10444,6 +10458,13 @@ node-fetch@2.6.1, node-fetch@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
+
+node-fetch@2.6.7:
+  version "2.6.7"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
+  integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
+  dependencies:
+    whatwg-url "^5.0.0"
 
 node-forge@^0.10.0:
   version "0.10.0"
@@ -14315,6 +14336,11 @@ tr46@^2.1.0:
   dependencies:
     punycode "^2.1.1"
 
+tr46@~0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
+  integrity sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=
+
 trim-trailing-lines@^1.0.0:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/trim-trailing-lines/-/trim-trailing-lines-1.1.4.tgz#bd4abbec7cc880462f10b2c8b5ce1d8d1ec7c2c0"
@@ -14927,6 +14953,11 @@ web-namespaces@^1.0.0:
   resolved "https://registry.yarnpkg.com/web-namespaces/-/web-namespaces-1.1.4.tgz#bc98a3de60dadd7faefc403d1076d529f5e030ec"
   integrity sha512-wYxSGajtmoP4WxfejAPIr4l0fVh+jeMXZb08wNc0tMg6xsfZXj3cECqIK0G7ZAqUq0PP8WlMDtaOGVBTAWztNw==
 
+webidl-conversions@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-3.0.1.tgz#24534275e2a7bc6be7bc86611cc16ae0a5654871"
+  integrity sha1-JFNCdeKnvGvnvIZhHMFq4KVlSHE=
+
 webidl-conversions@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-5.0.0.tgz#ae59c8a00b121543a2acc65c0434f57b0fc11aff"
@@ -15123,6 +15154,14 @@ whatwg-mimetype@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/whatwg-mimetype/-/whatwg-mimetype-2.3.0.tgz#3d4b1e0312d2079879f826aff18dbeeca5960fbf"
   integrity sha512-M4yMwr6mAnQz76TbJm914+gPpB/nCwvZbJU28cUD6dR004SAxDLOOSUaB1JDRqLtaOV/vi0IC5lEAGFgrjGv/g==
+
+whatwg-url@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/whatwg-url/-/whatwg-url-5.0.0.tgz#966454e8765462e37644d3626f6742ce8b70965d"
+  integrity sha1-lmRU6HZUYuN2RNNib2dCzotwll0=
+  dependencies:
+    tr46 "~0.0.3"
+    webidl-conversions "^3.0.0"
 
 whatwg-url@^8.0.0, whatwg-url@^8.5.0:
   version "8.7.0"
