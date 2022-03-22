@@ -36,18 +36,9 @@
     "cy:run": "cypress run --config ignoreTestFiles=['**/*/test-no-meilisearch.js','test-api-key-required.js']",
     "icons": "npx @svgr/cli --title-prop --no-dimensions --replace-attr-values \"#39486E=currentColor,#959DB3=currentColor\" -d src/components/icons src/components/icons/svg"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "browserslist": [
+    "defaults"
+  ],
   "devDependencies": {
     "@storybook/addon-actions": "^6.2.8",
     "@storybook/addon-essentials": "^6.3.1",
