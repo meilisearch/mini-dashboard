@@ -95,7 +95,6 @@ const App = () => {
   const [ISClient, setISClient] = React.useState(
     instantMeiliSearch(baseUrl, apiKey, {
       primaryKey: 'id',
-      paginationTotalHits: 50,
     })
   )
   const [MSClient, setMSClient] = React.useState(
