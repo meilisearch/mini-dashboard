@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
-const { MeiliSearch } = require('meilisearch')
+const { MeiliSearch: Meilisearch } = require('meilisearch')
 
 const { apiKey, host } = Cypress.env()
 
 Cypress.Commands.add('deleteAllIndexes', async () => {
   try {
-    const client = new MeiliSearch({
+    const client = new Meilisearch({
       host,
       apiKey,
     })
@@ -21,7 +21,7 @@ Cypress.Commands.add('deleteAllIndexes', async () => {
 
 Cypress.Commands.add('createIndex', async (uid) => {
   try {
-    const client = new MeiliSearch({
+    const client = new Meilisearch({
       host,
       apiKey,
     })
@@ -34,7 +34,7 @@ Cypress.Commands.add('createIndex', async (uid) => {
 
 Cypress.Commands.add('addDocuments', async (uid, documents) => {
   try {
-    const client = new MeiliSearch({
+    const client = new Meilisearch({
       host,
       apiKey,
     })
