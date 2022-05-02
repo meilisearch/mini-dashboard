@@ -3,7 +3,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { InstantSearch } from 'react-instantsearch-dom'
-import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
+import { instantMeiliSearch as instantMeilisearch } from '@meilisearch/instant-meilisearch'
 import { useDialogState } from 'reakit/Dialog'
 
 import useLocalStorage from 'hooks/useLocalStorage'
@@ -18,7 +18,7 @@ import Results from 'components/Results'
 import ApiKeyContext from 'context/ApiKeyContext'
 import ClientContext from 'context/ClientContext'
 import Typography from 'components/Typography'
-import { MeiliSearch } from 'meilisearch'
+import { MeiliSearch as Meilisearch } from 'meilisearch'
 
 export const baseUrl =
   process.env.REACT_APP_MEILI_SERVER_ADDRESS ||
@@ -55,7 +55,7 @@ const Content = ({ currentIndex }) => {
   )
 }
 
-const NoMeiliSearchRunning = () => (
+const NoMeilisearchRunning = () => (
   <EmptyView buttonLink="https://docs.meilisearch.com/learn/getting_started/quick_start.html">
     <Typography
       variant="typo8"
@@ -89,16 +89,16 @@ const App = () => {
   const [apiKey, setApiKey] = useLocalStorage('apiKey')
   // eslint-disable-next-line no-unused-vars
   const [indexes, setIndexes] = React.useState()
-  const [isMeiliSearchRunning, setIsMeiliSearchRunning] = React.useState(true)
+  const [isMeilisearchRunning, setIsMeilisearchRunning] = React.useState(true)
   const [requireApiKeyToWork, setRequireApiKeyToWork] = React.useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
   const [ISClient, setISClient] = React.useState(
-    instantMeiliSearch(baseUrl, apiKey, {
+    instantMeilisearch(baseUrl, apiKey, {
       primaryKey: 'id',
     })
   )
   const [MSClient, setMSClient] = React.useState(
-    new MeiliSearch({ host: baseUrl, apiKey })
+    new Meilisearch({ host: baseUrl, apiKey })
   )
   const dialog = useDialogState({ animated: true, visible: false })
 
@@ -135,14 +135,14 @@ const App = () => {
     // Check if an API key is required / a masterKey was set
     const fetchWithoutApiKey = async () => {
       try {
-        const tempClient = new MeiliSearch({ host: baseUrl })
+        const tempClient = new Meilisearch({ host: baseUrl })
         await tempClient.getIndexes()
       } catch (err) {
         console.log(err)
         if (err.code === 'missing_authorization_header') {
           setRequireApiKeyToWork(true)
         } else {
-          setIsMeiliSearchRunning(await MSClient.isHealthy())
+          setIsMeilisearchRunning(await MSClient.isHealthy())
         }
       }
     }
@@ -198,10 +198,10 @@ const App = () => {
                 display="flex"
                 flexDirection="column"
               >
-                {isMeiliSearchRunning ? (
+                {isMeilisearchRunning ? (
                   <Content currentIndex={currentIndex} />
                 ) : (
-                  <NoMeiliSearchRunning />
+                  <NoMeilisearchRunning />
                 )}
               </Box>
             </Body>
