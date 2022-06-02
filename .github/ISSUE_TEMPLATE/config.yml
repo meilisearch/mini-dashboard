@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Meilisearch Project Issues
+    url: https://github.com/meilisearch/meilisearch/issues
+    about: Please report issues regarding Meilisearch's code base here
