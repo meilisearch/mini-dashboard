@@ -23,7 +23,7 @@ const SelectIndexesButton = styled(MenuButton)`
   background-color: white;
   display: flex;
   align-items: center;
-  min-width: 218px;
+  min-width: 260px;
   border-color: ${(p) => p.theme.colors.gray[10]};
   border-width: 1px;
   border-style: solid;
@@ -114,7 +114,7 @@ const TextToDisplay = ({ option, currentOption }) => (
     </IndexId>{' '}
     {option?.stats && (
       <Typography variant="typo6" color="gray.7" mt="1px">
-        {option.stats.numberOfDocuments}
+        {option.stats.numberOfDocuments.toLocaleString()}
       </Typography>
     )}
   </>
