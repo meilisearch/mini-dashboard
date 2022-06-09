@@ -26,20 +26,21 @@ const Stat = ({ icon, legend, value, ...props }) => (
   </div>
 )
 
-// Add 10 px between item
 const StatsContainer = styled.div`
   display: flex;
 `
 
 const Stats = ({ nbHits, processingTimeMS, nbResults, ...props }) => {
-  const hits = `${nbHits !== nbResults ? '~' : ''} ${nbHits.toLocaleString()}`
+  const localeNbHits = `${
+    nbHits !== nbResults ? '~' : ''
+  } ${nbHits.toLocaleString()}`
 
   return (
     <StatsContainer {...props}>
       <Stat
         icon={<SearchSmall style={{ height: 12 }} />}
         legend="Hits"
-        value={hits}
+        value={localeNbHits}
       />
       <Stat
         icon={<Speed style={{ height: 13 }} />}
