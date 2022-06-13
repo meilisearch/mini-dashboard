@@ -15,7 +15,7 @@ const Legend = styled(Typography)`
 `
 
 const Stat = ({ icon, legend, value, ...props }) => (
-  <div style={{ minWidth: 136 }} {...props}>
+  <div style={{ minWidth: 170 }} {...props}>
     <Legend variant="typo4" color="gray.7">
       {icon}
       <span>{legend}</span>
@@ -30,20 +30,26 @@ const StatsContainer = styled.div`
   display: flex;
 `
 
-const Stats = ({ nbHits, processingTimeMS, nbResults, ...props }) => (
-  <StatsContainer {...props}>
-    <Stat
-      icon={<SearchSmall style={{ height: 12 }} />}
-      legend="Hits"
-      value={`${nbHits !== nbResults ? '~' : ''} ${nbHits}`}
-    />
-    <Stat
-      icon={<Speed style={{ height: 13 }} />}
-      legend="Time spent"
-      value={`${processingTimeMS} ms`}
-    />
-  </StatsContainer>
-)
+const Stats = ({ nbHits, processingTimeMS, nbResults, ...props }) => {
+  const localeNbHits = `${
+    nbHits !== nbResults ? '~' : ''
+  } ${nbHits.toLocaleString()}`
+
+  return (
+    <StatsContainer {...props}>
+      <Stat
+        icon={<SearchSmall style={{ height: 12 }} />}
+        legend="Hits"
+        value={localeNbHits}
+      />
+      <Stat
+        icon={<Speed style={{ height: 13 }} />}
+        legend="Time spent"
+        value={`${processingTimeMS} ms`}
+      />
+    </StatsContainer>
+  )
+}
 
 Stats.propTypes = {
   /**
