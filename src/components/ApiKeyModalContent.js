@@ -13,7 +13,7 @@ import Typography from 'components/Typography'
 import ApiKeyContext from 'context/ApiKeyContext'
 import ClientContext from 'context/ClientContext'
 
-import clientAgents from '../utils/client-agents'
+import clientAgents from '../version/client-agents'
 
 const ErrorMessage = styled(Typography)`
   position: absolute;
