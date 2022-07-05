@@ -114,10 +114,16 @@ _[Read more about this](https://github.com/meilisearch/integration-guides/blob/m
 
 ⚠️ Before doing anything, make sure you got through the guide about [Releasing an Integration](https://github.com/meilisearch/integration-guides/blob/main/guides/integration-release.md).
 
-Make a PR modifying the file [`package.json`](/package.json) with the right version.
+Make a PR modifying the following files with the right version:
 
+[`package.json`](/package.json):
 ```javascript
 "version": "X.X.X",
+```
+
+[`src/version/version.js`](src/version/version.js)
+```javascript
+export default 'X.X.X'
 ```
 
 Once the changes are merged on `main`, you can publish the current draft release via the [GitHub interface](https://github.com/meilisearch/mini-dashboard/releases).
