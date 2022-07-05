@@ -9,10 +9,10 @@ Cypress.Commands.add('deleteAllIndexes', async () => {
       host,
       apiKey,
     })
-    const indexes = await client.getIndexes()
+    const { results: indexes } = await client.getIndexes()
     indexes.forEach(async (index) => {
       const task = await client.deleteIndex(index.uid)
-      await client.waitForTask(task.uid)
+      await client.waitForTask(task.taskUid)
     })
   } catch (e) {
     console.log({ e })
@@ -26,7 +26,7 @@ Cypress.Commands.add('createIndex', async (uid) => {
       apiKey,
     })
     const task = await client.createIndex(uid)
-    await client.waitForTask(task.uid)
+    await client.waitForTask(task.taskUid)
   } catch (e) {
     console.log({ e })
   }
@@ -40,7 +40,7 @@ Cypress.Commands.add('addDocuments', async (uid, documents) => {
     })
     const index = await client.getIndex(uid)
     const task = await index.addDocuments(documents)
-    await client.waitForTask(task.uid)
+    await client.waitForTask(task.taskUid)
   } catch (e) {
     console.log({ e })
   }
