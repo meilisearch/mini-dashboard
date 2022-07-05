@@ -20,7 +20,7 @@ import ClientContext from 'context/ClientContext'
 import Typography from 'components/Typography'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
 
-import clientAgents from './utils/client-agents'
+import clientAgents from './version/client-agents'
 
 export const baseUrl =
   process.env.REACT_APP_MEILI_SERVER_ADDRESS ||
