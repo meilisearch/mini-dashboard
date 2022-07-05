@@ -21,6 +21,9 @@
     "styled-system": "^5.1.5"
   },
   "scripts": {
+    "version-script": "node version-script.js",
+    "prestart": "yarn version-script",
+    "prebuild": "yarn version-script",
     "start": "react-scripts start",
     "start:ci": "REACT_APP_MEILI_SERVER_ADDRESS=http://meilisearch:7700 react-scripts start",
     "build": "react-scripts build",
