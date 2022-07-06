@@ -11,4 +11,4 @@ const { version } = require('./package.json')
 // Creates content of the version.js file
 const versionFile = `export default '${version}'\n`
 // Write the content inside ./src/version.js
-fs.writeFileSync('./src/utils/version.js', versionFile)
+fs.writeFileSync('./src/version/version.js', versionFile)
