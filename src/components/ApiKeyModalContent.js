@@ -13,6 +13,8 @@ import Typography from 'components/Typography'
 import ApiKeyContext from 'context/ApiKeyContext'
 import ClientContext from 'context/ClientContext'
 
+import clientAgents from '../version/client-agents'
+
 const ErrorMessage = styled(Typography)`
   position: absolute;
   left: 0;
@@ -26,11 +28,15 @@ const ApiKeyModalContent = ({ closeModal }) => {
   const [error, setError] = React.useState()
 
   const updateClient = async () => {
-    const clientToTry = new Meilisearch({ host: baseUrl, apiKey: value })
+    const clientToTry = new Meilisearch({
+      host: baseUrl,
+      apiKey: value,
+      clientAgents,
+    })
     try {
       await clientToTry.getIndexes()
       setApiKey(value)
-      setISClient(instantMeilisearch(baseUrl, value))
+      setISClient(instantMeilisearch(baseUrl, value, { clientAgents }))
       setMSClient(clientToTry)
       closeModal()
       setError()

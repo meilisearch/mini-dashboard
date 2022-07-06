@@ -63,13 +63,8 @@ const Hr = styled.hr`
 
 const isObject = (value) => {
   try {
-    const parsedValue = JSON.parse(value)
-    return (
-      typeof parsedValue === 'object' &&
-      !Array.isArray(parsedValue) &&
-      parsedValue !== null
-    )
-  } catch {
+    return typeof value === 'object' && !Array.isArray(value) && value !== null
+  } catch (e) {
     return false
   }
 }
@@ -152,7 +147,7 @@ const FieldValue = ({ value, hit, objectKey }) => {
       />
     )
   }
-  if (isObject(value?.value)) {
+  if (isObject(value) && !value.value) {
     return (
       <JsonRepresentor
         value={hit[objectKey]}

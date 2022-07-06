@@ -20,6 +20,8 @@ import ClientContext from 'context/ClientContext'
 import Typography from 'components/Typography'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
 
+import clientAgents from './version/client-agents'
+
 export const baseUrl =
   process.env.REACT_APP_MEILI_SERVER_ADDRESS ||
   (process.env.NODE_ENV === 'development'
@@ -95,10 +97,15 @@ const App = () => {
   const [ISClient, setISClient] = React.useState(
     instantMeilisearch(baseUrl, apiKey, {
       primaryKey: 'id',
+      clientAgents,
     })
   )
   const [MSClient, setMSClient] = React.useState(
-    new Meilisearch({ host: baseUrl, apiKey })
+    new Meilisearch({
+      host: baseUrl,
+      apiKey,
+      clientAgents,
+    })
   )
   const dialog = useDialogState({ animated: true, visible: false })
 
@@ -135,7 +142,7 @@ const App = () => {
     // Check if an API key is required / a masterKey was set
     const fetchWithoutApiKey = async () => {
       try {
-        const tempClient = new Meilisearch({ host: baseUrl })
+        const tempClient = new Meilisearch({ host: baseUrl, clientAgents })
         await tempClient.getIndexes()
       } catch (err) {
         console.log(err)
