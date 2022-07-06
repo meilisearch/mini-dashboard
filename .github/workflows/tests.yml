@@ -24,7 +24,9 @@ jobs:
         run: yarn lint && yarn prettier-check
   cypress_no_meilisearch:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
     steps:
       - uses: actions/checkout@v3
       - name: Setup node and cache
@@ -54,7 +56,9 @@ jobs:
           path: cypress/videos
   cypress_meilisearch-no-api-key:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
     services:
       meilisearch:
         image: getmeili/meilisearch:v0.27.0rc1
@@ -93,7 +97,9 @@ jobs:
           path: cypress/videos
   cypress_meilisearch-api-key:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
     services:
       meilisearch:
         image: getmeili/meilisearch:v0.27.0rc1
