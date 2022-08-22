@@ -43,7 +43,7 @@ jobs:
           start: yarn start:ci
           wait-on: 'http://0.0.0.0:3000'
           command: yarn cy:run:test-no-meilisearch
-          config-file: cypress.json
+          config-file: cypress.config.js
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
@@ -84,7 +84,7 @@ jobs:
           start: yarn start:ci
           wait-on: 'http://0.0.0.0:3000'
           command: yarn cy:run
-          config-file: cypress.json
+          config-file: cypress.config.js
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
@@ -126,7 +126,7 @@ jobs:
           start: yarn start:ci
           wait-on: 'http://0.0.0.0:3000'
           command: yarn cy:run:test-api-key-required
-          config-file: cypress.json
+          config-file: cypress.config.js
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
