@@ -34,9 +34,9 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "cy:open": "cypress open",
-    "cy:run:test-no-meilisearch": "cypress run --spec 'cypress/integration/test-no-meilisearch.js'",
-    "cy:run:test-api-key-required": "cypress run --spec 'cypress/integration/test-api-key-required.js'",
-    "cy:run": "cypress run --config ignoreTestFiles=['**/*/test-no-meilisearch.js','test-api-key-required.js']",
+    "cy:run:test-no-meilisearch": "cypress run --spec '**/*/test-no-meilisearch.cy.js'",
+    "cy:run:test-api-key-required": "cypress run --spec '**/*/test-api-key-required.cy.js'",
+    "cy:run": "cypress run --config excludeSpecPattern=['**/*/test-no-meilisearch.cy.js','**/*/test-api-key-required.cy.js']",
     "icons": "npx @svgr/cli --title-prop --no-dimensions --replace-attr-values \"#39486E=currentColor,#959DB3=currentColor\" -d src/components/icons src/components/icons/svg"
   },
   "browserslist": [
@@ -52,7 +52,7 @@
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.10",
     "@svgr/cli": "^6.3.1",
-    "cypress": "^9.1.0",
+    "cypress": "^10.6.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
