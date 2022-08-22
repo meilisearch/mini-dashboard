@@ -36,7 +36,7 @@
     "cy:open": "cypress open",
     "cy:run:test-no-meilisearch": "cypress run --spec 'cypress/e2e/test-no-meilisearch.cy.js'",
     "cy:run:test-api-key-required": "cypress run --spec 'cypress/e2e/test-api-key-required.cy.js'",
-    "cy:run": "cypress run --config ignoreTestFiles=['**/*/test-no-meilisearch.cy.js','test-api-key-required.cy.js']",
+    "cy:run": "cypress run --config excludeSpecPattern=['**/*/test-no-meilisearch.cy.js','test-api-key-required.cy.js']",
     "icons": "npx @svgr/cli --title-prop --no-dimensions --replace-attr-values \"#39486E=currentColor,#959DB3=currentColor\" -d src/components/icons src/components/icons/svg"
   },
   "browserslist": [
