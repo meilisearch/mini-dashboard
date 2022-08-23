@@ -18,18 +18,37 @@ const HitsList = styled.ul`
   }
 `
 
-const findImageKey = (array) => {
-  const imageKey = array.find(
-    (elem) =>
-      typeof elem[1] === 'string' &&
-      elem[1].match(/^(https|http):\/\/.*(jpe?g|png|gif|webp)(\?.*)?$/g)
+const testImage = async (elem) => {
+  // Test the standard way with regex and image extensions
+  if (
+    typeof elem === 'string' &&
+    elem.match(/^(https|http):\/\/.*(jpe?g|png|gif|webp)(\?.*)?$/g)
   )
-  return imageKey?.[0]
+    return true
+  // Test by trying to load the image
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.src = elem
+    img.onload = () => resolve(true)
+    img.onerror = () => resolve(false)
+  })
+}
+
+const findImageKey = async (array) => {
+  const promises = array.map(async (elem) => testImage(elem[1]))
+  const results = await Promise.all(promises)
+  const index = results.findIndex((result) => result)
+  const imageField = array[index]
+  return imageField?.[0]
 }
 
 const InfiniteHits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
+  const [imageKey, setImageKey] = React.useState(false)
+
+  React.useEffect(async () => {
+    setImageKey(hits[0] ? await findImageKey(Object.entries(hits[0])) : null)
+  }, [hits[0]])
   // ({ hits, hasMore, refineNext, mode }) => {
-  const imageKey = hits[0] ? findImageKey(Object.entries(hits[0])) : null
   return (
     <div>
       {/* {mode === 'fancy' ? ( */}
