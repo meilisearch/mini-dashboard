@@ -34,12 +34,6 @@ First of all, thank you for contributing to Meilisearch! The goal of this docume
 yarn
 ```
 
-or
-
-```bash
-npm install
-```
-
 ### Tests and Linter <!-- omit in toc -->
 
 Each PR should pass the linter to be accepted.
@@ -48,24 +42,12 @@ Each PR should pass the linter to be accepted.
 yarn lint
 ```
 
-or :
-
-```bash
-npm run lint
-```
-
 ### Storybook <!-- omit in toc -->
 
 This project's components are in Storybook. If you edit one of the components, please make sure that storybook is still up-to-date.
 
 ```bash
 yarn storybook
-```
-
-or :
-
-```bash
-npm run storybook
 ```
 
 ## Git Guidelines
@@ -117,11 +99,13 @@ _[Read more about this](https://github.com/meilisearch/integration-guides/blob/m
 Make a PR modifying the following files with the right version:
 
 [`package.json`](/package.json):
+
 ```javascript
 "version": "X.X.X",
 ```
 
 [`src/version/version.js`](src/version/version.js)
+
 ```javascript
 export default 'X.X.X'
 ```

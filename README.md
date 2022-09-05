@@ -47,22 +47,10 @@
 yarn
 ```
 
-or
-
-```bash
-npm install
-```
-
 ## Run
 
 ```bash
 yarn start
-```
-
-or
-
-```bash
-npm run start
 ```
 
 Go to `http://localhost:3000/` and enjoy ! 🎉
@@ -77,12 +65,6 @@ You can generate a build of this project with the following command:
 yarn build
 ```
 
-or
-
-```bash
-npm run build
-```
-
 ### Specify Meilisearch's server URL
 
 ⚠️ By default, the application will call Meilisearch at the exact same address as it is running.
@@ -94,12 +76,6 @@ Example:
 
 ```bash
 REACT_APP_MEILI_SERVER_ADDRESS=http://0.0.0.0:7700 yarn build
-```
-
-or
-
-```bash
-REACT_APP_MEILI_SERVER_ADDRESS=http://0.0.0.0:7700 npm run build
 ```
 
 ### Run your build
@@ -122,12 +98,6 @@ Storybook is a development environment for UI components. It allows you to brows
 
 ```bash
 yarn storybook
-```
-
-or
-
-```bash
-npm run storybook
 ```
 
 ## Contributing
