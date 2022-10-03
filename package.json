@@ -51,7 +51,7 @@
     "@storybook/node-logger": "^6.5.11",
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.11",
-    "@svgr/cli": "^6.3.1",
+    "@svgr/cli": "^6.4.0",
     "cypress": "^10.8.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
