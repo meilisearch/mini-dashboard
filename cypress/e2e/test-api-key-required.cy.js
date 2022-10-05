@@ -17,12 +17,23 @@ describe(`Test API key required`, () => {
     cy.contains('Enter your admin API key')
   })
 
-  it('Should fail on wrong API key', () => {
+  it('Should fail on wrong API key triggered with mouse click', () => {
     cy.get('div[aria-label=ask-for-api-key]').within(() => {
       cy.get('input[name="apiKey"]')
         .type(WRONG_APIKEY)
         .should('have.value', WRONG_APIKEY)
       cy.get('button').contains('Go').click()
+      cy.wait(WAITING_TIME)
+      cy.contains('The provided API key is invalid.')
+    })
+  })
+
+  it('Should fail on wrong API key triggered with enter key', () => {
+    cy.get('div[aria-label=ask-for-api-key]').within(() => {
+      cy.get('input[name="apiKey"]')
+        .type(WRONG_APIKEY)
+        .should('have.value', WRONG_APIKEY)
+      cy.get('input[name="apiKey"]').type('{enter}')
       cy.wait(WAITING_TIME)
       cy.contains('The provided API key is invalid.')
     })
