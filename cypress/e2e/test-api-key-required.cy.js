@@ -4,6 +4,10 @@ const WRONG_APIKEY = Cypress.env('wrongApiKey')
 const WAITING_TIME = Cypress.env('waitingTime')
 
 describe(`Test API key required`, () => {
+  before(() => {
+    cy.deleteAllIndexes()
+  })
+
   beforeEach(() => {
     cy.visit('/')
     cy.wait(WAITING_TIME)
