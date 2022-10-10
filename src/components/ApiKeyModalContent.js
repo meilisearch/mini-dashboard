@@ -58,6 +58,11 @@ const ApiKeyModalContent = ({ closeModal }) => {
           type="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              updateClient()
+            }
+          }}
         />
         <Button
           variant="filled"
