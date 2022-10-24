@@ -106,4 +106,4 @@ If you want to contribute to this project, please make sure to read [the contrib
 
 ## Compatibility with Meilisearch
 
-The current version of the mini-dashboard only guarantees the compatibility with the [version v0.28.0 of Meilisearch](https://github.com/meilisearch/meilisearch/releases/tag/v0.28.0).
+The current version of the mini-dashboard only guarantees the compatibility with the [version v0.29.1 of Meilisearch](https://github.com/meilisearch/meilisearch/releases/tag/v0.29.1).
