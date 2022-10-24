@@ -2673,12 +2673,12 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.22.tgz#219dfd89ae5b97a8801f015323ffa4b62f45718b"
   integrity sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==
 
-"@meilisearch/instant-meilisearch@^0.8.2-beta.0":
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/@meilisearch/instant-meilisearch/-/instant-meilisearch-0.8.2.tgz#74ff5e35bdc57850bf8b72857dc72c05549f9b3d"
-  integrity sha512-1/TrMdbTEteIZc/vsRUhfx/g6mfIpsQEXVtAR2vdLZpG28GorKTTfsf83y11hltRV+yw9DN1Ni3sg1KyzYBWzg==
+"@meilisearch/instant-meilisearch@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@meilisearch/instant-meilisearch/-/instant-meilisearch-0.9.0.tgz#b85b40d2e82d93a57fb97e7bc6e9516ff073b6a5"
+  integrity sha512-XEQQGpQFra1T/9s2Sm9nwS9n19BBtlmobp1MMfj/y9OtRb8vG38kFtfICpDb3DqGcyecn56rUh4urUk6ErIxRQ==
   dependencies:
-    meilisearch "^0.27.0"
+    meilisearch "^0.28.0"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -11572,17 +11572,10 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
-meilisearch@^0.27.0:
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.27.0.tgz#8bd57ddb77b975f93e054cb977b951c488ece297"
-  integrity sha512-kZOZFIuSO7c6xRf+Y2/9/h6A9pl0sCl/G44X4KuaSwxGbruOZPhmxbeVEgLHBv4pUFvQ56rNVTA/2d/5GCU1YA==
-  dependencies:
-    cross-fetch "^3.1.5"
-
-meilisearch@^0.28.0-beta.0:
-  version "0.28.0-pagination-beta.0"
-  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.28.0-pagination-beta.0.tgz#4a67c0a419b1be322671ad02bfa295dec3122eba"
-  integrity sha512-rOCbE4KYOhZqYED1C0GIrtXmdy6g5+POgdyq6yWDRSZ+1FgLGofRTeF25Vl4jG7dNlZRm5tSJcDUVYLAeHxMaA==
+meilisearch@^0.28.0, meilisearch@^0.28.0-beta.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.28.0.tgz#650f08a56ef0a989a41d13233f7a744cfa7f54df"
+  integrity sha512-zC50xLyPWBtfAIZiFTSJyYJp/a5bO+dSSigBKUEoShFkuv9+/KC4J3T3ZejNVHXG2DU0ohOMf8TZ3HAHXNd3EA==
   dependencies:
     cross-fetch "^3.1.5"
 
