@@ -1,6 +1,6 @@
 export { default as ArrowDown } from './ArrowDown'
 export { default as Cross } from './Cross'
-export { default as Discord } from './Discord'
+export { default as DiscordLogo } from './DiscordLogo'
 export { default as DocumentBig } from './DocumentBig'
 export { default as DocumentMedium } from './DocumentMedium'
 export { default as GithubLogo } from './GithubLogo'

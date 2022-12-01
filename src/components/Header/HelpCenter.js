@@ -5,7 +5,7 @@ import { DialogDisclosure, useDialogState } from 'reakit/Dialog'
 
 import {
   MeilisearchLogo,
-  Discord,
+  DiscordLogo,
   GithubLogo,
   InterrogationMark,
 } from 'components/icons'
@@ -108,7 +108,7 @@ const HelpCenter = () => {
             href="https://github.com/meilisearch"
           />
           <HelpCard
-            logo={<Discord style={{ width: 62 }} />}
+            logo={<DiscordLogo style={{ width: 62 }} />}
             title="Discord"
             description="Join our Discord and find the help you need"
             href="https://discord.gg/meilisearch"

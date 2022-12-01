@@ -5,7 +5,7 @@ import {
   MeilisearchLogo as MeilisearchLogoIcon,
   ArrowDown as ArrowDownIcon,
   Cross as CrossIcon,
-  Discord as DiscordIcon,
+  DiscordLogo as DiscordLogoIcon,
   DocumentBig as DocumentBigIcon,
   DocumentMedium as DocumentMediumIcon,
   GithubLogo as GithubLogoIcon,
@@ -43,9 +43,9 @@ Cross.args = {
   children: <CrossIcon />,
 }
 
-export const Discord = Template.bind({})
-Discord.args = {
-  children: <DiscordIcon />,
+export const DiscordLogo = Template.bind({})
+DiscordLogo.args = {
+  children: <DiscordLogoIcon />,
 }
 
 export const DocumentBig = Template.bind({})

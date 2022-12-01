@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-const SvgDiscord = ({ title, titleId, ...props }) => (
+const SvgDiscordLogo = ({ title, titleId, ...props }) => (
   <svg
     viewBox="0 0 48 48"
     fill="none"
@@ -24,4 +24,4 @@ const SvgDiscord = ({ title, titleId, ...props }) => (
   </svg>
 )
 
-export default SvgDiscord
+export default SvgDiscordLogo
