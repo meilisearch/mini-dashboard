@@ -5,6 +5,7 @@ import {
   MeilisearchLogo as MeilisearchLogoIcon,
   ArrowDown as ArrowDownIcon,
   Cross as CrossIcon,
+  DiscordLogo as DiscordLogoIcon,
   DocumentBig as DocumentBigIcon,
   DocumentMedium as DocumentMediumIcon,
   GithubLogo as GithubLogoIcon,
@@ -18,7 +19,6 @@ import {
   SearchSmall as SearchSmallIcon,
   SettingsMedium as SettingsMediumIcon,
   SettingsBig as SettingsBigIcon,
-  SlackLogo as SlackLogoIcon,
   Speed as SpeedIcon,
 } from 'components/icons'
 
@@ -41,6 +41,11 @@ ArrowDown.args = {
 export const Cross = Template.bind({})
 Cross.args = {
   children: <CrossIcon />,
+}
+
+export const DiscordLogo = Template.bind({})
+DiscordLogo.args = {
+  children: <DiscordLogoIcon />,
 }
 
 export const DocumentBig = Template.bind({})
@@ -106,11 +111,6 @@ SettingsMedium.args = {
 export const SettingsBig = Template.bind({})
 SettingsBig.args = {
   children: <SettingsBigIcon />,
-}
-
-export const SlackLogo = Template.bind({})
-SlackLogo.args = {
-  children: <SlackLogoIcon />,
 }
 
 export const Speed = Template.bind({})
