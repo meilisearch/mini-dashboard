@@ -8,7 +8,7 @@
     "babel-loader": "9.1.0",
     "color": "^4.2.3",
     "eslint-plugin-import": "^2.26.0",
-    "meilisearch": "^0.28.0",
+    "meilisearch": "^0.30.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
