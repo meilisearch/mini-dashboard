@@ -1,5 +1,4 @@
 import * as React from 'react'
-
 const SvgIndexes = ({ title, titleId, ...props }) => (
   <svg
     viewBox="0 0 20 24"
@@ -17,5 +16,4 @@ const SvgIndexes = ({ title, titleId, ...props }) => (
     />
   </svg>
 )
-
 export default SvgIndexes
