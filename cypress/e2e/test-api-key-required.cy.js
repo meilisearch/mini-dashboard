@@ -10,7 +10,6 @@ describe(`Test API key required`, () => {
 
   beforeEach(() => {
     cy.visit('/')
-    cy.wait(WAITING_TIME)
   })
 
   it('Should visit the dashboard', () => {

@@ -31,7 +31,6 @@ describe(`Test indexes`, () => {
 
   beforeEach(() => {
     cy.visit('/')
-    cy.wait(WAITING_TIME)
   })
 
   it('Should display the first index based on localeCompare order on the uid', () => {
