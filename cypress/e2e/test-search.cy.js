@@ -15,7 +15,6 @@ describe(`Test search`, () => {
 
   beforeEach(() => {
     cy.visit('/')
-    cy.wait(WAITING_TIME)
   })
 
   it('Should update the results according to the user’s search', () => {

@@ -4,6 +4,9 @@ describe(`Test no API key required`, () => {
   before(() => {
     cy.deleteAllIndexes()
     cy.wait(WAITING_TIME)
+  })
+
+  beforeEach(() => {
     cy.visit('/')
   })
 

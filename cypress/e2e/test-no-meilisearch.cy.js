@@ -1,5 +1,5 @@
 describe(`Test without Meilisearch running`, () => {
-  before(() => {
+  beforeEach(() => {
     cy.visit('/')
   })
 

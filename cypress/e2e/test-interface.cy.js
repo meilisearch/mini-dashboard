@@ -21,7 +21,6 @@ describe(`Test interface`, () => {
 
   beforeEach(() => {
     cy.visit('/')
-    cy.wait(WAITING_TIME)
   })
 
   it('Should open the help center on click on the "?" button', () => {
