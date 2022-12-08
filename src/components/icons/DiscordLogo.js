@@ -1,5 +1,4 @@
 import * as React from 'react'
-
 const SvgDiscordLogo = ({ title, titleId, ...props }) => (
   <svg
     viewBox="0 0 48 48"
@@ -23,5 +22,4 @@ const SvgDiscordLogo = ({ title, titleId, ...props }) => (
     />
   </svg>
 )
-
 export default SvgDiscordLogo
