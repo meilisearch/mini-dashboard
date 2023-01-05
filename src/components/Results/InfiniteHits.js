@@ -18,24 +18,28 @@ const HitsList = styled.ul`
   }
 `
 
-const testImage = async (elem) => {
+const isAnImage = async (elem) => {
   // Test the standard way with regex and image extensions
   if (
     typeof elem === 'string' &&
-    elem.match(/^(https|http):\/\/.*(jpe?g|png|gif|webp)(\?.*)?$/g)
+    elem.match(/^(https|http):\/\/.*(jpe?g|png|gif|webp)(\?.*)?$/gi)
   )
     return true
-  // Test by trying to load the image
-  return new Promise((resolve) => {
-    const img = new Image()
-    img.src = elem
-    img.onload = () => resolve(true)
-    img.onerror = () => resolve(false)
-  })
+
+  if (typeof elem === 'string' && elem.match(/^https?:\/\//)) {
+    // Tries to load an image that is a valid URL but doesn't have a correct extension
+    return new Promise((resolve) => {
+      const img = new Image()
+      img.src = elem
+      img.onload = () => resolve(true)
+      img.onerror = () => resolve(false)
+    })
+  }
+  return false
 }
 
 const findImageKey = async (array) => {
-  const promises = array.map(async (elem) => testImage(elem[1]))
+  const promises = array.map(async (elem) => isAnImage(elem[1]))
   const results = await Promise.all(promises)
   const index = results.findIndex((result) => result)
   const imageField = array[index]
