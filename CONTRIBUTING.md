@@ -112,7 +112,21 @@ export default 'X.X.X'
 
 Once the changes are merged on `main`, you can publish the current draft release via the [GitHub interface](https://github.com/meilisearch/mini-dashboard/releases).
 
-GitHub Actions will be triggered and generate a build used by the [core engine](https://github.com/meilisearch/meilisearch)
+GitHub Actions will be triggered and generate a build used by the [Meilisearch engine](https://github.com/meilisearch/meilisearch)
+
+### Add to [Meilisearch Engine](https://github.com/meilisearch/meilisearch/)
+
+The `mini-dashboard` is part of the Meilisearch engine's binary. In order for the engine to be built with the mini-dashboard, these are the steps to follow:
+
+- [Publish the mini-dashboard](#how-to-publish-the-release).
+- Ask to the [engine-team](https://github.com/meilisearch/engine-team) on which branch the mini-dashboard should be updated.
+- Create a new branch pointing to that branch.
+- Update the `/meilisearch/Cargo.toml` file with the link to the latest build.zip of the mini-dashboard ([see example](https://github.com/meilisearch/meilisearch/pull/3322/files)). The link can be found in the `assets` section of the latest release of the mini-dashboard ([see example](https://github.com/meilisearch/mini-dashboard/releases/tag/v0.2.5)). Copy the link of the `build.zip` by right-clicking and selecting `copy link address`.
+- Update the sha of the `build.zip` in `/meilisearch/Cargo.toml`. To get the shasum of the file, download the build.zip and find its [shasum](https://en.wikipedia.org/wiki/Sha1sum).
+- Make a PR on [`meilisearch`](https://github.com/meilisearch/meilisearch/), with the changes pointing to the required branch (see step 2).
+
+During a `pre-release` of [`meilisearch`](https://github.com/meilisearch/meilisearch/), an additional step is required before publishing the mini-dashboard:
+- If there are breaking changes on the search, update the version of `meilisearch-js` and `instant-meilisearch` to their latest compatible version with the pre-release. It may be a [beta](https://github.com/meilisearch/mini-dashboard/pull/322/files) or the latest release. Check with the [integration-team](https://github.com/meilisearch/integrations-guides/) to know if it is required or not.
 
 <hr>
 
