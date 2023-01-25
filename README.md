@@ -19,8 +19,7 @@
 </p>
 <br/>
 
-<p align="center" style="font-weight:bold;" >Meilisearch's mini-dashboard</p>
-<p align="center">PRs and bug issues are welcome, but please do not submit any new feature requests 🙏</p>
+<p align="center" style="font-weight:bold;" >Meilisearch's mini-dashboard. A web-app served by the engine with a minimal search experience on your data.</p>
 
 <br/>
 <p align="center">
