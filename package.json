@@ -52,7 +52,7 @@
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.14",
     "@svgr/cli": "^6.5.1",
-    "cypress": "^12.3.0",
+    "cypress": "^12.4.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-cypress": "^2.12.1",
