@@ -19,7 +19,7 @@
 </p>
 <br/>
 
-<p align="center" style="font-weight:bold;" >Meilisearch's mini-dashboard. A web-app served by the engine with a minimal search experience on your data.</p>
+<p align="center" style="font-weight:bold;">Meilisearch's mini-dashboard. A web-app served by the engine with a minimal search experience on your data.</p>
 
 <br/>
 <p align="center">
