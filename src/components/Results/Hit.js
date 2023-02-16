@@ -135,8 +135,21 @@ const JsonRepresentor = ({
   )
 }
 
-const FieldValue = ({ value, hit, objectKey }) => {
+function getFieldValueType(value) {
   if (isArray(value)) {
+    return 'array'
+  }
+  if (isObject(value)) {
+    return 'object'
+  }
+
+  return typeof value
+}
+
+const FieldValue = ({ hit, objectKey }) => {
+  const fieldValueType = getFieldValueType(hit[objectKey])
+
+  if (fieldValueType === 'array') {
     return (
       <JsonRepresentor
         value={hit[objectKey]}
@@ -147,7 +160,8 @@ const FieldValue = ({ value, hit, objectKey }) => {
       />
     )
   }
-  if (isObject(value) && !value.value) {
+
+  if (fieldValueType === 'object') {
     return (
       <JsonRepresentor
         value={hit[objectKey]}
@@ -159,8 +173,11 @@ const FieldValue = ({ value, hit, objectKey }) => {
     )
   }
 
-  // Handling Links
-  if (value?.value?.match(/^https?:\/\/[^\s]+$/)) {
+  // Wrap link in <a> tag
+  if (
+    fieldValueType === 'string' &&
+    hit[objectKey].match(/^https?:\/\/[^\s]+$/)
+  ) {
     return (
       <Link href={hit[objectKey]}>
         <Highlight hit={hit} attribute={objectKey} />
@@ -195,16 +212,16 @@ const Hit = ({ hit, imageKey }) => {
         )}
       </Box>
       <ContentContainer>
-        {documentProperties
+        {Object.keys(hit._highlightResult)
           .slice(0, displayMore ? hit.length : 6)
-          .map(([key, value]) => (
+          .map((key) => (
             <div key={key}>
               <Grid>
                 <HitKey variant="typo10" color="gray.6">
                   {key}
                 </HitKey>
                 <HitValue>
-                  <FieldValue value={value} hit={hit} objectKey={key} />
+                  <FieldValue hit={hit} objectKey={key} />
                 </HitValue>
               </Grid>
               <Hr />
