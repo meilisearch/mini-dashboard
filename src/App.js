@@ -140,27 +140,11 @@ const App = () => {
 
   React.useEffect(() => {
     // Check if the API key is present on the url then put it in the local storage
-    const getAPIKeyFromUrl = () => {
-      const urlParams = new URLSearchParams(window.location.search)
-      const apiKeyParam = urlParams.get('api_key')
-      if (apiKeyParam) {
-        setApiKey(apiKeyParam)
-
-        const testISClient = instantMeilisearch(baseUrl, apiKeyParam, {
-          primaryKey: 'id',
-          clientAgents,
-        })
-        setISClient(testISClient)
-
-        const testMSClient = new Meilisearch({
-          host: baseUrl,
-          apiKey: apiKeyParam,
-          clientAgents,
-        })
-        setMSClient(testMSClient)
-      }
+    const urlParams = new URLSearchParams(window.location.search)
+    const apiKeyParam = urlParams.get('api_key')
+    if (apiKeyParam) {
+      setApiKey(apiKeyParam)
     }
-
     // Check if an API key is required / a masterKey was set
     const fetchWithoutApiKey = async () => {
       try {
@@ -175,11 +159,28 @@ const App = () => {
         }
       }
     }
-    if (!apiKey || apiKey.length === 0) {
-      getAPIKeyFromUrl()
-    }
+
     fetchWithoutApiKey()
     getIndexesList()
+  }, [])
+
+  React.useEffect(() => {
+    if (apiKey) {
+      setISClient(
+        instantMeilisearch(baseUrl, apiKey, {
+          primaryKey: 'id',
+          clientAgents,
+        })
+      )
+
+      setMSClient(
+        new Meilisearch({
+          host: baseUrl,
+          apiKey,
+          clientAgents,
+        })
+      )
+    }
   }, [apiKey])
 
   // Check if a modal asking for API Key should be displayed
