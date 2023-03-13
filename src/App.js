@@ -16,7 +16,6 @@ import Modal from 'components/Modal'
 import OnBoarding from 'components/OnBoarding'
 import Results from 'components/Results'
 import ApiKeyContext from 'context/ApiKeyContext'
-import ClientContext from 'context/ClientContext'
 import Typography from 'components/Typography'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
 
@@ -145,6 +144,7 @@ const App = () => {
     if (apiKeyParam) {
       setApiKey(apiKeyParam)
     }
+
     // Check if an API key is required / a masterKey was set
     const fetchWithoutApiKey = async () => {
       try {
@@ -201,55 +201,49 @@ const App = () => {
     getIndexesList()
   }, [MSClient, currentIndex?.uid])
 
-  const clientContext = React.useMemo(
-    () => ({ ISClient, MSClient, setISClient, setMSClient }),
-    []
-  )
   return (
-    <ClientContext.Provider value={clientContext}>
-      <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
-        <Wrapper>
-          <InstantSearch
-            indexName={currentIndex ? currentIndex.uid : ''}
-            searchClient={ISClient}
-          >
-            <Header
-              indexes={indexes}
-              currentIndex={currentIndex}
-              setCurrentIndex={setCurrentIndex}
-              requireApiKeyToWork={requireApiKeyToWork}
-              client={MSClient}
-              refreshIndexes={getIndexesList}
-            />
-            <Body>
-              {/* <Sidebar /> */}
-              <Box
-                width={928}
-                m="0 auto"
-                py={4}
-                display="flex"
-                flexDirection="column"
-              >
-                {isMeilisearchRunning ? (
-                  <Content currentIndex={currentIndex} />
-                ) : (
-                  <NoMeilisearchRunning />
-                )}
-              </Box>
-            </Body>
-          </InstantSearch>
-          <Modal
-            title={`Enter your admin API key${
-              requireApiKeyToWork ? '' : ' (optional)'
-            }`}
-            dialog={dialog}
-            ariaLabel="ask-for-api-key"
-          >
-            <ApiKeyModalContent closeModal={() => dialog.hide()} />
-          </Modal>
-        </Wrapper>
-      </ApiKeyContext.Provider>
-    </ClientContext.Provider>
+    <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
+      <Wrapper>
+        <InstantSearch
+          indexName={currentIndex ? currentIndex.uid : ''}
+          searchClient={ISClient}
+        >
+          <Header
+            indexes={indexes}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+            requireApiKeyToWork={requireApiKeyToWork}
+            client={MSClient}
+            refreshIndexes={getIndexesList}
+          />
+          <Body>
+            {/* <Sidebar /> */}
+            <Box
+              width={928}
+              m="0 auto"
+              py={4}
+              display="flex"
+              flexDirection="column"
+            >
+              {isMeilisearchRunning ? (
+                <Content currentIndex={currentIndex} />
+              ) : (
+                <NoMeilisearchRunning />
+              )}
+            </Box>
+          </Body>
+        </InstantSearch>
+        <Modal
+          title={`Enter your admin API key${
+            requireApiKeyToWork ? '' : ' (optional)'
+          }`}
+          dialog={dialog}
+          ariaLabel="ask-for-api-key"
+        >
+          <ApiKeyModalContent closeModal={() => dialog.hide()} />
+        </Modal>
+      </Wrapper>
+    </ApiKeyContext.Provider>
   )
 }
 
