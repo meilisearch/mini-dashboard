@@ -35,10 +35,8 @@
     "build-storybook": "build-storybook",
     "cy:open": "cypress open",
     "cy:run:test-no-meilisearch": "cypress run --spec '**/*/test-no-meilisearch.cy.js'",
-    "cy:run:test-api-key-required": "cypress run --spec '**/*/test-api-key-required.cy.js'",
-    "cy:run:test-api-key-query-param": "cypress run --spec '**/*/test-api-key-query-param.cy.js'",
-    "cy:run:test-no-api-key": "cypress run --spec '**/*/test-no-api-key-required.cy.js'",
-    "cy:run": "cypress run --config excludeSpecPattern=['**/*/test-no-meilisearch.cy.js','**/*/test-api-key-required.cy.js']",
+    "cy:run:test-api-key-required": "cypress run --spec '**/*/test-api-key-required.cy.js,**/*/test-api-key-query-param.cy.js'",
+    "cy:run": "cypress run --config excludeSpecPattern=['**/*/test-no-meilisearch.cy.js','**/*/test-api-key-required.cy.js','**/*/test-api-key-query-param.cy.js']",
     "icons": "npx @svgr/cli --title-prop --no-dimensions --replace-attr-values \"#39486E=currentColor,#959DB3=currentColor\" -d src/components/icons src/components/icons/svg"
   },
   "browserslist": [

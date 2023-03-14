@@ -33,7 +33,6 @@ describe(`Test API key required with query params`, () => {
     cy.get('span').contains('Api Key').parent().click()
     cy.get('div[aria-label=settings-api-key]').within(() => {
       cy.get('input[name="apiKey"]').should('have.value', API_KEY)
-      cy.get('button').contains('Go').click()
     })
   })
 })
