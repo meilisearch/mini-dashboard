@@ -213,7 +213,7 @@ const Hit = ({ hit, imageKey }) => {
       </Box>
       <ContentContainer>
         {Object.keys(hit._highlightResult)
-          .slice(0, displayMore ? hit.length : 6)
+          .slice(0, displayMore ? Object.keys(hit).length : 6)
           .map((key) => (
             <div key={key}>
               <Grid>
