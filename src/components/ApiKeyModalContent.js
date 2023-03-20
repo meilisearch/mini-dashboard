@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
-import { instantMeiliSearch as instantMeilisearch } from '@meilisearch/instant-meilisearch'
 
 import { baseUrl } from 'App'
 import Box from 'components/Box'
@@ -11,7 +10,6 @@ import Link from 'components/Link'
 import Typography from 'components/Typography'
 
 import ApiKeyContext from 'context/ApiKeyContext'
-import ClientContext from 'context/ClientContext'
 
 import clientAgents from '../version/client-agents'
 
@@ -22,7 +20,6 @@ const ErrorMessage = styled(Typography)`
 `
 
 const ApiKeyModalContent = ({ closeModal }) => {
-  const { setISClient, setMSClient } = React.useContext(ClientContext)
   const { apiKey, setApiKey } = React.useContext(ApiKeyContext)
   const [value, setValue] = React.useState(apiKey || '')
   const [error, setError] = React.useState()
@@ -36,8 +33,6 @@ const ApiKeyModalContent = ({ closeModal }) => {
     try {
       await clientToTry.getIndexes()
       setApiKey(value)
-      setISClient(instantMeilisearch(baseUrl, value, { clientAgents }))
-      setMSClient(clientToTry)
       closeModal()
       setError()
     } catch (err) {
