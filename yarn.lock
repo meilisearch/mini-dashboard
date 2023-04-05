@@ -11768,10 +11768,10 @@ meilisearch@^0.31.1:
   dependencies:
     cross-fetch "^3.1.5"
 
-meilisearch@^0.32.0:
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.32.0.tgz#a756f476ea06dd3dbdd545376a6971e822d0ba4b"
-  integrity sha512-HKdeR3UXLKXCdxacziMRO0dBNf7HzqDnUIHrV9ctjk3XKHXvYm5OxUsctWRurxbpdE0auUrnMaUrjsLTtc+SdQ==
+meilisearch@^0.32.2:
+  version "0.32.2"
+  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.32.2.tgz#b771d26fe942d6a23523c54ea171e57e0ce5355e"
+  integrity sha512-Ajc7tahu7fZdSoBfXwIwtF6ZfFhFdpM/5eRTjw3v59sQmE6NWq5I5TxIdpS0FAiJaD3KtD9sOWAQRepdk8QJwA==
   dependencies:
     cross-fetch "^3.1.5"
 
