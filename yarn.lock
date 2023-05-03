@@ -2696,12 +2696,12 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.22.tgz#219dfd89ae5b97a8801f015323ffa4b62f45718b"
   integrity sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==
 
-"@meilisearch/instant-meilisearch@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@meilisearch/instant-meilisearch/-/instant-meilisearch-0.11.1.tgz#1b8fdbbfee9d67ed8dcab46cedfae05bc0ded11c"
-  integrity sha512-FOAp1Lh1CAoY1CIJ2aYBYqw3oHcgzYEOBarPcrNqBfw0wQXuj6rHgANGm21pSxl8BNHLyYX85ntyOcUfD5f03g==
+"@meilisearch/instant-meilisearch@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@meilisearch/instant-meilisearch/-/instant-meilisearch-0.13.0.tgz#fced6d29b8f96800d251bb56d80b053fab827ca5"
+  integrity sha512-8xWHqqUDlvJd/Y6ctdWM1uBwW74PMUidFBp6L9+/KTOkH/ghNgJK3ECdyuxXNCpDiLiszEDD46ZePZwauKuEyA==
   dependencies:
-    meilisearch "^0.31.1"
+    meilisearch "^0.32.1"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -11761,17 +11761,10 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
-meilisearch@^0.31.1:
-  version "0.31.1"
-  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.31.1.tgz#c526274c3cda844e8ee8d9562cbd3febbe1b9508"
-  integrity sha512-ajMieU0e25lLkT+05J0snX0Ycow1UofxIy5sag03flERUbjXq8ouVwkrJkW27JsKftIeDeffRRRr89LasU9+0w==
-  dependencies:
-    cross-fetch "^3.1.5"
-
-meilisearch@^0.32.0:
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.32.0.tgz#a756f476ea06dd3dbdd545376a6971e822d0ba4b"
-  integrity sha512-HKdeR3UXLKXCdxacziMRO0dBNf7HzqDnUIHrV9ctjk3XKHXvYm5OxUsctWRurxbpdE0auUrnMaUrjsLTtc+SdQ==
+meilisearch@^0.32.0, meilisearch@^0.32.1:
+  version "0.32.3"
+  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.32.3.tgz#cbc224014c3dddc818090f4b501029993f117b6a"
+  integrity sha512-EOgfBuRE5SiIPIpEDYe2HO0D7a4z5bexIgaAdJFma/dH5hx1kwO+u/qb2g3qKyjG+iA3l8MlmTj/Xd72uahaAw==
   dependencies:
     cross-fetch "^3.1.5"
 
