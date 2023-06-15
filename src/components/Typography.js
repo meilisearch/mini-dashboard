@@ -124,7 +124,7 @@ const variants = {
     style: css`
       font-size: 15px;
       line-height: 25px;
-      font-weight: 600;
+      font-weight: 500;
     `,
   },
   // Used in CloudBanner
@@ -132,7 +132,7 @@ const variants = {
     tag: 'span',
     style: css`
       font-size: 15px;
-      font-weight: 400;
+      font-weight: 300;
       line-height: 25px;
       display: inline-block;
     `,

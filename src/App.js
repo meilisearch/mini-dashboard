@@ -93,6 +93,7 @@ const App = () => {
   const [isMeilisearchRunning, setIsMeilisearchRunning] = React.useState(true)
   const [requireApiKeyToWork, setRequireApiKeyToWork] = React.useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
+  const [showCloudBanner, setShowCloudBanner] = React.useState(true)
   const [ISClient, setISClient] = React.useState(
     instantMeilisearch(baseUrl, apiKey, {
       primaryKey: 'id',
@@ -141,6 +142,11 @@ const App = () => {
     // Check if the API key is present on the url then put it in the local storage
     const urlParams = new URLSearchParams(window.location.search)
     const apiKeyParam = urlParams.get('api_key')
+    const cloudBannerQueryParam = urlParams.get('cloud_banner')
+
+    if (cloudBannerQueryParam === 'false') {
+      setShowCloudBanner(false)
+    }
     if (apiKeyParam) {
       setApiKey(apiKeyParam)
     }
@@ -208,7 +214,7 @@ const App = () => {
           indexName={currentIndex ? currentIndex.uid : ''}
           searchClient={ISClient}
         >
-          <CloudBanner />
+          {showCloudBanner && <CloudBanner />}
           <Header
             indexes={indexes}
             currentIndex={currentIndex}
