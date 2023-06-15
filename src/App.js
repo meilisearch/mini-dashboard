@@ -11,7 +11,7 @@ import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Box from 'components/Box'
 import EmptyView from 'components/EmptyView'
 import Header from 'components/Header/index'
-// import Sidebar from 'components/Sidebar'
+import CloudBanner from 'components/CloudBanner'
 import Modal from 'components/Modal'
 import OnBoarding from 'components/OnBoarding'
 import Results from 'components/Results'
@@ -208,6 +208,7 @@ const App = () => {
           indexName={currentIndex ? currentIndex.uid : ''}
           searchClient={ISClient}
         >
+          <CloudBanner />
           <Header
             indexes={indexes}
             currentIndex={currentIndex}
