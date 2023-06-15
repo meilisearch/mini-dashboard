@@ -43,6 +43,7 @@
     ],
     "react/no-arrow-function-lifecycle": 0,
     "react/no-invalid-html-attribute": 0,
+    "react/jsx-no-useless-fragment": "off",
     "react/no-unused-class-component-methods": 0
   }
 }
