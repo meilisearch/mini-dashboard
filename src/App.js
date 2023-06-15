@@ -94,6 +94,7 @@ const App = () => {
   const [requireApiKeyToWork, setRequireApiKeyToWork] = React.useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
   const [showCloudBanner, setShowCloudBanner] = React.useState(true)
+
   const [ISClient, setISClient] = React.useState(
     instantMeilisearch(baseUrl, apiKey, {
       primaryKey: 'id',
