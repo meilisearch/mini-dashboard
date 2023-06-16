@@ -7,6 +7,10 @@ const theme = {
       light: '#FFDBE7',
       lighter: '#FDEEF3',
     },
+    cloud: {
+      default: '#2F016D',
+      hover: '#370E6E',
+    },
     gray: [
       '#39486E', // 0
       '#4F5C7E',

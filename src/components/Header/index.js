@@ -128,7 +128,7 @@ const Header = ({
             onClick={refreshIndexes}
           />
           <Button
-            variant="filled"
+            variant="cloud"
             as="a"
             target="_blank"
             href="https://www.meilisearch.com/pricing"

@@ -106,6 +106,27 @@ const variants = {
       background-color: ${(p) => p.theme.colors.gray[10]};
     }
   `,
+  cloud: css`
+    padding: 0 24px;
+    min-width: 128px;
+    background-color: ${(p) => p.theme.colors.cloud.default};
+    border: 1px solid ${(p) => p.theme.colors.cloud.default};
+    color: white;
+    svg {
+      color: white;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: ${(p) => p.theme.colors.cloud.hover};
+    }
+
+    &[aria-disabled='true'] {
+      background-color: ${(p) => Color(p.theme.colors.gray[2]).alpha(0.4)};
+      border-color: transparent;
+    }
+  `,
 }
 
 const sizes = {
@@ -196,6 +217,7 @@ Button.propTypes = {
     'clean',
     'link',
     'grayscale',
+    'cloud',
   ]),
   /**
    * Buttons's size
