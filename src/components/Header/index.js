@@ -5,6 +5,7 @@ import { DialogDisclosure, useDialogState } from 'reakit/Dialog'
 
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Button from 'components/Button'
+import Sparkles from 'components/Sparkles'
 import Link from 'components/Link'
 import Modal from 'components/Modal'
 import NoSelectOption from 'components/NoSelectOption'
@@ -127,20 +128,21 @@ const Header = ({
             style={{ width: 216 }}
             onClick={refreshIndexes}
           />
-          <Button
-            variant="cloud"
-            as="a"
-            target="_blank"
-            href="https://www.meilisearch.com/pricing"
-            style={{
-              textDecoration: 'none',
-              width: '100%',
-              padding: 0,
-              marginRight: 20,
-            }}
-          >
-            Try the Cloud
-          </Button>
+          <Sparkles style={{ marginRight: 20 }}>
+            <Button
+              variant="cloud"
+              as="a"
+              target="_blank"
+              href="https://www.meilisearch.com/pricing"
+              style={{
+                textDecoration: 'none',
+                width: '100%',
+                padding: 0,
+              }}
+            >
+              Try the Cloud
+            </Button>
+          </Sparkles>
           <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
         </Box>
         <HelpCenter />
