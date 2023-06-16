@@ -9,7 +9,7 @@ const theme = {
     },
     cloud: {
       default: '#2F016D',
-      hover: '#370E6E',
+      hover: '#442E9D',
     },
     gray: [
       '#39486E', // 0
