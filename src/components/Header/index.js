@@ -127,6 +127,20 @@ const Header = ({
             style={{ width: 216 }}
             onClick={refreshIndexes}
           />
+          <Button
+            variant="filled"
+            as="a"
+            target="_blank"
+            href="https://www.meilisearch.com/pricing"
+            style={{
+              textDecoration: 'none',
+              width: '100%',
+              padding: 0,
+              marginRight: 20,
+            }}
+          >
+            Try the Cloud
+          </Button>
           <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
         </Box>
         <HelpCenter />
