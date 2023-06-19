@@ -10,24 +10,29 @@ const SearchIcon = styled(SearchMedium)`
   color: ${(p) => p.theme.colors.gray[2]};
 `
 
-const SearchBox = connectSearchBox(({ currentRefinement, refine }) => {
-  const [value, setValue] = React.useState(currentRefinement)
+const SearchBox = connectSearchBox(
+  ({ currentRefinement, refine, refreshIndexes, currentIndex }) => {
+    const [value, setValue] = React.useState(currentRefinement)
 
-  React.useEffect(() => {
-    refine(value)
-  }, [value])
+    React.useEffect(() => {
+      if (currentIndex?.stats?.numberOfDocuments === 0) {
+        refreshIndexes()
+      }
+      refine(value)
+    }, [value])
 
-  return (
-    <Input
-      type="search"
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-      clear={() => setValue('')}
-      placeholder="Search something"
-      icon={<SearchIcon />}
-      style={{ width: 520 }}
-    />
-  )
-})
+    return (
+      <Input
+        type="search"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        clear={() => setValue('')}
+        placeholder="Search something"
+        icon={<SearchIcon />}
+        style={{ width: 520 }}
+      />
+    )
+  }
+)
 
 export default SearchBox

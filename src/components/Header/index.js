@@ -117,7 +117,10 @@ const Header = ({
           )}
         </Box>
         <Box display="flex">
-          <SearchBox />
+          <SearchBox
+            refreshIndexes={refreshIndexes}
+            currentIndex={currentIndex}
+          />
           <Select
             options={indexes}
             icon={<Indexes style={{ height: 22 }} />}
