@@ -128,6 +128,12 @@ const App = () => {
         } else {
           setCurrentIndex(options[0])
         }
+        setISClient(
+          instantMeilisearch(baseUrl, apiKey, {
+            primaryKey: 'id',
+            clientAgents,
+          })
+        )
       } else {
         setCurrentIndex(null)
       }
