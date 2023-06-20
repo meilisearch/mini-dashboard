@@ -133,7 +133,7 @@ const Header = ({
               variant="cloud"
               as="a"
               target="_blank"
-              href="https://www.meilisearch.com/pricing"
+              href="https://www.meilisearch.com/pricing?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard"
               style={{
                 textDecoration: 'none',
                 width: '100%',
