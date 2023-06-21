@@ -3,7 +3,7 @@
   "version": "0.2.7",
   "private": true,
   "dependencies": {
-    "@meilisearch/instant-meilisearch": "^0.11.1",
+    "@meilisearch/instant-meilisearch": "^0.13.3",
     "@styled-system/should-forward-prop": "^5.1.5",
     "babel-loader": "9.1.2",
     "color": "^4.2.3",
