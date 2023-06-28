@@ -46,7 +46,7 @@ const findImageKey = async (array) => {
   return imageField?.[0]
 }
 
-const InfiniteHits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
+const InfiniteHits = connectInfiniteHits(({ hits, refineNext }) => {
   const [imageKey, setImageKey] = React.useState(false)
 
   React.useEffect(async () => {
@@ -74,16 +74,16 @@ const InfiniteHits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
           />
         </Card>
       )} */}
-      {hasMore && (
-        <Button
-          size="small"
-          variant="bordered"
-          onClick={refineNext}
-          style={{ margin: '0 auto', marginTop: 32 }}
-        >
-          Load more
-        </Button>
-      )}
+
+      <Button
+        size="small"
+        variant="bordered"
+        onClick={refineNext}
+        style={{ margin: '0 auto', marginTop: 32 }}
+      >
+        Load more
+      </Button>
+
       <ScrollToTop />
     </div>
   )
