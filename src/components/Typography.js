@@ -118,6 +118,25 @@ const variants = {
       font-weight: 500;
     `,
   },
+  // Used in Banner
+  typo14: {
+    tag: 'span',
+    style: css`
+      font-size: 15px;
+      line-height: 25px;
+      font-weight: 500;
+    `,
+  },
+  // Used in Banner
+  typo15: {
+    tag: 'span',
+    style: css`
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 25px;
+      display: inline-block;
+    `,
+  },
 }
 
 const StyledTypography = styled.span`
@@ -155,6 +174,8 @@ Typography.propTypes = {
     'typo11',
     'typo12',
     'typo13',
+    'typo14',
+    'typo15',
   ]),
   /**
    * Text to be displayed

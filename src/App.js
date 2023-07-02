@@ -19,6 +19,7 @@ import ApiKeyContext from 'context/ApiKeyContext'
 import Typography from 'components/Typography'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
 
+import ApiKeyAwarenessBanner from 'components/ApiKeyAwarenessBanner'
 import clientAgents from './version/client-agents'
 
 export const baseUrl =
@@ -106,6 +107,13 @@ const App = () => {
       clientAgents,
     })
   )
+  const [isApiKeyBannerVisible, setIsApiKeyBannerVisible] =
+    React.useState(false)
+
+  const handleBannerClose = () => {
+    setIsApiKeyBannerVisible(false)
+  }
+
   const dialog = useDialogState({ animated: true, visible: false })
 
   const getIndexesList = async () => {
@@ -149,6 +157,7 @@ const App = () => {
     const apiKeyParam = urlParams.get('api_key')
     if (apiKeyParam) {
       setApiKey(apiKeyParam)
+      setIsApiKeyBannerVisible(true)
     }
 
     // Check if an API key is required / a masterKey was set
@@ -214,6 +223,9 @@ const App = () => {
           indexName={currentIndex ? currentIndex.uid : ''}
           searchClient={ISClient}
         >
+          {isApiKeyBannerVisible && (
+            <ApiKeyAwarenessBanner onClose={handleBannerClose} />
+          )}
           <Header
             indexes={indexes}
             currentIndex={currentIndex}
@@ -221,6 +233,7 @@ const App = () => {
             requireApiKeyToWork={requireApiKeyToWork}
             client={MSClient}
             refreshIndexes={getIndexesList}
+            isBannerVisible={isApiKeyBannerVisible}
           />
           <Body>
             {/* <Sidebar /> */}
