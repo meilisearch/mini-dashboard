@@ -71,7 +71,7 @@ const CloudBanner = () => {
               </Link>
               .&nbsp;
               <Typography variant="typo14" color="white">
-                No credit card required.
+                Get started with a 14-day free trial! No credit card required.
               </Typography>
             </Typography>
             <Button
