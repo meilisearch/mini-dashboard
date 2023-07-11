@@ -118,7 +118,7 @@ const variants = {
       font-weight: 500;
     `,
   },
-  // Used in Banner
+  // Used in Banner (Cloud banner & api key warning banner)
   typo14: {
     tag: 'span',
     style: css`

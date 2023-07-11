@@ -11,7 +11,7 @@ import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Box from 'components/Box'
 import EmptyView from 'components/EmptyView'
 import Header from 'components/Header/index'
-// import Sidebar from 'components/Sidebar'
+import CloudBanner from 'components/CloudBanner'
 import Modal from 'components/Modal'
 import OnBoarding from 'components/OnBoarding'
 import Results from 'components/Results'
@@ -94,6 +94,8 @@ const App = () => {
   const [isMeilisearchRunning, setIsMeilisearchRunning] = React.useState(true)
   const [requireApiKeyToWork, setRequireApiKeyToWork] = React.useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
+  const [showCloudBanner, setShowCloudBanner] = React.useState(true)
+
   const [ISClient, setISClient] = React.useState(
     instantMeilisearch(baseUrl, apiKey, {
       primaryKey: 'id',
@@ -155,6 +157,11 @@ const App = () => {
     // Check if the API key is present on the url then put it in the local storage
     const urlParams = new URLSearchParams(window.location.search)
     const apiKeyParam = urlParams.get('api_key')
+    const cloudBannerQueryParam = urlParams.get('cloud_banner')
+
+    if (cloudBannerQueryParam === 'false') {
+      setShowCloudBanner(false)
+    }
     if (apiKeyParam) {
       setApiKey(apiKeyParam)
       setIsApiKeyBannerVisible(true)
@@ -226,6 +233,7 @@ const App = () => {
           {isApiKeyBannerVisible && (
             <ApiKeyAwarenessBanner onClose={handleBannerClose} />
           )}
+          {showCloudBanner && <CloudBanner />}
           <Header
             indexes={indexes}
             currentIndex={currentIndex}

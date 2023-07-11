@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 const A = styled.a`
-  color: ${(p) => p.theme.colors.main.default};
+  color: ${(p) => p.color || p.theme.colors.main.default};
   text-decoration: underline;
   transition: color 300ms;
   outline: none;
