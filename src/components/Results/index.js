@@ -27,8 +27,7 @@ import NoResultForRequest from './NoResultForRequest'
 const ConnectedStats = connectStats((props) => <Stats {...props} />)
 
 const Results = connectStateResults(({ searchResults }) => {
-  // const [mode, setMode] = useLocalStorage('mode', 'fancy')
-  const hasResults = searchResults?.nbHits !== 0
+  const hasResults = !!searchResults && searchResults?.nbHits !== 0
 
   return (
     <>
