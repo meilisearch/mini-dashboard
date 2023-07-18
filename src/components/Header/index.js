@@ -14,17 +14,17 @@ import Box from 'components/Box'
 import Container from 'components/Container'
 import Select from 'components/Select'
 import { MeilisearchLogo, Indexes, Key } from 'components/icons'
+import { compose, position } from 'styled-system'
 import HelpCenter from './HelpCenter'
 
-const HeaderWrapper = styled.div`
-  background-color: white;
-  display: flex;
-  position: sticky;
-  top: 0;
-  height: 120px;
-  box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)};
-  z-index: 3;
-`
+const HeaderWrapper = styled('div')(compose(position), {
+  backgroundColor: 'white',
+  display: 'flex',
+  position: 'sticky',
+  height: '120px',
+  boxShadow: `0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)}`,
+  zIndex: 3,
+})
 
 const ApiKey = ({ requireApiKeyToWork }) => {
   const dialog = useDialogState()
@@ -71,6 +71,7 @@ const Header = ({
   refreshIndexes,
   requireApiKeyToWork,
   client,
+  isBannerVisible,
 }) => {
   const [version, setVersion] = React.useState()
   React.useEffect(async () => {
@@ -84,7 +85,7 @@ const Header = ({
   }, [client])
 
   return (
-    <HeaderWrapper>
+    <HeaderWrapper top={isBannerVisible ? 55 : 0}>
       <Container
         p={4}
         display="flex"
