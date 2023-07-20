@@ -40,10 +40,10 @@ describe(`Test indexes`, () => {
   it('Should list all the indexes inside the select', () => {
     cy.get('.react-select__control').click()
     cy.get('.react-select__option').then(($selectedElement) => {
-        expect($selectedElement).to.have.length(3)
-        expect($selectedElement).to.contain('lovies 0')
-        expect($selectedElement).to.contain('movies 33')
-        expect($selectedElement).to.contain('pokemon 3')
+      expect($selectedElement).to.have.length(3)
+      expect($selectedElement).to.contain('lovies 0')
+      expect($selectedElement).to.contain('movies 33')
+      expect($selectedElement).to.contain('pokemon 3')
     })
   })
 
@@ -53,8 +53,10 @@ describe(`Test indexes`, () => {
 
   it('Should display an indexes documents', () => {
     cy.get('.react-select__control').click()
-    cy.get('.react-select__option').contains('movies').click()
-    cy.get('ul')
+    cy.get('.react-select__option')
+      .contains('movies')
+      .then(($element) => $element.click())
+    cy.get('[data-cy=hits-list]')
       .children()
       .should(($p) => {
         expect($p).to.have.length(20)
@@ -63,12 +65,10 @@ describe(`Test indexes`, () => {
 
   it('Should display the documents of an other index on click on it', () => {
     cy.get('.react-select__control').click()
-    cy.get('.react-select__option').contains('pokemon').click()
-    cy.get('ul')
-      .children()
-      .should(($p) => {
-        expect($p).to.have.length(3)
-      })
+    cy.get('.react-select__option')
+      .contains('pokemon')
+      .then(($element) => $element.click())
+    cy.get('[data-cy=hits-list]').find('li').should('have.length', 3)
     cy.get('ul')
       .children()
       .first()

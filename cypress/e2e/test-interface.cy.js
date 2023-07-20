@@ -45,23 +45,15 @@ describe(`Test interface`, () => {
   })
 
   it('Should contain a "Show more" button if a document has more than 6 fields', () => {
-    cy.get('ul')
-      .children()
-      .first()
-      .within(() => {
-        cy.get('button').contains('Show more')
-      })
+    cy.get('[data-cy="load-more-btn"]').should('be.visible')
   })
 
   it('Shouldn’t contain a "Show more" button if a document has less than 6 fields', () => {
     cy.get('.react-select__control').click()
-    cy.get('.react-select__option').contains('pokemon').click()
-    cy.get('ul')
-      .children()
-      .first()
-      .within(() => {
-        cy.get('button').contains('Show more').should('not.exist')
-      })
+    cy.get('.react-select__option')
+      .contains('pokemon')
+      .then(($element) => $element.click())
+    cy.get('[data-cy="load-more-btn"]').should('not.exist')
   })
 
   it('Should display more fields if the user clicks on the "Show more" button', () => {
