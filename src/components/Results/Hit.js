@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import ReactJson from 'react-json-view'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
@@ -197,7 +197,17 @@ const FieldValue = ({ hit, objectKey }) => {
 
 const Hit = ({ hit, imageKey }) => {
   const [displayMore, setDisplayMore] = React.useState(false)
-  const documentProperties = Object.entries(hit._highlightResult)
+  const hasFields = !!hit._highlightResult
+  const documentProperties = hasFields
+    ? Object.entries(hit._highlightResult)
+    : []
+
+  useEffect(() => {
+    if (!hit._highlightResult) {
+      console.warn('Your hits have no field. Please check your index settings.')
+    }
+  }, [])
+
   return (
     <CustomCard>
       <Box width={240} mr={4} flexShrink={0}>
@@ -212,21 +222,22 @@ const Hit = ({ hit, imageKey }) => {
         )}
       </Box>
       <ContentContainer>
-        {Object.keys(hit._highlightResult)
-          .slice(0, displayMore ? Object.keys(hit).length : 6)
-          .map((key) => (
-            <div key={key}>
-              <Grid>
-                <HitKey variant="typo10" color="gray.6">
-                  {key}
-                </HitKey>
-                <HitValue>
-                  <FieldValue hit={hit} objectKey={key} />
-                </HitValue>
-              </Grid>
-              <Hr />
-            </div>
-          ))}
+        {hasFields &&
+          Object.keys(hit._highlightResult)
+            .slice(0, displayMore ? Object.keys(hit).length : 6)
+            .map((key) => (
+              <div key={key}>
+                <Grid>
+                  <HitKey variant="typo10" color="gray.6">
+                    {key}
+                  </HitKey>
+                  <HitValue>
+                    <FieldValue hit={hit} objectKey={key} />
+                  </HitValue>
+                </Grid>
+                <Hr />
+              </div>
+            ))}
         {documentProperties.length > 6 && !displayMore && (
           <Grid>
             <HitKey variant="typo10" color="gray.6">
