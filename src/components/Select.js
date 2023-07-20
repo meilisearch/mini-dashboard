@@ -70,7 +70,7 @@ const IndexList = styled(DropdownSelect)`
       }
 
       &--is-selected:not(span span) {
-        background-color: ${Color('#E41359').alpha(0.8)};
+        background-color: ${Color('#E41359').alpha(0.7)};
       }
     }
   }
