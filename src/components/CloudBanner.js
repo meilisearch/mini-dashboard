@@ -62,7 +62,7 @@ const CloudBanner = () => {
             <Typography variant="typo15" color="white">
               Say goodbye to server management, and manual updates with{' '}
               <Link
-                href="https://www.meilisearch.com/pricing?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard"
+                href="https://www.meilisearch.com/cloud?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard"
                 color="white"
               >
                 <Typography variant="typo14" color="white">
