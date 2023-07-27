@@ -56,7 +56,7 @@ const InfiniteHits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
   return (
     <div>
       {/* {mode === 'fancy' ? ( */}
-      <HitsList data-cy="hits-list">
+      <HitsList>
         {hits.map((hit, index) => (
           <Hit key={index} hit={hit} imageKey={imageKey} />
         ))}
@@ -80,7 +80,6 @@ const InfiniteHits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
           variant="bordered"
           onClick={refineNext}
           style={{ margin: '0 auto', marginTop: 32 }}
-          data-cy="load-more-btn"
         >
           Load more
         </Button>
