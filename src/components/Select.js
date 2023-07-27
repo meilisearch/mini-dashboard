@@ -1,11 +1,105 @@
-import React, { useMemo } from 'react'
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
-import Typography from 'components/Typography'
-import DropdownSelect, { createFilter, components } from 'react-select'
+import React from 'react'
+import styled, { css } from 'styled-components'
 import Color from 'color'
-import { FixedSizeList } from 'react-window'
-import { isEmpty, isNil } from 'lodash'
+import PropTypes from 'prop-types'
+import { useMenuState, Menu, MenuItem, MenuButton } from 'reakit/Menu'
+
+import { ArrowDown } from 'components/icons'
+import Typography from 'components/Typography'
+
+const Arrow = styled(ArrowDown)`
+  position: absolute;
+  right: 0;
+  top: calc(50% - 3px);
+  transition: transform 300ms;
+  width: 9px;
+`
+
+const SelectIndexesButton = styled(MenuButton)`
+  position: relative;
+  margin: 0 20px;
+  padding: 12px 32px 12px 12px;
+  height: 48px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  min-width: 260px;
+  border-color: ${(p) => p.theme.colors.gray[10]};
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px ${Color('#000').alpha(0.04)};
+  transition: border-color 300ms;
+  outline: none;
+  color: ${(p) => p.theme.colors.gray[0]};
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  cursor: pointer;
+
+  ${(p) =>
+    p.visible &&
+    css`
+      ${Arrow} {
+        transform: rotate(180deg);
+      }
+    `};
+
+  &:hover,
+  &:focus,
+  &[aria-expanded='true'] {
+    border-color: ${(p) => p.theme.colors.main.default};
+  }
+
+  svg {
+    margin-right: 16px;
+    color: ${(p) => p.theme.colors.main.default};
+    flex-shrink: 0;
+  }
+`
+
+const IndexesListContainer = styled(Menu)`
+  min-width: 218px;
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${(p) => p.theme.colors.gray[10]};
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px ${Color('#000').alpha(0.04)};
+  overflow: hidden;
+  max-height: 180px;
+  overflow: auto;
+`
+
+const IndexItem = styled(MenuItem)`
+  background-color: white;
+  height: 40px;
+  border: 0;
+  outline: none;
+  transition: background-color 300ms;
+  padding: 6px 18px;
+  text-align: left;
+  color: ${(p) => p.theme.colors.gray[2]};
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background-color: ${(p) => p.theme.colors.gray[10]};
+  }
+
+  ${(p) =>
+    p.$selected &&
+    css`
+      span:first-child {
+        font-weight: 600;
+      }
+      span:nth-child(2) {
+        color: ${p.theme.colors.gray[5]};
+      }
+    `}
+`
 
 const IndexId = styled(Typography)`
   text-overflow: ellipsis;
@@ -13,170 +107,56 @@ const IndexId = styled(Typography)`
   overflow: hidden;
 `
 
-const IndexList = styled(DropdownSelect)`
-  margin: 0px 20px;
-  min-width: 240px;
-  display: flex;
-  flex-direction: column;
-  outline: none;
-  box-shadow: 0px 4px 6px ${Color('#000').alpha(0.04)};
-  max-height: 180px;
-  border-radius: 8px;
-
-  .react-select {
-    &__control {
-      svg {
-        padding-left: 8px;
-        color: ${(p) => p.theme.colors.main.default};
-        height: 24px;
-        width: 24px;
-      }
-      border: none;
-      max-height: fit-content;
-      border-radius: 8px;
-      height: 100%;
-      border-width: 1px;
-      border-style: solid;
-      border-color: ${(p) => p.theme.colors.gray[10]};
-
-      &:hover {
-        border-color: ${(p) => p.theme.colors.main.default};
-        box-shadow: 0px 4px 6px ${Color('#000').alpha(0.04)};
-      }
-
-      &--is-focused {
-        border-color: ${(p) => p.theme.colors.main.default};
-        box-shadow: 0px 4px 6px ${Color('#000').alpha(0.04)};
-      }
-    }
-
-    &__indicator-separator {
-      display: none;
-    }
-    &__dropdown-indicator {
-      svg {
-        height: 24px;
-        width: 24px;
-      }
-    }
-
-    &__option {
-      &:hover {
-        background-color: ${(p) => p.theme.colors.main.light};
-      }
-
-      &--is-focused {
-        background-color: ${(p) => p.theme.colors.main.light};
-      }
-
-      &--is-selected:not(span span) {
-        background-color: ${Color('#E41359').alpha(0.8)};
-      }
-    }
-  }
-`
-
-const TextToDisplay = ({ option, currentOption }) => {
-  const isCurrentSelectedOption = option?.uid === currentOption?.uid
-  return (
-    <>
-      <IndexId
-        variant="typo4"
-        color={isCurrentSelectedOption ? 'gray.1' : 'gray.2'}
-        mr={2}
-      >
-        {option ? option.uid : `Select an index`}
-      </IndexId>{' '}
-      {option?.stats && (
-        <Typography
-          variant="typo6"
-          color={isCurrentSelectedOption ? 'gray.8' : 'gray.7'}
-          mt="1px"
-        >
-          {option.stats.numberOfDocuments.toLocaleString()}
-        </Typography>
-      )}
-    </>
-  )
-}
-
-const MenuList = (props) => {
-  // Height of each option.
-  const { options, children, maxHeight, getValue } = props
-  const height = 35
-  const [value] = getValue()
-  const initialOffset = options.indexOf(value) * height
-
-  if (isEmpty(options)) {
-    return <div> {children} </div>
-  }
-
-  return (
-    <FixedSizeList
-      height={maxHeight}
-      itemCount={children.length}
-      itemSize={height}
-      initialScrollOffset={initialOffset}
-    >
-      {({ index, style }) => <div style={style}>{children[index]}</div>}
-    </FixedSizeList>
-  )
-}
-
-const Control = ({ children, icon, ...props }) => (
-  <components.Control {...props}>
-    {icon} {children}
-  </components.Control>
+const TextToDisplay = ({ option, currentOption }) => (
+  <>
+    <IndexId variant="typo4" color={currentOption ? 'gray.0' : 'gray.2'} mr={2}>
+      {option ? option.uid : 'Select an index'}
+    </IndexId>{' '}
+    {option?.stats && (
+      <Typography variant="typo6" color="gray.7" mt="1px">
+        {option.stats.numberOfDocuments.toLocaleString()}
+      </Typography>
+    )}
+  </>
 )
 
 const Select = ({
   options,
-  onChange,
-  noOptionComponent,
   icon,
   currentOption,
+  onChange,
+  noOptionComponent,
+  ...props
 }) => {
-  const renderSelectControl = (props) => <Control icon={icon} {...props} />
-
-  const renderMenuList = (props) => <MenuList {...props} />
-
-  const getOptions = () => {
-    if (isEmpty(options) || isNil(options)) {
-      return []
-    }
-    return options
-  }
-
-  const MemoizedSelect = useMemo(
-    () => (
-      <IndexList
-        className="react-select-container"
-        classNamePrefix="react-select"
-        components={{
-          MenuList: renderMenuList,
-          Control: renderSelectControl,
-        }}
-        options={getOptions()}
-        getOptionLabel={(option) => (
-          <TextToDisplay option={option} currentOption={currentOption} />
-        )}
-        getOptionValue={(option) => option}
-        filterOption={createFilter({
-          ignoreCase: true,
-          ignoreAccents: false,
-          stringify: (option) => option.data.uid,
-        })}
-        onChange={(data) => onChange(data)}
-        placeholder={<TextToDisplay option={undefined} />}
-        noOptionsMessage={() => noOptionComponent}
-        value={currentOption}
-        isSearchable
-      />
-    ),
-    [options, currentOption]
+  const menu = useMenuState()
+  return (
+    <>
+      <SelectIndexesButton {...menu} {...props}>
+        {icon || null}
+        <TextToDisplay option={currentOption} currentOption />
+        <Arrow />
+      </SelectIndexesButton>
+      <IndexesListContainer {...menu} aria-label="Indexes" style={{ top: 8 }}>
+        {options?.length
+          ? options.map((data, index) => (
+              <IndexItem
+                {...menu}
+                key={index}
+                id={data.uid}
+                type="button"
+                onClick={() => {
+                  onChange(data)
+                  menu.hide()
+                }}
+                $selected={currentOption?.uid === data.uid}
+              >
+                <TextToDisplay option={data} />
+              </IndexItem>
+            ))
+          : noOptionComponent}
+      </IndexesListContainer>
+    </>
   )
-
-  return MemoizedSelect
 }
 
 Select.propTypes = {
