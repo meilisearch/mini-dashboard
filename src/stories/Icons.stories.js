@@ -106,7 +106,7 @@ SearchMedium.args = {
   children: <SearchMediumIcon />,
 }
 
-export const ReplyRequest = Template.bind({})
+export const Reply = Template.bind({})
 Reply.args = {
   children: <ReplyIcon />,
 }
