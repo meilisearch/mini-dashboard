@@ -7,19 +7,19 @@ import { baseUrl } from 'App'
 import ApiKeyContext from 'context/ApiKeyContext'
 import styled from 'styled-components'
 import { SendRequest, Tools, DocumentBig, Reply } from 'components/icons'
+import IconButton from 'components/IconButton'
 
 const CommonIconStyles = `
   position: absolute;
   right: 10px;
-  cursor: pointer;
 `
 
-const SendRequestIconContainer = styled.div`
+const SendRequestIconContainer = styled(IconButton)`
   ${CommonIconStyles}
   top: 7px;
 `
 
-const ToolsIconContainer = styled.div`
+const ToolsIconContainer = styled(IconButton)`
   ${CommonIconStyles}
   top: 35px;
 `
