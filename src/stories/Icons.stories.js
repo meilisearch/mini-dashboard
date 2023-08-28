@@ -17,6 +17,9 @@ import {
   Picture as PictureIcon,
   SearchMedium as SearchMediumIcon,
   SearchSmall as SearchSmallIcon,
+  SendRequest as SendIcon,
+  Tools as ToolsIcon,
+  Reply as ReplyIcon,
   SettingsMedium as SettingsMediumIcon,
   SettingsBig as SettingsBigIcon,
   Speed as SpeedIcon,
@@ -101,6 +104,21 @@ SearchSmall.args = {
 export const SearchMedium = Template.bind({})
 SearchMedium.args = {
   children: <SearchMediumIcon />,
+}
+
+export const ReplyRequest = Template.bind({})
+Reply.args = {
+  children: <ReplyIcon />,
+}
+
+export const SendRequest = Template.bind({})
+SendRequest.args = {
+  children: <SendIcon />,
+}
+
+export const Tools = Template.bind({})
+Tools.args = {
+  children: <ToolsIcon />,
 }
 
 export const SettingsMedium = Template.bind({})

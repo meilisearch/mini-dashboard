@@ -15,6 +15,7 @@ import Container from 'components/Container'
 import Select from 'components/Select'
 import { MeilisearchLogo, Indexes, Key } from 'components/icons'
 import { compose, position } from 'styled-system'
+import useLocalStorage from 'hooks/useLocalStorage'
 import HelpCenter from './HelpCenter'
 
 const HeaderWrapper = styled('div')(compose(position), {
@@ -73,7 +74,7 @@ const Header = ({
   client,
   isBannerVisible,
 }) => {
-  const [version, setVersion] = React.useState()
+  const [version, setVersion] = useLocalStorage('meiliVersion')
   React.useEffect(async () => {
     try {
       const res = await client.getVersion()

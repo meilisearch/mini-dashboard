@@ -28,7 +28,7 @@ export const baseUrl =
     ? 'http://0.0.0.0:7700'
     : window.location.origin)
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   background-color: ${(p) => p.theme.colors.gray[11]};
   min-height: 100vh;
 `
