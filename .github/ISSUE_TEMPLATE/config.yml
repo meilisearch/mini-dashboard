@@ -1,5 +1,11 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Meilisearch Project Issues
+  - name: Meilisearch's bug
     url: https://github.com/meilisearch/meilisearch/issues
     about: Please report issues regarding Meilisearch's code base here
+  - name: Feature request & feedback about Meilisearch
+    url: https://github.com/meilisearch/product/discussions/categories/feedback-feature-proposal
+    about: Please open a discussion or comment an already-existing one in our dedicated product repository
+  - name: Support questions & other
+    url: https://discord.meilisearch.com/
+    about: Support is not handled here but on our Discord
