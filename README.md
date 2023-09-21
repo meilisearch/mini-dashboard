@@ -4,6 +4,20 @@
 
 <h1 align="center">Mini Dashboard</h1>
 
+----
+
+🚨 IMPORTANT NOTICE: Reduced Maintenance & Support 🚨
+
+Dear Community,
+
+We'd like to share some updates regarding the future maintenance of this repository:
+
+Our team is small, and our availability will be reduced in the upcoming times. As such, response times might be slower, and we will not be accepting enhancements for this repository moving forward.
+
+*Seeking immediate support? Please join us on [our Discord channel](https://discord.meilisearch.com).*
+
+----
+
 <h4 align="center">
   <a href="https://github.com/meilisearch/meilisearch">Meilisearch</a> |
   <a href="https://docs.meilisearch.com">Documentation</a> |
