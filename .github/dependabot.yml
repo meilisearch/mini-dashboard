@@ -3,12 +3,11 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'monthly'
     labels:
       - skip-changelog
       - dependencies
-    ignore:
-      - dependency-name: '*storybook*'
-      - dependency-name: "*eslint*"
-      - dependency-name: "*prettier*"
-      - dependency-name: "*cypress*"
+    allow:
+      - dependency-name: '@meilisearch/instant-meilisearch'
+      - dependency-name: 'meilisearch'
+      
