@@ -14,26 +14,23 @@
 
 *Our team is small, and our availability will be reduced in the upcoming times. As such, response times might be slower, and we will not be accepting enhancements for this repository moving forward.*
 
-*If you're looking for reliable alternatives, consider using [Cloud Service](https://www.meilisearch.com/pricing?utm_campaign=oss&utm_source=integration&utm_medium=mini-dashboard). For instance, it offers a convenient solution for managing your index settings.*
+*If you're looking for reliable alternatives, consider using [Meilisearch Cloud](https://meilisearch.com/cloud?utm_campaign=oss&utm_source=github&utm_medium=minidashboard). For instance, it offers a convenient solution for managing your index settings.*
 
-*Seeking immediate support? Please join us on [our Discord channel](https://discord.meilisearch.com).*
+*Seeking immediate support? Please join us on [our Discord server](https://discord.meilisearch.com).*
 
 ---
 
 <h4 align="center">
-  <a href="https://github.com/meilisearch/meilisearch">Meilisearch</a> |
-  <a href="https://docs.meilisearch.com">Documentation</a> |
-  <a href="https://discord.meilisearch.com">Discord</a> |
-  <a href="https://www.meilisearch.com">Website</a> |
-  <a href="https://docs.meilisearch.com/faq">FAQ</a>
+  <a href="https://www.meilisearch.com/?utm_campaign=oss&utm_source=github&utm_medium=minidashboard">Website</a> |
+  <a href="https://www.meilisearch.com/cloud?utm_campaign=oss&utm_source=github&utm_medium=minidashboard">Meilisearch Cloud</a> |
+  <a href="https://blog.meilisearch.com/?utm_campaign=oss&utm_source=github&utm_medium=minidashboard">Blog</a> |
+  <a href="https://meilisearch.com/docs?utm_campaign=oss&utm_source=github&utm_medium=minidashboard">Documentation</a> |
+  <a href="https://discord.meilisearch.com/?utm_campaign=oss&utm_source=github&utm_medium=minidashboard">Discord</a>
 </h4>
 
-<p align="center">
-  <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="Prettier"></a>
-  <a href="https://github.com/meilisearch/mini-dashboard/blob/main/LICENCE"><img src="https://img.shields.io/badge/license-MIT-informational" alt="License"></a>
-  <a href="https://ms-bors.herokuapp.com/repositories/55"><img src="https://bors.tech/images/badge_small.svg" alt="Bors enabled"></a>
-</p>
-<br/>
+> Meilisearch is an open-source search engine that offers fast, relevant search out of the box.
+
+👉 [Meilisearch repository](https://github.com/meilisearch/meilisearch)
 
 <p align="center" style="font-weight:bold;">Meilisearch's mini-dashboard. A web-app served by the engine with a minimal search experience on your data.</p>
 
