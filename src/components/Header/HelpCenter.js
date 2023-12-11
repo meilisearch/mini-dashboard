@@ -111,7 +111,7 @@ const HelpCenter = () => {
             logo={<DiscordLogo style={{ width: 62 }} />}
             title="Discord"
             description="Join our Discord and find the help you need"
-            href="https://discord.gg/meilisearch"
+            href="https://discord.meilisearch.com"
           />
           <HelpCard
             logo={<MeilisearchLogo style={{ width: 62 }} />}
