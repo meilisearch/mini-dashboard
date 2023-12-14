@@ -117,7 +117,7 @@ const HelpCenter = () => {
             logo={<MeilisearchLogo style={{ width: 62 }} />}
             title="Documentation"
             description="Learn how to tune your Meilisearch"
-            href="https://docs.meilisearch.com/"
+            href="https://docs.meilisearch.com/?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard"
           />
         </CardsContainer>
       </Modal>

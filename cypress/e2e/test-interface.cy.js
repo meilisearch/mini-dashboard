@@ -39,7 +39,11 @@ describe(`Test interface`, () => {
         .next()
         .should('have.attr', 'href', 'https://discord.meilisearch.com')
         .next()
-        .should('have.attr', 'href', 'https://docs.meilisearch.com/')
+        .should(
+          'have.attr',
+          'href',
+          'https://docs.meilisearch.com/?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard'
+        )
       cy.get('button[aria-label="close"]').click()
     })
   })
