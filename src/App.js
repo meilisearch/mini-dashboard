@@ -100,7 +100,7 @@ const App = () => {
     instantMeilisearch(baseUrl, apiKey, {
       primaryKey: 'id',
       clientAgents,
-    })
+    }).searchClient
   )
   const [MSClient, setMSClient] = React.useState(
     new Meilisearch({
@@ -142,7 +142,7 @@ const App = () => {
           instantMeilisearch(baseUrl, apiKey, {
             primaryKey: 'id',
             clientAgents,
-          })
+          }).searchClient
         )
       } else {
         setCurrentIndex(null)
@@ -192,7 +192,7 @@ const App = () => {
         instantMeilisearch(baseUrl, apiKey, {
           primaryKey: 'id',
           clientAgents,
-        })
+        }).searchClient
       )
 
       setMSClient(
