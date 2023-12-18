@@ -112,6 +112,15 @@ Storybook is a development environment for UI components. It allows you to brows
 yarn storybook
 ```
 
+## Docker
+
+You can also run the mini-dashboard with Docker.
+
+```bash
+docker build -t meilisearch-mini-dashboard .
+docker run -it -e REACT_APP_MEILI_SERVER_ADDRESS=http://localhost:7700 -p 3000:3000 meilisearch-mini-dashboard
+```
+
 ## Contributing
 
 If you want to contribute to this project, please make sure to read [the contributing guidelines](./CONTRIBUTING.md)
