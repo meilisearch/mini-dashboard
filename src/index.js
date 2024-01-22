@@ -5,11 +5,14 @@ import { ThemeProvider } from 'styled-components'
 import theme from 'theme'
 import App from 'App'
 import GlobalStyle from 'GlobalStyle'
+import { MeiliSearchClientProvider } from 'context/MeilisearchClientContext'
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <App />
-  </ThemeProvider>,
+  <MeiliSearchClientProvider>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
+  </MeiliSearchClientProvider>,
   document.getElementById('root')
 )
