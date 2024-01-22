@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable no-console */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { InstantSearch } from 'react-instantsearch-dom'
 import { instantMeiliSearch as instantMeilisearch } from '@meilisearch/instant-meilisearch'
@@ -114,7 +114,7 @@ const App = () => {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Check if the API key is present on the url then put it in the local storage
     const urlParams = new URLSearchParams(window.location.search)
     const apiKeyParam = urlParams.get('api_key')
@@ -147,7 +147,7 @@ const App = () => {
     getIndexesList()
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (apiKey) {
       setInstantMeilisearchClient(
         instantMeilisearch(baseUrl, apiKey, {
@@ -167,7 +167,7 @@ const App = () => {
   }, [apiKey])
 
   // Check if a modal asking for API Key should be displayed
-  React.useEffect(() => {
+  useEffect(() => {
     const shouldDisplayModal = async () => {
       try {
         await meilisearchJsClient.getIndexes()
@@ -180,7 +180,7 @@ const App = () => {
   }, [requireApiKeyToWork])
 
   // Get the list of indexes
-  React.useEffect(() => {
+  useEffect(() => {
     getIndexesList()
   }, [meilisearchJsClient, currentIndex?.uid])
 
