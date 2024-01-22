@@ -1,11 +1,14 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable no-console */
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { InstantSearch } from 'react-instantsearch-dom'
 import { instantMeiliSearch as instantMeilisearch } from '@meilisearch/instant-meilisearch'
 import { useDialogState } from 'reakit/Dialog'
+import { MeiliSearch as Meilisearch } from 'meilisearch'
 
+import ApiKeyContext from 'context/ApiKeyContext'
+import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import useLocalStorage from 'hooks/useLocalStorage'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Box from 'components/Box'
@@ -14,11 +17,9 @@ import Header from 'components/Header/index'
 import CloudBanner from 'components/CloudBanner'
 import Modal from 'components/Modal'
 import OnBoarding from 'components/OnBoarding'
+import NoMeilisearchRunning from 'components/NoMeilisearchRunning'
 import Results from 'components/Results'
-import ApiKeyContext from 'context/ApiKeyContext'
 import Typography from 'components/Typography'
-import { MeiliSearch as Meilisearch } from 'meilisearch'
-
 import ApiKeyAwarenessBanner from 'components/ApiKeyAwarenessBanner'
 import clientAgents from './version/client-agents'
 
@@ -57,70 +58,30 @@ const Content = ({ currentIndex }) => {
   )
 }
 
-const NoMeilisearchRunning = () => (
-  <EmptyView buttonLink="https://docs.meilisearch.com/learn/getting_started/quick_start.html">
-    <Typography
-      variant="typo8"
-      style={{ textAlign: 'center' }}
-      mb={3}
-      color="gray.0"
-    >
-      It seems like Meilisearch isn’t running, did you forget to start it?
-    </Typography>
-    <Typography
-      variant="typo8"
-      style={{ textAlign: 'center' }}
-      mb={32}
-      color="gray.2"
-    >
-      (Don’t forget to set an API Key if you want one)
-    </Typography>
-    <Typography
-      variant="typo8"
-      style={{ textAlign: 'center', fontSize: 40 }}
-      mb={56}
-    >
-      <span role="img" aria-label="face-with-monocle">
-        🧐
-      </span>
-    </Typography>
-  </EmptyView>
-)
-
 const App = () => {
   const [apiKey, setApiKey] = useLocalStorage('apiKey')
-  // eslint-disable-next-line no-unused-vars
-  const [indexes, setIndexes] = React.useState()
-  const [isMeilisearchRunning, setIsMeilisearchRunning] = React.useState(true)
-  const [requireApiKeyToWork, setRequireApiKeyToWork] = React.useState(false)
+  const [indexes, setIndexes] = useState()
+  const [isMeilisearchRunning, setIsMeilisearchRunning] = useState(true)
+  const [requireApiKeyToWork, setRequireApiKeyToWork] = useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
-  const [showCloudBanner, setShowCloudBanner] = React.useState(true)
+  const [showCloudBanner, setShowCloudBanner] = useState(true)
+  const [isApiKeyBannerVisible, setIsApiKeyBannerVisible] = useState(false)
+  const dialog = useDialogState({ animated: true, visible: false })
 
-  const [ISClient, setISClient] = React.useState(
-    instantMeilisearch(baseUrl, apiKey, {
-      primaryKey: 'id',
-      clientAgents,
-    }).searchClient
-  )
-  const [MSClient, setMSClient] = React.useState(
-    new Meilisearch({
-      host: baseUrl,
-      apiKey,
-      clientAgents,
-    })
-  )
-  const [isApiKeyBannerVisible, setIsApiKeyBannerVisible] =
-    React.useState(false)
+  const {
+    meilisearchJsClient,
+    setMeilisearchJsClient,
+    instantMeilisearchClient,
+    setInstantMeilisearchClient,
+  } = useMeilisearchClientContext()
 
   const handleBannerClose = () => {
     setIsApiKeyBannerVisible(false)
   }
 
-  const dialog = useDialogState({ animated: true, visible: false })
-
   const getIndexesList = async () => {
     try {
-      const res = await MSClient.getStats()
+      const res = await meilisearchJsClient.getStats()
       const array = Object.entries(res.indexes)
       const options = array
         .reduce((prev, curr) => {
@@ -138,7 +99,7 @@ const App = () => {
         } else {
           setCurrentIndex(options[0])
         }
-        setISClient(
+        setInstantMeilisearchClient(
           instantMeilisearch(baseUrl, apiKey, {
             primaryKey: 'id',
             clientAgents,
@@ -177,7 +138,7 @@ const App = () => {
         if (err.code === 'missing_authorization_header') {
           setRequireApiKeyToWork(true)
         } else {
-          setIsMeilisearchRunning(await MSClient.isHealthy())
+          setIsMeilisearchRunning(await meilisearchJsClient.isHealthy())
         }
       }
     }
@@ -188,14 +149,14 @@ const App = () => {
 
   React.useEffect(() => {
     if (apiKey) {
-      setISClient(
+      setInstantMeilisearchClient(
         instantMeilisearch(baseUrl, apiKey, {
           primaryKey: 'id',
           clientAgents,
         }).searchClient
       )
 
-      setMSClient(
+      setMeilisearchJsClient(
         new Meilisearch({
           host: baseUrl,
           apiKey,
@@ -209,7 +170,7 @@ const App = () => {
   React.useEffect(() => {
     const shouldDisplayModal = async () => {
       try {
-        await MSClient.getIndexes()
+        await meilisearchJsClient.getIndexes()
       } catch (err) {
         console.log(err)
         dialog.show()
@@ -221,14 +182,14 @@ const App = () => {
   // Get the list of indexes
   React.useEffect(() => {
     getIndexesList()
-  }, [MSClient, currentIndex?.uid])
+  }, [meilisearchJsClient, currentIndex?.uid])
 
   return (
     <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
       <Wrapper>
         <InstantSearch
           indexName={currentIndex ? currentIndex.uid : ''}
-          searchClient={ISClient}
+          searchClient={instantMeilisearchClient}
         >
           {isApiKeyBannerVisible && (
             <ApiKeyAwarenessBanner onClose={handleBannerClose} />
@@ -239,7 +200,7 @@ const App = () => {
             currentIndex={currentIndex}
             setCurrentIndex={setCurrentIndex}
             requireApiKeyToWork={requireApiKeyToWork}
-            client={MSClient}
+            client={meilisearchJsClient}
             refreshIndexes={getIndexesList}
             isBannerVisible={isApiKeyBannerVisible}
           />
