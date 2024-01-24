@@ -59,6 +59,7 @@ describe(`Test interface`, () => {
 
   it('Shouldn’t contain a "Show more" button if a document has less than 6 fields', () => {
     cy.get('button[aria-haspopup=menu]').click()
+    cy.wait(WAITING_TIME)
     cy.get('button[role=menuitem]').contains('pokemon').click()
     cy.get('ul')
       .children()
@@ -70,6 +71,7 @@ describe(`Test interface`, () => {
 
   it('Should display more fields if the user clicks on the "Show more" button', () => {
     cy.get('button[aria-haspopup=menu]').click()
+    cy.wait(WAITING_TIME)
     cy.get('button[role=menuitem]').contains('movies').click()
     cy.get('ul')
       .children()

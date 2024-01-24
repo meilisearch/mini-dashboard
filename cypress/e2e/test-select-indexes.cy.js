@@ -1,5 +1,7 @@
 const WAITING_TIME = Cypress.env('waitingTime')
 
+// TODO: refacto tests to get rid of the WAITING_TIME
+
 describe(`Test indexes`, () => {
   before(() => {
     cy.deleteAllIndexes()
@@ -39,6 +41,7 @@ describe(`Test indexes`, () => {
 
   it('Should list all the indexes inside the select', () => {
     cy.get('button[aria-haspopup=menu]').click()
+    cy.wait(WAITING_TIME)
     cy.get('div[role=menu]')
       .children()
       .should(($p) => {
@@ -55,6 +58,7 @@ describe(`Test indexes`, () => {
 
   it('Should display an indexes documents', () => {
     cy.get('button[aria-haspopup=menu]').click()
+    cy.wait(WAITING_TIME)
     cy.get('button[role=menuitem]').contains('movies').click()
     cy.get('ul')
       .children()
@@ -65,6 +69,7 @@ describe(`Test indexes`, () => {
 
   it('Should display the documents of an other index on click on it', () => {
     cy.get('button[aria-haspopup=menu]').click()
+    cy.wait(WAITING_TIME)
     cy.get('button[role=menuitem]').contains('pokemon').click()
     cy.get('ul').children().should('have.length', 3)
     cy.get('ul')

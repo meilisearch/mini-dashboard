@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Color from 'color'
 import { DialogDisclosure, useDialogState } from 'reakit/Dialog'
 
+import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Button from 'components/Button'
 import Link from 'components/Link'
@@ -70,19 +71,20 @@ const Header = ({
   setCurrentIndex,
   refreshIndexes,
   requireApiKeyToWork,
-  client,
   isBannerVisible,
 }) => {
+  const { meilisearchJsClient } = useMeilisearchClientContext()
   const [version, setVersion] = React.useState()
+
   React.useEffect(async () => {
     try {
-      const res = await client.getVersion()
+      const res = await meilisearchJsClient.getVersion()
       setVersion(res.pkgVersion)
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err)
     }
-  }, [client])
+  }, [meilisearchJsClient])
 
   return (
     <HeaderWrapper top={isBannerVisible ? 55 : 0}>

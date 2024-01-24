@@ -5,7 +5,7 @@ import useLocalStorage from 'hooks/useLocalStorage'
 import { baseUrl } from 'App'
 import clientAgents from 'version/client-agents'
 
-const MeilisearchClientContext = createContext({
+export const MeilisearchClientContext = createContext({
   meilisearchJsClient: '',
   setMeilisearchJsClient: () => {},
   instantMeilisearchClient: '',
