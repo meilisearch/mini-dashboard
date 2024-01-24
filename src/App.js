@@ -39,7 +39,7 @@ const App = () => {
   const [isMeilisearchRunning, setIsMeilisearchRunning] = useState(false)
   const [requireApiKeyToWork, setRequireApiKeyToWork] = useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
-  const [showCloudBanner, setShowCloudBanner] = useState(true)
+  const [showCloudBanner, setShowCloudBanner] = useState(false)
   const [isApiKeyBannerVisible, setIsApiKeyBannerVisible] = useState(false)
   const dialog = useDialogState({ animated: true, visible: false })
 
@@ -79,7 +79,10 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    setShowCloudBanner(shouldDisplayCloudBanner())
+    const shouldCloudBannerBeDisplayed = shouldDisplayCloudBanner()
+    if (shouldCloudBannerBeDisplayed) {
+      setShowCloudBanner(shouldCloudBannerBeDisplayed)
+    }
     getApiKeyFromUrl()
   }, [])
 
@@ -101,10 +104,13 @@ const App = () => {
   }, [apiKey])
 
   useEffect(async () => {
-    setIsMeilisearchRunning(await meilisearchJsClient.isHealthy())
-    setRequireApiKeyToWork(await hasAnApiKeySet())
-    dialog.setVisible(await shouldDisplayApiKeyModal(meilisearchJsClient))
-    getIndexesList()
+    const isInstanceRunning = await meilisearchJsClient.isHealthy()
+    setIsMeilisearchRunning(isInstanceRunning)
+    if (isInstanceRunning) {
+      setRequireApiKeyToWork(await hasAnApiKeySet())
+      dialog.setVisible(await shouldDisplayApiKeyModal(meilisearchJsClient))
+      getIndexesList()
+    }
   }, [meilisearchJsClient])
 
   return (
