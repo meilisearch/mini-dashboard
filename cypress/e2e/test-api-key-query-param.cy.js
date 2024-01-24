@@ -20,6 +20,7 @@ describe(`Test API key required with query params`, () => {
   })
 
   it('Should display the movies', () => {
+    cy.wait(WAITING_TIME)
     cy.get('ul')
       .children()
       .should(($p) => {
