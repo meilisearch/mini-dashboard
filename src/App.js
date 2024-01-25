@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable no-console */
 import React, { useState, useEffect, useCallback } from 'react'
