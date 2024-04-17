@@ -2,8 +2,10 @@ import React from 'react'
 import { InstantSearch } from 'react-instantsearch-dom'
 
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
+import useLocalStorage from 'hooks/useLocalStorage'
 import Box from 'components/Box'
 import Header from 'components/Header/index'
+import Facets from 'components/Facets/index'
 import BodyWrapper from 'components/BodyWrapper'
 import EmptyView from 'components/EmptyView'
 import OnBoarding from 'components/OnBoarding'
@@ -35,8 +37,25 @@ const Body = ({
   requireApiKeyToWork,
   isApiKeyBannerVisible,
 }) => {
+  const [settings, setSettings] = useLocalStorage('indexSettings')
   const { meilisearchJsClient, instantMeilisearchClient } =
     useMeilisearchClientContext()
+
+  // Get the settings for facets
+  React.useEffect(() => {
+    const getIndexSettings = async () => {
+      try {
+        const res = await meilisearchJsClient
+          .index(currentIndex?.uid)
+          ?.getSettings()
+        setSettings(res.filterableAttributes)
+      } catch (err) {
+        setSettings([])
+      }
+    }
+
+    getIndexSettings()
+  }, [meilisearchJsClient, currentIndex])
 
   return (
     <InstantSearch
@@ -53,16 +72,18 @@ const Body = ({
         isBannerVisible={isApiKeyBannerVisible}
       />
       <BodyWrapper>
-        {/* <Sidebar /> */}
-        <Box
-          width={928}
-          m="0 auto"
-          py={4}
-          display="flex"
-          flexDirection="column"
-        >
-          <IndexContent currentIndex={currentIndex} />
-        </Box>
+        <>
+          <Facets settings={settings} />
+          <Box
+            width={928}
+            m="0 auto"
+            py={4}
+            display="flex"
+            flexDirection="column"
+          >
+            <IndexContent currentIndex={currentIndex} />
+          </Box>
+        </>
       </BodyWrapper>
     </InstantSearch>
   )
