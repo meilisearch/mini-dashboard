@@ -3,6 +3,7 @@ import React from 'react'
 import Badge from 'components/Badge'
 import Checkbox from 'components/Checkbox'
 import Typography from 'components/Typography'
+import { scrollToTop } from 'components/ScrollToTop'
 
 const RefinementOptions = ({ items, limit, extended, refine }) =>
   (items || []).map(
@@ -13,6 +14,7 @@ const RefinementOptions = ({ items, limit, extended, refine }) =>
           key={item.label}
           checked={item.isRefined}
           onChange={(e) => {
+            scrollToTop()
             e.preventDefault()
             refine(item.value)
           }}
