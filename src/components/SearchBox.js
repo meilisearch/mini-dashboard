@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { connectSearchBox } from 'react-instantsearch-dom'
 
+import { scrollToTop } from 'components/ScrollToTop'
 import Input from 'components/Input'
 import { SearchMedium } from 'components/icons'
 
@@ -25,8 +26,14 @@ const SearchBox = connectSearchBox(
       <Input
         type="search"
         value={value}
-        onChange={(e) => setValue(e.target.value)}
-        clear={() => setValue('')}
+        onChange={(e) => {
+          scrollToTop()
+          setValue(e.target.value)
+        }}
+        clear={() => {
+          scrollToTop()
+          setValue('')
+        }}
         placeholder="Search something"
         icon={<SearchIcon />}
         style={{ width: 520 }}

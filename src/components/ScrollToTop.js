@@ -29,16 +29,14 @@ const ScrollButton = styled(IconButton)`
   }
 `
 
-const ScrollToTop = () => {
-  const scrollToTop = () => {
-    window.scroll({ top: 0, behavior: 'smooth' })
-  }
-
-  return (
-    <ScrollButton onClick={() => scrollToTop()} aria-label="scroll to top">
-      <ArrowDown width={12} />
-    </ScrollButton>
-  )
+export const scrollToTop = () => {
+  window.scroll({ top: 0, behavior: 'smooth' })
 }
+
+const ScrollToTop = () => (
+  <ScrollButton onClick={() => scrollToTop()} aria-label="scroll to top">
+    <ArrowDown width={12} />
+  </ScrollButton>
+)
 
 export default ScrollToTop
