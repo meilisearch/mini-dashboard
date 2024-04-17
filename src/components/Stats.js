@@ -15,7 +15,7 @@ const Legend = styled(Typography)`
 `
 
 const Stat = ({ icon, legend, value, ...props }) => (
-  <div style={{ minWidth: 170 }} {...props}>
+  <div style={{ minWidth: 170, marginRight: '30px' }} {...props}>
     <Legend variant="typo4" color="gray.7">
       {icon}
       <span>{legend}</span>
