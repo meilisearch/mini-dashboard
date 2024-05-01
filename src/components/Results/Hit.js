@@ -54,6 +54,7 @@ const Hit = ({ hit }) => {
           attribute="title"
           hit={hit}
           style={{ marginBottom: '5px' }}
+          title={hit.title}
         />
         <Highlight
           maxLength={100}
@@ -61,6 +62,7 @@ const Hit = ({ hit }) => {
           color="gray.2"
           attribute="artist"
           hit={hit}
+          title={hit.artist}
         />
         <br />
         <Highlight
@@ -69,6 +71,7 @@ const Hit = ({ hit }) => {
           color="gray.5"
           attribute="album"
           hit={hit}
+          title={hit.album}
         />
       </ContentContainer>
     </CustomCard>
