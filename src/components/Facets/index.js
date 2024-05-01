@@ -1,7 +1,7 @@
 import React from 'react'
 import Color from 'color'
 import styled from 'styled-components'
-import { connectCurrentRefinements } from 'react-instantsearch-dom'
+import { connectCurrentRefinements, RatingMenu } from 'react-instantsearch-dom'
 
 import Box from 'components/Box'
 import Button from 'components/Button'
@@ -67,17 +67,29 @@ const Facets = ({ settings }) => {
                 Facets
               </Typography>
             </Box>
-            {settings?.map((setting) => (
-              <React.Fragment key={setting}>
-                <CustomRefinementList
-                  attribute={setting}
-                  limit={5}
-                  showMoreLimit={100}
-                  showMore
-                  operator="and"
-                />
-              </React.Fragment>
-            ))}
+            {settings?.map((setting) => {
+              if (setting === 'rating') {
+                return (
+                  <RatingMenu
+                    key={setting}
+                    attribute={setting}
+                    min={0}
+                    max={5}
+                  />
+                )
+              }
+              return (
+                <React.Fragment key={setting}>
+                  <CustomRefinementList
+                    attribute={setting}
+                    limit={5}
+                    showMoreLimit={100}
+                    showMore
+                    operator="and"
+                  />
+                </React.Fragment>
+              )
+            })}
           </Box>
           <CustomClearRefinements />
         </>
