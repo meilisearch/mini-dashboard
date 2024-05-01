@@ -1,11 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { connectInfiniteHits } from 'react-instantsearch-dom'
-// import ReactJson from 'react-json-view'
+import { connectInfiniteHits, Configure } from 'react-instantsearch-dom'
 
-// import { jsonTheme } from 'theme'
 import Button from 'components/Button'
-// import Card from 'components/Card'
 import ScrollToTop from 'components/ScrollToTop'
 
 import Hit from './Hit'
@@ -13,7 +10,7 @@ import Hit from './Hit'
 const HitsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Adjust as per design requirements */
+  justify-content: space-between;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -61,28 +58,14 @@ const InfiniteHits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
     }
     getImageKey()
   }, [hits[0]])
-  // ({ hits, hasMore, refineNext, mode }) => {
   return (
     <div>
-      {/* {mode === 'fancy' ? ( */}
+      <Configure hitsPerPage={21} />
       <HitsList>
         {hits.map((hit, index) => (
           <Hit key={index} hit={hit} imageKey={imageKey} />
         ))}
       </HitsList>
-      {/* ) : (
-        <Card style={{ fontSize: 14, minHeight: 320 }}>
-          <ReactJson
-            src={hits}
-            name={null}
-            collapsed={2}
-            enableClipboard={false}
-            displayObjectSize={false}
-            displayDataTypes={false}
-            theme={jsonTheme}
-          />
-        </Card>
-      )} */}
       {hasMore && (
         <Button
           size="small"
