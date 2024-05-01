@@ -62,8 +62,8 @@ const InfiniteHits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
     <div>
       <Configure hitsPerPage={21} />
       <HitsList>
-        {hits.map((hit, index) => (
-          <Hit key={index} hit={hit} imageKey={imageKey} />
+        {hits.map((hit) => (
+          <Hit key={hit.id} hit={hit} imageKey={imageKey} />
         ))}
       </HitsList>
       {hasMore && (

@@ -1,17 +1,12 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/opacity.css'
 
 import Box from 'components/Box'
 import Card from 'components/Card'
+import placeholderImage from '../../assets/placeholder.png'
 import Highlight from './Highlight'
-
-const EmptyImage = styled.div`
-  width: 100%;
-  height: 264px;
-  background-color: ${(p) => p.theme.colors.main.light};
-  border-radius: 10px;
-`
 
 const CustomCard = styled(Card)`
   display: flex;
@@ -25,8 +20,8 @@ const ContentContainer = styled.div`
   overflow: hidden;
 `
 
-const Hit = ({ hit, imageKey }) => {
-  const [imageErrors, setImageErrors] = React.useState({})
+const Hit = ({ hit }) => {
+  const [usePlaceholder, setUsePlaceholder] = React.useState({})
 
   useEffect(() => {
     if (!hit._highlightResult) {
@@ -35,29 +30,21 @@ const Hit = ({ hit, imageKey }) => {
     }
   }, [hit._highlightResult])
 
-  // Handler to set an image as errored out.
-  const handleImageError = (hitId) => {
-    setImageErrors((prevState) => ({ ...prevState, [hitId]: true }))
+  const definePlaceholderImage = (imageUrl) => {
+    setUsePlaceholder((prevState) => ({ ...prevState, [imageUrl]: true }))
   }
 
   return (
     <CustomCard>
       <Box width={240} mr={4} flexShrink={0}>
-        {hit[imageKey] && !imageErrors[hit[imageKey]] ? (
-          <LazyLoadImage
-            src={hit[imageKey]}
-            effect="blur"
-            width="100%"
-            height="264px"
-            style={{ borderRadius: 10, objectFit: 'cover' }}
-            onError={() => {
-              handleImageError(hit[imageKey])
-            }}
-            visibleByDefault="true"
-          />
-        ) : (
-          <EmptyImage />
-        )}
+        <LazyLoadImage
+          src={usePlaceholder[hit.image_url] ? placeholderImage : hit.image_url}
+          effect="opacity"
+          width="100%"
+          height="264px"
+          style={{ borderRadius: 10, objectFit: 'cover' }}
+          onError={() => definePlaceholderImage(hit.image_url, true)}
+        />
       </Box>
       <ContentContainer>
         <Highlight
