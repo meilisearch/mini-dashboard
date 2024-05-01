@@ -21,13 +21,14 @@ const EmptyImage = styled.div`
 
 const CustomCard = styled(Card)`
   display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
 `
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 2fr; /* Adjust based on your preference */
   grid-gap: 10px;
-  word-break: break-all;
 `
 
 const HitKey = styled(Typography)`
@@ -36,11 +37,13 @@ const HitKey = styled(Typography)`
 
 const HitValue = styled.div`
   grid-column: 2 / 4;
-  word-break: break-word;
+  overflow-wrap: break-word; /* Recommended for natural word breaks */
 `
 
 const ContentContainer = styled.div`
+  margin-top: 16px;
   width: 100%;
+  overflow: hidden;
 `
 
 const Link = styled(BaseLink)`
@@ -197,26 +200,39 @@ const FieldValue = ({ hit, objectKey }) => {
 
 const Hit = ({ hit, imageKey }) => {
   const [displayMore, setDisplayMore] = React.useState(false)
-  const hasFields = !!hit._highlightResult
-  const documentProperties = hasFields
-    ? Object.entries(hit._highlightResult)
-    : []
+  const [imageErrors, setImageErrors] = React.useState({})
 
   useEffect(() => {
     if (!hit._highlightResult) {
       // eslint-disable-next-line no-console
       console.warn('Your hits have no field. Please check your index settings.')
     }
-  }, [])
+  }, [hit._highlightResult])
+
+  // Handler to set an image as errored out.
+  const handleImageError = (hitId) => {
+    setImageErrors((prevState) => ({ ...prevState, [hitId]: true }))
+  }
+
+  const hasFields = !!hit._highlightResult
+  const documentProperties = hasFields
+    ? Object.entries(hit._highlightResult)
+    : []
 
   return (
     <CustomCard>
       <Box width={240} mr={4} flexShrink={0}>
-        {hit[imageKey] ? (
+        {hit[imageKey] && !imageErrors[hit[imageKey]] ? (
           <LazyLoadImage
-            src={hit[imageKey] || null}
+            src={hit[imageKey]}
+            effect="blur"
             width="100%"
-            style={{ borderRadius: 10 }}
+            height="264px"
+            style={{ borderRadius: 10, objectFit: 'cover' }}
+            onError={() => {
+              handleImageError(hit[imageKey])
+            }}
+            visibleByDefault="true"
           />
         ) : (
           <EmptyImage />
@@ -224,37 +240,25 @@ const Hit = ({ hit, imageKey }) => {
       </Box>
       <ContentContainer>
         {hasFields &&
-          Object.keys(hit._highlightResult)
-            .slice(0, displayMore ? Object.keys(hit).length : 6)
-            .map((key) => (
-              <div key={key}>
+          documentProperties
+            .slice(0, displayMore ? documentProperties.length : 6)
+            .map(([field]) => (
+              <div key={field}>
                 <Grid>
                   <HitKey variant="typo10" color="gray.6">
-                    {key}
+                    {field}
                   </HitKey>
                   <HitValue>
-                    <FieldValue hit={hit} objectKey={key} />
+                    <FieldValue hit={hit} objectKey={field} />
                   </HitValue>
                 </Grid>
                 <Hr />
               </div>
             ))}
         {documentProperties.length > 6 && !displayMore && (
-          <Grid>
-            <HitKey variant="typo10" color="gray.6">
-              ...
-            </HitKey>
-            <div>
-              <Button
-                variant="link"
-                size="small"
-                toggable
-                onClick={() => setDisplayMore(true)}
-              >
-                Show more
-              </Button>
-            </div>
-          </Grid>
+          <Button variant="link" onClick={() => setDisplayMore(true)}>
+            Show more
+          </Button>
         )}
       </ContentContainer>
     </CustomCard>

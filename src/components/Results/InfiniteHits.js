@@ -11,10 +11,16 @@ import ScrollToTop from 'components/ScrollToTop'
 import Hit from './Hit'
 
 const HitsList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Adjust as per design requirements */
+  list-style: none;
   padding: 0;
   margin: 0;
-  > li + li {
-    margin-top: 16px;
+
+  > li {
+    width: calc((100% - 2 * 16px) / 3);
+    margin-bottom: 16px;
   }
 `
 
