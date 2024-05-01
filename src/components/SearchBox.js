@@ -37,6 +37,7 @@ const SearchBox = connectSearchBox(
         placeholder="Search something"
         icon={<SearchIcon />}
         style={{ width: 520 }}
+        autoFocus
       />
     )
   }
