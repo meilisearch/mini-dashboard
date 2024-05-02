@@ -17,11 +17,10 @@ const CustomCard = styled(Card)`
 const ContentContainer = styled.div`
   margin-top: 16px;
   width: 100%;
-  overflow: hidden;
 `
 
 const Hit = ({ hit }) => {
-  const [usePlaceholder, setUsePlaceholder] = React.useState({})
+  const [usePlaceholder, setUsePlaceholder] = React.useState(false)
 
   useEffect(() => {
     if (!hit._highlightResult) {
@@ -30,25 +29,21 @@ const Hit = ({ hit }) => {
     }
   }, [hit._highlightResult])
 
-  const definePlaceholderImage = (imageUrl) => {
-    setUsePlaceholder((prevState) => ({ ...prevState, [imageUrl]: true }))
-  }
-
   return (
     <CustomCard>
       <Box width={240} mr={4} flexShrink={0}>
         <LazyLoadImage
-          src={usePlaceholder[hit.image_url] ? placeholderImage : hit.image_url}
+          src={usePlaceholder ? placeholderImage : hit.image_url}
           effect="opacity"
           width="100%"
           height="264px"
           style={{ borderRadius: 10, objectFit: 'cover' }}
-          onError={() => definePlaceholderImage(hit.image_url, true)}
+          onError={() => setUsePlaceholder(true)}
         />
       </Box>
       <ContentContainer>
         <Highlight
-          maxLength={50}
+          maxLength={60}
           variant="typo1"
           color="gray.1"
           attribute="title"
