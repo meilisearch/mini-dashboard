@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     name: linter-check
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 18
       - name: Install dev dependencies
         run: yarn --dev
       - name: Run style check
@@ -25,31 +25,31 @@ jobs:
   cypress_no_meilisearch:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      image: cypress/browsers:latest
       options: --user 1001
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup node and cache
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 18
           cache: "yarn"
           cache-dependency-path: yarn.lock
       - name: Install dependencies
         run: yarn
       - name: Test no meilisearch running
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v6
         with:
           start: yarn start:ci
           wait-on: 'http://0.0.0.0:3000'
           command: yarn cy:run:test-no-meilisearch
           config-file: cypress.config.js
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-videos
@@ -57,7 +57,7 @@ jobs:
   cypress_meilisearch-no-api-key:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      image: cypress/browsers:latest
       options: --user 1001
     services:
       meilisearch:
@@ -67,30 +67,31 @@ jobs:
         ports:
           - '7700:7700'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup node and cache
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 18
           cache: "yarn"
           cache-dependency-path: yarn.lock
       - name: Install dependencies
         run: yarn
       - name: Test
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v6
         env:
           CYPRESS_host: http://meilisearch:7700
         with:
           start: yarn start:ci
           wait-on: 'http://0.0.0.0:3000'
+          wait-on-timeout: 120
           command: yarn cy:run
           config-file: cypress.config.js
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-videos
@@ -98,7 +99,7 @@ jobs:
   cypress_meilisearch-api-key:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      image: cypress/browsers:latest
       options: --user 1001
     services:
       meilisearch:
@@ -109,17 +110,17 @@ jobs:
         ports:
           - '7700:7700'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup node and cache
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 18
           cache: "yarn"
           cache-dependency-path: yarn.lock
       - name: Install dependencies
         run: yarn
       - name: Test
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v6
         env:
           CYPRESS_host: http://meilisearch:7700
         with:
@@ -127,12 +128,12 @@ jobs:
           wait-on: 'http://0.0.0.0:3000'
           command: yarn cy:run:test-api-key-required
           config-file: cypress.config.js
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-videos
