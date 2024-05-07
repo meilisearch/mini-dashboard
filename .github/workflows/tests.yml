@@ -24,6 +24,9 @@ jobs:
         run: yarn lint && yarn prettier-check
   cypress_no_meilisearch:
     runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:latest
+      options: --user 1001
     steps:
       - uses: actions/checkout@v4
       - name: Setup node and cache
@@ -35,7 +38,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Test no meilisearch running
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           start: yarn start:ci
           wait-on: 'http://0.0.0.0:3000'
@@ -53,6 +56,9 @@ jobs:
           path: cypress/videos
   cypress_meilisearch-no-api-key:
     runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:latest
+      options: --user 1001
     services:
       meilisearch:
         image: getmeili/meilisearch:latest
@@ -71,12 +77,13 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Test
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         env:
           CYPRESS_host: http://meilisearch:7700
         with:
           start: yarn start:ci
           wait-on: 'http://0.0.0.0:3000'
+          wait-on-timeout: 120
           command: yarn cy:run
           config-file: cypress.config.js
       - uses: actions/upload-artifact@v4
@@ -91,6 +98,9 @@ jobs:
           path: cypress/videos
   cypress_meilisearch-api-key:
     runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:latest
+      options: --user 1001
     services:
       meilisearch:
         image: getmeili/meilisearch:latest
@@ -110,7 +120,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Test
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         env:
           CYPRESS_host: http://meilisearch:7700
         with:
