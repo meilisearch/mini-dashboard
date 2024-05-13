@@ -6,8 +6,4 @@ updates:
       interval: 'monthly'
     labels:
       - skip-changelog
-      - dependencies
-    allow:
-      - dependency-name: '@meilisearch/instant-meilisearch'
-      - dependency-name: 'meilisearch'
-      
+      - dependencies      
