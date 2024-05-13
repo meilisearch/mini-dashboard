@@ -49,8 +49,11 @@ const findImageKey = async (array) => {
 const InfiniteHits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
   const [imageKey, setImageKey] = React.useState(false)
 
-  React.useEffect(async () => {
-    setImageKey(hits[0] ? await findImageKey(Object.entries(hits[0])) : null)
+  React.useEffect(() => {
+    const getImageKey = async () => {
+      setImageKey(hits[0] ? await findImageKey(Object.entries(hits[0])) : null)
+    }
+    getImageKey()
   }, [hits[0]])
   // ({ hits, hasMore, refineNext, mode }) => {
   return (
