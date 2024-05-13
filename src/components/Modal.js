@@ -92,9 +92,4 @@ Modal.propTypes = {
   children: PropTypes.node,
 }
 
-Modal.defaultProps = {
-  title: null,
-  children: null,
-}
-
 export default Modal

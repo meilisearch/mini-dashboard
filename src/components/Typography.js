@@ -183,9 +183,4 @@ Typography.propTypes = {
   children: PropTypes.node,
 }
 
-Typography.defaultProps = {
-  variant: 'default',
-  children: null,
-}
-
 export default Typography

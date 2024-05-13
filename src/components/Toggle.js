@@ -117,12 +117,4 @@ Toggle.propTypes = {
   initialValue: PropTypes.bool,
 }
 
-Toggle.defaultProps = {
-  onLabel: 'On',
-  offLabel: 'Off',
-  ariaLabel: null,
-  onChange: null,
-  initialValue: true,
-}
-
 export default Toggle

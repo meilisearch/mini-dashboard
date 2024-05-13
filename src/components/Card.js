@@ -21,8 +21,4 @@ Card.propTypes = {
   children: PropTypes.node,
 }
 
-Card.defaultProps = {
-  children: null,
-}
-
 export default Card

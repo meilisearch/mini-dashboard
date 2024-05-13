@@ -53,7 +53,7 @@ const StyledButton = styled.button`
 `
 
 const IconButton = React.forwardRef(
-  ({ color: iconColor, variant, children, ...props }, ref) => {
+  ({ color: iconColor, variant = 'default', children, ...props }, ref) => {
     const safeVariant = variants[variant] || variants.default
 
     return (
@@ -82,12 +82,6 @@ IconButton.propTypes = {
    * Text to be displayed
    */
   children: PropTypes.node,
-}
-
-IconButton.defaultProps = {
-  color: null,
-  variant: 'default',
-  children: null,
 }
 
 export default IconButton

@@ -66,10 +66,4 @@ Stats.propTypes = {
   nbResults: PropTypes.number,
 }
 
-Stats.defaultProps = {
-  nbHits: null,
-  processingTimeMS: null,
-  nbResults: null,
-}
-
 export default Stats

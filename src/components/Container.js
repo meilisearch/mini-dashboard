@@ -15,8 +15,4 @@ Container.propTypes = {
   children: PropTypes.node,
 }
 
-Container.defaultProps = {
-  children: null,
-}
-
 export default Container

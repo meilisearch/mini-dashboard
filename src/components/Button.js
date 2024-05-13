@@ -215,13 +215,4 @@ Button.propTypes = {
   children: PropTypes.node,
 }
 
-Button.defaultProps = {
-  as: null,
-  variant: 'default',
-  size: 'medium',
-  icon: null,
-  toggable: false,
-  children: null,
-}
-
 export default Button

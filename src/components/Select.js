@@ -194,12 +194,4 @@ Select.propTypes = {
   noOptionComponent: PropTypes.node,
 }
 
-Select.defaultProps = {
-  options: null,
-  icon: null,
-  currentOption: null,
-  onChange: null,
-  noOptionComponent: null,
-}
-
 export default Select
