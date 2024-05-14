@@ -17,7 +17,7 @@
     "react-lazy-load-image-component": "^1.6.0",
     "react-scripts": "5.0.1",
     "reakit": "^1.3.11",
-    "styled-components": "^6.1.11",
+    "styled-components": "^5.3.9",
     "styled-system": "^5.1.5"
   },
   "scripts": {
@@ -53,12 +53,12 @@
     "@svgr/cli": "^8.1.0",
     "cypress": "^13.9.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-jsx-a11y": "^6.7.0",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-react": "^7.31.11",
-    "prettier": "^2.8.2",
+    "prettier": "^3.2.5",
     "storybook": "^8.0.10"
   }
 }

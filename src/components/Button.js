@@ -132,14 +132,19 @@ const StyledButton = styled(ReakitButton)`
   justify-content: center;
   align-items: center;
   outline: none;
-  transition: background-color 300ms, color 200ms, box-shadow 300ms,
+  transition:
+    background-color 300ms,
+    color 200ms,
+    box-shadow 300ms,
     border-color 300ms;
 
   &:hover {
     cursor: pointer;
   }
   svg {
-    transition: color 200ms, transform 300ms;
+    transition:
+      color 200ms,
+      transform 300ms;
     margin-right: 8px;
   }
 

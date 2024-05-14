@@ -15,7 +15,9 @@ const StyledCheckbox = styled(ReakitCheckbox)`
   background-color: white;
   outline: none;
   cursor: pointer;
-  transition: background-color 300ms, border-color 300ms;
+  transition:
+    background-color 300ms,
+    border-color 300ms;
 
   &[aria-checked='true'] {
     color: white;

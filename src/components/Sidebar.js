@@ -68,7 +68,9 @@ const Disclosure = styled(ReakitDisclosure)`
 `
 
 const DisclosureContent = styled(ReakitDisclosureContent)`
-  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+  transition:
+    opacity 300ms ease-in-out,
+    transform 300ms ease-in-out;
   opacity: 0;
   height: 100%;
   width: 100%;
