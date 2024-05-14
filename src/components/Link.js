@@ -34,10 +34,4 @@ Link.propTypes = {
   children: PropTypes.node,
 }
 
-Link.defaultProps = {
-  href: null,
-  target: '_blank',
-  children: null,
-}
-
 export default Link

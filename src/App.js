@@ -102,14 +102,17 @@ const App = () => {
     )
   }, [apiKey])
 
-  useEffect(async () => {
-    const isInstanceRunning = await meilisearchJsClient.isHealthy()
-    setIsMeilisearchRunning(isInstanceRunning)
-    if (isInstanceRunning) {
-      setRequireApiKeyToWork(await hasAnApiKeySet())
-      dialog.setVisible(await shouldDisplayApiKeyModal(meilisearchJsClient))
-      getIndexesList()
+  useEffect(() => {
+    const onClientUpdate = async () => {
+      const isInstanceRunning = await meilisearchJsClient.isHealthy()
+      setIsMeilisearchRunning(isInstanceRunning)
+      if (isInstanceRunning) {
+        setRequireApiKeyToWork(await hasAnApiKeySet())
+        dialog.setVisible(await shouldDisplayApiKeyModal(meilisearchJsClient))
+        getIndexesList()
+      }
     }
+    onClientUpdate()
   }, [meilisearchJsClient])
 
   return (

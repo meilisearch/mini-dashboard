@@ -76,14 +76,17 @@ const Header = ({
   const { meilisearchJsClient } = useMeilisearchClientContext()
   const [version, setVersion] = React.useState()
 
-  React.useEffect(async () => {
-    try {
-      const res = await meilisearchJsClient.getVersion()
-      setVersion(res.pkgVersion)
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err)
+  React.useEffect(() => {
+    const getMeilisearchVersion = async () => {
+      try {
+        const res = await meilisearchJsClient.getVersion()
+        setVersion(res.pkgVersion)
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.log(err)
+      }
     }
+    getMeilisearchVersion()
   }, [meilisearchJsClient])
 
   return (

@@ -147,9 +147,9 @@ const StyledTypography = styled.span`
 
 const Typography = ({ variant = 'default', children, ...props }) => {
   const safeVariant = variants[variant] || variants.default
-  const { tag = 'span', style = css`` } = safeVariant
+  const { tag = 'span' } = safeVariant
   return (
-    <StyledTypography as={tag} {...style} $variant={safeVariant} {...props}>
+    <StyledTypography as={tag} $variant={safeVariant} {...props}>
       {children}
     </StyledTypography>
   )
@@ -181,11 +181,6 @@ Typography.propTypes = {
    * Text to be displayed
    */
   children: PropTypes.node,
-}
-
-Typography.defaultProps = {
-  variant: 'default',
-  children: null,
 }
 
 export default Typography

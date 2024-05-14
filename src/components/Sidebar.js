@@ -82,7 +82,7 @@ const DisclosureContent = styled(ReakitDisclosureContent)`
 `
 
 const Sidebar = ({
-  sidebarIcon,
+  sidebarIcon = <Arrow style={{ transform: 'rotate(270deg)' }} />,
   visible = true,
   onChange = () => {},
   children,
@@ -154,13 +154,6 @@ Sidebar.propTypes = {
    * Content of the sidebar
    */
   children: PropTypes.node,
-}
-
-Sidebar.defaultProps = {
-  sidebarIcon: <Arrow style={{ transform: 'rotate(270deg)' }} />,
-  visible: true,
-  onChange: null,
-  children: null,
 }
 
 export default Sidebar

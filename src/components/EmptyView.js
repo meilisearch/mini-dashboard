@@ -40,9 +40,4 @@ EmptyView.propTypes = {
   children: PropTypes.node,
 }
 
-EmptyView.defaultProps = {
-  buttonLink: null,
-  children: null,
-}
-
 export default EmptyView

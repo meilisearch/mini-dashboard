@@ -104,7 +104,3 @@ Input.propTypes = {
    */
   icon: PropTypes.node,
 }
-
-Input.defaultProps = {
-  icon: null,
-}
