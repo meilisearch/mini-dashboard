@@ -60,5 +60,8 @@
     "eslint-plugin-react": "^7.31.11",
     "prettier": "^3.2.5",
     "storybook": "^8.0.10"
+  },
+  "resolutions": {
+    "**/recursive-readdir/**/minimatch": "^3.0.5"
   }
 }
