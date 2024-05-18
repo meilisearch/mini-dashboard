@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useArtists } from 'context/ArtistsContext'
 import { connectInfiniteHits, Configure } from 'react-instantsearch-dom'
 
 import Button from 'components/Button'
 import ScrollToTop from 'components/ScrollToTop'
 
 import Hit from './Hit'
+import ArtistHits from './ArtistHits'
 
 const HitsList = styled.ul`
   display: flex;
@@ -21,50 +23,28 @@ const HitsList = styled.ul`
   }
 `
 
-const isAnImage = async (elem) => {
-  // Test the standard way with regex and image extensions
-  if (
-    typeof elem === 'string' &&
-    elem.match(/^(https|http):\/\/.*(jpe?g|png|gif|webp)(\?.*)?$/gi)
-  )
-    return true
-
-  if (typeof elem === 'string' && elem.match(/^https?:\/\//)) {
-    // Tries to load an image that is a valid URL but doesn't have a correct extension
-    return new Promise((resolve) => {
-      const img = new Image()
-      img.src = elem
-      img.onload = () => resolve(true)
-      img.onerror = () => resolve(false)
-    })
-  }
-  return false
-}
-
-const findImageKey = async (array) => {
-  const promises = array.map(async (elem) => isAnImage(elem[1]))
-  const results = await Promise.all(promises)
-  const index = results.findIndex((result) => result)
-  const imageField = array[index]
-  return imageField?.[0]
-}
-
 const InfiniteHits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
-  const [imageKey, setImageKey] = React.useState(false)
+  const { artists } = useArtists()
 
-  React.useEffect(() => {
-    const getImageKey = async () => {
-      setImageKey(hits[0] ? await findImageKey(Object.entries(hits[0])) : null)
-    }
-    getImageKey()
-  }, [hits[0]])
   return (
     <div>
       <Configure hitsPerPage={21} />
       <HitsList>
-        {hits.map((hit) => (
-          <Hit key={hit.id} hit={hit} imageKey={imageKey} />
-        ))}
+        {hits.map((hit, index) => {
+          if (index === 2) {
+            return (
+              <>
+                <ArtistHits
+                  key={`artists-${index}`}
+                  hits={artists}
+                  index={index}
+                />
+                <Hit key={hit.id} hit={hit} />
+              </>
+            )
+          }
+          return <Hit key={hit.id} hit={hit} />
+        })}
       </HitsList>
       {hasMore && (
         <Button

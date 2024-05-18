@@ -6,6 +6,7 @@ import { instantMeiliSearch as instantMeilisearch } from '@meilisearch/instant-m
 import { MeiliSearch as Meilisearch } from 'meilisearch'
 
 import ApiKeyContext from 'context/ApiKeyContext'
+import { ArtistsProvider } from 'context/ArtistsContext'
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import useLocalStorage from 'hooks/useLocalStorage'
 import Body from 'components/Body'
@@ -47,11 +48,13 @@ const App = () => {
   }, [apiKey])
 
   return (
-    <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
-      <Wrapper>
-        <Body currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
-      </Wrapper>
-    </ApiKeyContext.Provider>
+    <ArtistsProvider>
+      <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
+        <Wrapper>
+          <Body currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
+        </Wrapper>
+      </ApiKeyContext.Provider>
+    </ArtistsProvider>
   )
 }
 

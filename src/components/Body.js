@@ -2,6 +2,7 @@ import React from 'react'
 import { InstantSearch } from 'react-instantsearch-dom'
 
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
+import { useArtists } from 'context/ArtistsContext'
 import Box from 'components/Box'
 import Header from 'components/Header/index'
 import BodyWrapper from 'components/BodyWrapper'
@@ -28,11 +29,19 @@ const IndexContent = ({ currentIndex }) => {
 const Body = ({ currentIndex, getIndexesList, setCurrentIndex }) => {
   const { meilisearchJsClient, instantMeilisearchClient } =
     useMeilisearchClientContext()
+  const { setArtists } = useArtists()
 
   return (
     <InstantSearch
       indexName={currentIndex.uid}
       searchClient={instantMeilisearchClient}
+      onSearchStateChange={(searchState) => {
+        const index = meilisearchJsClient.index('artists')
+        const search = index.search(searchState.query, {
+          attributesToHighlight: ['artist'],
+        })
+        search.then((s) => setArtists(s.hits))
+      }}
     >
       <Header
         setCurrentIndex={setCurrentIndex}
