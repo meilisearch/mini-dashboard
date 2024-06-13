@@ -45,8 +45,6 @@ const Highlight = connectHighlight(
       hit,
     })
 
-    console.log(hit)
-
     const croppedParts = cropPartsToMaxLength(parsedHit, maxLength)
 
     return (
