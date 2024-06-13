@@ -18,13 +18,14 @@ export const baseUrl =
     ? 'http://0.0.0.0:7700'
     : window.location.origin)
 
+export const apiKey = process.env.REACT_APP_MEILI_API_KEY
+
 const Wrapper = styled.div`
   background-color: ${(p) => p.theme.colors.gray[11]};
   min-height: 100vh;
 `
 
 const App = () => {
-  const [apiKey, setApiKey] = useLocalStorage('apiKey')
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
 
   const { setMeilisearchJsClient, setInstantMeilisearchClient } =
@@ -49,7 +50,7 @@ const App = () => {
 
   return (
     <ArtistsProvider>
-      <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
+      <ApiKeyContext.Provider value={{ apiKey }}>
         <Wrapper>
           <Body currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
         </Wrapper>
