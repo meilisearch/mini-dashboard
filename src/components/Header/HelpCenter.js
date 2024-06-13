@@ -91,14 +91,22 @@ const HelpCenter = () => {
         )}
       </DialogDisclosure>
       <Modal
-        title="Help Center"
+        title="What is this?"
         dialog={dialog}
         ariaLabel="Help Center"
         style={{ paddingBottom: 56 }}
       >
         <Typography variant="typo11" color="gray.6">
-          If you need help with anything, here are a few links that can be
-          useful.
+          This demo highlights the impressive performance of Meilisearch on a
+          dataset containing <strong>44,978,258 music tracks</strong> and{' '}
+          <strong>2,380,474 artists</strong>. It showcases the engine&apos;s
+          capability to handle large datasets efficiently while providing a
+          seamless user experience through an attractive web interface.
+          <br />
+          <br />
+          The music data comes from{' '}
+          <Link href="https://musicbrainz.org">MusicBrainz</Link>, an open music
+          encyclopedia that gathers and shares music metadata with the public.
         </Typography>
         <CardsContainer>
           <HelpCard
@@ -115,9 +123,9 @@ const HelpCenter = () => {
           />
           <HelpCard
             logo={<MeilisearchLogo style={{ width: 62 }} />}
-            title="Documentation"
-            description="Learn how to tune your Meilisearch"
-            href="https://docs.meilisearch.com/?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard"
+            title="Meilisearch Cloud"
+            description="Build an intuitive search experience in a snap"
+            href="https://meilisearch.com/cloud/?utm_campaign=musics-demo&utm_source=preview&utm_medium=modal"
           />
         </CardsContainer>
       </Modal>
