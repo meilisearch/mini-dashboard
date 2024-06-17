@@ -51,7 +51,7 @@
     "@storybook/react": "^8.0.10",
     "@storybook/react-webpack5": "^8.1.9",
     "@svgr/cli": "^8.1.0",
-    "cypress": "^13.9.0",
+    "cypress": "^13.11.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-cypress": "^2.12.1",
