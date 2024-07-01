@@ -4209,17 +4209,6 @@
     webpack-hot-middleware "^2.25.1"
     webpack-virtual-modules "^0.5.0"
 
-"@storybook/channels@8.0.10":
-  version "8.0.10"
-  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-8.0.10.tgz#56141b44001693ff99e2828deec685b7c12ff2c6"
-  integrity sha512-3JLxfD7czlx31dAGvAYJ4J4BNE/Y2+hhj/dsV3xlQTHKVpnWknaoeYEC1a6YScyfsH6W+XmP2rzZKzH4EkLSGQ==
-  dependencies:
-    "@storybook/client-logger" "8.0.10"
-    "@storybook/core-events" "8.0.10"
-    "@storybook/global" "^5.0.0"
-    telejson "^7.2.0"
-    tiny-invariant "^1.3.1"
-
 "@storybook/channels@8.1.11":
   version "8.1.11"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-8.1.11.tgz#7d4b1877ae31d4c073c17a36b157067e2a71f231"
@@ -4283,13 +4272,6 @@
     tempy "^3.1.0"
     tiny-invariant "^1.3.1"
     ts-dedent "^2.0.0"
-
-"@storybook/client-logger@8.0.10":
-  version "8.0.10"
-  resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-8.0.10.tgz#d3de8377f41f6c76657ba75c729596dc67c5ffcb"
-  integrity sha512-u38SbZNAunZzxZNHMJb9jkUwFkLyWxmvp4xtiRM3u9sMUShXoTnzbw1yKrxs+kYJjg+58UQPZ1JhEBRcHt5Oww==
-  dependencies:
-    "@storybook/global" "^5.0.0"
 
 "@storybook/client-logger@8.1.11":
   version "8.1.11"
@@ -4411,13 +4393,6 @@
     tiny-invariant "^1.3.1"
     ts-dedent "^2.0.0"
     util "^0.12.4"
-
-"@storybook/core-events@8.0.10":
-  version "8.0.10"
-  resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-8.0.10.tgz#03c70ca44816078e8a3479e6322a1d1f586da88a"
-  integrity sha512-TuHPS6p5ZNr4vp4butLb4R98aFx0NRYCI/7VPhJEUH5rPiqNzE3PZd8DC8rnVxavsJ+jO1/y+egNKXRYkEcoPQ==
-  dependencies:
-    ts-dedent "^2.0.0"
 
 "@storybook/core-events@8.1.11":
   version "8.1.11"
@@ -4642,13 +4617,14 @@
   resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-8.1.9.tgz#6abc3fd2d37e1dc88404390b9e125ea4cc24c856"
   integrity sha512-X5YGkJOui+m3TXqbf7HODzrf4VdzamtlUXlD08Qm36JJD/qJJZVhSivzkQR4uom/VW+ejChM2ETgw41SrK0vJA==
 
-"@storybook/preset-create-react-app@^8.0.10":
-  version "8.0.10"
-  resolved "https://registry.yarnpkg.com/@storybook/preset-create-react-app/-/preset-create-react-app-8.0.10.tgz#f5e540275f08922cd0e51afa39d7da351ebde3a5"
-  integrity sha512-lAGqO2Aj0B1oM8amI/AuwL9pm4toQpIVh7my2rx89UdxjEBzoFIICSam0w1e4v+8Kt3VQsRFTaycofnZjiBk2w==
+"@storybook/preset-create-react-app@^8.1.11":
+  version "8.1.11"
+  resolved "https://registry.yarnpkg.com/@storybook/preset-create-react-app/-/preset-create-react-app-8.1.11.tgz#5d9d9d766f14c91a4fbe133561bb13beae089bba"
+  integrity sha512-aDVux18+Ew39WRqSpVncxJOzjFbspFW7x6Wcg3lWJnjMKAKuQ23Plh8ICcm74SxC8Xm7dyZzxi/upeHph6KdXg==
   dependencies:
     "@pmmmwh/react-refresh-webpack-plugin" "^0.5.1"
-    "@storybook/types" "8.0.10"
+    "@storybook/react-docgen-typescript-plugin" "1.0.6--canary.9.0c3f3b7.0"
+    "@storybook/types" "8.1.11"
     "@types/semver" "^7.5.6"
     pnp-webpack-plugin "^1.7.0"
     semver "^7.5.4"
@@ -4858,15 +4834,6 @@
     "@storybook/client-logger" "8.1.9"
     "@storybook/global" "^5.0.0"
     memoizerific "^1.11.3"
-
-"@storybook/types@8.0.10":
-  version "8.0.10"
-  resolved "https://registry.yarnpkg.com/@storybook/types/-/types-8.0.10.tgz#99864aa267d9761e649b28a8b26a782f78c29de7"
-  integrity sha512-S/hKS7+SqNnYIehwxdQ4M2nnlfGDdYWAXdtPCVJCmS+YF2amgAxeuisiHbUg7eypds6VL0Oxk/j2nPEHOHk9pg==
-  dependencies:
-    "@storybook/channels" "8.0.10"
-    "@types/express" "^4.7.0"
-    file-system-cache "2.3.0"
 
 "@storybook/types@8.1.11":
   version "8.1.11"
