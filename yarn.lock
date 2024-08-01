@@ -4624,10 +4624,15 @@
   resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-8.1.11.tgz#451750347869cf128a02acfee8232d9952f99953"
   integrity sha512-wdzFo7B2naGhS52L3n1qBkt5BfvQjs8uax6B741yKRpiGgeAN8nz8+qelkD25MbSukxvbPgDot7WJvsMU/iCzg==
 
-"@storybook/node-logger@8.1.9", "@storybook/node-logger@^8.0.10":
+"@storybook/node-logger@8.1.9":
   version "8.1.9"
   resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-8.1.9.tgz#6abc3fd2d37e1dc88404390b9e125ea4cc24c856"
   integrity sha512-X5YGkJOui+m3TXqbf7HODzrf4VdzamtlUXlD08Qm36JJD/qJJZVhSivzkQR4uom/VW+ejChM2ETgw41SrK0vJA==
+
+"@storybook/node-logger@^8.1.11":
+  version "8.2.6"
+  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-8.2.6.tgz#f7582b23efc7b4d7a5c32061afa1c17cf82ff442"
+  integrity sha512-HWMDll5QNXgPdNmgqglCt93N57hQMvZaCjvpGvNv0MJk5TmP1BgjIV+WITmt6JVCaT5LEY6lDZpZdAN2f4w4PA==
 
 "@storybook/preset-create-react-app@^8.1.11":
   version "8.1.11"
