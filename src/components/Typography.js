@@ -90,7 +90,6 @@ const variants = {
       font-size: 12px;
       font-weight: 500;
       line-height: 22px;
-      text-transform: uppercase;
     `,
   },
   typo11: {

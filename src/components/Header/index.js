@@ -118,7 +118,6 @@ const Header = ({
             <Typography
               variant="typo10"
               color="gray.0"
-              style={{ textTransform: 'unset' }}
             >{`v${version}`}</Typography>
           )}
         </Box>
