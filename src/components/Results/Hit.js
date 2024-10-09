@@ -229,10 +229,7 @@ const Hit = ({ hit, imageKey }) => {
             .map((key) => (
               <div key={key}>
                 <Grid>
-                  <HitKey
-                    variant="typo10"
-                    color="gray.6"
-                  >
+                  <HitKey variant="typo10" color="gray.6">
                     {key}
                   </HitKey>
                   <HitValue>
