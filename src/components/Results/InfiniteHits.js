@@ -42,7 +42,7 @@ const findImageKey = async (array) => {
   return imageField?.[0]
 }
 
-const InfiniteHitsList = ({ hits, hasMore, refineNext }) => {
+const InfiniteHitsList = ({ hits, isLastPage, showMore }) => {
   const [imageKey, setImageKey] = React.useState(false)
 
   React.useEffect(() => {
@@ -58,11 +58,11 @@ const InfiniteHitsList = ({ hits, hasMore, refineNext }) => {
           <Hit key={index} hit={hit} imageKey={imageKey} />
         ))}
       </HitsList>
-      {hasMore && (
+      {!isLastPage && (
         <Button
           size="small"
           variant="bordered"
-          onClick={refineNext}
+          onClick={showMore}
           style={{ margin: '0 auto', marginTop: 32 }}
         >
           Load more
