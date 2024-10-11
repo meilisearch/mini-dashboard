@@ -10423,12 +10423,10 @@ meilisearch@^0.36.0:
   dependencies:
     cross-fetch "^3.1.6"
 
-meilisearch@^0.38.0:
-  version "0.38.0"
-  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.38.0.tgz#c3f666a995f15553b1b27e05e28a51bbfb3639bc"
-  integrity sha512-bHaq8nYxSKw9/Qslq1Zes5g9tHgFkxy/I9o8942wv2PqlNOT0CzptIkh/x98N52GikoSZOXSQkgt6oMjtf5uZw==
-  dependencies:
-    cross-fetch "^3.1.6"
+meilisearch@^0.44.1:
+  version "0.44.1"
+  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.44.1.tgz#1e997b8020b8c0d03d500bcab53f494b51edec90"
+  integrity sha512-ZTZYBmomtRwjaWbvU8U8ct04g/YnrNOlvchogJOPgHcQIQBfjdbAvMJ8mLhuZEzpioYXIT6Cv+FcE150pc2+nw==
 
 memfs@^3.1.2:
   version "3.2.2"

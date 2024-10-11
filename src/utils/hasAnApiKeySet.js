@@ -8,10 +8,7 @@ const hasAnApiKeySet = async () => {
     await tempClient.getIndexes()
     return false
   } catch (err) {
-    if (err.code === 'missing_authorization_header') {
-      return true
-    }
-    return false
+    return err.cause.code === 'missing_authorization_header'
   }
 }
 
