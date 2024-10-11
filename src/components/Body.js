@@ -1,6 +1,6 @@
 import React from 'react'
-import { InstantSearch } from 'react-instantsearch-dom'
 import styled from 'styled-components'
+import { InstantSearch } from 'react-instantsearch'
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import useLocalStorage from 'hooks/useLocalStorage'
 import Box from 'components/Box'
