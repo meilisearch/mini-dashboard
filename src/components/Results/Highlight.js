@@ -1,27 +1,11 @@
 import React from 'react'
-import { connectHighlight } from 'react-instantsearch-dom'
+import { Highlight as InstantSearchHighLight } from 'react-instantsearch'
 import Typography from 'components/Typography'
 
-const Highlight = connectHighlight(
-  ({ highlight, attribute, hit, indexContextValue, ...props }) => {
-    const parsedHit = highlight({
-      highlightProperty: '_highlightResult',
-      attribute,
-      hit,
-    })
-
-    return (
-      <Typography {...props}>
-        {parsedHit.map((part, index) =>
-          part.isHighlighted ? (
-            <mark key={index}>{part.value}</mark>
-          ) : (
-            <span key={index}>{part.value}</span>
-          )
-        )}
-      </Typography>
-    )
-  }
+const Highlight = ({ attribute, hit, ...props }) => (
+  <Typography {...props}>
+    <InstantSearchHighLight hit={hit} attribute={attribute} />
+  </Typography>
 )
 
 export default Highlight
