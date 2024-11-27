@@ -49,7 +49,7 @@ const CloudBanner = () => {
   return (
     <>
       {isBannerVisible && (
-        <CloudBannerWrapper>
+        <CloudBannerWrapper className="cloud-banner">
           <Container
             display="flex"
             flexDirection="column"
