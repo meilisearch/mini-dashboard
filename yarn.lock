@@ -3384,12 +3384,12 @@
   dependencies:
     "@storybook/global" "^5.0.0"
 
-"@storybook/addon-links@^8.0.10":
-  version "8.0.10"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-8.0.10.tgz#6852c5a046df137f1d16dd971b14ef4191f4f79e"
-  integrity sha512-+mIyH2UcrgQfAyRM4+ARkB/D0OOY8UMwkZsD8dD23APZ8oru7W/NHX3lXl0WjPfQcOIx/QwWNWI3+DgVZJY3jw==
+"@storybook/addon-links@^8.3.4":
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-8.3.4.tgz#556217a6e14dd37c1344dacfd9db5a4400ab6e0a"
+  integrity sha512-R1DjARmxRIKJDGIG6uxmQ1yFNyoQbb+QIPUFjgWCak8+AdLJbC7W+Esvo9F5hQfh6czyy0piiM3qj5hpQJVh3A==
   dependencies:
-    "@storybook/csf" "^0.1.4"
+    "@storybook/csf" "^0.1.11"
     "@storybook/global" "^5.0.0"
     ts-dedent "^2.0.0"
 
@@ -3697,17 +3697,10 @@
     recast "^0.23.5"
     ts-dedent "^2.0.0"
 
-"@storybook/csf@^0.1.11":
+"@storybook/csf@^0.1.11", "@storybook/csf@^0.1.7":
   version "0.1.11"
   resolved "https://registry.yarnpkg.com/@storybook/csf/-/csf-0.1.11.tgz#ad685a4fe564a47a6b73571c2e7c07b526f4f71b"
   integrity sha512-dHYFQH3mA+EtnCkHXzicbLgsvzYjcDJ1JWsogbItZogkPHgSJM/Wr71uMkcvw8v9mmCyP4NpXJuu6bPoVsOnzg==
-  dependencies:
-    type-fest "^2.19.0"
-
-"@storybook/csf@^0.1.4", "@storybook/csf@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@storybook/csf/-/csf-0.1.7.tgz#dcc6c16a353bc09c8c619ba1a23ba93b2aab0b9d"
-  integrity sha512-53JeLZBibjQxi0Ep+/AJTfxlofJlxy1jXcSKENlnKxHjWEYyHQCumMP5yTFjf7vhNnMjEpV3zx6t23ssFiGRyw==
   dependencies:
     type-fest "^2.19.0"
 
