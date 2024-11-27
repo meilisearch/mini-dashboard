@@ -56,22 +56,22 @@ const CloudBanner = () => {
             alignContent="center"
           >
             <Typography variant="typo14" color="white">
-              Supercharge your Meilisearch experience
+              Scale up with Meilisearch Cloud 🚀
             </Typography>
 
             <Typography variant="typo15" color="white">
-              Say goodbye to server management, and manual updates with{' '}
+              Faster, smarter search—no maintenance needed.{' '}
               <Link
                 href="https://www.meilisearch.com/cloud?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard"
                 color="white"
               >
                 <Typography variant="typo14" color="white">
-                  Meilisearch Cloud
+                  Start free
                 </Typography>
               </Link>
-              .&nbsp;
               <Typography variant="typo14" color="white">
-                Get started with a 14-day free trial! No credit card required.
+                {' '}
+                with no commitment.
               </Typography>
             </Typography>
             <Button
