@@ -24,7 +24,7 @@ const CloudBannerWrapper = styled.div`
   top: 0;
   height: 74px;
   box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)};
-  z-index: 3;
+  z-index: 10;
   padding: 4px;
 `
 

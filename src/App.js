@@ -16,7 +16,7 @@ import Modal from 'components/Modal'
 import NoMeilisearchRunning from 'components/NoMeilisearchRunning'
 import ApiKeyAwarenessBanner from 'components/ApiKeyAwarenessBanner'
 import getIndexesListWithStats from 'utils/getIndexesListWithStats'
-import isBannerEnabled from 'utils/isBannerEnabled'
+import isCloudBannerEnabled from 'utils/isCloudBannerEnabled'
 import shouldDisplayApiKeyModal from 'utils/shouldDisplayApiKeyModal'
 import hasAnApiKeySet from 'utils/hasAnApiKeySet'
 import clientAgents from './version/client-agents'
@@ -78,7 +78,7 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    if (isBannerEnabled()) {
+    if (isCloudBannerEnabled()) {
       setShowCloudBanner(true)
     }
     getApiKeyFromUrl()
