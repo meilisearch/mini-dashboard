@@ -51,7 +51,7 @@ const Body = ({
         requireApiKeyToWork={requireApiKeyToWork}
         client={meilisearchJsClient}
         refreshIndexes={getIndexesList}
-        isBannerVisible={isApiKeyBannerVisible}
+        isApiKeyBannerVisible={isApiKeyBannerVisible}
         isCloudBannerVisible={isCloudBannerVisible}
       />
       <BodyWrapper>

@@ -71,6 +71,7 @@ const Header = ({
   setCurrentIndex,
   refreshIndexes,
   requireApiKeyToWork,
+  isApiKeyBannerVisible,
   isCloudBannerVisible,
 }) => {
   const { meilisearchJsClient } = useMeilisearchClientContext()
@@ -89,8 +90,10 @@ const Header = ({
     getMeilisearchVersion()
   }, [meilisearchJsClient])
 
+  const topPosition =
+    (isCloudBannerVisible ? 74 : 0) + (isApiKeyBannerVisible ? 55 : 0)
   return (
-    <HeaderWrapper top={isCloudBannerVisible ? 74 : 0}>
+    <HeaderWrapper top={topPosition}>
       <Container
         p={4}
         display="flex"
