@@ -24,68 +24,41 @@ const CloudBannerWrapper = styled.div`
   top: 0;
   height: 74px;
   box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)};
-  z-index: 3;
+  z-index: 10;
   padding: 4px;
 `
 
-const CloudBanner = () => {
-  const [isBannerVisible, setIsBannerVisible] = React.useState(true)
+const CloudBanner = ({ handleBannerClose, isBannerVisible }) => (
+  <>
+    {isBannerVisible && (
+      <CloudBannerWrapper className="cloud-banner">
+        <Container display="flex" flexDirection="column" alignContent="center">
+          <Typography variant="typo14" color="white">
+            Scale up with Meilisearch Cloud 🚀
+          </Typography>
 
-  const handleBannerClose = () => {
-    setIsBannerVisible(false)
-    localStorage.setItem('bannerVisibility', JSON.stringify(false))
-  }
-
-  // Retrieve the banner visibility state from local storage on component mount
-  React.useEffect(() => {
-    const storedVisibility = localStorage.getItem('bannerVisibility')
-    if (storedVisibility) {
-      setIsBannerVisible(JSON.parse(storedVisibility))
-    }
-
-    return () => {}
-  }, [])
-
-  return (
-    <>
-      {isBannerVisible && (
-        <CloudBannerWrapper>
-          <Container
-            display="flex"
-            flexDirection="column"
-            alignContent="center"
-          >
-            <Typography variant="typo14" color="white">
-              Supercharge your Meilisearch experience
-            </Typography>
-
-            <Typography variant="typo15" color="white">
-              Say goodbye to server management, and manual updates with{' '}
-              <Link
-                href="https://www.meilisearch.com/cloud?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard"
-                color="white"
-              >
-                <Typography variant="typo14" color="white">
-                  Meilisearch Cloud
-                </Typography>
-              </Link>
-              .&nbsp;
-              <Typography variant="typo14" color="white">
-                Get started with a 14-day free trial! No credit card required.
-              </Typography>
-            </Typography>
-            <Button
-              color="gray.9"
-              aria-label="close"
-              onClick={handleBannerClose}
+          <Typography variant="typo15" color="white">
+            Faster, smarter search—no maintenance needed.{' '}
+            <Link
+              href="https://www.meilisearch.com/cloud?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard"
+              color="white"
             >
-              <Cross style={{ width: 10 }} />
-            </Button>
-          </Container>
-        </CloudBannerWrapper>
-      )}
-    </>
-  )
-}
+              <Typography variant="typo14" color="white">
+                Start free
+              </Typography>
+            </Link>
+            <Typography variant="typo14" color="white">
+              {' '}
+              with no commitment.
+            </Typography>
+          </Typography>
+          <Button color="gray.9" aria-label="close" onClick={handleBannerClose}>
+            <Cross style={{ width: 10 }} />
+          </Button>
+        </Container>
+      </CloudBannerWrapper>
+    )}
+  </>
+)
 
 export default CloudBanner

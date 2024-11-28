@@ -24,7 +24,7 @@ const HeaderWrapper = styled('div')(compose(position), {
   position: 'sticky',
   height: '120px',
   boxShadow: `0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)}`,
-  zIndex: 3,
+  zIndex: 10,
 })
 
 const ApiKey = ({ requireApiKeyToWork }) => {
@@ -71,7 +71,8 @@ const Header = ({
   setCurrentIndex,
   refreshIndexes,
   requireApiKeyToWork,
-  isBannerVisible,
+  isApiKeyBannerVisible,
+  isCloudBannerVisible,
 }) => {
   const { meilisearchJsClient } = useMeilisearchClientContext()
   const [version, setVersion] = React.useState()
@@ -89,8 +90,10 @@ const Header = ({
     getMeilisearchVersion()
   }, [meilisearchJsClient])
 
+  const topPosition =
+    (isCloudBannerVisible ? 74 : 0) + (isApiKeyBannerVisible ? 55 : 0)
   return (
-    <HeaderWrapper top={isBannerVisible ? 55 : 0}>
+    <HeaderWrapper top={topPosition}>
       <Container
         p={4}
         display="flex"

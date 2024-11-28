@@ -34,6 +34,7 @@ const Body = ({
   setCurrentIndex,
   requireApiKeyToWork,
   isApiKeyBannerVisible,
+  isCloudBannerVisible,
 }) => {
   const { meilisearchJsClient, instantMeilisearchClient } =
     useMeilisearchClientContext()
@@ -50,7 +51,8 @@ const Body = ({
         requireApiKeyToWork={requireApiKeyToWork}
         client={meilisearchJsClient}
         refreshIndexes={getIndexesList}
-        isBannerVisible={isApiKeyBannerVisible}
+        isApiKeyBannerVisible={isApiKeyBannerVisible}
+        isCloudBannerVisible={isCloudBannerVisible}
       />
       <BodyWrapper>
         {/* <Sidebar /> */}
