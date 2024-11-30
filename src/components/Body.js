@@ -1,6 +1,5 @@
 import React from 'react'
-import { InstantSearch } from 'react-instantsearch-dom'
-
+import { InstantSearch } from 'react-instantsearch'
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import Box from 'components/Box'
 import Header from 'components/Header/index'

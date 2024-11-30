@@ -1,11 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { connectInfiniteHits } from 'react-instantsearch-dom'
-// import ReactJson from 'react-json-view'
-
-// import { jsonTheme } from 'theme'
+import { useInfiniteHits } from 'react-instantsearch'
 import Button from 'components/Button'
-// import Card from 'components/Card'
 import ScrollToTop from 'components/ScrollToTop'
 
 import Hit from './Hit'
@@ -46,7 +42,7 @@ const findImageKey = async (array) => {
   return imageField?.[0]
 }
 
-const InfiniteHits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
+const InfiniteHitsList = ({ hits, isLastPage, showMore }) => {
   const [imageKey, setImageKey] = React.useState(false)
 
   React.useEffect(() => {
@@ -55,33 +51,18 @@ const InfiniteHits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
     }
     getImageKey()
   }, [hits[0]])
-  // ({ hits, hasMore, refineNext, mode }) => {
   return (
     <div>
-      {/* {mode === 'fancy' ? ( */}
       <HitsList>
         {hits.map((hit, index) => (
           <Hit key={index} hit={hit} imageKey={imageKey} />
         ))}
       </HitsList>
-      {/* ) : (
-        <Card style={{ fontSize: 14, minHeight: 320 }}>
-          <ReactJson
-            src={hits}
-            name={null}
-            collapsed={2}
-            enableClipboard={false}
-            displayObjectSize={false}
-            displayDataTypes={false}
-            theme={jsonTheme}
-          />
-        </Card>
-      )} */}
-      {hasMore && (
+      {!isLastPage && (
         <Button
           size="small"
           variant="bordered"
-          onClick={refineNext}
+          onClick={showMore}
           style={{ margin: '0 auto', marginTop: 32 }}
         >
           Load more
@@ -90,6 +71,12 @@ const InfiniteHits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
       <ScrollToTop />
     </div>
   )
-})
+}
+
+const InfiniteHits = (props) => {
+  const inifiniteHitsApi = useInfiniteHits(props)
+
+  return <InfiniteHitsList {...inifiniteHitsApi} />
+}
 
 export default InfiniteHits
