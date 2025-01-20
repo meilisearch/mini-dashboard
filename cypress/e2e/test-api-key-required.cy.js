@@ -22,9 +22,9 @@ describe(`Test API key required`, () => {
 
   it('Should fail on wrong API key triggered with mouse click', () => {
     cy.get('div[aria-label=ask-for-api-key]').within(() => {
-      cy.get('input[name="apiKey"]')
-        .type(WRONG_APIKEY)
-        .should('have.value', WRONG_APIKEY)
+      cy.get('input[name="apiKey"]').as('apiKeyInput')
+      cy.get('@apiKeyInput').type(WRONG_APIKEY)
+      cy.get('@apiKeyInput').should('have.value', WRONG_APIKEY)
       cy.get('button').contains('Go').click()
       cy.wait(WAITING_TIME)
       cy.contains('The provided API key is invalid.')
@@ -33,10 +33,10 @@ describe(`Test API key required`, () => {
 
   it('Should fail on wrong API key triggered with enter key', () => {
     cy.get('div[aria-label=ask-for-api-key]').within(() => {
-      cy.get('input[name="apiKey"]')
-        .type(WRONG_APIKEY)
-        .should('have.value', WRONG_APIKEY)
-      cy.get('input[name="apiKey"]').type('{enter}')
+      cy.get('input[name="apiKey"]').as('apiKeyInput')
+      cy.get('@apiKeyInput').type(WRONG_APIKEY)
+      cy.get('@apiKeyInput').should('have.value', WRONG_APIKEY)
+      cy.get('@apiKeyInput').type('{enter}')
       cy.wait(WAITING_TIME)
       cy.contains('The provided API key is invalid.')
     })
@@ -44,10 +44,10 @@ describe(`Test API key required`, () => {
 
   it('Should accept valid API key', () => {
     cy.get('div[aria-label=ask-for-api-key]').within(() => {
-      cy.get('input[name="apiKey"]')
-        .clear()
-        .type(API_KEY)
-        .should('have.value', API_KEY)
+      cy.get('input[name="apiKey"]').as('apiKeyInput')
+      cy.get('@apiKeyInput').clear()
+      cy.get('@apiKeyInput').type(API_KEY)
+      cy.get('@apiKeyInput').should('have.value', API_KEY)
       cy.get('button').contains('Go').click()
       cy.wait(WAITING_TIME)
     })
@@ -57,7 +57,9 @@ describe(`Test API key required`, () => {
   it('Should display a modal with API key inside the API key modal button', () => {
     // Fill the first API key request
     cy.get('div[aria-label=ask-for-api-key]').within(() => {
-      cy.get('input[name="apiKey"]').clear().type(API_KEY)
+      cy.get('input[name="apiKey"]').as('apiKeyInput')
+      cy.get('@apiKeyInput').clear()
+      cy.get('@apiKeyInput').type(API_KEY)
       cy.get('button').contains('Go').click()
     })
     cy.visit('/')
@@ -73,7 +75,9 @@ describe(`Test API key required`, () => {
   it('Should fail on API Key change inside the API key modal button', () => {
     // Fill the first API key request
     cy.get('div[aria-label=ask-for-api-key]').within(() => {
-      cy.get('input[name="apiKey"]').clear().type(API_KEY)
+      cy.get('input[name="apiKey"]').as('apiKeyInput')
+      cy.get('@apiKeyInput').clear()
+      cy.get('@apiKeyInput').type(API_KEY)
       cy.get('button').contains('Go').click()
     })
     cy.visit('/')
@@ -82,10 +86,10 @@ describe(`Test API key required`, () => {
     // Test the change of API key inside the API Key Modal
     cy.get('span').contains('Api Key').parent().click()
     cy.get('div[aria-label=settings-api-key]').within(() => {
-      cy.get('input[name="apiKey"]')
-        .clear()
-        .type(WRONG_APIKEY)
-        .should('have.value', WRONG_APIKEY)
+      cy.get('input[name="apiKey"]').as('apiKeyInput')
+      cy.get('@apiKeyInput').clear()
+      cy.get('@apiKeyInput').type(WRONG_APIKEY)
+      cy.get('@apiKeyInput').should('have.value', WRONG_APIKEY)
       cy.get('button').contains('Go').click()
       cy.wait(WAITING_TIME)
       cy.contains('The provided API key is invalid.')
