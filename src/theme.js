@@ -10,6 +10,7 @@ const theme = {
       light: '#FFDBE7',
       lighter: '#FDEEF3',
     },
+    white: '#FFFFFF',
     gray: [
       '#39486E', // 0
       '#4F5C7E',
