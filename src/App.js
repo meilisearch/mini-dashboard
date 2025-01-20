@@ -15,6 +15,7 @@ import CloudBanner from 'components/CloudBanner'
 import Modal from 'components/Modal'
 import NoMeilisearchRunning from 'components/NoMeilisearchRunning'
 import ApiKeyAwarenessBanner from 'components/ApiKeyAwarenessBanner'
+import RightPanel from 'components/RightPanel'
 import getIndexesListWithStats from 'utils/getIndexesListWithStats'
 import isCloudBannerEnabled from 'utils/isCloudBannerEnabled'
 import shouldDisplayApiKeyModal from 'utils/shouldDisplayApiKeyModal'
@@ -30,16 +31,33 @@ export const baseUrl =
 const Wrapper = styled.div`
   background-color: ${(p) => p.theme.colors.gray[11]};
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`
+
+const Layout = styled.div`
+  display: flex;
+  flex: 1;
+  width: ${({ isRightPanelOpen }) =>
+    isRightPanelOpen ? 'calc(100% - 25vw)' : '100%'};
+  transition: width 0.3s ease-in-out;
+`
+
+const MainContent = styled.div`
+  flex: 1;
+  width: 100%;
+  position: relative;
 `
 
 const App = () => {
   const [apiKey, setApiKey] = useLocalStorage('apiKey')
-  const [indexes, setIndexes] = useState()
+  const [, setIndexes] = useState()
   const [isMeilisearchRunning, setIsMeilisearchRunning] = useState(false)
-  const [requireApiKeyToWork, setRequireApiKeyToWork] = useState(false)
+  const [, setRequireApiKeyToWork] = useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
   const [showCloudBanner, setShowCloudBanner] = useState(false)
   const [isApiKeyBannerVisible, setIsApiKeyBannerVisible] = useState(false)
+  const [isRightPanelOpen, setIsRightPanelOpen] = useState(true)
   const dialog = useDialogState({ animated: true, visible: false })
 
   const {
@@ -131,38 +149,25 @@ const App = () => {
   return (
     <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
       <Wrapper>
-        {isApiKeyBannerVisible && (
-          <ApiKeyAwarenessBanner
-            onClose={() => setIsApiKeyBannerVisible(false)}
-          />
-        )}
-        {showCloudBanner && (
-          <CloudBanner
-            handleBannerClose={handleCloudBannerClose}
-            isBannerVisible={showCloudBanner}
-          />
-        )}
+        {showCloudBanner && <CloudBanner onClose={handleCloudBannerClose} />}
+        {isApiKeyBannerVisible && <ApiKeyAwarenessBanner />}
         {isMeilisearchRunning ? (
-          <Body
-            currentIndex={currentIndex}
-            indexes={indexes}
-            setCurrentIndex={setCurrentIndex}
-            requireApiKeyToWork={requireApiKeyToWork}
-            getIndexesList={getIndexesList}
-            isApiKeyBannerVisible={isApiKeyBannerVisible}
-            isCloudBannerVisible={showCloudBanner}
-          />
+          <>
+            <Layout isRightPanelOpen={isRightPanelOpen}>
+              <MainContent>
+                <Body />
+              </MainContent>
+            </Layout>
+            <RightPanel
+              isOpen={isRightPanelOpen}
+              onClose={() => setIsRightPanelOpen(false)}
+            />
+          </>
         ) : (
           <NoMeilisearchRunning />
         )}
-        <Modal
-          title={`Enter your admin API key${
-            requireApiKeyToWork ? '' : ' (optional)'
-          }`}
-          dialog={dialog}
-          ariaLabel="ask-for-api-key"
-        >
-          <ApiKeyModalContent closeModal={() => dialog.hide()} />
+        <Modal dialog={dialog}>
+          <ApiKeyModalContent dialog={dialog} />
         </Modal>
       </Wrapper>
     </ApiKeyContext.Provider>

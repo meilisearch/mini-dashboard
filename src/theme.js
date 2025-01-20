@@ -1,5 +1,8 @@
 const theme = {
   colors: {
+    background: {
+      gradient: 'linear-gradient(180deg, #35027a, #0e0021, #0e0021)',
+    },
     main: {
       default: '#E41359',
       hover: '#CA1B53',
