@@ -51,22 +51,25 @@ const HelpLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  background: ${(p) => p.theme.colors.gray[10]};
-  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  background-color: transparent;
+  border: 1px solid ${(p) => p.theme.colors.gray[10]};
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px ${(p) => p.theme.colors.gray[10]}10;
   text-decoration: none;
   color: ${(p) => p.theme.colors.gray[0]};
-  transition: background-color 0.2s;
+  transition: all 0.2s;
 
   svg {
     width: 20px;
     height: 20px;
-    color: ${(p) => p.theme.colors.gray[0]};
+    color: ${(p) => p.theme.colors.main.default};
   }
 
   &:hover {
-    background: ${(p) => p.theme.colors.gray[9]};
+    box-shadow: none;
+    border-color: ${(p) => p.theme.colors.main.default};
     text-decoration: none;
   }
 `
