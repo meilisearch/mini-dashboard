@@ -53,12 +53,11 @@
 
 <br/>
 
-
-This app uses [Yarn 1.22.22](https://classic.yarnpkg.com/en/docs).
+Prerequesites:
+- Package manager: [Yarn 1.x](https://classic.yarnpkg.com/en/docs)
+- [NVM](https://github.com/nvm-sh/nvm) to manage Node version. See [current version](.nvmrc).
 
 ## Setup
-
-> This repository uses [NVM](https://github.com/nvm-sh/nvm) to manage Node version. See [current version](.nvmrc).
 
 ```bash
 yarn
