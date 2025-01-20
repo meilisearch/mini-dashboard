@@ -55,6 +55,8 @@
 
 ## Setup
 
+> This repository uses [NVM](https://github.com/nvm-sh/nvm) to manage Node version. See [current version](.nvmrc).
+
 ```bash
 yarn
 ```
