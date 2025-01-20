@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 18
       - name: Install dev dependencies
-        run: yarn --dev
+        run: yarn
       - name: Run style check
         run: yarn lint && yarn prettier-check
   cypress_no_meilisearch:
@@ -138,4 +138,3 @@ jobs:
         with:
           name: cypress-videos
           path: cypress/videos
-  
