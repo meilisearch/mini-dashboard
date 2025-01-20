@@ -18,10 +18,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - name: Setup Yarn
-        uses: threeal/setup-yarn-action@v2.0.0
+          cache: "yarn"
+          cache-dependency-path: yarn.lock
+      - name: Enable Corepack
+        run: corepack enable
       - name: Install dev dependencies
-        run: yarn
+        run: yarn --frozen-lockfile
       - name: Run style check
         run: yarn lint && yarn prettier-check
   cypress_no_meilisearch:
@@ -37,8 +39,10 @@ jobs:
           node-version: 18
           cache: "yarn"
           cache-dependency-path: yarn.lock
+      - name: Enable Corepack
+        run: corepack enable
       - name: Install dependencies
-        run: yarn
+        run: yarn --frozen-lockfile
       - name: Test no meilisearch running
         uses: cypress-io/github-action@v6
         with:
