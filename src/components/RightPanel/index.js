@@ -1,43 +1,33 @@
 import React from 'react'
 import styled from 'styled-components'
-import Color from 'color'
-import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
-import { MeilisearchLogo, DiscordLogo, GithubLogo } from 'components/icons'
-import Card from 'components/Card'
+import { MeilisearchLogo, DiscordLogo } from 'components/icons'
 import Link from 'components/Link'
 import Typography from 'components/Typography'
-// import theme from '../../theme'
 
 const PanelWrapper = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  width: 25vw;
+  width: 30vw;
   height: 100vh;
   background: ${(p) => p.theme.colors.gray[11]};
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   transform: translateX(${({ isOpen }) => (isOpen ? '0' : '100%')});
   transition: transform 0.3s ease-in-out;
-  padding: 1.5rem 2rem;
+  padding: 2rem 2.5rem;
   z-index: 10;
   overflow-y: auto;
 `
 
 const Title = styled.h2`
   color: ${(p) => p.theme.colors.main.default};
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
   margin: 0;
-`
-
-const TitleIcon = styled.span`
-  font-size: 2rem;
 `
 
 const SectionTitle = styled.h3`
   color: ${(p) => p.theme.colors.gray[0]};
-  font-size: 1.25rem;
   font-weight: 600;
   margin: 0 0 1.25rem 0;
 `
@@ -57,114 +47,178 @@ const CloseButton = styled.button`
   color: ${(p) => p.theme.colors.gray[0]};
 `
 
-const StyledCard = styled(Card)`
-  padding: 16px;
-  width: 100%;
+const HelpLink = styled(Link)`
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
+  padding: 0.75rem;
   margin-bottom: 1rem;
-`
-
-const StyledLink = styled(Link)`
-  border-radius: 20px;
-  box-shadow: none;
-  transition: box-shadow 300ms;
+  background: ${(p) => p.theme.colors.gray[10]};
+  border-radius: 6px;
   text-decoration: none;
+  color: ${(p) => p.theme.colors.gray[0]};
+  transition: background-color 0.2s;
 
-  &:hover,
-  &:focus {
-    outline: none;
-    box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.1)};
+  svg {
+    width: 20px;
+    height: 20px;
+    color: ${(p) => p.theme.colors.gray[0]};
+  }
+
+  &:hover {
+    background: ${(p) => p.theme.colors.gray[9]};
+    text-decoration: none;
   }
 `
 
-const Logo = styled.div`
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+const Input = styled.input`
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid ${(p) => p.theme.colors.gray[8]};
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: ${(p) => p.theme.colors.gray[0]};
+  background: ${(p) => p.theme.colors.white};
+  margin: 1rem 0;
+
+  &:focus {
+    outline: none;
+    border-color: ${(p) => p.theme.colors.main.default};
+  }
+
+  &::placeholder {
+    color: ${(p) => p.theme.colors.gray[6]};
+  }
+`
+
+const Button = styled.button`
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: ${(p) => p.theme.colors.main.default};
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: ${(p) => p.theme.colors.main.dark};
+  }
+`
+
+const Section = styled.div`
+  margin-bottom: 2.5rem;
+`
+
+const CloudButton = styled.button`
+  width: 100%;
+  padding: 0.75rem 1rem;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: linear-gradient(269.85deg, #ff1786 0%, #8e33de 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
 `
 
-const CardContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-`
+const CloudCardLink = styled(Link)`
+  text-decoration: none;
+  display: block;
 
-const HelpCard = ({ description, title, logo, href, ...props }) => (
-  <StyledLink href={href} {...props}>
-    <StyledCard forwardedAs="div">
-      <Logo>{logo}</Logo>
-      <CardContent>
-        <Typography variant="typo4" color="gray.0">
-          {title}
-        </Typography>
-        <Typography variant="typo3" color="gray.8" style={{ fontWeight: 400 }}>
-          {description}
-        </Typography>
-      </CardContent>
-    </StyledCard>
-  </StyledLink>
-)
+  &:hover {
+    text-decoration: none;
+  }
+`
 
 const RightPanel = ({ isOpen, onClose }) => {
-  const { meilisearchJsClient } = useMeilisearchClientContext()
-  const [version, setVersion] = React.useState()
+  const [email, setEmail] = React.useState('')
 
-  React.useEffect(() => {
-    const getMeilisearchVersion = async () => {
-      try {
-        const res = await meilisearchJsClient.getVersion()
-        setVersion(res.pkgVersion)
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.log(err)
-      }
-    }
-    getMeilisearchVersion()
-  }, [meilisearchJsClient])
+  const handleSubscribe = (e) => {
+    e.preventDefault()
+    // TODO: Implement newsletter subscription
+    console.log('Subscribe with email:', email)
+  }
 
   return (
     <PanelWrapper isOpen={isOpen}>
       <Header>
-        <Title>
-          <TitleIcon>🚀</TitleIcon>
-          <span>Get started with Meilisearch v{version}</span>
-        </Title>
+        <Title>Get started</Title>
         <CloseButton onClick={onClose}>&times;</CloseButton>
       </Header>
 
-      <SectionTitle>Help center</SectionTitle>
-      <Typography
-        variant="typo11"
-        color="gray.6"
-        style={{ marginBottom: '2rem' }}
-      >
-        If you need help with anything, here are a few links that can be useful.
-      </Typography>
+      <Section>
+        <SectionTitle>Try Meilisearch Cloud</SectionTitle>
+        <Typography
+          variant="typo11"
+          color="gray.6"
+          style={{ marginBottom: '1rem' }}
+        >
+          Streamline your experience with search analytics, monitoring, and
+          more.
+        </Typography>
+        <CloudCardLink href="https://cloud.meilisearch.com">
+          <CloudButton>Start free trial</CloudButton>
+        </CloudCardLink>
+      </Section>
 
-      <HelpCard
-        logo={<GithubLogo style={{ width: 62 }} />}
-        title="Github"
-        description="Explore our repositories on Github"
-        href="https://github.com/meilisearch"
-      />
-      <HelpCard
-        logo={<DiscordLogo style={{ width: 62 }} />}
-        title="Discord"
-        description="Join our Discord and find the help you need"
-        href="https://discord.meilisearch.com"
-      />
-      <HelpCard
-        logo={<MeilisearchLogo style={{ width: 62 }} />}
-        title="Documentation"
-        description="Learn how to tune your Meilisearch"
-        href="https://docs.meilisearch.com/?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard"
-      />
+      <Section>
+        <SectionTitle>Need help?</SectionTitle>
+        <Typography
+          variant="typo11"
+          color="gray.6"
+          style={{ marginBottom: '1.25rem' }}
+        >
+          Check out our resources to get started.
+        </Typography>
+
+        <HelpLink href="https://docs.meilisearch.com/?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard">
+          <MeilisearchLogo />
+          <span>Documentation</span>
+        </HelpLink>
+        <HelpLink href="https://github.com/meilisearch">
+          <MeilisearchLogo />
+          <span>Help center</span>
+        </HelpLink>
+        <HelpLink href="https://discord.meilisearch.com">
+          <DiscordLogo />
+          <span>Community</span>
+        </HelpLink>
+      </Section>
+
+      <Section>
+        <SectionTitle>Stay up to date</SectionTitle>
+        <Typography
+          variant="typo11"
+          color="gray.6"
+          style={{ marginBottom: '0rem' }}
+        >
+          Get monthly updates about new features and tips to get the the most
+          out of Meilisearch.
+        </Typography>
+        <form onSubmit={handleSubscribe}>
+          <Input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <Button type="submit">Subscribe</Button>
+        </form>
+      </Section>
     </PanelWrapper>
   )
 }
