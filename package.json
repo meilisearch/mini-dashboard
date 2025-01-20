@@ -61,5 +61,5 @@
     "prettier": "^3.3.3",
     "storybook": "^8.3.4"
   },
-  "packageManager": "yarn@1.22.22"
+  "packageManager": "yarn@4.6.0"
 }
