@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
+      - name: Setup Yarn
+        uses: threeal/setup-yarn-action@v2.0.0
       - name: Install dev dependencies
         run: yarn
       - name: Run style check
