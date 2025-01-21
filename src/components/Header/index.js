@@ -21,7 +21,6 @@ const HeaderWrapper = styled('div')`
   position: sticky;
   top: ${(props) => props.top}px;
   width: 100%;
-  height: 120px;
   padding: 2rem;
   box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)};
 `
@@ -31,6 +30,19 @@ const HeaderLayout = styled('div')`
   align-items: center;
   gap: 1rem;
   height: 100%;
+  width: 100%;
+`
+
+const RightSideWrapper = styled('div')`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+`
+
+const SearchBoxWrapper = styled('div')`
+  flex-grow: 1;
+  margin-right: 2rem;
 `
 
 const IconButton = styled.button`
@@ -59,12 +71,17 @@ const HeaderContent = styled('div')`
   margin-left: 0;
   transition: width 0.3s ease-in-out;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 `
 
 const LogoBox = ({ version }) => (
-  <Box display="flex" flexDirection="column" alignItems="center" flexShrink={0}>
+  <Box
+    display="flex"
+    flexDirection="column"
+    alignItems="center"
+    flexShrink={0}
+    mr={4}
+  >
     {/* Trick to make the logo look centered */}
     <MeilisearchLogo
       title="Meilisearch"
@@ -146,10 +163,6 @@ const Header = ({
       <HeaderContent isRightPanelOpen={isRightPanelOpen}>
         <HeaderLayout>
           <LogoBox version={version} />
-          <SearchBox
-            refreshIndexes={refreshIndexes}
-            currentIndex={currentIndex}
-          />
           <Select
             options={indexes}
             icon={<Indexes style={{ height: 22 }} />}
@@ -159,13 +172,21 @@ const Header = ({
             style={{ width: 216 }}
             onClick={refreshIndexes}
           />
-          <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
+          <SearchBoxWrapper>
+            <SearchBox
+              refreshIndexes={refreshIndexes}
+              currentIndex={currentIndex}
+            />
+          </SearchBoxWrapper>
+          <RightSideWrapper>
+            <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
+            {!isRightPanelOpen && onTogglePanel && (
+              <IconButton onClick={onTogglePanel} type="button">
+                <MenuBarsIcon />
+              </IconButton>
+            )}
+          </RightSideWrapper>
         </HeaderLayout>
-        {!isRightPanelOpen && onTogglePanel && (
-          <IconButton onClick={onTogglePanel} type="button">
-            <MenuBarsIcon />
-          </IconButton>
-        )}
       </HeaderContent>
     </HeaderWrapper>
   )
