@@ -27,7 +27,6 @@ const SelectIndexesButton = styled(MenuButton)`
   border-width: 1px;
   border-style: solid;
   border-radius: 8px;
-  box-shadow: 0px 4px 6px ${Color('#000').alpha(0.04)};
   transition: border-color 300ms;
   outline: none;
   color: ${(p) => p.theme.colors.gray[0]};

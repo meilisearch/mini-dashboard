@@ -42,6 +42,7 @@ const RightSideWrapper = styled('div')`
 
 const SearchBoxWrapper = styled('div')`
   flex-grow: 1;
+  margin-left: 2rem;
   margin-right: 2rem;
 `
 

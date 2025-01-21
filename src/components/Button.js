@@ -20,7 +20,6 @@ const variants = {
     border-width: 1px;
     border-style: solid;
     border-color: ${(p) => p.theme.colors.gray[10]};
-    box-shadow: 0px 4px 6px ${Color('#000').alpha(0.04)};
     color: ${(p) => p.theme.colors.gray[0]};
     svg {
       color: ${(p) => p.theme.colors.main.default};
@@ -31,7 +30,6 @@ const variants = {
     &:active,
     &:active,
     &[aria-expanded='true'] {
-      box-shadow: none;
       border-color: ${(p) => p.theme.colors.main.default};
     }
   `,
