@@ -17,7 +17,6 @@ const Arrow = styled(ArrowDown)`
 
 const SelectIndexesButton = styled(MenuButton)`
   position: relative;
-  margin: 0 20px;
   padding: 12px 32px 12px 12px;
   height: 48px;
   background-color: white;

@@ -55,11 +55,7 @@ const ApiKey = ({ requireApiKeyToWork }) => {
     <>
       <DialogDisclosure {...dialog}>
         {(props) => (
-          <Button
-            icon={<Key style={{ height: 19 }} />}
-            style={{ width: '100%' }}
-            {...props}
-          >
+          <Button icon={<Key style={{ height: 19 }} />} {...props}>
             Api Key
           </Button>
         )}
@@ -124,7 +120,7 @@ const Header = ({
           alignItems="center"
           justifyContent="space-between"
           height="100%"
-          gap={4}
+          gap={6}
         >
           <LogoBox version={version} />
           <SearchBox

@@ -13,7 +13,7 @@ const PanelWrapper = styled.div`
   right: 0;
   width: 430px;
   height: 100vh;
-  background: ${(p) => p.theme.colors.gray[11]};
+  background: ${(p) => p.theme.colors.white};
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   transform: translateX(${({ isOpen }) => (isOpen ? '0' : '100%')});
   transition: transform 0.3s ease-in-out;
