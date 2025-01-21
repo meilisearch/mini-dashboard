@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { MeilisearchLogo, DiscordLogo } from 'components/icons'
 import Link from 'components/Link'
 import Typography from 'components/Typography'
+import AcademicHatIcon from 'components/icons/heroicons/AcademicHatIcon'
+import LifebuoyIcon from 'components/icons/heroicons/LifebuoyIcon'
+import ChatBubbleIcon from 'components/icons/heroicons/ChatBubbleIcon'
+import MenuBarsIcon from 'components/icons/heroicons/MenuBarsIcon'
 
 const PanelWrapper = styled.div`
   position: fixed;
@@ -29,13 +32,14 @@ const Title = styled.h2`
 const SectionTitle = styled.h3`
   color: ${(p) => p.theme.colors.gray[0]};
   font-weight: 600;
-  margin: 0 0 1.25rem 0;
+  margin-bottom: 2rem;
 `
 
 const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 3rem;
   margin-bottom: 2rem;
 `
 
@@ -45,6 +49,16 @@ const CloseButton = styled.button`
   cursor: pointer;
   font-size: 2rem;
   color: ${(p) => p.theme.colors.gray[0]};
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    color: ${(p) => p.theme.colors.gray[0]};
+  }
 `
 
 const HelpLink = styled(Link)`
@@ -64,13 +78,19 @@ const HelpLink = styled(Link)`
   svg {
     width: 20px;
     height: 20px;
-    color: ${(p) => p.theme.colors.main.default};
+    color: ${(p) => p.theme.colors.gray[0]};
+    transition: color 0.1s;
   }
 
   &:hover {
     box-shadow: none;
     border-color: ${(p) => p.theme.colors.main.default};
     text-decoration: none;
+    color: ${(p) => p.theme.colors.gray[0]};
+
+    svg {
+      // color: ${(p) => p.theme.colors.main.default};
+    }
   }
 `
 
@@ -158,8 +178,10 @@ const RightPanel = ({ isOpen, onClose }) => {
   return (
     <PanelWrapper isOpen={isOpen}>
       <Header>
-        <Title>Get started</Title>
-        <CloseButton onClick={onClose}>&times;</CloseButton>
+        <Title>Getting started</Title>
+        <CloseButton onClick={onClose}>
+          <MenuBarsIcon />
+        </CloseButton>
       </Header>
 
       <Section>
@@ -172,7 +194,7 @@ const RightPanel = ({ isOpen, onClose }) => {
           Streamline your experience with search analytics, monitoring, and
           more.
         </Typography>
-        <CloudCardLink href="https://cloud.meilisearch.com">
+        <CloudCardLink href="https://cloud.meilisearch.com?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard">
           <CloudButton>Start free trial</CloudButton>
         </CloudCardLink>
       </Section>
@@ -188,15 +210,15 @@ const RightPanel = ({ isOpen, onClose }) => {
         </Typography>
 
         <HelpLink href="https://docs.meilisearch.com/?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard">
-          <MeilisearchLogo />
+          <AcademicHatIcon />
           <span>Documentation</span>
         </HelpLink>
-        <HelpLink href="https://github.com/meilisearch">
-          <MeilisearchLogo />
+        <HelpLink href="https://help.meilisearch.com?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard">
+          <LifebuoyIcon />
           <span>Help center</span>
         </HelpLink>
-        <HelpLink href="https://discord.meilisearch.com">
-          <DiscordLogo />
+        <HelpLink href="https://dub.sh/meili-discord?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard">
+          <ChatBubbleIcon />
           <span>Community</span>
         </HelpLink>
       </Section>
