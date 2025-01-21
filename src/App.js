@@ -44,7 +44,7 @@ const App = () => {
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
   const [showCloudBanner, setShowCloudBanner] = useState(false)
   const [isApiKeyBannerVisible, setIsApiKeyBannerVisible] = useState(false)
-  const [isRightPanelOpen, setIsRightPanelOpen] = useState(true)
+  const [isRightPanelOpen, setIsRightPanelOpen] = useState(false)
   const dialog = useDialogState({ animated: true, visible: false })
 
   const {
@@ -134,6 +134,10 @@ const App = () => {
     return () => {}
   }, [])
 
+  const handleTogglePanel = useCallback(() => {
+    setIsRightPanelOpen((isOpen) => !isOpen)
+  }, [])
+
   return (
     <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
       <GlobalStyle />
@@ -155,6 +159,7 @@ const App = () => {
               isApiKeyBannerVisible={isApiKeyBannerVisible}
               isCloudBannerVisible={showCloudBanner}
               isRightPanelOpen={isRightPanelOpen}
+              onTogglePanel={handleTogglePanel}
             />
             <Body
               isRightPanelOpen={isRightPanelOpen}

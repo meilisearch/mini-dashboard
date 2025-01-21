@@ -14,6 +14,7 @@ import SearchBox from 'components/SearchBox'
 import Box from 'components/Box'
 import Select from 'components/Select'
 import { MeilisearchLogo, Indexes, Key } from 'components/icons'
+import MenuBarsIcon from 'components/icons/heroicons/MenuBarsIcon'
 
 const HeaderWrapper = styled('div')`
   background-color: white;
@@ -32,11 +33,34 @@ const HeaderLayout = styled('div')`
   height: 100%;
 `
 
+const IconButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    color: ${(p) => p.theme.colors.gray[0]};
+  }
+
+  &:hover svg {
+    color: ${(p) => p.theme.colors.main.default};
+  }
+`
+
 const HeaderContent = styled('div')`
   width: ${({ isRightPanelOpen }) =>
     isRightPanelOpen ? 'calc(100% - 430px)' : '100%'};
   margin-left: 0;
   transition: width 0.3s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 const LogoBox = ({ version }) => (
@@ -98,6 +122,7 @@ const Header = ({
   requireApiKeyToWork,
   isApiKeyBannerVisible,
   isRightPanelOpen,
+  onTogglePanel,
 }) => {
   const { meilisearchJsClient } = useMeilisearchClientContext()
   const [version, setVersion] = React.useState()
@@ -136,6 +161,11 @@ const Header = ({
           />
           <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
         </HeaderLayout>
+        {!isRightPanelOpen && onTogglePanel && (
+          <IconButton onClick={onTogglePanel} type="button">
+            <MenuBarsIcon />
+          </IconButton>
+        )}
       </HeaderContent>
     </HeaderWrapper>
   )
