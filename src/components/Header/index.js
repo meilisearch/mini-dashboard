@@ -15,17 +15,39 @@ import Box from 'components/Box'
 import Container from 'components/Container'
 import Select from 'components/Select'
 import { MeilisearchLogo, Indexes, Key } from 'components/icons'
-import { compose, position } from 'styled-system'
-import HelpCenter from './HelpCenter'
 
-const HeaderWrapper = styled('div')(compose(position), {
-  backgroundColor: 'white',
-  display: 'flex',
-  position: 'sticky',
-  height: '120px',
-  boxShadow: `0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)}`,
-  zIndex: 10,
-})
+const HeaderWrapper = styled('div')`
+  background-color: white;
+  position: sticky;
+  top: ${(props) => props.top}px;
+  width: 100%;
+  height: 120px;
+  box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)};
+`
+
+const HeaderContent = styled('div')`
+  width: ${({ isRightPanelOpen }) =>
+    isRightPanelOpen ? 'calc(100% - 430px)' : '100%'};
+  margin-left: 0;
+  transition: width 0.3s ease-in-out;
+`
+
+const LogoBox = ({ version }) => (
+  <Box display="flex" flexDirection="column" alignItems="center" flexShrink={0}>
+    {/* Trick to make the logo look centered */}
+    <MeilisearchLogo
+      title="Meilisearch"
+      style={{ height: '28px', marginBottom: '8px' }}
+    />
+    {version && (
+      <Typography
+        variant="typo10"
+        color="gray.0"
+        style={{ lineHeight: '10px' }}
+      >{`v${version}`}</Typography>
+    )}
+  </Box>
+)
 
 const ApiKey = ({ requireApiKeyToWork }) => {
   const dialog = useDialogState()
@@ -53,8 +75,8 @@ const ApiKey = ({ requireApiKeyToWork }) => {
           <ApiKeyModalContent closeModal={() => dialog.hide()} />
         ) : (
           <Typography variant="typo11" color="gray.6">
-            You haven’t set an API key yet, if you want to set one you can read
-            the{' '}
+            You haven&apos;t set an API key yet, if you want to set one you can
+            read the{' '}
             <Link href="https://docs.meilisearch.com/reference/api/keys.html">
               documentation
             </Link>
@@ -73,6 +95,7 @@ const Header = ({
   requireApiKeyToWork,
   isApiKeyBannerVisible,
   isCloudBannerVisible,
+  isRightPanelOpen,
 }) => {
   const { meilisearchJsClient } = useMeilisearchClientContext()
   const [version, setVersion] = React.useState()
@@ -94,37 +117,16 @@ const Header = ({
     (isCloudBannerVisible ? 74 : 0) + (isApiKeyBannerVisible ? 55 : 0)
   return (
     <HeaderWrapper top={topPosition}>
-      <Container
-        p={4}
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-        height="100%"
-      >
-        <Box
+      <HeaderContent isRightPanelOpen={isRightPanelOpen}>
+        <Container
+          p={4}
           display="flex"
-          flexDirection="column"
-          justifyContent="center"
           alignItems="center"
+          justifyContent="space-between"
+          height="100%"
+          gap={4}
         >
-          {/* Trick to make the logo look centered */}
-          <MeilisearchLogo
-            title="Meilisearch"
-            style={{
-              width: 75,
-              paddingTop: 11,
-              paddingBottom: 11,
-              marginLeft: 13,
-            }}
-          />
-          {version && (
-            <Typography
-              variant="typo10"
-              color="gray.0"
-            >{`v${version}`}</Typography>
-          )}
-        </Box>
-        <Box display="flex">
+          <LogoBox version={version} />
           <SearchBox
             refreshIndexes={refreshIndexes}
             currentIndex={currentIndex}
@@ -139,9 +141,8 @@ const Header = ({
             onClick={refreshIndexes}
           />
           <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
-        </Box>
-        <HelpCenter />
-      </Container>
+        </Container>
+      </HeaderContent>
     </HeaderWrapper>
   )
 }

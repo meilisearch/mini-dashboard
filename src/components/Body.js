@@ -21,7 +21,7 @@ const IndexContent = ({ currentIndex }) => {
         mb={32}
         color="gray.0"
       >
-        There’s no document in the selected index
+        There&apos;s no document in the selected index
       </Typography>
     </EmptyView>
   )
@@ -35,6 +35,7 @@ const Body = ({
   requireApiKeyToWork,
   isApiKeyBannerVisible,
   isCloudBannerVisible,
+  isRightPanelOpen,
 }) => {
   const { meilisearchJsClient, instantMeilisearchClient } =
     useMeilisearchClientContext()
@@ -45,6 +46,7 @@ const Body = ({
       searchClient={instantMeilisearchClient}
     >
       <Header
+        id="header"
         indexes={indexes}
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
@@ -53,13 +55,14 @@ const Body = ({
         refreshIndexes={getIndexesList}
         isApiKeyBannerVisible={isApiKeyBannerVisible}
         isCloudBannerVisible={isCloudBannerVisible}
+        isRightPanelOpen={isRightPanelOpen}
       />
-      <BodyWrapper>
-        {/* <Sidebar /> */}
+      <BodyWrapper isRightPanelOpen={isRightPanelOpen}>
         <Box
-          width={928}
+          flex={1}
           m="0 auto"
           py={4}
+          px={4}
           display="flex"
           flexDirection="column"
         >

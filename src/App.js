@@ -35,20 +35,6 @@ const Wrapper = styled.div`
   flex-direction: column;
 `
 
-const Layout = styled.div`
-  display: flex;
-  flex: 1;
-  width: ${({ isRightPanelOpen }) =>
-    isRightPanelOpen ? 'calc(100% - 25vw)' : '100%'};
-  transition: width 0.3s ease-in-out;
-`
-
-const MainContent = styled.div`
-  flex: 1;
-  width: 100%;
-  position: relative;
-`
-
 const App = () => {
   const [apiKey, setApiKey] = useLocalStorage('apiKey')
   const [, setIndexes] = useState()
@@ -153,11 +139,7 @@ const App = () => {
         {isApiKeyBannerVisible && <ApiKeyAwarenessBanner />}
         {isMeilisearchRunning ? (
           <>
-            <Layout isRightPanelOpen={isRightPanelOpen}>
-              <MainContent>
-                <Body />
-              </MainContent>
-            </Layout>
+            <Body isRightPanelOpen={isRightPanelOpen} />
             <RightPanel
               isOpen={isRightPanelOpen}
               onClose={() => setIsRightPanelOpen(false)}

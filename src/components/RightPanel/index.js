@@ -11,7 +11,7 @@ const PanelWrapper = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  width: 30vw;
+  width: 430px;
   height: 100vh;
   background: ${(p) => p.theme.colors.gray[11]};
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
@@ -134,7 +134,6 @@ const Button = styled.button`
 const Section = styled.div`
   margin-bottom: 2.5rem;
 `
-
 const CloudButton = styled.button`
   width: 100%;
   padding: 0.75rem 1rem;
