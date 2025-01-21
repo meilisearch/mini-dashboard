@@ -19,7 +19,6 @@ const PanelWrapper = styled.div`
   transition: transform 0.3s ease-in-out;
   padding: 2rem 2.5rem;
   z-index: 10;
-  overflow-y: auto;
 `
 
 const Title = styled.h2`
@@ -246,5 +245,4 @@ const RightPanel = ({ isOpen, onClose }) => {
     </PanelWrapper>
   )
 }
-
 export default RightPanel

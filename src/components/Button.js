@@ -14,7 +14,7 @@ const Arrow = styled(ArrowDown)`
 
 const variants = {
   default: css`
-    padding: 0 24px;
+    padding: 0 0.75rem;
     min-width: 128px;
     background-color: transparent;
     border-width: 1px;
@@ -36,7 +36,7 @@ const variants = {
     }
   `,
   filled: css`
-    padding: 0 24px;
+    padding: 0 0.75rem;
     min-width: 128px;
     background-color: ${(p) => p.theme.colors.main.default};
     border: 1px solid ${(p) => p.theme.colors.main.default};
@@ -57,7 +57,7 @@ const variants = {
     }
   `,
   bordered: css`
-    padding: 0 24px;
+    padding: 0 0.75rem;
     min-width: 128px;
     background-color: transparent;
     border: 2px solid ${(p) => p.theme.colors.main.default};

@@ -12,7 +12,6 @@ import NoSelectOption from 'components/NoSelectOption'
 import Typography from 'components/Typography'
 import SearchBox from 'components/SearchBox'
 import Box from 'components/Box'
-import Container from 'components/Container'
 import Select from 'components/Select'
 import { MeilisearchLogo, Indexes, Key } from 'components/icons'
 
@@ -22,7 +21,15 @@ const HeaderWrapper = styled('div')`
   top: ${(props) => props.top}px;
   width: 100%;
   height: 120px;
+  padding: 2rem;
   box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)};
+`
+
+const HeaderLayout = styled('div')`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
 `
 
 const HeaderContent = styled('div')`
@@ -56,7 +63,7 @@ const ApiKey = ({ requireApiKeyToWork }) => {
       <DialogDisclosure {...dialog}>
         {(props) => (
           <Button icon={<Key style={{ height: 19 }} />} {...props}>
-            Api Key
+            API key
           </Button>
         )}
       </DialogDisclosure>
@@ -90,7 +97,6 @@ const Header = ({
   refreshIndexes,
   requireApiKeyToWork,
   isApiKeyBannerVisible,
-  isCloudBannerVisible,
   isRightPanelOpen,
 }) => {
   const { meilisearchJsClient } = useMeilisearchClientContext()
@@ -109,19 +115,11 @@ const Header = ({
     getMeilisearchVersion()
   }, [meilisearchJsClient])
 
-  const topPosition =
-    (isCloudBannerVisible ? 74 : 0) + (isApiKeyBannerVisible ? 55 : 0)
+  const topPosition = isApiKeyBannerVisible ? 55 : 0
   return (
     <HeaderWrapper top={topPosition}>
       <HeaderContent isRightPanelOpen={isRightPanelOpen}>
-        <Container
-          p={4}
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-          height="100%"
-          gap={6}
-        >
+        <HeaderLayout>
           <LogoBox version={version} />
           <SearchBox
             refreshIndexes={refreshIndexes}
@@ -137,7 +135,7 @@ const Header = ({
             onClick={refreshIndexes}
           />
           <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
-        </Container>
+        </HeaderLayout>
       </HeaderContent>
     </HeaderWrapper>
   )

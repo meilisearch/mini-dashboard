@@ -1,14 +1,11 @@
 import React from 'react'
-import { InstantSearch } from 'react-instantsearch-dom'
 
-import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import Box from 'components/Box'
-import Header from 'components/Header/index'
-import BodyWrapper from 'components/BodyWrapper'
 import EmptyView from 'components/EmptyView'
 import OnBoarding from 'components/OnBoarding'
 import Results from 'components/Results'
 import Typography from 'components/Typography'
+import BodyWrapper from 'components/BodyWrapper'
 
 const IndexContent = ({ currentIndex }) => {
   if (!currentIndex) return <OnBoarding />
@@ -27,50 +24,19 @@ const IndexContent = ({ currentIndex }) => {
   )
 }
 
-const Body = ({
-  currentIndex,
-  indexes,
-  getIndexesList,
-  setCurrentIndex,
-  requireApiKeyToWork,
-  isApiKeyBannerVisible,
-  isCloudBannerVisible,
-  isRightPanelOpen,
-}) => {
-  const { meilisearchJsClient, instantMeilisearchClient } =
-    useMeilisearchClientContext()
-
-  return (
-    <InstantSearch
-      indexName={currentIndex ? currentIndex.uid : ''}
-      searchClient={instantMeilisearchClient}
+const Body = ({ currentIndex, isRightPanelOpen }) => (
+  <BodyWrapper isRightPanelOpen={isRightPanelOpen}>
+    <Box
+      flex={1}
+      m="0 auto"
+      py={4}
+      px={4}
+      display="flex"
+      flexDirection="column"
     >
-      <Header
-        id="header"
-        indexes={indexes}
-        currentIndex={currentIndex}
-        setCurrentIndex={setCurrentIndex}
-        requireApiKeyToWork={requireApiKeyToWork}
-        client={meilisearchJsClient}
-        refreshIndexes={getIndexesList}
-        isApiKeyBannerVisible={isApiKeyBannerVisible}
-        isCloudBannerVisible={isCloudBannerVisible}
-        isRightPanelOpen={isRightPanelOpen}
-      />
-      <BodyWrapper isRightPanelOpen={isRightPanelOpen}>
-        <Box
-          flex={1}
-          m="0 auto"
-          py={4}
-          px={4}
-          display="flex"
-          flexDirection="column"
-        >
-          <IndexContent currentIndex={currentIndex} />
-        </Box>
-      </BodyWrapper>
-    </InstantSearch>
-  )
-}
+      <IndexContent currentIndex={currentIndex} />
+    </Box>
+  </BodyWrapper>
+)
 
 export default Body

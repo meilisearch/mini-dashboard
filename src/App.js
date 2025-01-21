@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable no-console */
 import React, { useState, useEffect, useCallback } from 'react'
-import styled from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import { instantMeiliSearch as instantMeilisearch } from '@meilisearch/instant-meilisearch'
 import { useDialogState } from 'reakit/Dialog'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
+import { InstantSearch } from 'react-instantsearch-dom'
 
 import ApiKeyContext from 'context/ApiKeyContext'
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
@@ -16,6 +17,7 @@ import Modal from 'components/Modal'
 import NoMeilisearchRunning from 'components/NoMeilisearchRunning'
 import ApiKeyAwarenessBanner from 'components/ApiKeyAwarenessBanner'
 import RightPanel from 'components/RightPanel'
+import Header from 'components/Header'
 import getIndexesListWithStats from 'utils/getIndexesListWithStats'
 import isCloudBannerEnabled from 'utils/isCloudBannerEnabled'
 import shouldDisplayApiKeyModal from 'utils/shouldDisplayApiKeyModal'
@@ -28,18 +30,17 @@ export const baseUrl =
     ? 'http://0.0.0.0:7700'
     : window.location.origin)
 
-const Wrapper = styled.div`
-  background-color: ${(p) => p.theme.colors.gray[11]};
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${(p) => p.theme.colors.gray[11]};
+  }
 `
 
 const App = () => {
   const [apiKey, setApiKey] = useLocalStorage('apiKey')
-  const [, setIndexes] = useState()
+  const [indexes, setIndexes] = useState()
   const [isMeilisearchRunning, setIsMeilisearchRunning] = useState(false)
-  const [, setRequireApiKeyToWork] = useState(false)
+  const [requireApiKeyToWork, setRequireApiKeyToWork] = useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
   const [showCloudBanner, setShowCloudBanner] = useState(false)
   const [isApiKeyBannerVisible, setIsApiKeyBannerVisible] = useState(false)
@@ -50,6 +51,7 @@ const App = () => {
     meilisearchJsClient,
     setMeilisearchJsClient,
     setInstantMeilisearchClient,
+    instantMeilisearchClient,
   } = useMeilisearchClientContext()
 
   const getIndexesList = useCallback(async () => {
@@ -134,24 +136,42 @@ const App = () => {
 
   return (
     <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
-      <Wrapper>
+      <GlobalStyle />
+      <div style={{ position: 'relative', minHeight: '100vh' }}>
         {showCloudBanner && <CloudBanner onClose={handleCloudBannerClose} />}
         {isApiKeyBannerVisible && <ApiKeyAwarenessBanner />}
         {isMeilisearchRunning ? (
-          <>
-            <Body isRightPanelOpen={isRightPanelOpen} />
+          <InstantSearch
+            indexName={currentIndex ? currentIndex.uid : ''}
+            searchClient={instantMeilisearchClient}
+          >
+            <Header
+              indexes={indexes}
+              currentIndex={currentIndex}
+              setCurrentIndex={setCurrentIndex}
+              requireApiKeyToWork={requireApiKeyToWork}
+              client={meilisearchJsClient}
+              refreshIndexes={getIndexesList}
+              isApiKeyBannerVisible={isApiKeyBannerVisible}
+              isCloudBannerVisible={showCloudBanner}
+              isRightPanelOpen={isRightPanelOpen}
+            />
+            <Body
+              isRightPanelOpen={isRightPanelOpen}
+              currentIndex={currentIndex}
+            />
             <RightPanel
               isOpen={isRightPanelOpen}
               onClose={() => setIsRightPanelOpen(false)}
             />
-          </>
+          </InstantSearch>
         ) : (
           <NoMeilisearchRunning />
         )}
         <Modal dialog={dialog}>
           <ApiKeyModalContent dialog={dialog} />
         </Modal>
-      </Wrapper>
+      </div>
     </ApiKeyContext.Provider>
   )
 }
