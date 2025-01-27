@@ -2461,12 +2461,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@meilisearch/instant-meilisearch@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@meilisearch/instant-meilisearch@npm:1.0.0"
+"@meilisearch/instant-meilisearch@npm:0.24":
+  version: 0.24.0
+  resolution: "@meilisearch/instant-meilisearch@npm:0.24.0"
   dependencies:
-    meilisearch: "npm:^0.36.0"
-  checksum: 10c0/e7728d3fa23b01b05debb19df7401861e539979722d5f4374d0ef2108f47645741f3eb56c785cc0e3c45ff0d60cfb202d918f1e70f2106f9890a576512b3935f
+    meilisearch: "npm:^0.48.2"
+  checksum: 10c0/19cfda72bb98cbd8ed10c7c061c4081d24abf1f626f3505af8bba980cca185796e0dfbeb0e64f5663af590c86ce085078533fae3ed003460d28f18165e55cac9
   languageName: node
   linkType: hard
 
@@ -6003,7 +6003,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-fetch@npm:^3.1.5, cross-fetch@npm:^3.1.6":
+"cross-fetch@npm:^3.1.5":
   version: 3.2.0
   resolution: "cross-fetch@npm:3.2.0"
   dependencies:
@@ -11050,19 +11050,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"meilisearch@npm:^0.36.0":
-  version: 0.36.0
-  resolution: "meilisearch@npm:0.36.0"
-  dependencies:
-    cross-fetch: "npm:^3.1.6"
-  checksum: 10c0/06832e85135d16b49a7d67d1514605876a66052a4b830949990d310ed618774fcce62c302a7f27f6f75a470ed568e929372455f94a971ba9178f9fe917d17e0d
-  languageName: node
-  linkType: hard
-
-"meilisearch@npm:^0.47.0":
-  version: 0.47.0
-  resolution: "meilisearch@npm:0.47.0"
-  checksum: 10c0/b90bc112cf9a255e075dd471e8e12da7a960443b04470426af60aa8186dda7d9e5f41e9437919c8cd79bef81daaee2e711c88e356a35bacf87c2a5a52d92131f
+"meilisearch@npm:0.48.2, meilisearch@npm:^0.48.2":
+  version: 0.48.2
+  resolution: "meilisearch@npm:0.48.2"
+  checksum: 10c0/b30d48829980549b6cc509286c57d9b7a8527af12a3e234f93f0bd26bd5967b863df6fa95b2c4b00ec7cb3535ae9ba1dbf136fdda13d47db615d48e71444ce14
   languageName: node
   linkType: hard
 
@@ -11184,7 +11175,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mini-dashboard@workspace:."
   dependencies:
-    "@meilisearch/instant-meilisearch": "npm:^1.0.0"
+    "@meilisearch/instant-meilisearch": "npm:0.24"
     "@storybook/addon-actions": "npm:^8.4.7"
     "@storybook/addon-essentials": "npm:^8.4.7"
     "@storybook/addon-links": "npm:^8.4.7"
@@ -11205,7 +11196,7 @@ __metadata:
     eslint-plugin-jsx-a11y: "npm:^6.7.0"
     eslint-plugin-prettier: "npm:^5.1.3"
     eslint-plugin-react: "npm:^7.37.0"
-    meilisearch: "npm:^0.47.0"
+    meilisearch: "npm:0.48.2"
     prettier: "npm:^3.3.3"
     prop-types: "npm:^15.8.1"
     react: "npm:^18.3.1"
