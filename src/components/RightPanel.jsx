@@ -180,7 +180,7 @@ const RightPanel = ({ isOpen, onClose }) => (
       <Typography
         variant="typo11"
         color="gray.6"
-        style={{ marginBottom: '0rem' }}
+        style={{ marginBottom: '1.25rem' }}
       >
         Get monthly updates about new features and tips to get the the most out
         of Meilisearch.
