@@ -18,7 +18,7 @@ Default.args = {
       mb={32}
       color="gray.0"
     >
-      There’s no document in the selected index
+      There are no documents in the selected index
     </Typography>
   ),
   buttonLink: 'https://docs.meilisearch.com/reference/api/documents.html',

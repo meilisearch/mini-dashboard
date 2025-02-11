@@ -10,7 +10,7 @@ module.exports = defineConfig({
     host: 'http://0.0.0.0:7700',
     apiKey: 'masterKey',
     wrongApiKey: 'wrongApiKey',
-    waitingTime: 1000,
+    waitingTime: 250,
   },
   e2e: {
     baseUrl: 'http://localhost:3000',

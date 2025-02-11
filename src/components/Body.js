@@ -11,14 +11,17 @@ const IndexContent = ({ currentIndex }) => {
   if (!currentIndex) return <OnBoarding />
   if (currentIndex?.stats?.numberOfDocuments > 0) return <Results />
   return (
-    <EmptyView buttonLink="https://docs.meilisearch.com/reference/api/documents.html">
+    <EmptyView
+      buttonLink="https://docs.meilisearch.com/reference/api/documents.html"
+      data-testid="empty-view"
+    >
       <Typography
         variant="typo8"
         style={{ textAlign: 'center' }}
         mb={32}
         color="gray.0"
       >
-        There&apos;s no document in the selected index
+        There are no documents in the selected index
       </Typography>
     </EmptyView>
   )

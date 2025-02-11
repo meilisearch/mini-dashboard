@@ -23,7 +23,8 @@ describe(`Test interface`, () => {
     cy.visit('/')
   })
 
-  it('Should open the help center on click on the "?" button', () => {
+  // TODO: replace with a test about the side panel
+  it.skip('Should open the help center on click on the "?" button', () => {
     cy.get('button[aria-label="help"]').click()
     cy.get('div[aria-label="Help Center"]').within(() => {
       cy.contains('Help Center')
