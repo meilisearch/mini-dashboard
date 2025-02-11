@@ -18,8 +18,6 @@ import ApiKeyAwarenessBanner from 'components/ApiKeyAwarenessBanner'
 import RightPanel from 'components/RightPanel'
 import Header from 'components/Header'
 import getIndexesListWithStats from 'utils/getIndexesListWithStats'
-import shouldDisplayApiKeyModal from 'utils/shouldDisplayApiKeyModal'
-import hasAnApiKeySet from 'utils/hasAnApiKeySet'
 import clientAgents from './version/client-agents'
 
 export const baseUrl =
@@ -106,9 +104,10 @@ const App = () => {
       const isInstanceRunning = await meilisearchJsClient.isHealthy()
       setIsMeilisearchRunning(isInstanceRunning)
       if (isInstanceRunning) {
-        setRequireApiKeyToWork(await hasAnApiKeySet())
-        dialog.setVisible(await shouldDisplayApiKeyModal(meilisearchJsClient))
         getIndexesList()
+      } else {
+        setRequireApiKeyToWork(true)
+        dialog.setVisible(true)
       }
     }
     onClientUpdate()
@@ -149,7 +148,7 @@ const App = () => {
             />
           </InstantSearch>
         ) : (
-          <NoMeilisearchRunning />
+          <NoMeilisearchRunning baseUrl={baseUrl} />
         )}
         <Modal dialog={dialog}>
           <ApiKeyModalContent dialog={dialog} />

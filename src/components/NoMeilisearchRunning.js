@@ -4,7 +4,7 @@ import EmptyView from 'components/EmptyView'
 import BodyWrapper from 'components/BodyWrapper'
 import Box from 'components/Box'
 
-const NoMeilisearchRunning = () => (
+const NoMeilisearchRunning = ({ baseUrl, errorMessage }) => (
   <BodyWrapper>
     <Box width={928} m="0 auto" py={4} display="flex" flexDirection="column">
       <EmptyView buttonLink="https://docs.meilisearch.com/learn/getting_started/quick_start.html">
@@ -14,15 +14,15 @@ const NoMeilisearchRunning = () => (
           mb={3}
           color="gray.0"
         >
-          It seems like Meilisearch isn’t running, did you forget to start it?
+          Cannot reach Meilisearch at <strong>{baseUrl}</strong>.
         </Typography>
         <Typography
           variant="typo8"
           style={{ textAlign: 'center' }}
-          mb={32}
-          color="gray.2"
+          mb={3}
+          color="gray.0"
         >
-          (Don’t forget to set an API Key if you want one)
+          Check the provided URL and API Key.
         </Typography>
         <Typography
           variant="typo8"
