@@ -171,7 +171,7 @@ const RightPanel = ({ isOpen, onClose }) => (
       </HelpLink>
       <HelpLink href="https://dub.sh/meili-discord?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard">
         <ChatBubbleIcon />
-        <span>Community</span>
+        <span>Discord community</span>
       </HelpLink>
     </Section>
 
