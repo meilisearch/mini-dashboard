@@ -41,7 +41,7 @@ const App = () => {
   const [requireApiKeyToWork, setRequireApiKeyToWork] = useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
   const [isApiKeyBannerVisible, setIsApiKeyBannerVisible] = useState(false)
-  const [isRightPanelOpen, setIsRightPanelOpen] = useState(false)
+  const [isRightPanelOpen, setIsRightPanelOpen] = useState(true)
   const dialog = useDialogState({ animated: true, visible: false })
 
   const {

@@ -182,7 +182,11 @@ const Header = ({
           <RightSideWrapper>
             <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
             {!isRightPanelOpen && onTogglePanel && (
-              <IconButton onClick={onTogglePanel} type="button">
+              <IconButton
+                onClick={onTogglePanel}
+                type="button"
+                aria-label="Open Panel"
+              >
                 <MenuBarsIcon />
               </IconButton>
             )}

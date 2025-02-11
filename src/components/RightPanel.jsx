@@ -129,10 +129,10 @@ const CloudCardLink = styled(Link)`
 `
 
 const RightPanel = ({ isOpen, onClose }) => (
-  <PanelWrapper isOpen={isOpen}>
+  <PanelWrapper isOpen={isOpen} data-testid="right-panel">
     <Header>
       <Title>Getting started</Title>
-      <CloseButton onClick={onClose}>
+      <CloseButton onClick={onClose} aria-label="Close Panel">
         <MenuBarsIcon />
       </CloseButton>
     </Header>
