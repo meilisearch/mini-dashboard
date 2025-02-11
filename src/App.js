@@ -12,14 +12,12 @@ import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import useLocalStorage from 'hooks/useLocalStorage'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Body from 'components/Body'
-import CloudBanner from 'components/CloudBanner'
 import Modal from 'components/Modal'
 import NoMeilisearchRunning from 'components/NoMeilisearchRunning'
 import ApiKeyAwarenessBanner from 'components/ApiKeyAwarenessBanner'
 import RightPanel from 'components/RightPanel'
 import Header from 'components/Header'
 import getIndexesListWithStats from 'utils/getIndexesListWithStats'
-import isCloudBannerEnabled from 'utils/isCloudBannerEnabled'
 import shouldDisplayApiKeyModal from 'utils/shouldDisplayApiKeyModal'
 import hasAnApiKeySet from 'utils/hasAnApiKeySet'
 import clientAgents from './version/client-agents'
@@ -42,7 +40,6 @@ const App = () => {
   const [isMeilisearchRunning, setIsMeilisearchRunning] = useState(false)
   const [requireApiKeyToWork, setRequireApiKeyToWork] = useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
-  const [showCloudBanner, setShowCloudBanner] = useState(false)
   const [isApiKeyBannerVisible, setIsApiKeyBannerVisible] = useState(false)
   const [isRightPanelOpen, setIsRightPanelOpen] = useState(false)
   const dialog = useDialogState({ animated: true, visible: false })
@@ -84,9 +81,6 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    if (isCloudBannerEnabled()) {
-      setShowCloudBanner(true)
-    }
     getApiKeyFromUrl()
   }, [])
 
@@ -120,20 +114,6 @@ const App = () => {
     onClientUpdate()
   }, [meilisearchJsClient])
 
-  const handleCloudBannerClose = () => {
-    setShowCloudBanner(false)
-    localStorage.setItem('bannerVisibility', JSON.stringify(false))
-  }
-
-  // Retrieve the banner visibility state from local storage on component mount
-  React.useEffect(() => {
-    const storedVisibility = localStorage.getItem('bannerVisibility')
-    if (storedVisibility) {
-      setShowCloudBanner(JSON.parse(storedVisibility))
-    }
-    return () => {}
-  }, [])
-
   const handleTogglePanel = useCallback(() => {
     setIsRightPanelOpen((isOpen) => !isOpen)
   }, [])
@@ -142,7 +122,6 @@ const App = () => {
     <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
       <GlobalStyle />
       <div style={{ position: 'relative', minHeight: '100vh' }}>
-        {showCloudBanner && <CloudBanner onClose={handleCloudBannerClose} />}
         {isApiKeyBannerVisible && <ApiKeyAwarenessBanner />}
         {isMeilisearchRunning ? (
           <InstantSearch
@@ -157,7 +136,6 @@ const App = () => {
               client={meilisearchJsClient}
               refreshIndexes={getIndexesList}
               isApiKeyBannerVisible={isApiKeyBannerVisible}
-              isCloudBannerVisible={showCloudBanner}
               isRightPanelOpen={isRightPanelOpen}
               onTogglePanel={handleTogglePanel}
             />
