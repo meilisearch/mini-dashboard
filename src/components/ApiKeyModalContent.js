@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
 
 import { baseUrl } from 'App'
-import Box from 'components/Box'
 import Button from 'components/Button'
 import Input from 'components/Input'
 import Link from 'components/Link'
@@ -17,6 +16,17 @@ const ErrorMessage = styled(Typography)`
   position: absolute;
   left: 0;
   top: 32px;
+`
+
+const InputContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const FullWidthInput = styled(Input)`
+  display: block;
+  height: 34px;
+  width: 100%;
 `
 
 const ApiKeyModalContent = ({ closeModal }) => {
@@ -46,9 +56,8 @@ const ApiKeyModalContent = ({ closeModal }) => {
 
   return (
     <>
-      <Box display="flex">
-        <Input
-          style={{ display: 'block', height: 34 }}
+      <InputContainer>
+        <FullWidthInput
           name="apiKey"
           type="text"
           value={value}
@@ -63,28 +72,29 @@ const ApiKeyModalContent = ({ closeModal }) => {
           variant="filled"
           size="small"
           onClick={() => updateClient()}
-          style={{ minWidth: 'auto', width: 48, marginLeft: 16 }}
+          style={{ minWidth: 'auto', width: 64, marginLeft: 24 }}
         >
-          Go
+          Save
         </Button>
-      </Box>
-      <Box position="relative">
-        <Typography variant="typo11" my={3} color="gray.6" mt={2}>
-          An API key that has at least{' '}
+      </InputContainer>
+      <div>
+        <Typography variant="typo11" my={3} color="gray.6" mt={3}>
+          The API key should have permission to check the instance health and
+          list indexes. Learn more about{' '}
           <Link
             href="https://docs.meilisearch.com/reference/api/keys.html#create-a-key"
             target="_blank"
           >
-            permission
-          </Link>{' '}
-          to get the indexes, search and get the version of Meilisearch.
+            API keys
+          </Link>
+          .
         </Typography>
         {error && (
           <ErrorMessage variant="typo11" color="main.default">
             {error}
           </ErrorMessage>
         )}
-      </Box>
+      </div>
     </>
   )
 }

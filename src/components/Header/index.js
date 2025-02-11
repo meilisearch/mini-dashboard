@@ -100,6 +100,10 @@ const LogoBox = ({ version }) => (
 
 const ApiKey = ({ requireApiKeyToWork }) => {
   const dialog = useDialogState()
+  const closeModalHandler = () => {
+    dialog.hide()
+  }
+
   return (
     <>
       <DialogDisclosure {...dialog}>
@@ -117,7 +121,7 @@ const ApiKey = ({ requireApiKeyToWork }) => {
         ariaLabel="settings-api-key"
       >
         {requireApiKeyToWork ? (
-          <ApiKeyModalContent closeModal={() => dialog.hide()} />
+          <ApiKeyModalContent closeModal={closeModalHandler} />
         ) : (
           <Typography variant="typo11" color="gray.6">
             No API key provided. Learn about{' '}

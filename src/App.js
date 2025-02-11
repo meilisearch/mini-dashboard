@@ -13,7 +13,7 @@ import useLocalStorage from 'hooks/useLocalStorage'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Body from 'components/Body'
 import Modal from 'components/Modal'
-import NoMeilisearchRunning from 'components/NoMeilisearchRunning'
+import UnreachableInstance from 'components/UnreachableInstance'
 import ApiKeyAwarenessBanner from 'components/ApiKeyAwarenessBanner'
 import RightPanel from 'components/RightPanel'
 import Header from 'components/Header'
@@ -40,7 +40,11 @@ const App = () => {
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
   const [isApiKeyBannerVisible, setIsApiKeyBannerVisible] = useState(false)
   const [isRightPanelOpen, setIsRightPanelOpen] = useState(true)
+
   const dialog = useDialogState({ animated: true, visible: false })
+  const closeModalHandler = () => {
+    dialog.hide()
+  }
 
   const {
     meilisearchJsClient,
@@ -148,10 +152,10 @@ const App = () => {
             />
           </InstantSearch>
         ) : (
-          <NoMeilisearchRunning baseUrl={baseUrl} />
+          <UnreachableInstance baseUrl={baseUrl} />
         )}
-        <Modal dialog={dialog}>
-          <ApiKeyModalContent dialog={dialog} />
+        <Modal title="Enter your Admin API key" dialog={dialog}>
+          <ApiKeyModalContent dialog={dialog} closeModal={closeModalHandler} />
         </Modal>
       </div>
     </ApiKeyContext.Provider>

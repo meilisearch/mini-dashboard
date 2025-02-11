@@ -19,7 +19,7 @@ describe(`API key modal`, () => {
       cy.contains(
         'This dashboard will help you check the search results with ease.'
       )
-      cy.contains('Set your API key (optional)')
+      cy.contains('Enter your Admin API key (optional)')
       cy.contains('Select an index')
     })
   })
@@ -29,7 +29,7 @@ describe(`API key modal`, () => {
       cy.get('span').contains('API Key').parent().click()
       cy.wait(WAITING_TIME)
       cy.get('div[aria-label=settings-api-key]').within(() => {
-        cy.contains('Enter your admin API key (optional)')
+        cy.contains('Enter your Admin API key (optional)')
         cy.contains('No API key provided.')
       })
     })

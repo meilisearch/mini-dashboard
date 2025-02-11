@@ -4,7 +4,7 @@ import EmptyView from 'components/EmptyView'
 import BodyWrapper from 'components/BodyWrapper'
 import Box from 'components/Box'
 
-const NoMeilisearchRunning = ({ baseUrl, errorMessage }) => (
+const UnreachableInstance = ({ baseUrl }) => (
   <BodyWrapper>
     <Box width={928} m="0 auto" py={4} display="flex" flexDirection="column">
       <EmptyView buttonLink="https://docs.meilisearch.com/learn/getting_started/quick_start.html">
@@ -38,4 +38,4 @@ const NoMeilisearchRunning = ({ baseUrl, errorMessage }) => (
   </BodyWrapper>
 )
 
-export default NoMeilisearchRunning
+export default UnreachableInstance

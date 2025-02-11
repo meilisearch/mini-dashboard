@@ -71,7 +71,7 @@ const InputContainer = styled.div`
 const Input = ({ icon, ref, clear, type, value, ...props }) => {
   const input = useRef(null)
   return (
-    <InputContainer ref={ref}>
+    <InputContainer ref={ref} style={{ width: '100%' }}>
       {icon}
       <InputField
         $hasIcon={icon}
