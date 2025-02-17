@@ -2772,20 +2772,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-links@npm:^8.4.7":
-  version: 8.5.0
-  resolution: "@storybook/addon-links@npm:8.5.0"
+"@storybook/addon-links@npm:^8.5.6":
+  version: 8.5.6
+  resolution: "@storybook/addon-links@npm:8.5.6"
   dependencies:
     "@storybook/csf": "npm:0.1.12"
     "@storybook/global": "npm:^5.0.0"
     ts-dedent: "npm:^2.0.0"
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
-    storybook: ^8.5.0
+    storybook: ^8.5.6
   peerDependenciesMeta:
     react:
       optional: true
-  checksum: 10c0/9ccf91990e708f6c25c08fe0ddf46c4830bc20e6d45a76d1602cebc24b316c55d4929e0817c143c4e8b489b4c1f2f8a33f996e05f48f3ea22bfb375e087cf2af
+  checksum: 10c0/4fe83904d9f028f2fd934604c05e800d6490ceaf8ee10f911ab6bbd34c0f57de58137fe76510dc25a5231f3102f891d85f7399634ed640496f11e4f9ad9b751a
   languageName: node
   linkType: hard
 
@@ -11185,7 +11185,7 @@ __metadata:
     "@meilisearch/instant-meilisearch": "npm:0.24"
     "@storybook/addon-actions": "npm:^8.4.7"
     "@storybook/addon-essentials": "npm:^8.4.7"
-    "@storybook/addon-links": "npm:^8.4.7"
+    "@storybook/addon-links": "npm:^8.5.6"
     "@storybook/node-logger": "npm:^8.4.7"
     "@storybook/preset-create-react-app": "npm:^8.4.7"
     "@storybook/react": "npm:^8.4.7"
