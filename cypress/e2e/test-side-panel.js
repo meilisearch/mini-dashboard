@@ -1,5 +1,11 @@
+const API_KEY = Cypress.env('apiKey')
+
 describe(`Right side panel`, () => {
   beforeEach(() => {
+    // Set API key in localStorage before visiting the page to avoid triggering the modal
+    cy.window().then((win) => {
+      win.localStorage.setItem('apiKey', JSON.stringify(API_KEY))
+    })
     cy.visit('/')
   })
 
