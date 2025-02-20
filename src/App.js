@@ -98,13 +98,17 @@ const App = () => {
   // Check if an API key is required to work
   useEffect(() => {
     const onClientUpdate = async () => {
-      const isInstanceRunning = await meilisearchJsClient.isHealthy()
-      setIsMeilisearchRunning(isInstanceRunning)
-      if (isInstanceRunning) {
-        getIndexesList()
-      } else {
-        console.log('Instance not running, we should open the modal')
-        // apiKeyDialog.setVisible(true)
+      try {
+        const isInstanceRunning = await meilisearchJsClient.isHealthy()
+        setIsMeilisearchRunning(isInstanceRunning)
+        if (isInstanceRunning) {
+          // Validate the API key by attempting to get indexes
+          await meilisearchJsClient.getIndexes()
+          getIndexesList()
+        }
+      } catch (err) {
+        console.log('API key validation failed or instance not running')
+        apiKeyDialog.setVisible(true)
       }
     }
     onClientUpdate()

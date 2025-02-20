@@ -59,7 +59,7 @@ describe(`API key is required`, () => {
     })
   })
 
-  describe('Loading existing API key from local storage', () => {
+  describe('With existing API key in local storage', () => {
     it('Should display the API key', () => {
       // Set API key in localStorage before visiting the page
       cy.window().then((win) => {
@@ -76,6 +76,18 @@ describe(`API key is required`, () => {
       // Verify the API key in the settings modal
       cy.get(API_MODAL_SELECTOR).within(() => {
         cy.get('input[name="apiKey"]').should('have.value', API_KEY)
+      })
+    })
+
+    it.only('Should open the modal when the API key is invalid', () => {
+      cy.window().then((win) => {
+        win.localStorage.setItem('apiKey', JSON.stringify(WRONG_APIKEY))
+      })
+      cy.visit('/')
+
+      cy.get(API_MODAL_SELECTOR).within(() => {
+        cy.get('input[name="apiKey"]').as('apiKeyInput')
+        cy.get('@apiKeyInput').should('have.value', WRONG_APIKEY)
       })
     })
   })
