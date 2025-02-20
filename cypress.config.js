@@ -3,7 +3,7 @@ const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
   watchForFileChanges: true,
-  retries: 2,
+  retries: 0,
   viewportWidth: 1440,
   viewportHeight: 900,
   env: {

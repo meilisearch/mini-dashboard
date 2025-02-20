@@ -2,7 +2,7 @@ import React, { useState, useMemo, createContext, useContext } from 'react'
 import { instantMeiliSearch as instantMeilisearch } from '@meilisearch/instant-meilisearch'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
 import useLocalStorage from 'hooks/useLocalStorage'
-import { baseUrl } from 'App'
+import { MEILISEARCH_HOST } from 'App'
 import clientAgents from 'version/client-agents'
 
 export const MeilisearchClientContext = createContext({
@@ -17,13 +17,13 @@ export const MeiliSearchClientProvider = ({ children }) => {
 
   const [meilisearchJsClient, setMeilisearchJsClient] = useState(
     new Meilisearch({
-      host: baseUrl,
+      host: MEILISEARCH_HOST,
       apiKey,
       clientAgents,
     })
   )
   const [instantMeilisearchClient, setInstantMeilisearchClient] = useState(
-    instantMeilisearch(baseUrl, apiKey, {
+    instantMeilisearch(MEILISEARCH_HOST, apiKey, {
       primaryKey: 'id',
       clientAgents,
     }).searchClient

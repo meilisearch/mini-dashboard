@@ -7,9 +7,10 @@ import { useDialogState } from 'reakit/Dialog'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
 import { InstantSearch } from 'react-instantsearch-dom'
 
-import ApiKeyContext from 'context/ApiKeyContext'
+import MeilisearchContext from 'context/MeilisearchContext'
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import useLocalStorage from 'hooks/useLocalStorage'
+import useMeilisearchApiKey from 'hooks/useMeilisearchApiKey'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Body from 'components/Body'
 import Modal from 'components/Modal'
@@ -20,7 +21,7 @@ import Header from 'components/Header'
 import getIndexesListWithStats from 'utils/getIndexesListWithStats'
 import clientAgents from './version/client-agents'
 
-export const baseUrl =
+export const MEILISEARCH_HOST =
   process.env.REACT_APP_MEILI_SERVER_ADDRESS ||
   (process.env.NODE_ENV === 'development'
     ? 'http://0.0.0.0:7700'
@@ -33,7 +34,8 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const App = () => {
-  const [apiKey, setApiKey] = useLocalStorage('apiKey')
+  const [host, setHost] = useState(MEILISEARCH_HOST)
+  const [apiKey, setApiKey] = useMeilisearchApiKey()
   const [indexes, setIndexes] = useState()
   const [isMeilisearchRunning, setIsMeilisearchRunning] = useState(false)
   const [requireApiKeyToWork, setRequireApiKeyToWork] = useState(false)
@@ -41,9 +43,9 @@ const App = () => {
   const [isApiKeyBannerVisible, setIsApiKeyBannerVisible] = useState(false)
   const [isRightPanelOpen, setIsRightPanelOpen] = useState(true)
 
-  const dialog = useDialogState({ animated: true, visible: false })
+  const apiKeyDialog = useDialogState({ animated: true, visible: false })
   const closeModalHandler = () => {
-    dialog.hide()
+    apiKeyDialog.hide()
   }
 
   const {
@@ -72,37 +74,25 @@ const App = () => {
     }
   }, [meilisearchJsClient, currentIndex])
 
-  // Check if the API key is present on the url then put it in the local storage
-  const getApiKeyFromUrl = useCallback(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const apiKeyParam = urlParams.get('api_key')
-    if (apiKeyParam) {
-      setApiKey(apiKeyParam)
-      setIsApiKeyBannerVisible(true)
-    }
-  }, [])
-
   useEffect(() => {
-    getApiKeyFromUrl()
-  }, [])
-
-  useEffect(() => {
+    setHost(MEILISEARCH_HOST)
+    setApiKey(apiKey)
     setInstantMeilisearchClient(
-      instantMeilisearch(baseUrl, apiKey, {
+      instantMeilisearch(MEILISEARCH_HOST, apiKey, {
         primaryKey: 'id',
         clientAgents,
       }).searchClient
     )
-
     setMeilisearchJsClient(
       new Meilisearch({
-        host: baseUrl,
+        host: MEILISEARCH_HOST,
         apiKey,
         clientAgents,
       })
     )
-  }, [apiKey])
+  }, [MEILISEARCH_HOST, apiKey])
 
+  // Check if an API key is required to work
   useEffect(() => {
     const onClientUpdate = async () => {
       const isInstanceRunning = await meilisearchJsClient.isHealthy()
@@ -111,7 +101,7 @@ const App = () => {
         getIndexesList()
       } else {
         setRequireApiKeyToWork(true)
-        dialog.setVisible(true)
+        apiKeyDialog.setVisible(true)
       }
     }
     onClientUpdate()
@@ -121,8 +111,16 @@ const App = () => {
     setIsRightPanelOpen((isOpen) => !isOpen)
   }, [])
 
+  // If no API key is provided, show the API key banner and open the API key modal
+  useEffect(() => {
+    if (!apiKey) {
+      setIsApiKeyBannerVisible(true)
+      apiKeyDialog.setVisible(true)
+    }
+  }, [apiKey])
+
   return (
-    <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
+    <MeilisearchContext.Provider value={{ apiKey, setApiKey, host }}>
       <GlobalStyle />
       <div style={{ position: 'relative', minHeight: '100vh' }}>
         {isApiKeyBannerVisible && <ApiKeyAwarenessBanner />}
@@ -152,17 +150,20 @@ const App = () => {
             />
           </InstantSearch>
         ) : (
-          <UnreachableInstance baseUrl={baseUrl} />
+          <UnreachableInstance baseUrl={MEILISEARCH_HOST} />
         )}
-        <Modal title="Enter your Admin API key" dialog={dialog}>
+        <Modal
+          title="Enter your Admin API key"
+          dialog={apiKeyDialog}
+          ariaLabel="ask-for-api-key"
+        >
           <ApiKeyModalContent
-            host={baseUrl}
-            dialog={dialog}
+            dialog={apiKeyDialog}
             closeModal={closeModalHandler}
           />
         </Modal>
       </div>
-    </ApiKeyContext.Provider>
+    </MeilisearchContext.Provider>
   )
 }
 

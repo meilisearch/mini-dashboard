@@ -6,7 +6,6 @@ import { DialogDisclosure, useDialogState } from 'reakit/Dialog'
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Button from 'components/Button'
-import Link from 'components/Link'
 import Modal from 'components/Modal'
 import NoSelectOption from 'components/NoSelectOption'
 import Typography from 'components/Typography'
@@ -108,29 +107,23 @@ const ApiKey = ({ requireApiKeyToWork }) => {
     <>
       <DialogDisclosure {...dialog}>
         {(props) => (
-          <Button icon={<Key style={{ height: 19 }} />} {...props}>
+          <Button
+            icon={<Key style={{ height: 19 }} />}
+            aria-label="update-api-key"
+            {...props}
+          >
             API key
           </Button>
         )}
       </DialogDisclosure>
       <Modal
-        title={`Enter your admin API key${
+        title={`Enter your Admin API key${
           requireApiKeyToWork ? '' : ' (optional)'
         }`}
         dialog={dialog}
         ariaLabel="settings-api-key"
       >
-        {requireApiKeyToWork ? (
-          <ApiKeyModalContent closeModal={closeModalHandler} />
-        ) : (
-          <Typography variant="typo11" color="gray.6">
-            No API key provided. Learn about{' '}
-            <Link href="https://www.meilisearch.com/docs/reference/api/keys">
-              API keys
-            </Link>
-            .
-          </Typography>
-        )}
+        <ApiKeyModalContent closeModal={closeModalHandler} />
       </Modal>
     </>
   )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
 
@@ -7,7 +7,7 @@ import Input from 'components/Input'
 import Link from 'components/Link'
 import Typography from 'components/Typography'
 
-import ApiKeyContext from 'context/ApiKeyContext'
+import MeilisearchContext from 'context/MeilisearchContext'
 
 import clientAgents from '../version/client-agents'
 
@@ -34,20 +34,25 @@ const FullWidthInput = styled(Input)`
   width: 100%;
 `
 
-const ApiKeyModalContent = ({ host, closeModal }) => {
-  const { apiKey, setApiKey } = React.useContext(ApiKeyContext)
-  const [value, setValue] = React.useState(apiKey || '')
+const ApiKeyModalContent = ({ closeModal }) => {
+  const { apiKey, setApiKey, host } = useContext(MeilisearchContext)
+  const [inputValue, setInputValue] = React.useState(apiKey || '')
   const [error, setError] = React.useState(null)
 
-  const updateClient = async () => {
+  useEffect(() => {
+    console.log('host', host)
+    console.log('apiKey', apiKey)
+  }, [host, apiKey])
+
+  const attemptConnection = async () => {
     const clientToTry = new Meilisearch({
       host,
-      apiKey: value,
+      apiKey: inputValue,
       clientAgents,
     })
     try {
       await clientToTry.getIndexes()
-      setApiKey(value)
+      setApiKey(inputValue)
       closeModal()
       setError(null)
     } catch (err) {
@@ -56,7 +61,7 @@ const ApiKeyModalContent = ({ host, closeModal }) => {
   }
 
   React.useEffect(() => {
-    setValue(apiKey)
+    setInputValue(apiKey)
   }, [apiKey])
 
   return (
@@ -65,18 +70,18 @@ const ApiKeyModalContent = ({ host, closeModal }) => {
         <FullWidthInput
           name="apiKey"
           type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
           onKeyPress={(e) => {
             if (e.key === 'Enter') {
-              updateClient()
+              attemptConnection()
             }
           }}
         />
         <Button
           variant="filled"
           size="small"
-          onClick={() => updateClient()}
+          onClick={() => attemptConnection()}
           style={{ minWidth: 'auto', width: 64, marginLeft: 24 }}
         >
           Save
