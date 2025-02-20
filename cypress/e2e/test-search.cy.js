@@ -1,5 +1,5 @@
 const WAITING_TIME = Cypress.env('waitingTime')
-
+const API_KEY = Cypress.env('apiKey')
 describe(`Test search`, () => {
   before(() => {
     // Recreate the movies index with documents in it
@@ -14,6 +14,10 @@ describe(`Test search`, () => {
   })
 
   beforeEach(() => {
+    // Set API key in localStorage before visiting the page to avoid triggering the modal
+    cy.window().then((win) => {
+      win.localStorage.setItem('apiKey', JSON.stringify(API_KEY))
+    })
     cy.visit('/')
   })
 
