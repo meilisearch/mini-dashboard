@@ -17,6 +17,13 @@ describe(`Test API key required with query params`, () => {
 
   beforeEach(() => {
     cy.visit(`/?api_key=${API_KEY}`)
+    // Wait for the API key to be stored and modal to be hidden
+    cy.window()
+      .its('localStorage')
+      .should((localStorage) => {
+        const storedApiKey = localStorage.getItem('apiKey')
+        expect(JSON.parse(storedApiKey)).to.equal(API_KEY)
+      })
   })
 
   it('Should display the movies', () => {
@@ -29,10 +36,8 @@ describe(`Test API key required with query params`, () => {
   })
 
   it('Should have the api key written in the modal', () => {
-    // Test if the query parameter is written in the modal
-    // meaning it is added in the local storage
-    cy.get('span').contains('Api Key').parent().click()
-    cy.get('div[aria-label=settings-api-key]').within(() => {
+    cy.get('button[aria-label="Edit API key"]').click()
+    cy.get('div[aria-label=ask-for-api-key]').within(() => {
       cy.get('input[name="apiKey"]').should('have.value', API_KEY)
     })
   })

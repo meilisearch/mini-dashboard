@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable no-console */
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import { createGlobalStyle } from 'styled-components'
 import { instantMeiliSearch as instantMeilisearch } from '@meilisearch/instant-meilisearch'
 import { useDialogState } from 'reakit/Dialog'
@@ -39,7 +39,6 @@ const App = () => {
   const [apiKey, setApiKey] = useMeilisearchApiKey()
   const [indexes, setIndexes] = useState()
   const [isMeilisearchRunning, setIsMeilisearchRunning] = useState(false)
-  const [requireApiKeyToWork, setRequireApiKeyToWork] = useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
   const [isApiKeyBannerVisible, setIsApiKeyBannerVisible] = useState(false)
   const [isRightPanelOpen, setIsRightPanelOpen] = useState(true)
@@ -48,6 +47,21 @@ const App = () => {
   const closeModalHandler = () => {
     apiKeyDialog.hide()
   }
+
+  const meilisearchClients = useMemo(() => {
+    const jsClient = new Meilisearch({
+      host: MEILISEARCH_HOST,
+      apiKey,
+      clientAgents,
+    })
+
+    const instantClient = instantMeilisearch(MEILISEARCH_HOST, apiKey, {
+      primaryKey: 'id',
+      clientAgents,
+    }).searchClient
+
+    return { jsClient, instantClient }
+  }, [MEILISEARCH_HOST, apiKey])
 
   const {
     meilisearchJsClient,
@@ -60,38 +74,26 @@ const App = () => {
     try {
       const indexesList = await getIndexesListWithStats(meilisearchJsClient)
       setIndexes(indexesList)
-      if (indexesList && indexesList?.length > 0) {
-        setCurrentIndex(
-          currentIndex
-            ? indexesList.find((option) => option.uid === currentIndex.uid)
-            : indexesList[0]
-        )
-      } else {
-        setCurrentIndex(null)
-      }
+      return indexesList
     } catch (error) {
-      setCurrentIndex(null)
+      setIndexes([])
       console.log(error)
+      return []
     }
-  }, [meilisearchJsClient, currentIndex])
+  }, [meilisearchJsClient])
 
+  // Update currentIndex when indexes change
   useEffect(() => {
-    setHost(MEILISEARCH_HOST)
-    setApiKey(apiKey)
-    setInstantMeilisearchClient(
-      instantMeilisearch(MEILISEARCH_HOST, apiKey, {
-        primaryKey: 'id',
-        clientAgents,
-      }).searchClient
-    )
-    setMeilisearchJsClient(
-      new Meilisearch({
-        host: MEILISEARCH_HOST,
-        apiKey,
-        clientAgents,
-      })
-    )
-  }, [MEILISEARCH_HOST, apiKey])
+    if (indexes?.length > 0) {
+      setCurrentIndex(
+        currentIndex
+          ? indexes.find((option) => option.uid === currentIndex.uid)
+          : indexes[0]
+      )
+    } else {
+      setCurrentIndex(null)
+    }
+  }, [indexes, currentIndex])
 
   // Check if an API key is required to work
   useEffect(() => {
@@ -101,12 +103,18 @@ const App = () => {
       if (isInstanceRunning) {
         getIndexesList()
       } else {
-        setRequireApiKeyToWork(true)
-        apiKeyDialog.setVisible(true)
+        console.log('Instance not running, we should open the modal')
+        // apiKeyDialog.setVisible(true)
       }
     }
     onClientUpdate()
-  }, [meilisearchJsClient])
+  }, [meilisearchJsClient, apiKey, getIndexesList])
+
+  useEffect(() => {
+    setHost(MEILISEARCH_HOST)
+    setMeilisearchJsClient(meilisearchClients.jsClient)
+    setInstantMeilisearchClient(meilisearchClients.instantClient)
+  }, [meilisearchClients])
 
   const handleTogglePanel = useCallback(() => {
     setIsRightPanelOpen((isOpen) => !isOpen)
@@ -114,7 +122,9 @@ const App = () => {
 
   // If no API key is provided, show the API key banner and open the API key modal
   useEffect(() => {
-    if (!apiKey) {
+    const apiKeyParam = getApiKeyParam()
+    if (!apiKey && !apiKeyParam) {
+      console.log('No API key provided, opening the modal')
       apiKeyDialog.setVisible(true)
     }
   }, [apiKey])
@@ -149,12 +159,12 @@ const App = () => {
               indexes={indexes}
               currentIndex={currentIndex}
               setCurrentIndex={setCurrentIndex}
-              requireApiKeyToWork={requireApiKeyToWork}
               client={meilisearchJsClient}
               refreshIndexes={getIndexesList}
               isApiKeyBannerVisible={isApiKeyBannerVisible}
               isRightPanelOpen={isRightPanelOpen}
               onTogglePanel={handleTogglePanel}
+              onOpenApiKeyModal={() => apiKeyDialog.show()}
             />
             <Body
               isRightPanelOpen={isRightPanelOpen}

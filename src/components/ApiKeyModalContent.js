@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
 
@@ -35,14 +35,9 @@ const FullWidthInput = styled(Input)`
 `
 
 const ApiKeyModalContent = ({ closeModal }) => {
-  const { apiKey, setApiKey, host } = useContext(MeilisearchContext)
+  const { apiKey, setApiKey, host } = React.useContext(MeilisearchContext)
   const [inputValue, setInputValue] = React.useState(apiKey || '')
   const [error, setError] = React.useState(null)
-
-  useEffect(() => {
-    console.log('host', host)
-    console.log('apiKey', apiKey)
-  }, [host, apiKey])
 
   const attemptConnection = async () => {
     const clientToTry = new Meilisearch({

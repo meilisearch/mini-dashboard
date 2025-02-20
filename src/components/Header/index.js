@@ -1,12 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Color from 'color'
-import { DialogDisclosure, useDialogState } from 'reakit/Dialog'
 
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
-import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Button from 'components/Button'
-import Modal from 'components/Modal'
 import NoSelectOption from 'components/NoSelectOption'
 import Typography from 'components/Typography'
 import SearchBox from 'components/SearchBox'
@@ -97,47 +94,15 @@ const LogoBox = ({ version }) => (
   </Box>
 )
 
-const ApiKey = ({ requireApiKeyToWork }) => {
-  const dialog = useDialogState()
-  const closeModalHandler = () => {
-    dialog.hide()
-  }
-
-  return (
-    <>
-      <DialogDisclosure {...dialog}>
-        {(props) => (
-          <Button
-            icon={<Key style={{ height: 19 }} />}
-            aria-label="update-api-key"
-            {...props}
-          >
-            API key
-          </Button>
-        )}
-      </DialogDisclosure>
-      <Modal
-        title={`Enter your Admin API key${
-          requireApiKeyToWork ? '' : ' (optional)'
-        }`}
-        dialog={dialog}
-        ariaLabel="settings-api-key"
-      >
-        <ApiKeyModalContent closeModal={closeModalHandler} />
-      </Modal>
-    </>
-  )
-}
-
 const Header = ({
   indexes,
   currentIndex,
   setCurrentIndex,
   refreshIndexes,
-  requireApiKeyToWork,
   isApiKeyBannerVisible,
   isRightPanelOpen,
   onTogglePanel,
+  onOpenApiKeyModal,
 }) => {
   const { meilisearchJsClient } = useMeilisearchClientContext()
   const [version, setVersion] = React.useState()
@@ -177,7 +142,13 @@ const Header = ({
             />
           </SearchBoxWrapper>
           <RightSideWrapper>
-            <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
+            <Button
+              icon={<Key style={{ height: 19 }} />}
+              aria-label="Edit API key"
+              onClick={onOpenApiKeyModal}
+            >
+              API key
+            </Button>
             {!isRightPanelOpen && onTogglePanel && (
               <IconButton
                 onClick={onTogglePanel}
