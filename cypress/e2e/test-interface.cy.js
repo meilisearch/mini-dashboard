@@ -1,5 +1,5 @@
 const WAITING_TIME = Cypress.env('waitingTime')
-
+const API_KEY = Cypress.env('apiKey')
 describe(`Test interface`, () => {
   before(() => {
     // Recreate the movies index with documents in it
@@ -20,6 +20,9 @@ describe(`Test interface`, () => {
   })
 
   beforeEach(() => {
+    cy.window().then((win) => {
+      win.localStorage.setItem('apiKey', JSON.stringify(API_KEY))
+    })
     cy.visit('/')
   })
 
