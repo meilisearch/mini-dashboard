@@ -11,6 +11,7 @@ import MeilisearchContext from 'context/MeilisearchContext'
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import useLocalStorage from 'hooks/useLocalStorage'
 import useMeilisearchApiKey from 'hooks/useMeilisearchApiKey'
+import getApiKeyParam from 'utils/getApiKeyParam'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Body from 'components/Body'
 import Modal from 'components/Modal'
@@ -114,10 +115,25 @@ const App = () => {
   // If no API key is provided, show the API key banner and open the API key modal
   useEffect(() => {
     if (!apiKey) {
-      setIsApiKeyBannerVisible(true)
       apiKeyDialog.setVisible(true)
     }
   }, [apiKey])
+
+  // Check if an API key is provided in the URL
+  const [hasApiKeyParam, setHasApiKeyParam] = useState(false)
+  useEffect(() => {
+    const apiKeyParam = getApiKeyParam()
+    if (apiKeyParam) {
+      setHasApiKeyParam(true)
+    }
+  }, [setHasApiKeyParam])
+
+  // If an API key is provided in the URL, show the API key banner
+  useEffect(() => {
+    if (hasApiKeyParam) {
+      setIsApiKeyBannerVisible(true)
+    }
+  }, [hasApiKeyParam])
 
   return (
     <MeilisearchContext.Provider value={{ apiKey, setApiKey, host }}>
