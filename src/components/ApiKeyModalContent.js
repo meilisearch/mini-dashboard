@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
 
-import { baseUrl } from 'App'
 import Button from 'components/Button'
 import Input from 'components/Input'
 import Link from 'components/Link'
@@ -13,9 +12,15 @@ import ApiKeyContext from 'context/ApiKeyContext'
 import clientAgents from '../version/client-agents'
 
 const ErrorMessage = styled(Typography)`
-  position: absolute;
-  left: 0;
-  top: 32px;
+  margin-top: 2rem;
+`
+
+const ErrorName = styled.div`
+  margin-bottom: 1rem;
+`
+
+const ErrorKeyWrapper = styled.div`
+  // margin-bottom: 0.25rem;
 `
 
 const InputContainer = styled.div`
@@ -29,14 +34,14 @@ const FullWidthInput = styled(Input)`
   width: 100%;
 `
 
-const ApiKeyModalContent = ({ closeModal }) => {
+const ApiKeyModalContent = ({ host, closeModal }) => {
   const { apiKey, setApiKey } = React.useContext(ApiKeyContext)
   const [value, setValue] = React.useState(apiKey || '')
-  const [error, setError] = React.useState()
+  const [error, setError] = React.useState(null)
 
   const updateClient = async () => {
     const clientToTry = new Meilisearch({
-      host: baseUrl,
+      host,
       apiKey: value,
       clientAgents,
     })
@@ -44,9 +49,9 @@ const ApiKeyModalContent = ({ closeModal }) => {
       await clientToTry.getIndexes()
       setApiKey(value)
       closeModal()
-      setError()
+      setError(null)
     } catch (err) {
-      setError(err.message)
+      setError(err)
     }
   }
 
@@ -77,6 +82,22 @@ const ApiKeyModalContent = ({ closeModal }) => {
           Save
         </Button>
       </InputContainer>
+
+      {error && (
+        <div>
+          <ErrorMessage variant="typo1" color="main.default">
+            <ErrorName>{error.name}</ErrorName>
+
+            {Object.keys(error.cause).map((key) => (
+              <ErrorKeyWrapper key={key}>
+                <Typography variant="typo8" color="gray.6">
+                  {key} {JSON.stringify(error.cause[key])}
+                </Typography>
+              </ErrorKeyWrapper>
+            ))}
+          </ErrorMessage>
+        </div>
+      )}
       <div>
         <Typography variant="typo11" my={3} color="gray.6" mt={3}>
           The API key should have permission to check the instance health and
@@ -89,11 +110,6 @@ const ApiKeyModalContent = ({ closeModal }) => {
           </Link>
           .
         </Typography>
-        {error && (
-          <ErrorMessage variant="typo11" color="main.default">
-            {error}
-          </ErrorMessage>
-        )}
       </div>
     </>
   )

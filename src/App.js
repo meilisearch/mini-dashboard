@@ -155,7 +155,11 @@ const App = () => {
           <UnreachableInstance baseUrl={baseUrl} />
         )}
         <Modal title="Enter your Admin API key" dialog={dialog}>
-          <ApiKeyModalContent dialog={dialog} closeModal={closeModalHandler} />
+          <ApiKeyModalContent
+            host={baseUrl}
+            dialog={dialog}
+            closeModal={closeModalHandler}
+          />
         </Modal>
       </div>
     </ApiKeyContext.Provider>
