@@ -8,7 +8,7 @@ module.exports = defineConfig({
   viewportHeight: 900,
   env: {
     host: 'http://0.0.0.0:7700',
-    apiKey: '5qIutVsfZyXarXt0O6DctPgGGmSznB_vQcUuYbjZKIw',
+    apiKey: 'masterKey',
     wrongApiKey: 'wrongApiKey',
     waitingTime: 250,
   },
