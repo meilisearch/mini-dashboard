@@ -180,7 +180,10 @@ const App = () => {
             />
           </InstantSearch>
         ) : (
-          <UnreachableInstance baseUrl={MEILISEARCH_HOST} />
+          <UnreachableInstance
+            baseUrl={MEILISEARCH_HOST}
+            onOpenApiKeyModal={() => apiKeyDialog.show()}
+          />
         )}
         <Modal
           title="Enter your Admin API key"

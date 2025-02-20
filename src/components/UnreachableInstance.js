@@ -3,8 +3,15 @@ import Typography from 'components/Typography'
 import EmptyView from 'components/EmptyView'
 import BodyWrapper from 'components/BodyWrapper'
 import Box from 'components/Box'
+import Button from 'components/Button'
+import { Key } from 'components/icons'
+import styled from 'styled-components'
 
-const UnreachableInstance = ({ baseUrl }) => (
+const OpenModalButton = styled(Button)`
+  margin-bottom: 2.5rem;
+`
+
+const UnreachableInstance = ({ baseUrl, onOpenApiKeyModal }) => (
   <BodyWrapper>
     <Box width={928} m="0 auto" py={4} display="flex" flexDirection="column">
       <EmptyView buttonLink="https://docs.meilisearch.com/learn/getting_started/quick_start.html">
@@ -33,6 +40,14 @@ const UnreachableInstance = ({ baseUrl }) => (
             🧐
           </span>
         </Typography>
+
+        <OpenModalButton
+          icon={<Key style={{ height: 19 }} />}
+          aria-label="Edit API key"
+          onClick={onOpenApiKeyModal}
+        >
+          API key
+        </OpenModalButton>
       </EmptyView>
     </Box>
   </BodyWrapper>
