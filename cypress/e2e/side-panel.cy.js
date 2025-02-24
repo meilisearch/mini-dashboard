@@ -1,5 +1,6 @@
 describe(`Right side panel`, () => {
   beforeEach(() => {
+    cy.saveApiTokenCookie()
     cy.visit('/')
   })
 
