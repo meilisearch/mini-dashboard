@@ -61,8 +61,9 @@ const Body = ({
         isApiKeyBannerVisible={isApiKeyBannerVisible}
         isCloudBannerVisible={isCloudBannerVisible}
         handleTogglePanel={handleTogglePanel}
+        isRightPanelOpen={isRightPanelOpen}
       />
-      <BodyWrapper>
+      <BodyWrapper isRightPanelOpen={isRightPanelOpen}>
         {/* <Sidebar /> */}
         <Box
           width={928}
