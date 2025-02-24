@@ -4,6 +4,7 @@ import { InstantSearch } from 'react-instantsearch-dom'
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import Box from 'components/Box'
 import Header from 'components/Header/index'
+import RightPanel from 'components/RightPanel'
 import BodyWrapper from 'components/BodyWrapper'
 import EmptyView from 'components/EmptyView'
 import OnBoarding from 'components/OnBoarding'
@@ -39,6 +40,12 @@ const Body = ({
   const { meilisearchJsClient, instantMeilisearchClient } =
     useMeilisearchClientContext()
 
+  // Right-side panel
+  const [isRightPanelOpen, setIsRightPanelOpen] = React.useState(true)
+  const handleTogglePanel = React.useCallback(() => {
+    setIsRightPanelOpen((isOpen) => !isOpen)
+  }, [])
+
   return (
     <InstantSearch
       indexName={currentIndex ? currentIndex.uid : ''}
@@ -53,6 +60,7 @@ const Body = ({
         refreshIndexes={getIndexesList}
         isApiKeyBannerVisible={isApiKeyBannerVisible}
         isCloudBannerVisible={isCloudBannerVisible}
+        handleTogglePanel={handleTogglePanel}
       />
       <BodyWrapper>
         {/* <Sidebar /> */}
@@ -66,6 +74,10 @@ const Body = ({
           <IndexContent currentIndex={currentIndex} />
         </Box>
       </BodyWrapper>
+      <RightPanel
+        isOpen={isRightPanelOpen}
+        onClose={() => setIsRightPanelOpen(false)}
+      />
     </InstantSearch>
   )
 }

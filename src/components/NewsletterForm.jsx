@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import useNewsletter from 'hooks/useNewsletter'
-import ArrowPathIcon from './icons/heroicons/ArrowPathicon'
+import ArrowPathIcon from './icons/heroicons/ArrowPathIcon'
 import CheckIcon from './icons/heroicons/CheckIcon'
 
 const spin = keyframes`
