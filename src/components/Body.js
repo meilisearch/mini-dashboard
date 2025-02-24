@@ -14,7 +14,7 @@ import Typography from 'components/Typography'
 
 const ContentWrapper = styled.div`
   width: ${({ isRightPanelOpen }) =>
-    isRightPanelOpen ? 'calc(100% - 30vw)' : '100%'};
+    isRightPanelOpen ? 'calc(100% - 430px)' : '100%'};
   transition: width 0.3s ease-in-out;
 `
 
