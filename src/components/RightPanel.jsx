@@ -5,8 +5,8 @@ import Typography from 'components/Typography'
 import AcademicHatIcon from 'components/icons/heroicons/AcademicHatIcon'
 import LifebuoyIcon from 'components/icons/heroicons/LifebuoyIcon'
 import ChatBubbleIcon from 'components/icons/heroicons/ChatBubbleIcon'
-import MenuBarsIcon from 'components/icons/heroicons/MenuBarsIcon'
 import NewsletterForm from 'components/NewsletterForm'
+import CloseIcon from './icons/heroicons/CloseIcon'
 
 const PanelWrapper = styled.div`
   position: fixed;
@@ -134,7 +134,7 @@ const RightPanel = ({ isOpen, onClose }) => (
     <Header>
       <Title>Getting started</Title>
       <CloseButton onClick={onClose} aria-label="Close Panel">
-        <MenuBarsIcon />
+        <CloseIcon />
       </CloseButton>
     </Header>
 
