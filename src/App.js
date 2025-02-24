@@ -11,12 +11,10 @@ import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import useLocalStorage from 'hooks/useLocalStorage'
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Body from 'components/Body'
-import CloudBanner from 'components/CloudBanner'
 import Modal from 'components/Modal'
 import NoMeilisearchRunning from 'components/NoMeilisearchRunning'
 import ApiKeyAwarenessBanner from 'components/ApiKeyAwarenessBanner'
 import getIndexesListWithStats from 'utils/getIndexesListWithStats'
-import isCloudBannerEnabled from 'utils/isCloudBannerEnabled'
 import shouldDisplayApiKeyModal from 'utils/shouldDisplayApiKeyModal'
 import hasAnApiKeySet from 'utils/hasAnApiKeySet'
 import clientAgents from './version/client-agents'
@@ -38,7 +36,6 @@ const App = () => {
   const [isMeilisearchRunning, setIsMeilisearchRunning] = useState(false)
   const [requireApiKeyToWork, setRequireApiKeyToWork] = useState(false)
   const [currentIndex, setCurrentIndex] = useLocalStorage('currentIndex')
-  const [showCloudBanner, setShowCloudBanner] = useState(false)
   const [isApiKeyBannerVisible, setIsApiKeyBannerVisible] = useState(false)
   const dialog = useDialogState({ animated: true, visible: false })
 
@@ -78,9 +75,6 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    if (isCloudBannerEnabled()) {
-      setShowCloudBanner(true)
-    }
     getApiKeyFromUrl()
   }, [])
 
@@ -114,32 +108,12 @@ const App = () => {
     onClientUpdate()
   }, [meilisearchJsClient])
 
-  const handleCloudBannerClose = () => {
-    setShowCloudBanner(false)
-    localStorage.setItem('bannerVisibility', JSON.stringify(false))
-  }
-
-  // Retrieve the banner visibility state from local storage on component mount
-  React.useEffect(() => {
-    const storedVisibility = localStorage.getItem('bannerVisibility')
-    if (storedVisibility) {
-      setShowCloudBanner(JSON.parse(storedVisibility))
-    }
-    return () => {}
-  }, [])
-
   return (
     <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
       <Wrapper>
         {isApiKeyBannerVisible && (
           <ApiKeyAwarenessBanner
             onClose={() => setIsApiKeyBannerVisible(false)}
-          />
-        )}
-        {showCloudBanner && (
-          <CloudBanner
-            handleBannerClose={handleCloudBannerClose}
-            isBannerVisible={showCloudBanner}
           />
         )}
         {isMeilisearchRunning ? (
@@ -150,7 +124,6 @@ const App = () => {
             requireApiKeyToWork={requireApiKeyToWork}
             getIndexesList={getIndexesList}
             isApiKeyBannerVisible={isApiKeyBannerVisible}
-            isCloudBannerVisible={showCloudBanner}
           />
         ) : (
           <NoMeilisearchRunning />

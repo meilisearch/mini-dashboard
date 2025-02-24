@@ -16,7 +16,6 @@ import Container from 'components/Container'
 import Select from 'components/Select'
 import { MeilisearchLogo, Indexes, Key } from 'components/icons'
 import { compose, position } from 'styled-system'
-import HelpCenter from './HelpCenter'
 
 const HeaderWrapper = styled('div')(compose(position), {
   backgroundColor: 'white',
@@ -74,7 +73,6 @@ const Header = ({
   refreshIndexes,
   requireApiKeyToWork,
   isApiKeyBannerVisible,
-  isCloudBannerVisible,
   isRightPanelOpen,
 }) => {
   const { meilisearchJsClient } = useMeilisearchClientContext()
@@ -93,8 +91,7 @@ const Header = ({
     getMeilisearchVersion()
   }, [meilisearchJsClient])
 
-  const topPosition =
-    (isCloudBannerVisible ? 74 : 0) + (isApiKeyBannerVisible ? 55 : 0)
+  const topPosition = isApiKeyBannerVisible ? 55 : 0
   return (
     <HeaderWrapper top={topPosition} isRightPanelOpen={isRightPanelOpen}>
       <Container
@@ -143,7 +140,6 @@ const Header = ({
           />
           <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
         </Box>
-        <HelpCenter />
       </Container>
     </HeaderWrapper>
   )
