@@ -8,7 +8,7 @@ describe(`Test indexes`, () => {
     cy.deleteAllIndexes()
     cy.wait(WAITING_TIME)
 
-    cy.createIndex('empty_index')
+    cy.createIndex('lovies')
     cy.wait(WAITING_TIME)
     cy.createIndex('movies')
     cy.wait(WAITING_TIME)
@@ -32,11 +32,6 @@ describe(`Test indexes`, () => {
     cy.wait(WAITING_TIME)
   })
 
-  after(() => {
-    cy.deleteAllIndexes()
-    cy.wait(WAITING_TIME)
-  })
-
   beforeEach(() => {
     // Set API key in localStorage before visiting the page to avoid triggering the modal
     cy.window().then((win) => {
@@ -46,7 +41,7 @@ describe(`Test indexes`, () => {
   })
 
   it('Should display the first index based on localeCompare order on the uid', () => {
-    cy.get('button[aria-haspopup=menu]').contains('empty_index 0')
+    cy.get('button[aria-haspopup=menu]').contains('lovies 0')
   })
 
   it('Should list all the indexes inside the select', () => {
@@ -56,7 +51,7 @@ describe(`Test indexes`, () => {
       .children()
       .should(($p) => {
         expect($p).to.have.length(3)
-        expect($p).to.contain('empty_index 0')
+        expect($p).to.contain('lovies 0')
         expect($p).to.contain('movies 33')
         expect($p).to.contain('pokemon 3')
       })
@@ -89,9 +84,14 @@ describe(`Test indexes`, () => {
   it('Should inform that the current index is empty', () => {
     cy.get('button[aria-haspopup=menu]').click()
     cy.wait(WAITING_TIME)
-    cy.get('button[role=menuitem]').contains('empty_index').click()
+    cy.get('button[role=menuitem]').contains('lovies').click()
     cy.get('[data-testid="empty-view"]').contains(
       `There are no documents in the selected index`
     )
+  })
+
+  after(() => {
+    cy.deleteAllIndexes()
+    cy.wait(WAITING_TIME)
   })
 })
