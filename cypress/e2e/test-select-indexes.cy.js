@@ -57,6 +57,12 @@ describe(`Test indexes`, () => {
       })
   })
 
+  it('Should inform that the current index is empty', () => {
+    cy.get('[data-testid="empty-view"]').contains(
+      `There are no documents in the selected index`
+    )
+  })
+
   it('Should display an indexes documents', () => {
     cy.get('button[aria-haspopup=menu]').click()
     cy.wait(WAITING_TIME)
@@ -79,15 +85,6 @@ describe(`Test indexes`, () => {
       .within(() => {
         cy.contains('Bulbasaur')
       })
-  })
-
-  it('Should inform that the current index is empty', () => {
-    cy.get('button[aria-haspopup=menu]').click()
-    cy.wait(WAITING_TIME)
-    cy.get('button[role=menuitem]').contains('lovies').click()
-    cy.get('[data-testid="empty-view"]').contains(
-      `There are no documents in the selected index`
-    )
   })
 
   after(() => {
