@@ -20,6 +20,7 @@ const PanelWrapper = styled.div`
   transition: transform 0.3s ease-in-out;
   padding: 2rem 2.5rem;
   z-index: 10;
+  overflow-y: scroll;
 `
 
 const Title = styled.h2`
