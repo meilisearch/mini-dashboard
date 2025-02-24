@@ -1,5 +1,6 @@
 import React from 'react'
 import { InstantSearch } from 'react-instantsearch-dom'
+import styled from 'styled-components'
 
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import Box from 'components/Box'
@@ -10,6 +11,12 @@ import EmptyView from 'components/EmptyView'
 import OnBoarding from 'components/OnBoarding'
 import Results from 'components/Results'
 import Typography from 'components/Typography'
+
+const ContentWrapper = styled.div`
+  width: ${({ isRightPanelOpen }) =>
+    isRightPanelOpen ? 'calc(100% - 30vw)' : '100%'};
+  transition: width 0.3s ease-in-out;
+`
 
 const IndexContent = ({ currentIndex }) => {
   if (!currentIndex) return <OnBoarding />
@@ -50,29 +57,30 @@ const Body = ({
       indexName={currentIndex ? currentIndex.uid : ''}
       searchClient={instantMeilisearchClient}
     >
-      <Header
-        indexes={indexes}
-        currentIndex={currentIndex}
-        setCurrentIndex={setCurrentIndex}
-        requireApiKeyToWork={requireApiKeyToWork}
-        client={meilisearchJsClient}
-        refreshIndexes={getIndexesList}
-        isApiKeyBannerVisible={isApiKeyBannerVisible}
-        handleTogglePanel={handleTogglePanel}
-        isRightPanelOpen={isRightPanelOpen}
-      />
-      <BodyWrapper isRightPanelOpen={isRightPanelOpen}>
-        {/* <Sidebar /> */}
-        <Box
-          width={928}
-          m="0 auto"
-          py={4}
-          display="flex"
-          flexDirection="column"
-        >
-          <IndexContent currentIndex={currentIndex} />
-        </Box>
-      </BodyWrapper>
+      <ContentWrapper isRightPanelOpen={isRightPanelOpen}>
+        <Header
+          indexes={indexes}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          requireApiKeyToWork={requireApiKeyToWork}
+          client={meilisearchJsClient}
+          refreshIndexes={getIndexesList}
+          isApiKeyBannerVisible={isApiKeyBannerVisible}
+          handleTogglePanel={handleTogglePanel}
+        />
+        <BodyWrapper>
+          {/* <Sidebar /> */}
+          <Box
+            width={928}
+            m="0 auto"
+            py={4}
+            display="flex"
+            flexDirection="column"
+          >
+            <IndexContent currentIndex={currentIndex} />
+          </Box>
+        </BodyWrapper>
+      </ContentWrapper>
       <RightPanel
         isOpen={isRightPanelOpen}
         onClose={() => setIsRightPanelOpen(false)}
