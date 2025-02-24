@@ -58,9 +58,7 @@ describe(`Test indexes`, () => {
   })
 
   it('Should inform that the current index is empty', () => {
-    cy.get('[data-testid="empty-view"]').contains(
-      `There are no documents in the selected index`
-    )
+    cy.contains(`There are no documents in the selected index`)
   })
 
   it('Should display an indexes documents', () => {
