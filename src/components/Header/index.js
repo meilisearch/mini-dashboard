@@ -15,6 +15,7 @@ import Box from 'components/Box'
 import Container from 'components/Container'
 import Select from 'components/Select'
 import { MeilisearchLogo, Indexes, Key } from 'components/icons'
+import MenuBarsIcon from 'components/icons/heroicons/MenuBarsIcon'
 import { compose, position } from 'styled-system'
 
 const HeaderWrapper = styled('div')(compose(position), {
@@ -64,6 +65,24 @@ const ApiKey = ({ requireApiKeyToWork }) => {
   )
 }
 
+const IconButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    width: 24px;
+    height: 24px;
+    color: ${(p) => p.theme.colors.gray[0]};
+  }
+  &:hover svg {
+    color: ${(p) => p.theme.colors.main.default};
+  }
+`
+
 const Header = ({
   indexes,
   currentIndex,
@@ -71,6 +90,8 @@ const Header = ({
   refreshIndexes,
   requireApiKeyToWork,
   isApiKeyBannerVisible,
+  showPanelButton,
+  onPanelToggle,
 }) => {
   const { meilisearchJsClient } = useMeilisearchClientContext()
   const [version, setVersion] = React.useState()
@@ -136,6 +157,15 @@ const Header = ({
             onClick={refreshIndexes}
           />
           <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
+          {showPanelButton && onPanelToggle && (
+            <IconButton
+              onClick={onPanelToggle}
+              type="button"
+              aria-label="Open Panel"
+            >
+              <MenuBarsIcon />
+            </IconButton>
+          )}
         </Box>
       </Container>
     </HeaderWrapper>

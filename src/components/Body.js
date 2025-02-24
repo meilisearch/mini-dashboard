@@ -66,7 +66,8 @@ const Body = ({
           client={meilisearchJsClient}
           refreshIndexes={getIndexesList}
           isApiKeyBannerVisible={isApiKeyBannerVisible}
-          handleTogglePanel={handleTogglePanel}
+          showPanelButton={!isRightPanelOpen}
+          onPanelToggle={handleTogglePanel}
         />
         <BodyWrapper>
           {/* <Sidebar /> */}
