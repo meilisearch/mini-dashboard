@@ -1,5 +1,4 @@
 const WAITING_TIME = Cypress.env('waitingTime')
-const API_KEY = Cypress.env('apiKey')
 
 // TODO: refacto tests to get rid of the WAITING_TIME
 
