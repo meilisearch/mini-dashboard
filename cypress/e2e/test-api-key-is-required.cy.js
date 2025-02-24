@@ -79,7 +79,7 @@ describe(`API key is required`, () => {
       })
     })
 
-    it.only('Should open the modal when the API key is invalid', () => {
+    it('Should open the modal when the API key is invalid', () => {
       cy.window().then((win) => {
         win.localStorage.setItem('apiKey', JSON.stringify(WRONG_APIKEY))
       })
