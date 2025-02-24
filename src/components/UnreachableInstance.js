@@ -21,7 +21,8 @@ const UnreachableInstance = ({ baseUrl, onOpenApiKeyModal }) => (
           mb={3}
           color="gray.0"
         >
-          Cannot reach Meilisearch at <strong>{baseUrl}</strong>.
+          It seems like Meilisearch isn&apos;t running at{' '}
+          <strong>{baseUrl}</strong>.
         </Typography>
         <Typography
           variant="typo8"

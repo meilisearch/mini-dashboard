@@ -8,6 +8,6 @@ describe(`Test without Meilisearch running`, () => {
   })
 
   it('Should invite to start Meilisearch', () => {
-    cy.contains('Cannot reach Meilisearch')
+    cy.contains(`It seems like Meilisearch isn’t running`)
   })
 })
