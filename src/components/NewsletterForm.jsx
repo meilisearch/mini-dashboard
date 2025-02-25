@@ -65,7 +65,7 @@ const Button = styled.button`
 `
 
 const ErrorMessage = styled.p`
-  color: #dc2626;
+  color: ${(p) => p.theme.colors.error.text};
   font-size: 0.875rem;
   margin-top: 0.5rem;
 `
