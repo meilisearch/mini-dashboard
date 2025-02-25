@@ -76,18 +76,17 @@ const SuccessMessage = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: #f0fdf4;
-  border: 1px solid #86efac;
+  background-color: ${(p) => p.theme.colors.success.background};
+  border: 1px solid ${(p) => p.theme.colors.success.border};
   border-radius: 8px;
   padding: 0rem;
-  color: #166534;
+  color: ${(p) => p.theme.colors.success.text};
   svg {
     width: 1.25rem;
     height: 1.25rem;
   }
   p {
     font-size: 0.875rem;
-    color: #15803d;
   }
 `
 
