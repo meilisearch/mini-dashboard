@@ -42,6 +42,9 @@ const theme = {
   },
   //      0, 1, 2, 3,  4,  5,  6,   7,   8
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+  sizes: {
+    rightPanel: '430px',
+  },
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
   breakpoints: {
     large: '1440',

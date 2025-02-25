@@ -12,7 +12,7 @@ const PanelWrapper = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  width: 430px;
+  width: ${(p) => p.theme.sizes.rightPanel};
   height: 100vh;
   background: ${(p) => p.theme.colors.white};
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
@@ -128,7 +128,6 @@ const CloudCardLink = styled(Link)`
     text-decoration: none;
   }
 `
-
 const RightPanel = ({ isOpen, onClose }) => (
   <PanelWrapper isOpen={isOpen} data-testid="right-panel">
     <Header>

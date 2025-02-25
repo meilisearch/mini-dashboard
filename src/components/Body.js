@@ -13,8 +13,8 @@ import Results from 'components/Results'
 import Typography from 'components/Typography'
 
 const ContentWrapper = styled.div`
-  width: ${({ isRightPanelOpen }) =>
-    isRightPanelOpen ? 'calc(100% - 430px)' : '100%'};
+  width: ${({ isRightPanelOpen, theme }) =>
+    isRightPanelOpen ? `calc(100% - ${theme.sizes.rightPanel})` : '100%'};
   transition: width 0.3s ease-in-out;
 `
 
