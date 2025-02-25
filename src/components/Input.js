@@ -33,9 +33,9 @@ const InputField = styled.input`
   }
 
   &:focus {
-    border-color: ${(p) => p.theme.colors.gray[6]};
+    border-color: ${(p) => p.theme.colors.main.default};
     svg {
-      fill: ${(p) => p.theme.colors.gray[6]};
+      fill: ${(p) => p.theme.colors.main.default};
     }
   }
 
@@ -58,7 +58,7 @@ const ClearButton = styled(IconButton)`
 
 const InputContainer = styled.div`
   position: relative;
-  width: 100%;
+  display: inline-block;
 
   > svg {
     position: absolute;
@@ -71,7 +71,7 @@ const InputContainer = styled.div`
 const Input = ({ icon, ref, clear, type, value, ...props }) => {
   const input = useRef(null)
   return (
-    <InputContainer ref={ref}>
+    <InputContainer ref={ref} style={{ width: '100%' }}>
       {icon}
       <InputField
         $hasIcon={icon}
