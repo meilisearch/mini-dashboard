@@ -1,5 +1,6 @@
 const theme = {
   colors: {
+    white: '#FFFFFF',
     main: {
       default: '#E41359',
       hover: '#CA1B53',
