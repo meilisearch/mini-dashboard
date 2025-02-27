@@ -1,9 +1,7 @@
 import version from '../version/version'
 
-const PORTAL_ID = process.env.REACT_APP_HUBSPOT_PORTAL_ID || '25945010'
-const FORM_GUID =
-  process.env.REACT_APP_HUBSPOT_FORM_GUID ||
-  '991e2a09-77c2-4428-9242-ebf26bfc6c64'
+const PORTAL_ID = process.env.REACT_APP_HUBSPOT_PORTAL_ID
+const FORM_GUID = process.env.REACT_APP_HUBSPOT_FORM_GUID
 
 const PAGE_NAME =
   process.env.NODE_ENV === 'development'
