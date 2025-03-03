@@ -22,8 +22,9 @@
   },
   "scripts": {
     "version-script": "node version-script.js",
-    "prestart": "yarn version-script",
-    "prebuild": "yarn version-script",
+    "validate-env": "node validate-env.js",
+    "prestart": "yarn version-script && yarn validate-env",
+    "prebuild": "yarn version-script && yarn validate-env",
     "start": "react-scripts start",
     "start:ci": "REACT_APP_MEILI_SERVER_ADDRESS=http://meilisearch:7700 react-scripts start",
     "build": "react-scripts build",
