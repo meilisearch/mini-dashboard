@@ -1,3 +1,5 @@
+const WAITING_TIME = Cypress.env('waitingTime')
+
 describe(`Right side panel`, () => {
   beforeEach(() => {
     cy.saveApiTokenCookie()
@@ -17,5 +19,14 @@ describe(`Right side panel`, () => {
     cy.get('button[aria-label="Close Panel"]').click()
     cy.get('button[aria-label="Open Panel"]').click()
     cy.get('[data-testid="right-panel"]').should('be.visible')
+  })
+
+  it('Should allow subscribing to the newsletter', () => {
+    cy.get('input[placeholder="Enter your email"]').type('kero@meilisearch.com')
+    cy.get('button[aria-label="Subscribe"]').click()
+    cy.wait(WAITING_TIME)
+    cy.get('[data-testid="right-panel"]').within(() => {
+      cy.get('p').should('contain', 'Thanks for subscribing!')
+    })
   })
 })

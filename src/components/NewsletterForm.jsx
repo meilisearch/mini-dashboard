@@ -127,7 +127,11 @@ const NewsletterForm = () => {
         required
         style={{ marginTop: '0rem' }}
       />
-      <Button type="submit" disabled={status === 'loading'}>
+      <Button
+        type="submit"
+        disabled={status === 'loading'}
+        aria-label="Subscribe"
+      >
         {status === 'loading' ? (
           <>
             <SpinningIcon>
