@@ -1,8 +1,8 @@
 import React from 'react'
 import { InstantSearch } from 'react-instantsearch-dom'
 import styled from 'styled-components'
-
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
+import useLocalStorage from 'hooks/useLocalStorage'
 import Box from 'components/Box'
 import Header from 'components/Header/index'
 import RightPanel from 'components/RightPanel'
@@ -45,11 +45,17 @@ const Body = ({
 }) => {
   const { meilisearchJsClient, instantMeilisearchClient } =
     useMeilisearchClientContext()
+  const [storedIsPanelOpen, setStoredIsPanelOpen] = useLocalStorage(
+    'meilisearch-panel-open',
+    true
+  )
 
   // Right-side panel
-  const [isRightPanelOpen, setIsRightPanelOpen] = React.useState(true)
+  const [isRightPanelOpen, setIsRightPanelOpen] =
+    React.useState(storedIsPanelOpen)
   const handleTogglePanel = React.useCallback(() => {
     setIsRightPanelOpen((isOpen) => !isOpen)
+    setStoredIsPanelOpen((isOpen) => !isOpen)
   }, [])
 
   return (
@@ -84,7 +90,10 @@ const Body = ({
       </ContentWrapper>
       <RightPanel
         isOpen={isRightPanelOpen}
-        onClose={() => setIsRightPanelOpen(false)}
+        onClose={() => {
+          setIsRightPanelOpen(false)
+          setStoredIsPanelOpen(false)
+        }}
       />
     </InstantSearch>
   )
