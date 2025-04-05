@@ -148,6 +148,7 @@ function getFieldValueType(value) {
 
 const FieldValue = ({ hit, objectKey }) => {
   const fieldValueType = getFieldValueType(hit[objectKey])
+  const sizeOfObject = Object.keys(hit[objectKey])?.length || 0
 
   if (fieldValueType === 'array') {
     return (
@@ -155,7 +156,7 @@ const FieldValue = ({ hit, objectKey }) => {
         value={hit[objectKey]}
         hit={hit}
         attribute={objectKey}
-        title="array"
+        title={`array [${sizeOfObject}]`}
         reactJsonOptions={{ groupArraysAfterLength: 20, displayArrayKey: true }}
       />
     )
@@ -167,7 +168,7 @@ const FieldValue = ({ hit, objectKey }) => {
         value={hit[objectKey]}
         hit={hit}
         attribute={objectKey}
-        title="json"
+        title={`json [${sizeOfObject}]`}
         reactJsonOptions={{ displayArrayKey: false }}
       />
     )
