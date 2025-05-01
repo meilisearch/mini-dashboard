@@ -3028,9 +3028,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/preset-create-react-app@npm:^8.4.7":
-  version: 8.6.3
-  resolution: "@storybook/preset-create-react-app@npm:8.6.3"
+"@storybook/preset-create-react-app@npm:^8.6.12":
+  version: 8.6.12
+  resolution: "@storybook/preset-create-react-app@npm:8.6.12"
   dependencies:
     "@pmmmwh/react-refresh-webpack-plugin": "npm:^0.5.1"
     "@storybook/react-docgen-typescript-plugin": "npm:1.0.6--canary.9.0c3f3b7.0"
@@ -3039,8 +3039,8 @@ __metadata:
     semver: "npm:^7.5.4"
   peerDependencies:
     react-scripts: ">=5.0.0"
-    storybook: ^8.6.3
-  checksum: 10c0/4d293899c249191412c3a6d33477da4ed96a27447bbd7476c3f27bce92da30ced1bde3987b921311a4e8d65042abb255b99ae7e8dbb73da84c1347868f6e8e02
+    storybook: ^8.6.12
+  checksum: 10c0/74b95dd421fdda4bb9f2c6c117094e69ae74da272d690a6830538a2d9a400ff271e4147b4eed64bcfe1357f0570dcf25194d9a52f2a7b86e739b59fe52247017
   languageName: node
   linkType: hard
 
@@ -11304,7 +11304,7 @@ __metadata:
     "@storybook/addon-essentials": "npm:^8.4.7"
     "@storybook/addon-links": "npm:^8.4.7"
     "@storybook/node-logger": "npm:^8.4.7"
-    "@storybook/preset-create-react-app": "npm:^8.4.7"
+    "@storybook/preset-create-react-app": "npm:^8.6.12"
     "@storybook/react": "npm:^8.6.12"
     "@storybook/react-webpack5": "npm:^8.4.7"
     "@styled-system/should-forward-prop": "npm:^5.1.5"

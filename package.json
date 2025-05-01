@@ -48,7 +48,7 @@
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/addon-links": "^8.4.7",
     "@storybook/node-logger": "^8.4.7",
-    "@storybook/preset-create-react-app": "^8.4.7",
+    "@storybook/preset-create-react-app": "^8.6.12",
     "@storybook/react": "^8.6.12",
     "@storybook/react-webpack5": "^8.4.7",
     "@svgr/cli": "^8.1.0",
