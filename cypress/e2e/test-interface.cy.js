@@ -23,31 +23,6 @@ describe(`Test interface`, () => {
     cy.visit('/')
   })
 
-  it('Should open the help center on click on the "?" button', () => {
-    cy.get('button[aria-label="help"]').click()
-    cy.get('div[aria-label="Help Center"]').within(() => {
-      cy.contains('Help Center')
-      cy.contains(
-        'If you need help with anything, here are a few links that can be useful.'
-      )
-      cy.contains('Explore our repositories on Github')
-      cy.contains('Join our Discord and find the help you need')
-      cy.contains('Learn how to tune your Meilisearch')
-      cy.get('a')
-        .first()
-        .should('have.attr', 'href', 'https://github.com/meilisearch')
-        .next()
-        .should('have.attr', 'href', 'https://discord.meilisearch.com')
-        .next()
-        .should(
-          'have.attr',
-          'href',
-          'https://docs.meilisearch.com/?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard'
-        )
-      cy.get('button[aria-label="close"]').click()
-    })
-  })
-
   it('Should contain a "Show more" button if a document has more than 6 fields', () => {
     cy.get('ul')
       .children()

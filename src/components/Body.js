@@ -1,14 +1,22 @@
 import React from 'react'
 import { InstantSearch } from 'react-instantsearch-dom'
-
+import styled from 'styled-components'
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
+import useLocalStorage from 'hooks/useLocalStorage'
 import Box from 'components/Box'
 import Header from 'components/Header/index'
+import RightPanel from 'components/RightPanel'
 import BodyWrapper from 'components/BodyWrapper'
 import EmptyView from 'components/EmptyView'
 import OnBoarding from 'components/OnBoarding'
 import Results from 'components/Results'
 import Typography from 'components/Typography'
+
+const ContentWrapper = styled.div`
+  width: ${({ isRightPanelOpen, theme }) =>
+    isRightPanelOpen ? `calc(100% - ${theme.sizes.rightPanel})` : '100%'};
+  transition: width 0.3s ease-in-out;
+`
 
 const IndexContent = ({ currentIndex }) => {
   if (!currentIndex) return <OnBoarding />
@@ -34,38 +42,59 @@ const Body = ({
   setCurrentIndex,
   requireApiKeyToWork,
   isApiKeyBannerVisible,
-  isCloudBannerVisible,
 }) => {
   const { meilisearchJsClient, instantMeilisearchClient } =
     useMeilisearchClientContext()
+  const [storedIsPanelOpen, setStoredIsPanelOpen] = useLocalStorage(
+    'meilisearch-panel-open',
+    true
+  )
+
+  // Right-side panel
+  const [isRightPanelOpen, setIsRightPanelOpen] =
+    React.useState(storedIsPanelOpen)
+  const handleTogglePanel = React.useCallback(() => {
+    setIsRightPanelOpen((isOpen) => !isOpen)
+    setStoredIsPanelOpen((isOpen) => !isOpen)
+  }, [])
 
   return (
     <InstantSearch
       indexName={currentIndex ? currentIndex.uid : ''}
       searchClient={instantMeilisearchClient}
     >
-      <Header
-        indexes={indexes}
-        currentIndex={currentIndex}
-        setCurrentIndex={setCurrentIndex}
-        requireApiKeyToWork={requireApiKeyToWork}
-        client={meilisearchJsClient}
-        refreshIndexes={getIndexesList}
-        isApiKeyBannerVisible={isApiKeyBannerVisible}
-        isCloudBannerVisible={isCloudBannerVisible}
+      <ContentWrapper isRightPanelOpen={isRightPanelOpen}>
+        <Header
+          indexes={indexes}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          requireApiKeyToWork={requireApiKeyToWork}
+          client={meilisearchJsClient}
+          refreshIndexes={getIndexesList}
+          isApiKeyBannerVisible={isApiKeyBannerVisible}
+          showPanelButton={!isRightPanelOpen}
+          onPanelToggle={handleTogglePanel}
+        />
+        <BodyWrapper>
+          {/* <Sidebar /> */}
+          <Box
+            width={928}
+            m="0 auto"
+            py={4}
+            display="flex"
+            flexDirection="column"
+          >
+            <IndexContent currentIndex={currentIndex} />
+          </Box>
+        </BodyWrapper>
+      </ContentWrapper>
+      <RightPanel
+        isOpen={isRightPanelOpen}
+        onClose={() => {
+          setIsRightPanelOpen(false)
+          setStoredIsPanelOpen(false)
+        }}
       />
-      <BodyWrapper>
-        {/* <Sidebar /> */}
-        <Box
-          width={928}
-          m="0 auto"
-          py={4}
-          display="flex"
-          flexDirection="column"
-        >
-          <IndexContent currentIndex={currentIndex} />
-        </Box>
-      </BodyWrapper>
     </InstantSearch>
   )
 }

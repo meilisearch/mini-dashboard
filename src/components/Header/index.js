@@ -12,20 +12,86 @@ import NoSelectOption from 'components/NoSelectOption'
 import Typography from 'components/Typography'
 import SearchBox from 'components/SearchBox'
 import Box from 'components/Box'
-import Container from 'components/Container'
 import Select from 'components/Select'
 import { MeilisearchLogo, Indexes, Key } from 'components/icons'
-import { compose, position } from 'styled-system'
-import HelpCenter from './HelpCenter'
+import MenuBarsIcon from 'components/icons/heroicons/MenuBarsIcon'
 
-const HeaderWrapper = styled('div')(compose(position), {
-  backgroundColor: 'white',
-  display: 'flex',
-  position: 'sticky',
-  height: '120px',
-  boxShadow: `0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)}`,
-  zIndex: 10,
-})
+const HeaderWrapper = styled('div')`
+  background-color: white;
+  position: sticky;
+  top: ${(props) => props.top}px;
+  width: 100%;
+  padding: 2rem;
+  box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)};
+`
+
+const HeaderLayout = styled('div')`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+  width: 100%;
+`
+
+const RightSideWrapper = styled('div')`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+`
+
+const SearchBoxWrapper = styled('div')`
+  flex-grow: 1;
+  margin-left: 2rem;
+  margin-right: 2rem;
+`
+
+const IconButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    width: 24px;
+    height: 24px;
+    color: ${(p) => p.theme.colors.gray[0]};
+  }
+  &:hover svg {
+    color: ${(p) => p.theme.colors.main.default};
+  }
+`
+
+const HeaderContent = styled.div`
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+`
+
+const LogoBox = ({ version }) => (
+  <Box
+    display="flex"
+    flexDirection="column"
+    alignItems="center"
+    flexShrink={0}
+    mr={4}
+  >
+    {/* Trick to make the logo look centered */}
+    <MeilisearchLogo
+      title="Meilisearch"
+      style={{ height: '28px', marginBottom: '8px' }}
+    />
+    {version && (
+      <Typography
+        variant="typo10"
+        color="gray.0"
+        style={{ lineHeight: '10px' }}
+      >{`v${version}`}</Typography>
+    )}
+  </Box>
+)
 
 const ApiKey = ({ requireApiKeyToWork }) => {
   const dialog = useDialogState()
@@ -72,7 +138,8 @@ const Header = ({
   refreshIndexes,
   requireApiKeyToWork,
   isApiKeyBannerVisible,
-  isCloudBannerVisible,
+  showPanelButton,
+  onPanelToggle,
 }) => {
   const { meilisearchJsClient } = useMeilisearchClientContext()
   const [version, setVersion] = React.useState()
@@ -90,45 +157,12 @@ const Header = ({
     getMeilisearchVersion()
   }, [meilisearchJsClient])
 
-  const topPosition =
-    (isCloudBannerVisible ? 74 : 0) + (isApiKeyBannerVisible ? 55 : 0)
+  const topPosition = isApiKeyBannerVisible ? 55 : 0
   return (
     <HeaderWrapper top={topPosition}>
-      <Container
-        p={4}
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-        height="100%"
-      >
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-        >
-          {/* Trick to make the logo look centered */}
-          <MeilisearchLogo
-            title="Meilisearch"
-            style={{
-              width: 75,
-              paddingTop: 11,
-              paddingBottom: 11,
-              marginLeft: 13,
-            }}
-          />
-          {version && (
-            <Typography
-              variant="typo10"
-              color="gray.0"
-            >{`v${version}`}</Typography>
-          )}
-        </Box>
-        <Box display="flex">
-          <SearchBox
-            refreshIndexes={refreshIndexes}
-            currentIndex={currentIndex}
-          />
+      <HeaderContent>
+        <HeaderLayout>
+          <LogoBox version={version} />
           <Select
             options={indexes}
             icon={<Indexes style={{ height: 22 }} />}
@@ -138,10 +172,26 @@ const Header = ({
             style={{ width: 216 }}
             onClick={refreshIndexes}
           />
-          <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
-        </Box>
-        <HelpCenter />
-      </Container>
+          <SearchBoxWrapper>
+            <SearchBox
+              refreshIndexes={refreshIndexes}
+              currentIndex={currentIndex}
+            />
+          </SearchBoxWrapper>
+          <RightSideWrapper>
+            <ApiKey requireApiKeyToWork={requireApiKeyToWork} />
+            {showPanelButton && onPanelToggle && (
+              <IconButton
+                onClick={onPanelToggle}
+                type="button"
+                aria-label="Open Panel"
+              >
+                <MenuBarsIcon />
+              </IconButton>
+            )}
+          </RightSideWrapper>
+        </HeaderLayout>
+      </HeaderContent>
     </HeaderWrapper>
   )
 }
