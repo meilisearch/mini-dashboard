@@ -45,3 +45,9 @@ Cypress.Commands.add('addDocuments', async (uid, documents) => {
     console.log({ e })
   }
 })
+
+Cypress.Commands.add('saveApiTokenCookie', () => {
+  cy.window().then((win) => {
+    win.localStorage.setItem('apiKey', JSON.stringify(apiKey))
+  })
+})

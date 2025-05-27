@@ -53,6 +53,8 @@
 
 <br/>
 
+This repository uses [Yarn 4.x](https://yarnpkg.com/) to manage dependencies and [NVM](https://github.com/nvm-sh/nvm) to manage Node version. See [current version](.nvmrc).
+
 ## Setup
 
 ```bash
