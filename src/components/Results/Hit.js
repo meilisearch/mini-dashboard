@@ -23,7 +23,7 @@ const EmptyImage = styled.div`
 const StyledResultImage = styled(LazyLoadImage)`
   max-width: 100%;
   max-height: 264px;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   border-radius: 10px;
 `
