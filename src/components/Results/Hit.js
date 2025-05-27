@@ -11,7 +11,7 @@ import Card from 'components/Card'
 import BaseLink from 'components/Link'
 import Typography from 'components/Typography'
 import Highlight from './Highlight'
-import extractImageUrls from '../../utils/extractImageUrls'
+import extractFirstImageUrl from '../../utils/extractFirstImageUrls'
 
 const EmptyImage = styled.div`
   width: 100%;
@@ -212,8 +212,7 @@ const Hit = ({ hit }) => {
     ? Object.entries(hit._highlightResult)
     : []
 
-  // Extract all image URLs from the hit document
-  const imageUrls = extractImageUrls(hit)
+  const imageSource = extractFirstImageUrl(hit)
 
   useEffect(() => {
     if (!hit._highlightResult) {
@@ -221,9 +220,6 @@ const Hit = ({ hit }) => {
       console.warn('Your hits have no field. Please check your index settings.')
     }
   }, [])
-
-  // Determine the image source to display
-  const imageSource = imageUrls.length > 0 ? imageUrls[0] : null
   const altText = hit.title || hit.name || 'Result image'
 
   // Reset image error state when image source changes

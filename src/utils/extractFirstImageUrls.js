@@ -1,37 +1,36 @@
 const MAX_DEPTH = 10
 
 /**
- * Extracts all potential image URLs from a JSON document object.
+ * Extracts the first image URL from a JSON document object.
  *
  * @param {any} documentObject - The JSON object to search for image URLs
- * @returns {string[]} Array of unique image URLs found in the document
+ * @returns {string|null} The first image URL found in the document (or null if none found)
  */
-export default function extractImageUrls(documentObject) {
+export default function extractFirstImageUrl(documentObject) {
   // Handle null, undefined, or non-object inputs
   if (!documentObject || typeof documentObject !== 'object') {
-    return []
+    return null
   }
-
-  const imageUrls = new Set() // Use Set to automatically handle uniqueness
 
   // Regular expression patterns for image URLs
   const imageExtensionPattern = /\.(png|jpg|jpeg|gif|webp|svg)(\?.*)?$/i
   const dataImagePattern = /^data:image\//i
 
   /**
-   * Recursively traverses an object to find image URLs
+   * Recursively traverses an object to find the first image URL
    * @param {any} obj - Current object/value being processed
    * @param {number} depth - Current depth in the object hierarchy
+   * @returns {string|null} The first image URL found, or null if none found
    */
   function traverse(obj, depth = 0) {
-    // Stop traversal if we've reached the maximum depth
+    // Stop traversal if we've reached maximum depth
     if (depth >= MAX_DEPTH) {
-      return
+      return null
     }
 
     // Handle null or undefined
     if (obj === null || obj === undefined) {
-      return
+      return null
     }
 
     // If it's a string, check if it's an image URL
@@ -40,32 +39,38 @@ export default function extractImageUrls(documentObject) {
 
       // Check for common image file extensions
       if (imageExtensionPattern.test(trimmedStr)) {
-        imageUrls.add(trimmedStr)
+        return trimmedStr
       }
       // Check for data:image/ URLs (base64 encoded images)
-      else if (dataImagePattern.test(trimmedStr)) {
-        imageUrls.add(trimmedStr)
+      if (dataImagePattern.test(trimmedStr)) {
+        return trimmedStr
       }
-      return
+      return null
     }
 
     // If it's an array, traverse each element
     if (Array.isArray(obj)) {
-      obj.forEach((item) => traverse(item, depth + 1))
-      return
+      let result = null
+      obj.some((item) => {
+        result = traverse(item, depth + 1)
+        return result !== null
+      })
+      return result
     }
 
     // If it's an object, traverse each property value
     if (typeof obj === 'object') {
-      Object.values(obj).forEach((value) => traverse(value, depth + 1))
+      let result = null
+      Object.values(obj).some((value) => {
+        result = traverse(value, depth + 1)
+        return result !== null
+      })
+      return result
     }
 
-    // For primitive types (number, boolean, etc.), do nothing
+    // For primitive types (number, boolean, etc.), return null
+    return null
   }
 
-  // Start the traversal
-  traverse(documentObject)
-
-  // Convert Set back to Array and return
-  return Array.from(imageUrls)
+  return traverse(documentObject)
 }
