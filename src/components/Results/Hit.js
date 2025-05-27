@@ -11,6 +11,7 @@ import Card from 'components/Card'
 import BaseLink from 'components/Link'
 import Typography from 'components/Typography'
 import Highlight from './Highlight'
+import extractImageUrls from '../../utils/extractImageUrls'
 
 const EmptyImage = styled.div`
   width: 100%;
@@ -201,6 +202,12 @@ const Hit = ({ hit, imageKey }) => {
   const documentProperties = hasFields
     ? Object.entries(hit._highlightResult)
     : []
+
+  // Extract all image URLs from the hit document
+  const imageUrls = extractImageUrls(hit)
+
+  // Temporary logging for development verification (Task 1.2)
+  console.log('Image URLs found for hit:', imageUrls)
 
   useEffect(() => {
     if (!hit._highlightResult) {
