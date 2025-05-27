@@ -206,6 +206,7 @@ const FieldValue = ({ hit, objectKey }) => {
 
 const Hit = ({ hit, imageKey }) => {
   const [displayMore, setDisplayMore] = React.useState(false)
+  const [imageError, setImageError] = React.useState(false)
   const hasFields = !!hit._highlightResult
   const documentProperties = hasFields
     ? Object.entries(hit._highlightResult)
@@ -213,9 +214,6 @@ const Hit = ({ hit, imageKey }) => {
 
   // Extract all image URLs from the hit document
   const imageUrls = extractImageUrls(hit)
-
-  // Temporary logging for development verification (Task 1.2)
-  console.log('Image URLs found for hit:', imageUrls)
 
   useEffect(() => {
     if (!hit._highlightResult) {
@@ -228,11 +226,26 @@ const Hit = ({ hit, imageKey }) => {
   const imageSource = imageUrls.length > 0 ? imageUrls[0] : hit[imageKey]
   const altText = hit.title || hit.name || 'Result image'
 
+  // Reset image error state when image source changes
+  useEffect(() => {
+    setImageError(false)
+  }, [imageSource])
+
+  // Handle image load error
+  const handleImageError = () => {
+    setImageError(true)
+  }
+
   return (
     <CustomCard>
       <Box width={240} mr={4} flexShrink={0}>
-        {imageSource ? (
-          <StyledResultImage src={imageSource} alt={altText} width="100%" />
+        {imageSource && !imageError ? (
+          <StyledResultImage
+            src={imageSource}
+            alt={altText}
+            width="100%"
+            onError={handleImageError}
+          />
         ) : (
           <EmptyImage />
         )}
