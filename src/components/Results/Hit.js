@@ -20,6 +20,14 @@ const EmptyImage = styled.div`
   border-radius: 10px;
 `
 
+const StyledResultImage = styled(LazyLoadImage)`
+  max-width: 100%;
+  max-height: 264px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+`
+
 const CustomCard = styled(Card)`
   display: flex;
 `
@@ -216,15 +224,15 @@ const Hit = ({ hit, imageKey }) => {
     }
   }, [])
 
+  // Determine the image source to display (prioritize auto-detected images)
+  const imageSource = imageUrls.length > 0 ? imageUrls[0] : hit[imageKey]
+  const altText = hit.title || hit.name || 'Result image'
+
   return (
     <CustomCard>
       <Box width={240} mr={4} flexShrink={0}>
-        {hit[imageKey] ? (
-          <LazyLoadImage
-            src={hit[imageKey] || null}
-            width="100%"
-            style={{ borderRadius: 10 }}
-          />
+        {imageSource ? (
+          <StyledResultImage src={imageSource} alt={altText} width="100%" />
         ) : (
           <EmptyImage />
         )}
