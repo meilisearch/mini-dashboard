@@ -1,3 +1,5 @@
+const MAX_DEPTH = 10
+
 /**
  * Extracts all potential image URLs from a JSON document object.
  *
@@ -19,8 +21,14 @@ export default function extractImageUrls(documentObject) {
   /**
    * Recursively traverses an object to find image URLs
    * @param {any} obj - Current object/value being processed
+   * @param {number} depth - Current depth in the object hierarchy
    */
-  function traverse(obj) {
+  function traverse(obj, depth = 0) {
+    // Stop traversal if we've reached the maximum depth
+    if (depth >= MAX_DEPTH) {
+      return
+    }
+
     // Handle null or undefined
     if (obj === null || obj === undefined) {
       return
@@ -43,13 +51,13 @@ export default function extractImageUrls(documentObject) {
 
     // If it's an array, traverse each element
     if (Array.isArray(obj)) {
-      obj.forEach((item) => traverse(item))
+      obj.forEach((item) => traverse(item, depth + 1))
       return
     }
 
     // If it's an object, traverse each property value
     if (typeof obj === 'object') {
-      Object.values(obj).forEach((value) => traverse(value))
+      Object.values(obj).forEach((value) => traverse(value, depth + 1))
     }
 
     // For primitive types (number, boolean, etc.), do nothing

@@ -191,4 +191,31 @@ describe('extractImageUrls', () => {
       'http://example.com/picture.gif',
     ])
   })
+
+  test('should respect MAX_DEPTH limit and stop traversal at maximum depth', () => {
+    const input = {
+      level1: {
+        level2: {
+          level3: {
+            level4: {
+              level5: {
+                level6: {
+                  level7: {
+                    level8: {
+                      level9Image: 'http://example.com/level9.jpg',
+                      level9: {
+                        level10Image: 'http://example.com/level10.jpg',
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }
+    const result = extractImageUrls(input)
+    expect(result).toEqual(['http://example.com/level9.jpg'])
+  })
 })

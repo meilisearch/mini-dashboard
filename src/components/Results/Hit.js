@@ -204,7 +204,7 @@ const FieldValue = ({ hit, objectKey }) => {
   )
 }
 
-const Hit = ({ hit, imageKey }) => {
+const Hit = ({ hit }) => {
   const [displayMore, setDisplayMore] = React.useState(false)
   const [imageError, setImageError] = React.useState(false)
   const hasFields = !!hit._highlightResult
@@ -222,8 +222,8 @@ const Hit = ({ hit, imageKey }) => {
     }
   }, [])
 
-  // Determine the image source to display (prioritize auto-detected images)
-  const imageSource = imageUrls.length > 0 ? imageUrls[0] : hit[imageKey]
+  // Determine the image source to display
+  const imageSource = imageUrls.length > 0 ? imageUrls[0] : null
   const altText = hit.title || hit.name || 'Result image'
 
   // Reset image error state when image source changes
