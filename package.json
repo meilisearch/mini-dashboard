@@ -50,7 +50,7 @@
     "@storybook/node-logger": "^8.4.7",
     "@storybook/preset-create-react-app": "^8.6.12",
     "@storybook/react": "^8.6.12",
-    "@storybook/react-webpack5": "^8.4.7",
+    "@storybook/react-webpack5": "^9.0.8",
     "@svgr/cli": "^8.1.0",
     "cypress": "^14.1.0",
     "eslint": "8.57.0",
