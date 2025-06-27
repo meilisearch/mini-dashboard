@@ -156,7 +156,8 @@ const RightPanel = ({ isOpen, onClose }) => (
         color="gray.6"
         style={{ marginBottom: '1rem' }}
       >
-        Send your data to Meilisearch Cloud without a hassle.
+        Already have a bunch of documents in your indexes? Send your data to
+        Meilisearch Cloud without a hassle.
       </Typography>
       <ExportDatasetForm />
     </Section>
