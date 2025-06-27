@@ -1,3 +1,5 @@
+import { baseUrl } from '../App'
+
 function getBody({ meilisearchUrl, masterKey }) {
   return {
     url: meilisearchUrl,
@@ -6,7 +8,7 @@ function getBody({ meilisearchUrl, masterKey }) {
 }
 
 export default function useExport() {
-  const endpoint = `http://localhost:7700/export`
+  const endpoint = `${baseUrl}/export`
 
   const exportDataset = (meilisearchUrl, masterKey) =>
     fetch(endpoint, {

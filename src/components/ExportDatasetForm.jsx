@@ -91,8 +91,8 @@ const SuccessMessage = styled.div`
 `
 
 const ExportDatasetForm = () => {
-  const [meilisearchUrl, setMeilisearchUrl] = React.useState('meilisearchUrl')
-  const [masterKey, setMasterKey] = React.useState('masterKey')
+  const [meilisearchUrl, setMeilisearchUrl] = React.useState('')
+  const [masterKey, setMasterKey] = React.useState('')
   const { exportDataset } = useExportDataset()
   const [status, setStatus] = React.useState('idle')
   const [error, setError] = React.useState(null)
