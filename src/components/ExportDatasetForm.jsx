@@ -97,23 +97,30 @@ const ExportDatasetForm = () => {
   const [status, setStatus] = React.useState('idle')
   const [error, setError] = React.useState(null)
   const [progress, setProgress] = React.useState('')
+  const [progressPercentage, setProgressPercentage] = React.useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('loading')
     setError(null)
     setProgress('Initiating export...')
+    setProgressPercentage(null)
+
+    const onProgress = (progressData) => {
+      setProgress(progressData.message)
+      setProgressPercentage(progressData.percentage || null)
+    }
 
     try {
-      setProgress('Processing export task...')
-      await exportDataset(meilisearchUrl, masterKey)
+      await exportDataset(meilisearchUrl, masterKey, onProgress)
       setStatus('success')
       setProgress('')
+      setProgressPercentage(null)
     } catch (err) {
-      console.error('Form caught error:', err)
       setStatus('error')
       setError(err.message || 'An unknown error occurred')
       setProgress('')
+      setProgressPercentage(null)
     }
   }
 
@@ -153,6 +160,7 @@ const ExportDatasetForm = () => {
               <ArrowPathIcon />
             </SpinningIcon>
             {progress || 'Exporting dataset...'}
+            {progressPercentage !== null && ` (${progressPercentage}%)`}
           </>
         ) : (
           'Export Dataset'

@@ -8,7 +8,7 @@ function getBody({ meilisearchUrl, masterKey }) {
   }
 }
 
-const pollTaskStatus = (client, taskUid) =>
+const pollTaskStatus = (client, taskUid, onProgress) =>
   new Promise((resolve, reject) => {
     const checkStatus = async () => {
       try {
@@ -19,8 +19,46 @@ const pollTaskStatus = (client, taskUid) =>
         } else if (task.status === 'failed') {
           reject(new Error(task.error?.message || 'Task failed'))
         } else {
-          // Task is still processing, check again in 1 second
-          setTimeout(checkStatus, 1000)
+          // Check if task has batchUid
+          if (!task.batchUid) {
+            onProgress({
+              status: 'waiting',
+              message: 'Waiting for export to start',
+            })
+          } else {
+            // Fetch batch progress
+            try {
+              const batch = await client.getBatch(task.batchUid)
+              if (
+                batch.progress &&
+                batch.progress.percentage !== null &&
+                batch.progress.percentage > 0
+              ) {
+                onProgress({
+                  status: 'processing',
+                  percentage: Math.round(batch.progress.percentage),
+                  message: `Uploading`,
+                })
+              } else if (batch.progress === null) {
+                onProgress({
+                  status: 'uploading',
+                  message: 'Upload successful',
+                })
+              } else {
+                onProgress({
+                  status: 'processing',
+                  message: 'Processing export...',
+                })
+              }
+            } catch (batchError) {
+              onProgress({
+                status: 'processing',
+                message: 'Processing export...',
+              })
+            }
+          }
+          // Task is still processing, check again in 500ms
+          setTimeout(checkStatus, 500)
         }
       } catch (error) {
         reject(error)
@@ -34,7 +72,7 @@ export default function useExport() {
   const { meilisearchJsClient } = useMeilisearchClientContext()
   const endpoint = `${baseUrl}/export`
 
-  const exportDataset = async (meilisearchUrl, masterKey) => {
+  const exportDataset = async (meilisearchUrl, masterKey, onProgress) => {
     // Validate inputs
     if (!meilisearchUrl || !masterKey) {
       throw new Error('Meilisearch URL and master key are required')
@@ -69,7 +107,7 @@ export default function useExport() {
     }
 
     // Poll the task status using the local Meilisearch instance
-    return pollTaskStatus(meilisearchJsClient, data.taskUid)
+    return pollTaskStatus(meilisearchJsClient, data.taskUid, onProgress)
   }
 
   return { exportDataset }
