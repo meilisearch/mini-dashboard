@@ -96,23 +96,32 @@ const ExportDatasetForm = () => {
   const { exportDataset } = useExportDataset()
   const [status, setStatus] = React.useState('idle')
   const [error, setError] = React.useState(null)
+  const [progress, setProgress] = React.useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('loading')
-    exportDataset(meilisearchUrl, masterKey)
-      .then(() => setStatus('success'))
-      .catch((err) => {
-        setStatus('error')
-        setError(err.message)
-      })
+    setError(null)
+    setProgress('Initiating export...')
+
+    try {
+      setProgress('Processing export task...')
+      await exportDataset(meilisearchUrl, masterKey)
+      setStatus('success')
+      setProgress('')
+    } catch (err) {
+      console.error('Form caught error:', err)
+      setStatus('error')
+      setError(err.message || 'An unknown error occurred')
+      setProgress('')
+    }
   }
 
   if (status === 'success') {
     return (
       <SuccessMessage>
         <CheckIcon />
-        <p>Uploading to the Cloud...</p>
+        <p>Export completed successfully!</p>
       </SuccessMessage>
     )
   }
@@ -143,10 +152,10 @@ const ExportDatasetForm = () => {
             <SpinningIcon>
               <ArrowPathIcon />
             </SpinningIcon>
-            Uploading...
+            {progress || 'Exporting dataset...'}
           </>
         ) : (
-          'Upload'
+          'Export Dataset'
         )}
       </Button>
       {status === 'error' && <ErrorMessage>{error}</ErrorMessage>}
