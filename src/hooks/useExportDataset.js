@@ -15,15 +15,18 @@ const pollTaskStatus = (client, taskUid, onProgress) =>
         const task = await client.getTask(taskUid)
 
         if (task.status === 'succeeded') {
-          resolve(task)
+          resolve({ task, taskUid })
         } else if (task.status === 'failed') {
           reject(new Error(task.error?.message || 'Task failed'))
+        } else if (task.status === 'canceled') {
+          reject(new Error('Task was cancelled'))
         } else {
           // Check if task has batchUid
           if (!task.batchUid) {
             onProgress({
               status: 'waiting',
               message: 'Waiting for export to start',
+              taskUid,
             })
           } else {
             // Fetch batch progress
@@ -37,28 +40,32 @@ const pollTaskStatus = (client, taskUid, onProgress) =>
                 onProgress({
                   status: 'processing',
                   percentage: Math.round(batch.progress.percentage),
-                  message: `Uploading`,
+                  message: `Processing: ${Math.round(batch.progress.percentage)}%`,
+                  taskUid,
                 })
               } else if (batch.progress === null) {
                 onProgress({
                   status: 'uploading',
                   message: 'Upload successful',
+                  taskUid,
                 })
               } else {
                 onProgress({
                   status: 'processing',
                   message: 'Processing export...',
+                  taskUid,
                 })
               }
             } catch (batchError) {
               onProgress({
                 status: 'processing',
                 message: 'Processing export...',
+                taskUid,
               })
             }
           }
-          // Task is still processing, check again in 500ms
-          setTimeout(checkStatus, 500)
+          // Task is still processing, check again in 1 second
+          setTimeout(checkStatus, 1000)
         }
       } catch (error) {
         reject(error)
@@ -110,5 +117,9 @@ export default function useExport() {
     return pollTaskStatus(meilisearchJsClient, data.taskUid, onProgress)
   }
 
-  return { exportDataset }
+  const cancelTask = async (taskUid) => {
+    await meilisearchJsClient.cancelTasks({ uids: [taskUid] })
+  }
+
+  return { exportDataset, cancelTask }
 }
