@@ -6,6 +6,7 @@ import AcademicHatIcon from 'components/icons/heroicons/AcademicHatIcon'
 import LifebuoyIcon from 'components/icons/heroicons/LifebuoyIcon'
 import ChatBubbleIcon from 'components/icons/heroicons/ChatBubbleIcon'
 import NewsletterForm from 'components/NewsletterForm'
+import ExportDatasetForm from 'components/ExportDatasetForm'
 import CloseIcon from './icons/heroicons/CloseIcon'
 
 const PanelWrapper = styled.div`
@@ -149,6 +150,15 @@ const RightPanel = ({ isOpen, onClose }) => (
       <CloudCardLink href="https://cloud.meilisearch.com?utm_campaign=oss&utm_source=integration&utm_medium=minidashboard">
         <CloudButton>Start free trial</CloudButton>
       </CloudCardLink>
+      <Typography
+        marginTop="1rem"
+        variant="typo11"
+        color="gray.6"
+        style={{ marginBottom: '1rem' }}
+      >
+        Send your data to Meilisearch Cloud without a hassle.
+      </Typography>
+      <ExportDatasetForm />
     </Section>
 
     <Section>
