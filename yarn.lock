@@ -2715,7 +2715,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-actions@npm:8.6.3, @storybook/addon-actions@npm:^8.4.7":
+"@storybook/addon-actions@npm:8.6.3":
   version: 8.6.3
   resolution: "@storybook/addon-actions@npm:8.6.3"
   dependencies:
@@ -2727,6 +2727,13 @@ __metadata:
   peerDependencies:
     storybook: ^8.6.3
   checksum: 10c0/6ee1b062bf04a5a5628d9b5192ee159725aad039a6a0c7087669f5c358a03f9269c61430f62cc0fd732b7b451960d6679b9c16050e0eb3d2a2978ebd9ee6629e
+  languageName: node
+  linkType: hard
+
+"@storybook/addon-actions@npm:^9.0.8":
+  version: 9.0.8
+  resolution: "@storybook/addon-actions@npm:9.0.8"
+  checksum: 10c0/40ab6bf018cb423bf156e6b1317d199f3730690750b88b4c4eed7af636fdbc9392ddc95b1383927ec85f462515ae35bc9f517c934bf05e1edb645f6b9b94264a
   languageName: node
   linkType: hard
 
@@ -11300,7 +11307,7 @@ __metadata:
   resolution: "mini-dashboard@workspace:."
   dependencies:
     "@meilisearch/instant-meilisearch": "npm:0.25"
-    "@storybook/addon-actions": "npm:^8.4.7"
+    "@storybook/addon-actions": "npm:^9.0.8"
     "@storybook/addon-essentials": "npm:^8.4.7"
     "@storybook/addon-links": "npm:^8.4.7"
     "@storybook/node-logger": "npm:^8.4.7"
