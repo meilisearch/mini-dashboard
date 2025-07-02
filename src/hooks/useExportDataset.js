@@ -1,4 +1,3 @@
-import { baseUrl } from '../App'
 import { useMeilisearchClientContext } from '../context/MeilisearchClientContext'
 
 function getBody({ meilisearchUrl, masterKey }) {
@@ -77,14 +76,21 @@ const pollTaskStatus = (client, taskUid, onProgress) =>
 
 export default function useExport() {
   const { meilisearchJsClient } = useMeilisearchClientContext()
-  const endpoint = `${baseUrl}/export`
 
-  const exportDataset = async (meilisearchUrl, masterKey, onProgress) => {
+  const exportDataset = async (
+    meilisearchUrl,
+    masterKey,
+    onProgress,
+    baseUrl
+  ) => {
     // Validate inputs
     if (!meilisearchUrl || !masterKey) {
       throw new Error('Meilisearch URL and master key are required')
     }
-
+    if (!baseUrl) {
+      throw new Error('baseUrl is required')
+    }
+    const endpoint = `${baseUrl}/export`
     // First, make the export request
     const response = await fetch(endpoint, {
       method: 'POST',

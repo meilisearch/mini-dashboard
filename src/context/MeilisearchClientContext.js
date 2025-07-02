@@ -2,8 +2,8 @@ import React, { useState, useMemo, createContext, useContext } from 'react'
 import { instantMeiliSearch as instantMeilisearch } from '@meilisearch/instant-meilisearch'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
 import useLocalStorage from 'hooks/useLocalStorage'
-import { baseUrl } from 'App'
 import clientAgents from 'version/client-agents'
+import baseUrl from 'config'
 
 export const MeilisearchClientContext = createContext({
   meilisearchJsClient: '',
