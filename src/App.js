@@ -17,13 +17,8 @@ import ApiKeyAwarenessBanner from 'components/ApiKeyAwarenessBanner'
 import getIndexesListWithStats from 'utils/getIndexesListWithStats'
 import shouldDisplayApiKeyModal from 'utils/shouldDisplayApiKeyModal'
 import hasAnApiKeySet from 'utils/hasAnApiKeySet'
+import baseUrl from 'config'
 import clientAgents from './version/client-agents'
-
-export const baseUrl =
-  process.env.REACT_APP_MEILI_SERVER_ADDRESS ||
-  (process.env.NODE_ENV === 'development'
-    ? 'http://0.0.0.0:7700'
-    : window.location.origin)
 
 const Wrapper = styled.div`
   background-color: ${(p) => p.theme.colors.gray[11]};

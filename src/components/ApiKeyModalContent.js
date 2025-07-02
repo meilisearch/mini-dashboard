@@ -2,14 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import { MeiliSearch as Meilisearch } from 'meilisearch'
 
-import { baseUrl } from 'App'
+import ApiKeyContext from 'context/ApiKeyContext'
 import Box from 'components/Box'
 import Button from 'components/Button'
 import Input from 'components/Input'
 import Link from 'components/Link'
 import Typography from 'components/Typography'
-
-import ApiKeyContext from 'context/ApiKeyContext'
+import baseUrl from 'config'
 
 import clientAgents from '../version/client-agents'
 

@@ -1,6 +1,6 @@
 import { MeiliSearch as Meilisearch } from 'meilisearch'
-import { baseUrl } from 'App'
 import clientAgents from 'version/client-agents'
+import baseUrl from 'config'
 
 const hasAnApiKeySet = async () => {
   try {

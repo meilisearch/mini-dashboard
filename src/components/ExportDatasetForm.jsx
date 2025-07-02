@@ -141,7 +141,7 @@ const ExportDatasetForm = () => {
     }
 
     try {
-      await exportDataset(meilisearchUrl, masterKey, onProgress)
+      await exportDataset(meilisearchUrl, masterKey, onProgress, baseUrl)
       setStatus('success')
       setProgress('')
       setProgressPercentage(null)
