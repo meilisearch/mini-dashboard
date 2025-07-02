@@ -105,7 +105,7 @@ const ExportDatasetForm = () => {
     <form onSubmit={handleSubmit}>
       <Input
         type="url"
-        placeholder="Enter the Meilisearch URL"
+        placeholder="Enter the Meilisearch Cloud URL"
         value={meilisearchUrl}
         onChange={(e) => setMeilisearchUrl(e.target.value)}
         disabled={status === 'loading'}
@@ -114,7 +114,7 @@ const ExportDatasetForm = () => {
       />
       <Input
         type="password"
-        placeholder="Enter the Meilisearch master key"
+        placeholder="Enter the Meilisearch Cloud master key"
         value={masterKey}
         onChange={(e) => setMasterKey(e.target.value)}
         disabled={status === 'loading'}
