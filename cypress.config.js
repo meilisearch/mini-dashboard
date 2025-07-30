@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-const { defineConfig } = require('cypress')
+import { defineConfig } from 'cypress'
 
-module.exports = defineConfig({
+export default defineConfig({
   watchForFileChanges: true,
   retries: 2,
   viewportWidth: 1440,

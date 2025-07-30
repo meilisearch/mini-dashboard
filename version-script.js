@@ -3,10 +3,11 @@
  * in the file `src/version.js
  */
 
-const fs = require('fs')
+import fs, { readFileSync } from 'fs'
 
 // Fetch the current version in the package.json
-const { version } = require('./package.json')
+const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'))
+const { version } = packageJson
 
 // Creates content of the version.js file
 const versionFile = `export default '${version}'\n`
