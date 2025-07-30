@@ -4,3 +4,4 @@ public/
 node_modules/
 build/*
 src/components/icons/*
+storybook-static/

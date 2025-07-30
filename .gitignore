@@ -36,3 +36,7 @@ meilisearch
 cypress/screenshots
 cypress/videos
 cypress/plugins
+
+# Vite related dependencies
+.vite
+.swc

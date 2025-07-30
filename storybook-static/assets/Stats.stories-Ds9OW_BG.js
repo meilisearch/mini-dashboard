@@ -1,0 +1,10 @@
+import{j as e}from"./jsx-runtime-BO8uF4Og.js";import"./index-D4H_InIO.js";import{q as c}from"./styled-components.browser.esm-znzuwYFE.js";import{P as m}from"./index-LDOOE3Uh.js";import{m as g,q as S}from"./Speed-Cmh9zlf_.js";import{T as d}from"./Typography-CUKj5wrb.js";import"./index.esm-CT27t1GU.js";const b=c(d)`
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  svg {
+    margin-right: 6px;
+  }
+`,p=({icon:s,legend:n,value:a,...i})=>e.jsxs("div",{style:{minWidth:170},...i,children:[e.jsxs(b,{variant:"typo4",color:"gray.7",children:[s,e.jsx("span",{children:n})]}),e.jsx(d,{variant:"typo9",color:"main.default",children:a})]}),x=c.div`
+  display: flex;
+`,o=({nbHits:s,processingTimeMS:n,nbResults:a,...i})=>{const u=`${s!==a?"~":""} ${s.toLocaleString()}`;return e.jsxs(x,{...i,children:[e.jsx(p,{icon:e.jsx(g,{style:{height:12}}),legend:"Hits",value:u}),e.jsx(p,{icon:e.jsx(S,{style:{height:13}}),legend:"Time spent",value:`${n} ms`})]})};o.propTypes={nbHits:m.number,processingTimeMS:m.number,nbResults:m.number};o.__docgenInfo={description:"",methods:[],displayName:"Stats",props:{nbHits:{description:"Number of hits provided by connectStats",type:{name:"number"},required:!1},processingTimeMS:{description:"Time in ms needed to execute the request",type:{name:"number"},required:!1},nbResults:{description:"Number of results provided by connectStateResults",type:{name:"number"},required:!1}}};const R={title:"Components/Stats",component:o},l=s=>e.jsx(o,{...s}),t=l.bind({});t.args={nbHits:19546,processingTimeMS:2,nbResults:19546};const r=l.bind({});r.args={nbHits:19546,processingTimeMS:2,nbResults:19500};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:"args => <Stats {...args} />",...t.parameters?.docs?.source}}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:"args => <Stats {...args} />",...r.parameters?.docs?.source}}};const H=["Default","Imprecise"];export{t as Default,r as Imprecise,H as __namedExportsOrder,R as default};

@@ -8,13 +8,14 @@
     "ecmaVersion": 2020
   },
   "extends": [
-    "react-app",
     "airbnb",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:cypress/recommended",
     "eslint-config-prettier"
   ],
-  "plugins": ["jsx-a11y", "prettier"],
+  "plugins": ["react", "react-hooks", "jsx-a11y", "prettier"],
   "settings": {
     "import/resolver": {
       "node": {
@@ -45,6 +46,22 @@
     "react/no-invalid-html-attribute": 0,
     "react/jsx-no-useless-fragment": "off",
     "react/no-unused-class-component-methods": 0,
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.config.js",
+          "**/*.config.ts",
+          "**/cypress/**",
+          "**/*.stories.js",
+          "**/*.stories.jsx",
+          "**/*.test.js",
+          "**/*.test.jsx",
+          "**/storybook/**",
+          "**/.storybook/**"
+        ]
+      }
+    ]
   }
 }

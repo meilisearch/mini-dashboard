@@ -1,0 +1,1 @@
+import{g as u}from"./Clickable-BApbfUri.js";function l(c,r,o){if(typeof Event=="function")return new Event(r,o);var e=u(c).createEvent("Event");return e.initEvent(r,o?.bubbles,o?.cancelable),e}export{l as c};
