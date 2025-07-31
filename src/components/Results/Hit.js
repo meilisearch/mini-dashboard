@@ -142,13 +142,19 @@ function getFieldValueType(value) {
   if (isObject(value)) {
     return 'object'
   }
+  if (value === null) {
+    return 'null'
+  }
 
   return typeof value
 }
 
 const FieldValue = ({ hit, objectKey }) => {
   const fieldValueType = getFieldValueType(hit[objectKey])
-  const sizeOfObject = Object.keys(hit[objectKey])?.length || 0
+  let sizeOfObject = 0
+  if (fieldValueType === 'array' || fieldValueType === 'object') {
+    sizeOfObject = Object.values(hit[objectKey]).length
+  }
 
   if (fieldValueType === 'array') {
     return (
