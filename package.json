@@ -32,6 +32,7 @@
     "lint": "eslint .",
     "prettier-check": "prettier --check ./src",
     "format:fix": "prettier --write ./src",
+    "test": "react-scripts test",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "cy:open": "cypress open",

@@ -11,11 +11,20 @@ import Card from 'components/Card'
 import BaseLink from 'components/Link'
 import Typography from 'components/Typography'
 import Highlight from './Highlight'
+import extractFirstImageUrl from '../../utils/extractFirstImageUrls'
 
 const EmptyImage = styled.div`
   width: 100%;
   height: 264px;
   background-color: ${(p) => p.theme.colors.main.light};
+  border-radius: 10px;
+`
+
+const StyledResultImage = styled(LazyLoadImage)`
+  max-width: 100%;
+  max-height: 264px;
+  object-fit: contain;
+  display: block;
   border-radius: 10px;
 `
 
@@ -202,12 +211,15 @@ const FieldValue = ({ hit, objectKey }) => {
   )
 }
 
-const Hit = ({ hit, imageKey }) => {
+const Hit = ({ hit }) => {
   const [displayMore, setDisplayMore] = React.useState(false)
+  const [imageError, setImageError] = React.useState(false)
   const hasFields = !!hit._highlightResult
   const documentProperties = hasFields
     ? Object.entries(hit._highlightResult)
     : []
+
+  const imageSource = extractFirstImageUrl(hit)
 
   useEffect(() => {
     if (!hit._highlightResult) {
@@ -215,15 +227,27 @@ const Hit = ({ hit, imageKey }) => {
       console.warn('Your hits have no field. Please check your index settings.')
     }
   }, [])
+  const altText = hit.title || hit.name || 'Result image'
+
+  // Reset image error state when image source changes
+  useEffect(() => {
+    setImageError(false)
+  }, [imageSource])
+
+  // Handle image load error
+  const handleImageError = () => {
+    setImageError(true)
+  }
 
   return (
     <CustomCard>
       <Box width={240} mr={4} flexShrink={0}>
-        {hit[imageKey] ? (
-          <LazyLoadImage
-            src={hit[imageKey] || null}
+        {imageSource && !imageError ? (
+          <StyledResultImage
+            src={imageSource}
+            alt={altText}
             width="100%"
-            style={{ borderRadius: 10 }}
+            onError={handleImageError}
           />
         ) : (
           <EmptyImage />
