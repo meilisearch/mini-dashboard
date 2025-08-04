@@ -100,7 +100,7 @@ export default function useExport() {
 
     // Add authorization header if API key is available
     if (apiKey) {
-      headers['Authorization'] = `Bearer ${apiKey}`
+      headers.Authorization = `Bearer ${apiKey}`
     }
 
     const response = await fetch(endpoint, {
