@@ -1,4 +1,5 @@
 import { useMeilisearchClientContext } from '../context/MeilisearchClientContext'
+import useLocalStorage from './useLocalStorage'
 
 function getBody({ meilisearchUrl, masterKey }) {
   return {
@@ -76,6 +77,7 @@ const pollTaskStatus = (client, taskUid, onProgress) =>
 
 export default function useExport() {
   const { meilisearchJsClient } = useMeilisearchClientContext()
+  const [apiKey] = useLocalStorage('apiKey')
 
   const exportDataset = async (
     meilisearchUrl,
@@ -92,11 +94,18 @@ export default function useExport() {
     }
     const endpoint = `${baseUrl}/export`
     // First, make the export request
+    const headers = {
+      'Content-Type': 'application/json',
+    }
+
+    // Add authorization header if API key is available
+    if (apiKey) {
+      headers['Authorization'] = `Bearer ${apiKey}`
+    }
+
     const response = await fetch(endpoint, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify(
         getBody({
           meilisearchUrl,
