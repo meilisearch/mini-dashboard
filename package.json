@@ -11,7 +11,7 @@
     "meilisearch": "0.48.2",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react-dom": "^19.1.1",
     "react-instantsearch-dom": "^6.40.4",
     "react-json-view": "^1.21.3",
     "react-lazy-load-image-component": "^1.6.3",
