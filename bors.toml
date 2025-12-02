@@ -1,9 +1,0 @@
-
-status = [
-  'linter-check',
-  'cypress_no_meilisearch',
-  'cypress_meilisearch-no-api-key',
-  'cypress_meilisearch-api-key',
-]
-# 1 hour timeout
-timeout-sec = 3600
