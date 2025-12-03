@@ -23,6 +23,7 @@ const HeaderWrapper = styled('div')`
   width: 100%;
   padding: 2rem;
   box-shadow: 0px 0px 30px ${(p) => Color(p.theme.colors.gray[0]).alpha(0.15)};
+  z-index: 10;
 `
 
 const HeaderLayout = styled('div')`
