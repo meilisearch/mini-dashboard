@@ -69,6 +69,7 @@
     "css-minimizer-webpack-plugin/postcss": "^8.4.31",
     "react-scripts/postcss": "^8.4.31",
     "resolve-url-loader/postcss": "^8.4.31",
-    "@storybook/core/esbuild": "^0.25.0"
+    "@storybook/core/esbuild": "^0.25.0",
+    "js-yaml": "^4.1.1"
   }
 }
