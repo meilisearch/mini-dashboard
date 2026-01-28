@@ -2486,12 +2486,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@meilisearch/instant-meilisearch@npm:0.25":
-  version: 0.25.0
-  resolution: "@meilisearch/instant-meilisearch@npm:0.25.0"
+"@meilisearch/instant-meilisearch@npm:0.28":
+  version: 0.28.0
+  resolution: "@meilisearch/instant-meilisearch@npm:0.28.0"
   dependencies:
-    meilisearch: "npm:^0.49.0"
-  checksum: 10c0/2372dd06b8168835fecd15574973230939a9c5c532b1037ef853d541cc2705538f7af5a786c7846448c778b0e39ac1e5a26a1c7a05e24cbae434289c896e7a3b
+    meilisearch: "npm:0.53"
+  checksum: 10c0/827d302ee145abf2af60c0ca1a25ea995c069cd636f3d00ba6b0d4f38e13c317f97d25750800dedbbd624f25593f4533426d26ca9f21cf363257d29575df9e27
   languageName: node
   linkType: hard
 
@@ -11130,10 +11130,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"meilisearch@npm:^0.49.0":
-  version: 0.49.0
-  resolution: "meilisearch@npm:0.49.0"
-  checksum: 10c0/54d49e12e5f1c13464cf1cf2489749ce817ac0aeafafd2e51ccf171dcf003a63aca018d02668a01c1c42090908e442248999347a13f9fdb96032c5f2dd28e118
+"meilisearch@npm:0.53":
+  version: 0.53.0
+  resolution: "meilisearch@npm:0.53.0"
+  checksum: 10c0/43b008ee424bce0995d5e07ed187f4225513fdbd03a027f62143dc4f8eb9024a93c40e79d3a3fbc8d3a144cf45584f00a7de00a8f64ff5a377aaba41b77d6713
   languageName: node
   linkType: hard
 
@@ -11255,7 +11255,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mini-dashboard@workspace:."
   dependencies:
-    "@meilisearch/instant-meilisearch": "npm:0.25"
+    "@meilisearch/instant-meilisearch": "npm:0.28"
     "@storybook/addon-actions": "npm:^8.4.7"
     "@storybook/addon-essentials": "npm:^8.4.7"
     "@storybook/addon-links": "npm:^8.4.7"
