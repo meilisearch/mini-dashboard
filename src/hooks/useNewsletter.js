@@ -1,12 +1,11 @@
 import version from '../version/version'
 
-const PORTAL_ID = process.env.REACT_APP_HUBSPOT_PORTAL_ID
-const FORM_GUID = process.env.REACT_APP_HUBSPOT_FORM_GUID
+const PORTAL_ID = import.meta.env.VITE_HUBSPOT_PORTAL_ID
+const FORM_GUID = import.meta.env.VITE_HUBSPOT_FORM_GUID
 
-const PAGE_NAME =
-  process.env.NODE_ENV === 'development'
-    ? `Mini-dashboard (dev)`
-    : `Mini-dashboard v${version}`
+const PAGE_NAME = import.meta.env.DEV
+  ? `Mini-dashboard (dev)`
+  : `Mini-dashboard v${version}`
 
 function getBody({ email, pageName }) {
   return {
