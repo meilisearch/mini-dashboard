@@ -5,16 +5,18 @@
     "es2021": true
   },
   "parserOptions": {
-    "ecmaVersion": 2020
+    "ecmaVersion": 2020,
+    "sourceType": "module"
   },
   "extends": [
-    "react-app",
     "airbnb",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:cypress/recommended",
     "eslint-config-prettier"
   ],
-  "plugins": ["jsx-a11y", "prettier"],
+  "plugins": ["jsx-a11y", "prettier", "react-hooks"],
   "settings": {
     "import/resolver": {
       "node": {
@@ -37,6 +39,8 @@
     "react/no-array-index-key": 0,
     "no-underscore-dangle": 0,
     "react-hooks/exhaustive-deps": 0,
+    "react-hooks/preserve-manual-memoization": "off",
+    "react-hooks/set-state-in-effect": "off",
     "react/function-component-definition": [
       2,
       { "namedComponents": "arrow-function" }
@@ -45,6 +49,18 @@
     "react/no-invalid-html-attribute": 0,
     "react/jsx-no-useless-fragment": "off",
     "react/no-unused-class-component-methods": 0,
-    "react/require-default-props": "off"
-  }
+    "react/require-default-props": "off",
+    "react/display-name": "off"
+  },
+  "overrides": [
+    {
+      "files": ["vite.config.js"],
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          "error",
+          { "devDependencies": true }
+        ]
+      }
+    }
+  ]
 }

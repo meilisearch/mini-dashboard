@@ -1,0 +1,18 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+## Agent instructions
+
+- When searching for documentation, use Context7.
+- Run the shell commands yourself, so you can see the output.
+
+## Coding Instructions
+
+- Write the absolute minimum code required.
+- No sweeping changes.
+- No unrelated edits - focus on just the task you're on.
+- Make code precise, modular, and testable.
+- Don’t break existing functionality.
+- Use concise, meaningful comments - only for complex logic.

@@ -84,12 +84,12 @@ yarn build
 ⚠️ By default, the application will call Meilisearch at the exact same address as it is running.
 Example: if your app is running at `http://localhost:5000`, it will try to call `http://localhost:5000/indexes` to retrieve the list of your indexes.
 
-If you want to specify the URL where your Meilisearch is running, use the `REACT_APP_MEILI_SERVER_ADDRESS` environment variable.
+If you want to specify the URL where your Meilisearch is running, use the `VITE_MEILI_SERVER_ADDRESS` environment variable.
 
 Example:
 
 ```bash
-REACT_APP_MEILI_SERVER_ADDRESS=http://0.0.0.0:7700 yarn build
+VITE_MEILI_SERVER_ADDRESS=http://0.0.0.0:7700 yarn build
 ```
 
 ### Run your build
@@ -120,7 +120,7 @@ You can also run the mini-dashboard with Docker.
 
 ```bash
 docker build -t meilisearch-mini-dashboard .
-docker run -it -e REACT_APP_MEILI_SERVER_ADDRESS=http://localhost:7700 -p 3000:3000 meilisearch-mini-dashboard
+docker run -it -e VITE_MEILI_SERVER_ADDRESS=http://localhost:7700 -p 3000:3000 meilisearch-mini-dashboard
 ```
 
 ## Contributing
