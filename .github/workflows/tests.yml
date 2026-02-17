@@ -44,8 +44,8 @@ jobs:
       - name: Test no meilisearch running
         uses: cypress-io/github-action@v6
         with:
-          start: yarn start:ci
-          wait-on: 'http://0.0.0.0:3000'
+          start: yarn dev:ci
+          wait-on: "http://0.0.0.0:3000"
           command: yarn cy:run:test-no-meilisearch
           config-file: cypress.config.js
       - uses: actions/upload-artifact@v4
@@ -67,9 +67,9 @@ jobs:
       meilisearch:
         image: getmeili/meilisearch:latest
         env:
-          MEILI_NO_ANALYTICS: 'true'
+          MEILI_NO_ANALYTICS: "true"
         ports:
-          - '7700:7700'
+          - "7700:7700"
     steps:
       - uses: actions/checkout@v4
       - name: Setup node and cache
@@ -87,8 +87,8 @@ jobs:
         env:
           CYPRESS_host: http://meilisearch:7700
         with:
-          start: yarn start:ci
-          wait-on: 'http://0.0.0.0:3000'
+          start: yarn dev:ci
+          wait-on: "http://0.0.0.0:3000"
           wait-on-timeout: 120
           command: yarn cy:run
           config-file: cypress.config.js
@@ -111,10 +111,10 @@ jobs:
       meilisearch:
         image: getmeili/meilisearch:latest
         env:
-          MEILI_MASTER_KEY: 'masterKey'
-          MEILI_NO_ANALYTICS: 'true'
+          MEILI_MASTER_KEY: "masterKey"
+          MEILI_NO_ANALYTICS: "true"
         ports:
-          - '7700:7700'
+          - "7700:7700"
     steps:
       - uses: actions/checkout@v4
       - name: Setup node and cache
@@ -132,8 +132,8 @@ jobs:
         env:
           CYPRESS_host: http://meilisearch:7700
         with:
-          start: yarn start:ci
-          wait-on: 'http://0.0.0.0:3000'
+          start: yarn dev:ci
+          wait-on: "http://0.0.0.0:3000"
           command: yarn cy:run:test-api-key-required
           config-file: cypress.config.js
       - uses: actions/upload-artifact@v4
