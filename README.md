@@ -64,7 +64,7 @@ yarn
 ## Run
 
 ```bash
-yarn start
+yarn dev
 ```
 
 Go to `http://localhost:3000/` and enjoy ! 🎉
@@ -94,14 +94,12 @@ VITE_MEILI_SERVER_ADDRESS=http://0.0.0.0:7700 yarn build
 
 ### Run your build
 
-The above commands will generate an optimized version of the app, inside the `build` folder.
+The above commands will generate an optimized version of the app, inside the `build` folder. You can then serve it with any web server of your choice.
 
-You can then serve it with any web server of your choice.
-
-Example:
+You can preview it with Vite:
 
 ```bash
-serve build
+yarn preview
 ```
 
 ## Storybook

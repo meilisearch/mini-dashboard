@@ -11,4 +11,4 @@ COPY package*.json ./
 COPY --chown=node:node . .
 RUN yarn install
 
-CMD ["yarn", "start"]
+CMD ["yarn", "dev"]
