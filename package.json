@@ -20,10 +20,9 @@
     "styled-system": "^5.1.5"
   },
   "scripts": {
-    "version-script": "node version-script.js",
     "validate-env": "node validate-env.js",
-    "prestart": "yarn version-script && yarn validate-env",
-    "prebuild": "yarn version-script && yarn validate-env",
+    "prestart": "yarn validate-env",
+    "prebuild": "yarn validate-env",
     "dev": "yarn prestart && vite",
     "dev:ci": "yarn prestart && VITE_MEILI_SERVER_ADDRESS=http://meilisearch:7700 vite --host 0.0.0.0 --port 3000",
     "build": "yarn prebuild && vite build",
