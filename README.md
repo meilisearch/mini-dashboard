@@ -89,7 +89,7 @@ If you want to specify the URL where your Meilisearch is running, use the `VITE_
 Example:
 
 ```bash
-VITE_MEILI_SERVER_ADDRESS=http://0.0.0.0:7700 yarn build
+VITE_MEILI_SERVER_ADDRESS=http://localhost:7700 yarn build
 ```
 
 ### Run your build
