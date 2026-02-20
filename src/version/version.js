@@ -1,1 +1,3 @@
-export default '0.4.0'
+import { version } from '../../package.json'
+
+export default version
