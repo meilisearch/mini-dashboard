@@ -23,8 +23,12 @@ module.exports = {
   },
 
   viteFinal: async (config) => {
-    const viteConfig = await import('../vite.config.js')
-    return mergeConfig(config, viteConfig.default || viteConfig)
+    const appViteConfig = await import('../vite.config.js')
+
+   return mergeConfig(config, {
+     plugins: appViteConfig.plugins,
+     esbuild: appViteConfig.esbuild,
+   })
   },
 
   docs: {
