@@ -121,6 +121,19 @@ docker build -t meilisearch-mini-dashboard .
 docker run -it -e VITE_MEILI_SERVER_ADDRESS=http://localhost:7700 -p 3000:3000 meilisearch-mini-dashboard
 ```
 
+You can then access the mini-dashboard at `http://localhost:3000`.
+
+## Docker with Nginx
+nginx is also available in the Docker image. You can use it to serve the mini-dashboard.
+
+```bash
+docker build --build-arg REACT_APP_MEILI_SERVER_ADDRESS=http://meilisearch:7700 -t meilisearch-mini-dashboard-nginx . -f Dockerfile.nginx
+docker run -p 8080:80 meilisearch-mini-dashboard-nginx
+```
+
+You can then access the mini-dashboard at `http://localhost:8080`.
+
+
 ## Contributing
 
 If you want to contribute to this project, please make sure to read [the contributing guidelines](./CONTRIBUTING.md)
