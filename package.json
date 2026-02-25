@@ -51,7 +51,7 @@
     "@storybook/addon-measure": "^8.6.15",
     "@storybook/addon-outline": "^8.6.15",
     "@storybook/addon-toolbars": "^8.6.15",
-    "@storybook/addon-viewport": "^8.6.15",
+    "@storybook/addon-viewport": "^9.0.8",
     "@storybook/blocks": "8.6.14",
     "@storybook/global": "^5.0.0",
     "@storybook/node-logger": "^8.4.7",
