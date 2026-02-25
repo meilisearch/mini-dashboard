@@ -55,17 +55,17 @@ describe(`Test API key required`, () => {
   })
 
   it('Should display a modal with API key inside the API key modal button', () => {
-    // Fill the first API key request
+    // Fill the first API key request (key is stored in RAM only, not persisted)
     cy.get('div[aria-label=ask-for-api-key]').within(() => {
       cy.get('input[name="apiKey"]').as('apiKeyInput')
       cy.get('@apiKeyInput').clear()
       cy.get('@apiKeyInput').type(API_KEY)
       cy.get('button').contains('Go').click()
     })
-    cy.visit('/')
     cy.wait(WAITING_TIME)
+    cy.contains('Welcome to')
 
-    // Test the value of the Api Key Modal
+    // Open the Api Key modal from the header (same session, key still in memory)
     cy.get('span').contains('Api Key').parent().click()
     cy.get('div[aria-label=settings-api-key]').within(() => {
       cy.get('input[name="apiKey"]').should('have.value', API_KEY)
@@ -73,17 +73,17 @@ describe(`Test API key required`, () => {
   })
 
   it('Should fail on API Key change inside the API key modal button', () => {
-    // Fill the first API key request
+    // Fill the first API key request (key is stored in RAM only, not persisted)
     cy.get('div[aria-label=ask-for-api-key]').within(() => {
       cy.get('input[name="apiKey"]').as('apiKeyInput')
       cy.get('@apiKeyInput').clear()
       cy.get('@apiKeyInput').type(API_KEY)
       cy.get('button').contains('Go').click()
     })
-    cy.visit('/')
     cy.wait(WAITING_TIME)
+    cy.contains('Welcome to')
 
-    // Test the change of API key inside the API Key Modal
+    // Open the Api Key modal from the header and try to change to an invalid key
     cy.get('span').contains('Api Key').parent().click()
     cy.get('div[aria-label=settings-api-key]').within(() => {
       cy.get('input[name="apiKey"]').as('apiKeyInput')
