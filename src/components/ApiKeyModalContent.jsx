@@ -43,6 +43,13 @@ const ApiKeyModalContent = ({ closeModal }) => {
     setValue(apiKey)
   }, [apiKey])
 
+  const handleClearKey = () => {
+    setApiKey('')
+    setValue('')
+    setError()
+    closeModal()
+  }
+
   return (
     <>
       <Box display="flex">
@@ -66,6 +73,17 @@ const ApiKeyModalContent = ({ closeModal }) => {
         >
           Go
         </Button>
+        {apiKey ? (
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={handleClearKey}
+            style={{ marginLeft: 8 }}
+            aria-label="Clear API key"
+          >
+            Clear key
+          </Button>
+        ) : null}
       </Box>
       <Box position="relative">
         <Typography variant="typo11" my={3} color="gray.6" mt={2}>

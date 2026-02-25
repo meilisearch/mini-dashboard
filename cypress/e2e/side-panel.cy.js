@@ -2,8 +2,7 @@ const WAITING_TIME = Cypress.env('waitingTime')
 
 describe(`Right side panel`, () => {
   beforeEach(() => {
-    cy.saveApiTokenCookie()
-    cy.visit('/')
+    cy.visitWithApiKey()
   })
 
   it('Should be opened by default', () => {

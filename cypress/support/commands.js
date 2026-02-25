@@ -46,8 +46,7 @@ Cypress.Commands.add('addDocuments', async (uid, documents) => {
   }
 })
 
-Cypress.Commands.add('saveApiTokenCookie', () => {
-  cy.window().then((win) => {
-    win.localStorage.setItem('apiKey', JSON.stringify(apiKey))
-  })
+// API key is no longer stored in localStorage (REC03). Use URL param: visit(`/?api_key=${apiKey}`)
+Cypress.Commands.add('visitWithApiKey', () => {
+  cy.visit(`/?api_key=${apiKey}`)
 })
