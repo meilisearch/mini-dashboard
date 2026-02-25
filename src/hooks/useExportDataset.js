@@ -1,5 +1,6 @@
+import React from 'react'
 import { useMeilisearchClientContext } from '../context/MeilisearchClientContext'
-import useLocalStorage from './useLocalStorage'
+import ApiKeyContext from '../context/ApiKeyContext'
 
 function getBody({ meilisearchUrl, masterKey }) {
   return {
@@ -77,7 +78,7 @@ const pollTaskStatus = (client, taskUid, onProgress) =>
 
 export default function useExport() {
   const { meilisearchJsClient } = useMeilisearchClientContext()
-  const [apiKey] = useLocalStorage('apiKey')
+  const { apiKey } = React.useContext(ApiKeyContext)
 
   const exportDataset = async (
     meilisearchUrl,
