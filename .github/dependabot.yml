@@ -5,5 +5,4 @@ updates:
     schedule:
       interval: 'monthly'
     labels:
-      - skip-changelog
       - dependencies      
