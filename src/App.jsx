@@ -9,8 +9,6 @@ import { MeiliSearch as Meilisearch } from 'meilisearch'
 import ApiKeyContext from 'context/ApiKeyContext'
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
 import useLocalStorage from 'hooks/useLocalStorage'
-
-// API key is stored in memory only (no localStorage) per security recommendation REC03
 import ApiKeyModalContent from 'components/ApiKeyModalContent'
 import Body from 'components/Body'
 import Modal from 'components/Modal'
@@ -27,6 +25,7 @@ const Wrapper = styled.div`
   min-height: 100vh;
 `
 
+// API key is stored in memory only (no localStorage) per security recommendation
 const App = () => {
   const [apiKey, setApiKey] = useState('')
   const [indexes, setIndexes] = useState()
@@ -65,7 +64,9 @@ const App = () => {
   useEffect(() => {
     try {
       window.localStorage.removeItem('apiKey')
-    } catch (_) {}
+    } catch (_) {
+      // ignore errors when clearing apiKey
+    }
   }, [])
 
   // If the API key is present in the URL, use it in memory only (not persisted)
