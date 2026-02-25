@@ -46,7 +46,6 @@ Cypress.Commands.add('addDocuments', async (uid, documents) => {
   }
 })
 
-// API key is no longer stored in localStorage (REC03). Use URL param: visit(`/?api_key=${apiKey}`)
 Cypress.Commands.add('visitWithApiKey', () => {
   cy.visit(`/?api_key=${apiKey}`)
 })
