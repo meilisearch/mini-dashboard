@@ -13,17 +13,15 @@ export const MeilisearchClientContext = createContext({
 
 export const MeiliSearchClientProvider = ({ children }) => {
   // API key is provided in memory by App (via setMeilisearchJsClient/setInstantMeilisearchClient)
-  const [apiKey] = useState('')
-
   const [meilisearchJsClient, setMeilisearchJsClient] = useState(
     new Meilisearch({
       host: baseUrl,
-      apiKey,
+      apiKey: '',
       clientAgents,
     })
   )
   const [instantMeilisearchClient, setInstantMeilisearchClient] = useState(
-    instantMeilisearch(baseUrl, apiKey, {
+    instantMeilisearch(baseUrl, '', {
       primaryKey: 'id',
       clientAgents,
     }).searchClient

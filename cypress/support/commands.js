@@ -47,5 +47,5 @@ Cypress.Commands.add('addDocuments', async (uid, documents) => {
 })
 
 Cypress.Commands.add('visitWithApiKey', () => {
-  cy.visit(`/?api_key=${apiKey}`)
+  cy.visit('/', { qs: { api_key: apiKey } })
 })
