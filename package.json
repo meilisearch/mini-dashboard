@@ -5,7 +5,7 @@
   "dependencies": {
     "@meilisearch/instant-meilisearch": "0.30",
     "@styled-system/should-forward-prop": "^5.1.5",
-    "color": "^5.0.0",
+    "color": "^5.0.3",
     "dotenv": "^17.2.4",
     "eslint-plugin-import": "^2.29.1",
     "meilisearch": "0.48.2",
