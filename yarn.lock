@@ -1678,16 +1678,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-backgrounds@npm:^8.6.15":
-  version: 8.6.15
-  resolution: "@storybook/addon-backgrounds@npm:8.6.15"
-  dependencies:
-    "@storybook/global": "npm:^5.0.0"
-    memoizerific: "npm:^1.11.3"
-    ts-dedent: "npm:^2.0.0"
-  peerDependencies:
-    storybook: ^8.6.15
-  checksum: 10c0/2de25f2b4597dec4f9ff6c05972b890f25285596118eb56a25ae18e5fc5da9249c1cd331f848a73aaff98810cebe5d47da9ad450e5ebbffc8a6f145cd45ba955
+"@storybook/addon-backgrounds@npm:^9.0.8":
+  version: 9.0.8
+  resolution: "@storybook/addon-backgrounds@npm:9.0.8"
+  checksum: 10c0/af650e0473f39d464543260c6fb016d45a9db23f38a9dd5b137f8d45b6faeb0094b1896c2fe9420bdda64e9c1db3c11881c7ccad600198bbd1f405405b123161
   languageName: node
   linkType: hard
 
@@ -6353,7 +6347,7 @@ __metadata:
   dependencies:
     "@meilisearch/instant-meilisearch": "npm:0.30"
     "@storybook/addon-actions": "npm:^8.6.15"
-    "@storybook/addon-backgrounds": "npm:^8.6.15"
+    "@storybook/addon-backgrounds": "npm:^9.0.8"
     "@storybook/addon-controls": "npm:^8.6.15"
     "@storybook/addon-docs": "npm:^8.6.15"
     "@storybook/addon-links": "npm:^8.6.15"
