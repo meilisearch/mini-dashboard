@@ -6234,7 +6234,7 @@ __metadata:
     polished: "npm:^4.3.1"
     prettier: "npm:^3.8.1"
     prop-types: "npm:^15.8.1"
-    react: "npm:^18.3.1"
+    react: "npm:^19.2.4"
     react-dom: "npm:^18.3.1"
     react-instantsearch-dom: "npm:^6.40.4"
     react-json-view: "npm:^1.21.3"
@@ -7150,12 +7150,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.3.1":
-  version: 18.3.1
-  resolution: "react@npm:18.3.1"
-  dependencies:
-    loose-envify: "npm:^1.1.0"
-  checksum: 10c0/283e8c5efcf37802c9d1ce767f302dd569dd97a70d9bb8c7be79a789b9902451e0d16334b05d73299b20f048cbc3c7d288bbbde10b701fa194e2089c237dbea3
+"react@npm:^19.2.4":
+  version: 19.2.4
+  resolution: "react@npm:19.2.4"
+  checksum: 10c0/cd2c9ff67a720799cc3b38a516009986f7fc4cb8d3e15716c6211cf098d1357ee3e348ab05ad0600042bbb0fd888530ba92e329198c92eafa0994f5213396596
   languageName: node
   linkType: hard
 
