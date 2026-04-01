@@ -1575,15 +1575,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-outline@npm:^8.6.15":
-  version: 8.6.15
-  resolution: "@storybook/addon-outline@npm:8.6.15"
-  dependencies:
-    "@storybook/global": "npm:^5.0.0"
-    ts-dedent: "npm:^2.0.0"
-  peerDependencies:
-    storybook: ^8.6.15
-  checksum: 10c0/c5b2e5d1c17a6d39e06517f1561a531073860eeab535e75bc7cd888e95e8430762a6cc3599ffd8a82cd75ef71c7e06a7e3ff7512e188608bf6aaf69e2dd9d813
+"@storybook/addon-outline@npm:^9.0.8":
+  version: 9.0.8
+  resolution: "@storybook/addon-outline@npm:9.0.8"
+  checksum: 10c0/4b37bb388fad5b2d1bb1a349c71c4631f7e7bf8e16e5dea0dbdee32a951b67b7eb0c991c319e5680ee18a34063a2ba047508ee4bb78bf4fff8380af5de66d445
   languageName: node
   linkType: hard
 
@@ -6204,7 +6199,7 @@ __metadata:
     "@storybook/addon-docs": "npm:^8.6.15"
     "@storybook/addon-links": "npm:^8.6.15"
     "@storybook/addon-measure": "npm:^8.6.15"
-    "@storybook/addon-outline": "npm:^8.6.15"
+    "@storybook/addon-outline": "npm:^9.0.8"
     "@storybook/addon-toolbars": "npm:^8.6.15"
     "@storybook/addon-viewport": "npm:^9.0.8"
     "@storybook/blocks": "npm:8.6.14"
