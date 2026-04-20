@@ -151,7 +151,7 @@ const Header = ({
         const res = await meilisearchJsClient.getVersion()
         setVersion(res.pkgVersion)
       } catch (err) {
-        // eslint-disable-next-line no-console
+        // oxlint-disable-next-line no-console
         console.log(err)
       }
     }

@@ -1,3 +1,5 @@
 {
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  "oxc.enable.oxfmt": false,
+  "oxc.enable.oxlint": true,
+  "oxc.path.oxlint": "./node_modules/.bin/oxlint"
 }

@@ -1,0 +1,27 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "ignorePatterns": [
+    "build/",
+    "data.ms/",
+    "public/",
+    "node_modules/",
+    "build/*",
+    "src/components/icons/*"
+  ],
+  "plugins": ["react"],
+  "rules": {
+    "no-console": "warn",
+    "react/display-name": "off",
+    "react/exhaustive-deps": "off",
+    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "react/jsx-no-constructed-context-values": "error",
+    "react/jsx-no-useless-fragment": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "off"
+  }
+}
