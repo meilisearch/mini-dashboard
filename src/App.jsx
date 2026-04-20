@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { instantMeiliSearch as instantMeilisearch } from '@meilisearch/instant-meilisearch'
 import { useDialogState } from 'reakit/Dialog'
-import { MeiliSearch as Meilisearch } from 'meilisearch'
+import { Meilisearch } from 'meilisearch'
 
 import ApiKeyContext from 'context/ApiKeyContext'
 import { useMeilisearchClientContext } from 'context/MeilisearchClientContext'
