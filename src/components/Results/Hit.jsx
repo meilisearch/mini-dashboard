@@ -223,7 +223,7 @@ const Hit = ({ hit }) => {
 
   useEffect(() => {
     if (!hit._highlightResult) {
-      // eslint-disable-next-line no-console
+      // oxlint-disable-next-line no-console
       console.warn('Your hits have no field. Please check your index settings.')
     }
   }, [])

@@ -1,4 +1,3 @@
-/* eslint-disable cypress/no-unnecessary-waiting */
 const API_KEY = Cypress.env('apiKey')
 const WRONG_APIKEY = Cypress.env('wrongApiKey')
 const WAITING_TIME = Cypress.env('waitingTime')
