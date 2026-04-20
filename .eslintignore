@@ -1,6 +1,0 @@
-build/
-data.ms/
-public/
-node_modules/
-build/*
-src/components/icons/*

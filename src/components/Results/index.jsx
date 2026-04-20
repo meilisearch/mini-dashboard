@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* oxlint-disable no-unused-vars */
 import React from 'react'
 import { connectStateResults, connectStats } from 'react-instantsearch-dom'
 
