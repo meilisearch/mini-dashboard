@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { MeiliSearch as Meilisearch } from 'meilisearch'
+import { Meilisearch } from 'meilisearch'
 
 import ApiKeyContext from 'context/ApiKeyContext'
 import Box from 'components/Box'
