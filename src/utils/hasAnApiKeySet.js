@@ -1,4 +1,4 @@
-import { MeiliSearch as Meilisearch } from 'meilisearch'
+import { Meilisearch } from 'meilisearch'
 import clientAgents from 'version/client-agents'
 import baseUrl from 'config'
 
