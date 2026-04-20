@@ -1,6 +1,6 @@
 import React, { useState, useMemo, createContext, useContext } from 'react'
 import { instantMeiliSearch as instantMeilisearch } from '@meilisearch/instant-meilisearch'
-import { MeiliSearch as Meilisearch } from 'meilisearch'
+import { Meilisearch } from 'meilisearch'
 import clientAgents from 'version/client-agents'
 import baseUrl from 'config'
 

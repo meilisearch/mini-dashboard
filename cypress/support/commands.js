@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const { MeiliSearch: Meilisearch } = require('meilisearch')
+const { Meilisearch } = require('meilisearch')
 
 const { apiKey, host } = Cypress.env()
 
