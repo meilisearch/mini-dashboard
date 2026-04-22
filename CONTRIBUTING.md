@@ -18,6 +18,7 @@ We accept the use of AI-powered tools (GitHub Copilot, ChatGPT, Claude, Cursor, 
 ⚠️ However, transparency is required: if you use AI assistance, please mention it in your PR description. This helps maintainers during code review and ensure the quality of contributions.
 
 What we expect:
+
 - **Disclose AI usage**: A simple note like "Used GitHub Copilot for autocompletion" or "Generated initial test structure with ChatGPT" is sufficient.
 - **Specify the scope**: Indicate which parts of your contribution involved AI assistance.
 - **Review AI-generated content**: Ensure you understand and have verified any AI-generated code before submitting.
@@ -132,6 +133,7 @@ The `mini-dashboard` is part of the Meilisearch engine's binary. In order for th
 - Make a PR on [`meilisearch`](https://github.com/meilisearch/meilisearch/), with the changes pointing to the required branch (see step 2).
 
 During a `pre-release` of [`meilisearch`](https://github.com/meilisearch/meilisearch/), an additional step is required before publishing the mini-dashboard:
+
 - If there are breaking changes on the search, update the version of `meilisearch-js` and `instant-meilisearch` to their latest compatible version with the pre-release. It may be a [beta](https://github.com/meilisearch/mini-dashboard/pull/322/files) or the latest release. Check with the [integration-team](https://github.com/meilisearch/integrations-guides/) to know if it is required or not.
 
 <hr>

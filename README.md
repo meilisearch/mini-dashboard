@@ -8,15 +8,15 @@
 
 🚨 IMPORTANT NOTICE: Reduced Maintenance & Support 🚨
 
-*Dear Community,*
+_Dear Community,_
 
-*We'd like to share some updates regarding the future maintenance of this repository:*
+_We'd like to share some updates regarding the future maintenance of this repository:_
 
-*Our team is small, and our availability will be reduced in the upcoming times. As such, response times might be slower, and we will not be accepting enhancements for this repository moving forward.*
+_Our team is small, and our availability will be reduced in the upcoming times. As such, response times might be slower, and we will not be accepting enhancements for this repository moving forward._
 
-*If you're looking for reliable alternatives, consider using [Meilisearch Cloud](https://meilisearch.com/cloud?utm_campaign=oss&utm_source=github&utm_medium=minidashboard). For instance, it offers a convenient solution for managing your index settings.*
+_If you're looking for reliable alternatives, consider using [Meilisearch Cloud](https://meilisearch.com/cloud?utm_campaign=oss&utm_source=github&utm_medium=minidashboard). For instance, it offers a convenient solution for managing your index settings._
 
-*Seeking immediate support? Please join us on [our Discord server](https://discord.meilisearch.com).*
+_Seeking immediate support? Please join us on [our Discord server](https://discord.meilisearch.com)._
 
 ---
 
