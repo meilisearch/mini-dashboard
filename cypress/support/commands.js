@@ -1,5 +1,5 @@
-/* eslint-disable no-console */
-const { MeiliSearch: Meilisearch } = require('meilisearch')
+/* oxlint-disable no-console */
+const { Meilisearch } = require('meilisearch')
 
 const { apiKey, host } = Cypress.env()
 
@@ -11,8 +11,7 @@ Cypress.Commands.add('deleteAllIndexes', async () => {
     })
     const { results: indexes } = await client.getIndexes()
     indexes.forEach(async (index) => {
-      const task = await client.deleteIndex(index.uid)
-      await client.waitForTask(task.taskUid)
+      await client.deleteIndex(index.uid).waitTask()
     })
   } catch (e) {
     console.log({ e })
@@ -25,8 +24,7 @@ Cypress.Commands.add('createIndex', async (uid) => {
       host,
       apiKey,
     })
-    const task = await client.createIndex(uid)
-    await client.waitForTask(task.taskUid)
+    await client.createIndex(uid).waitTask()
   } catch (e) {
     console.log({ e })
   }
@@ -39,8 +37,7 @@ Cypress.Commands.add('addDocuments', async (uid, documents) => {
       apiKey,
     })
     const index = await client.getIndex(uid)
-    const task = await index.addDocuments(documents)
-    await client.waitForTask(task.taskUid)
+    await index.addDocuments(documents).waitTask()
   } catch (e) {
     console.log({ e })
   }

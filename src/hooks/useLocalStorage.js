@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* oxlint-disable no-console */
 import { useState } from 'react'
 
 function useLocalStorage(key, initialValue) {
