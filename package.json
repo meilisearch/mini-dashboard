@@ -11,7 +11,7 @@
     "build": "yarn prebuild && vite build",
     "preview": "vite preview --host 0.0.0.0 --port 3000",
     "lint": "oxlint .",
-    "format:check": "oxfmt .",
+    "format:check": "oxfmt --check .",
     "format:fix": "oxfmt --fix .",
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
