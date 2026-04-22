@@ -23,7 +23,7 @@ jobs:
       - name: Install dev dependencies
         run: yarn --frozen-lockfile
       - name: Run style check
-        run: yarn lint && yarn prettier-check
+        run: yarn lint && yarn format:check
   cypress_no_meilisearch:
     runs-on: ubuntu-latest
     container:
