@@ -2852,12 +2852,12 @@ __metadata:
   linkType: hard
 
 "brace-expansion@npm:^1.1.7":
-  version: 1.1.12
-  resolution: "brace-expansion@npm:1.1.12"
+  version: 1.1.15
+  resolution: "brace-expansion@npm:1.1.15"
   dependencies:
     balanced-match: "npm:^1.0.0"
     concat-map: "npm:0.0.1"
-  checksum: 10c0/975fecac2bb7758c062c20d0b3b6288c7cc895219ee25f0a64a9de662dbac981ff0b6e89909c3897c1f84fa353113a721923afdec5f8b2350255b097f12b1f73
+  checksum: 10c0/648e273f57cfa9ed67d8a77bdb15b408205465d33da9331808ee3c188d8b55674c9cdbf1f320b65bc562e485e1263360ae62ad355e128e0435891f6430e795d7
   languageName: node
   linkType: hard
 
@@ -5976,9 +5976,9 @@ __metadata:
   linkType: hard
 
 "lodash@npm:^4.17.21":
-  version: 4.17.23
-  resolution: "lodash@npm:4.17.23"
-  checksum: 10c0/1264a90469f5bb95d4739c43eb6277d15b6d9e186df4ac68c3620443160fc669e2f14c11e7d8b2ccf078b81d06147c01a8ccced9aab9f9f63d50dcf8cace6bf6
+  version: 4.18.1
+  resolution: "lodash@npm:4.18.1"
+  checksum: 10c0/757228fc68805c59789e82185135cf85f05d0b2d3d54631d680ca79ec21944ec8314d4533639a14b8bcfbd97a517e78960933041a5af17ecb693ec6eecb99a27
   languageName: node
   linkType: hard
 
@@ -6370,12 +6370,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.3.11":
-  version: 3.3.11
-  resolution: "nanoid@npm:3.3.11"
+"nanoid@npm:^3.3.12":
+  version: 3.3.12
+  resolution: "nanoid@npm:3.3.12"
   bin:
     nanoid: bin/nanoid.cjs
-  checksum: 10c0/40e7f70b3d15f725ca072dfc4f74e81fcf1fbb02e491cf58ac0c79093adc9b0a73b152bcde57df4b79cd097e13023d7504acb38404a4da7bc1cd8e887b82fe0b
+  checksum: 10c0/ba142b7b39e11e80c16dd74b0365d407880c87c1cf7e1480956981ae940ee36060fa5b6f092cd1e315184dd19244c657bd017d03327bd3c62247d691c5e8edfb
   languageName: node
   linkType: hard
 
@@ -6787,9 +6787,9 @@ __metadata:
   linkType: hard
 
 "picomatch@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "picomatch@npm:2.3.1"
-  checksum: 10c0/26c02b8d06f03206fc2ab8d16f19960f2ff9e81a658f831ecb656d8f17d9edc799e8364b1f4a7873e89d9702dff96204be0fa26fe4181f6843f040f819dac4be
+  version: 2.3.2
+  resolution: "picomatch@npm:2.3.2"
+  checksum: 10c0/a554d1709e59be97d1acb9eaedbbc700a5c03dbd4579807baed95100b00420bc729335440ef15004ae2378984e2487a7c1cebd743cfdb72b6fa9ab69223c0d61
   languageName: node
   linkType: hard
 
@@ -6831,13 +6831,13 @@ __metadata:
   linkType: hard
 
 "postcss@npm:^8.4.43, postcss@npm:^8.5.6":
-  version: 8.5.6
-  resolution: "postcss@npm:8.5.6"
+  version: 8.5.15
+  resolution: "postcss@npm:8.5.15"
   dependencies:
-    nanoid: "npm:^3.3.11"
+    nanoid: "npm:^3.3.12"
     picocolors: "npm:^1.1.1"
     source-map-js: "npm:^1.2.1"
-  checksum: 10c0/5127cc7c91ed7a133a1b7318012d8bfa112da9ef092dddf369ae699a1f10ebbd89b1b9f25f3228795b84585c72aabd5ced5fc11f2ba467eedf7b081a66fad024
+  checksum: 10c0/7f2e63ae22fbe43aace1bf652bd99da4e90737c64194d49e51ddc9cd0f9e51ff2861a7d734379b494deffa03a880a5c65eec70bc29ee9ebaa7136dde3eee8f31
   languageName: node
   linkType: hard
 
@@ -6957,12 +6957,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.14.1":
-  version: 6.14.1
-  resolution: "qs@npm:6.14.1"
+"qs@npm:^6.15.2":
+  version: 6.15.2
+  resolution: "qs@npm:6.15.2"
   dependencies:
     side-channel: "npm:^1.1.0"
-  checksum: 10c0/0e3b22dc451f48ce5940cbbc7c7d9068d895074f8c969c0801ac15c1313d1859c4d738e46dc4da2f498f41a9ffd8c201bd9fb12df67799b827db94cc373d2613
+  checksum: 10c0/e6fd5f6f0aab06d480fe9ab15cebfc4ce4235303e2f91dc69a8f7f4df1e668a61c11d1cfbabacf4295cbbeb7b670ed23db45307480726259761f98e5695e93a7
   languageName: node
   linkType: hard
 
@@ -8560,9 +8560,9 @@ __metadata:
   linkType: hard
 
 "undici@npm:^7.20.0":
-  version: 7.21.0
-  resolution: "undici@npm:7.21.0"
-  checksum: 10c0/ec5d7524125ac9c392a8a67b84fe4f9301936ca6b2afd7be12e73ab98726e55761dc9624ac10361d2f346e6fdaf66043381a62f7d0b565facd61bbfda975a586
+  version: 7.27.0
+  resolution: "undici@npm:7.27.0"
+  checksum: 10c0/6fd15a81b0ca177b2667738b830ed175363e5e2164e992251d03aaee6c6517098b930085bd68b8fe5911920371076526657de035e07dc72377b9c5c731b90f0b
   languageName: node
   linkType: hard
 
