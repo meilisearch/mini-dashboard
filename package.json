@@ -23,7 +23,7 @@
     "icons": "npx @svgr/cli --title-prop --no-dimensions --replace-attr-values \"#39486E=currentColor,#959DB3=currentColor\" -d src/components/icons src/components/icons/svg"
   },
   "dependencies": {
-    "@meilisearch/instant-meilisearch": "0.31.1",
+    "@meilisearch/instant-meilisearch": "0.31.2",
     "@styled-system/should-forward-prop": "^5.1.5",
     "color": "^5.0.3",
     "dotenv": "^17.2.4",
