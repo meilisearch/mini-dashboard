@@ -1,5 +1,5 @@
 {
-  "oxc.enable.oxfmt": false,
+  "oxc.enable.oxfmt": true,
   "oxc.enable.oxlint": true,
   "oxc.path.oxlint": "./node_modules/.bin/oxlint",
   "oxc.fmt.configPath": ".oxfmtrc.json",
