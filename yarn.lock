@@ -1917,12 +1917,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-toolbars@npm:^8.6.15":
-  version: 8.6.15
-  resolution: "@storybook/addon-toolbars@npm:8.6.15"
-  peerDependencies:
-    storybook: ^8.6.15
-  checksum: 10c0/f03e1d2e73d56065bbc4ef29ac4b94e280d2f40fbf991d4174a408690d05a6c3d1fb152ca17bf5e0c8dcd5ab70316d8e2863936710da7cb04e1a90d094854d68
+"@storybook/addon-toolbars@npm:^9.0.8":
+  version: 9.0.8
+  resolution: "@storybook/addon-toolbars@npm:9.0.8"
+  checksum: 10c0/9c18a4426ad42b1a7dea6178a5d9305a8ad799920778068b332e56aaea4a2eca8b845fb1d3a8b84f68eafec54949704108e16eb78fd01d8e191f1653e05c9cd5
   languageName: node
   linkType: hard
 
@@ -5486,7 +5484,7 @@ __metadata:
     "@storybook/addon-links": "npm:^8.6.15"
     "@storybook/addon-measure": "npm:^8.6.15"
     "@storybook/addon-outline": "npm:^8.6.15"
-    "@storybook/addon-toolbars": "npm:^8.6.15"
+    "@storybook/addon-toolbars": "npm:^9.0.8"
     "@storybook/addon-viewport": "npm:^9.0.8"
     "@storybook/blocks": "npm:8.6.14"
     "@storybook/global": "npm:^5.0.0"
