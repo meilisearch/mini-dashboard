@@ -10,9 +10,11 @@ Cypress.Commands.add('deleteAllIndexes', async () => {
       apiKey,
     })
     const { results: indexes } = await client.getIndexes()
-    indexes.forEach(async (index) => {
-      await client.deleteIndex(index.uid).waitTask()
-    })
+    await Promise.all(
+      indexes.map(async (index) => {
+        await client.deleteIndex(index.uid).waitTask()
+      })
+    )
   } catch (e) {
     console.log({ e })
   }
