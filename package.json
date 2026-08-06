@@ -69,7 +69,7 @@
     "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^4.1.0"
   },
-  "packageManager": "yarn@4.6.0",
+  "packageManager": "yarn@4.18.0",
   "resolutions": {
     "css-select/nth-check": "^2.0.1",
     "css-minimizer-webpack-plugin/postcss": "^8.4.31",
