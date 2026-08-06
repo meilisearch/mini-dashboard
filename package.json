@@ -2,6 +2,14 @@
   "name": "mini-dashboard",
   "version": "0.4.2",
   "private": true,
+  "dependenciesMeta": {
+    "cypress": {
+      "built": true
+    },
+    "esbuild": {
+      "built": true
+    }
+  },
   "scripts": {
     "validate-env": "node validate-env.js",
     "prestart": "yarn validate-env",
