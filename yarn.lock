@@ -5519,6 +5519,11 @@ __metadata:
     vite: "npm:^6.4.3"
     vite-tsconfig-paths: "npm:^4.3.2"
     vitest: "npm:^4.1.0"
+  dependenciesMeta:
+    cypress:
+      built: true
+    esbuild:
+      built: true
   languageName: unknown
   linkType: soft
 
