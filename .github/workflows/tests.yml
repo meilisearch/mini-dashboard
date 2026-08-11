@@ -46,7 +46,7 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
       - name: Test no meilisearch running
-        uses: cypress-io/github-action@be1bab96b388bbd9ce3887e397d373c8557e15af # v6.9.2
+        uses: cypress-io/github-action@fa4a118725a8f001170d49631ea89e5d66fee626 # v7.4.1
         with:
           start: yarn dev:ci
           wait-on: "http://0.0.0.0:3000"
@@ -89,7 +89,7 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
       - name: Test
-        uses: cypress-io/github-action@be1bab96b388bbd9ce3887e397d373c8557e15af # v6.9.2
+        uses: cypress-io/github-action@fa4a118725a8f001170d49631ea89e5d66fee626 # v7.4.1
         env:
           CYPRESS_host: http://meilisearch:7700
         with:
@@ -136,7 +136,7 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
       - name: Test
-        uses: cypress-io/github-action@be1bab96b388bbd9ce3887e397d373c8557e15af # v6.9.2
+        uses: cypress-io/github-action@fa4a118725a8f001170d49631ea89e5d66fee626 # v7.4.1
         env:
           CYPRESS_host: http://meilisearch:7700
         with:
