@@ -1,0 +1,20 @@
+FROM node:20-alpine AS build-env
+
+WORKDIR /home/node/app
+
+RUN chown -R node:node /home/node/app
+
+USER node
+
+COPY package*.json ./
+
+COPY --chown=node:node . .
+RUN yarn install
+ENV NODE_ENV=production
+# if you want to use your own meilisearch server, you can set the following env
+# ENV REACT_APP_MEILI_SERVER_ADDRESS=http://meilisearch:7700
+# ENV REACT_APP_MEILI_API_KEY=masterKey
+RUN yarn build
+
+FROM nginx
+COPY --from=build-env /home/node/app/build/ /usr/share/nginx/html/
