@@ -51,7 +51,7 @@
     "@storybook/addon-backgrounds": "^9.0.8",
     "@storybook/addon-controls": "^8.6.15",
     "@storybook/addon-docs": "^8.6.15",
-    "@storybook/addon-links": "^8.6.15",
+    "@storybook/addon-links": "^10.5.6",
     "@storybook/addon-measure": "^8.6.15",
     "@storybook/addon-outline": "^9.0.8",
     "@storybook/addon-toolbars": "^9.0.8",

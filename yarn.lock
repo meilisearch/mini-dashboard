@@ -1890,19 +1890,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-links@npm:^8.6.15":
-  version: 8.6.15
-  resolution: "@storybook/addon-links@npm:8.6.15"
+"@storybook/addon-links@npm:^10.5.6":
+  version: 10.5.6
+  resolution: "@storybook/addon-links@npm:10.5.6"
   dependencies:
     "@storybook/global": "npm:^5.0.0"
-    ts-dedent: "npm:^2.0.0"
   peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
-    storybook: ^8.6.15
+    "@types/react": ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    storybook: ^10.5.6
   peerDependenciesMeta:
+    "@types/react":
+      optional: true
     react:
       optional: true
-  checksum: 10c0/6011a899263c3b68c10c4a204c6604b7cab657df98766b4d012cb6582bb17125eca9038e354d0d2cdd30625826783fbddb5c20e82fe356a05bb4badcf83ad6de
+  checksum: 10c0/04f11633d26c5cc31fed32da4666507f174943112588e4043f190372848f41d6c21199d778d80adeab26b873e69147f553756504e0f097a1b7e5e134aa590cb1
   languageName: node
   linkType: hard
 
@@ -5478,7 +5480,7 @@ __metadata:
     "@storybook/addon-backgrounds": "npm:^9.0.8"
     "@storybook/addon-controls": "npm:^8.6.15"
     "@storybook/addon-docs": "npm:^8.6.15"
-    "@storybook/addon-links": "npm:^8.6.15"
+    "@storybook/addon-links": "npm:^10.5.6"
     "@storybook/addon-measure": "npm:^8.6.15"
     "@storybook/addon-outline": "npm:^9.0.8"
     "@storybook/addon-toolbars": "npm:^9.0.8"
