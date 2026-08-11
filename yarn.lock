@@ -1187,12 +1187,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@meilisearch/instant-meilisearch@npm:0.31.2":
-  version: 0.31.2
-  resolution: "@meilisearch/instant-meilisearch@npm:0.31.2"
+"@meilisearch/instant-meilisearch@npm:0.31.3":
+  version: 0.31.3
+  resolution: "@meilisearch/instant-meilisearch@npm:0.31.3"
   peerDependencies:
     meilisearch: ^0.57
-  checksum: 10c0/5ee989978ae0463680caee45820f5842e22752f0d6207058dc78a9caed2210f43d6e8890247069b60c56de411174c2556dbc66a8822837f19be54acf606dad68
+  checksum: 10c0/f140d6a2d73cfef002614b9f34a167ddafb57a1d2dfd93dcd694234c1f2fff777e34b13f3c7d04396f4eeb66ad16f00318c7a91418d4b0b298a9d165b21a8d81
   languageName: node
   linkType: hard
 
@@ -5475,7 +5475,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mini-dashboard@workspace:."
   dependencies:
-    "@meilisearch/instant-meilisearch": "npm:0.31.2"
+    "@meilisearch/instant-meilisearch": "npm:0.31.3"
     "@storybook/addon-actions": "npm:^8.6.15"
     "@storybook/addon-backgrounds": "npm:^9.0.8"
     "@storybook/addon-controls": "npm:^8.6.15"
