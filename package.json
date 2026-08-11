@@ -63,7 +63,7 @@
     "@storybook/react-vite": "^8.6.15",
     "@svgr/cli": "^8.1.0",
     "@vitejs/plugin-react": "^4.4.1",
-    "cypress": "^14.5.3",
+    "cypress": "^15.19.0",
     "dequal": "^2.0.3",
     "jsdom": "^30.0.1",
     "memoizerific": "^1.11.3",
