@@ -83,6 +83,7 @@
     "css-minimizer-webpack-plugin/postcss": "^8.4.31",
     "resolve-url-loader/postcss": "^8.4.31",
     "@storybook/core/esbuild": "^0.25.0",
+    "tinypool": "2.1.2",
     "js-yaml": "^4.3.2",
     "qs": "^6.16.0"
   },
