@@ -16,6 +16,9 @@ export default defineConfig({
   },
   build: {
     outDir: 'build',
+    // Never ship source maps: they expose the original source code to anyone
+    // opening the browser devtools on a production deployment.
+    sourcemap: false,
   },
   esbuild: {
     loader: 'jsx',

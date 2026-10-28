@@ -26,6 +26,26 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Run style check
         run: yarn lint && yarn format:check
+  build_check:
+    runs-on: ubuntu-latest
+    name: build-check
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 18
+          cache: "yarn"
+          cache-dependency-path: yarn.lock
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+      - name: Build project
+        run: yarn build
+      - name: Check no source maps are shipped
+        run: sh .github/scripts/check-no-sourcemaps.sh
   cypress_no_meilisearch:
     runs-on: ubuntu-latest
     container:
